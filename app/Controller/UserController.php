@@ -53,7 +53,7 @@ class UserController extends Controller
 			if (strlen($post['firstname']) < 2){
 				$errors[] = 'Votre prénom doit contenir au moins 2 caractères ';
 			}
-			if (strlen($post['username']) < 2){
+			if (strlen($post['lastname']) < 2){
 				$errors[] = 'Votre nom doit contenir au moins 2 caractères ';
 			}
 			if (strlen($post['password']) < 8){
@@ -70,7 +70,8 @@ class UserController extends Controller
 				//on utilise la méthode insert() qui permetd d'insérer des données en bases
 				$data = [
 					//la clé du tableau correspond au nom de la colone SQL
-				'username' => $post['username'],
+				'lastname' => $post['username'],
+				'firstname' => $post['firstname'],
 				'email' => $post['email'],
 				'password' => $authModel->hashPassword($post['password']),
 				'avatar' => $adress,
