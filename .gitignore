@@ -3,6 +3,4 @@
 app/config.php
 /phpDocumentor.phar
 *.log
-/package.json
-*.json
 *.json
