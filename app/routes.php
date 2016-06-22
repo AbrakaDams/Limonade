@@ -3,5 +3,5 @@
 	$w_routes = array(
 		['GET', '/', 'Default#home', 'default_home'],
 		['GET|POST', '/event/[:id]', 'Event#showEvent', 'event_showEvent'],
-		['GET|POST', '/register', 'User#register', 'default_register'],
+		['GET|POST', '/register', 'User#register', 'user_register'],
 	);
