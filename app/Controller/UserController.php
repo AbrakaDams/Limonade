@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \W\Model\UserModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
+use \W\Model\UsersModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
 
 class UserController extends Controller
@@ -62,8 +62,8 @@ class UserController extends Controller
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'Votre adresse email est vide';
 			}
-			if (strlen($post['pseudo']) < 3 || strlen($post['pseudo']) > 8){
-				$errors[] = 'Votre pseudo doit contenir entre 3 et 8 caractères';
+			if (strlen($post['username']) < 3 || strlen($post['username']) > 12){
+				$errors[] = 'Votre pseudo doit contenir entre 3 et 12 caractères';
 			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
@@ -75,12 +75,13 @@ class UserController extends Controller
 					//la clé du tableau correspond au nom de la colone SQL
 				'lastname' => $post['lastname'],
 				'firstname' => $post['firstname'],
+				'username' => $post['username'],
 				'email' => $post['email'],
 				'password' => $authModel->hashPassword($post['password']),
 				'avatar' => $adress,
 				];
 				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
-				$usersModel->insert($data);
+				$userModel->insert($data);
 				// ici l'insertion en base est effectuée!
 				$success =  true;
 			}
