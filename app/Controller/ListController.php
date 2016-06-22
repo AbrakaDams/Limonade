@@ -1,11 +1,15 @@
 <?php /* app/Model/CommentModel.php */
-namespace Model;
+namespace Controller;
 
-class ListModel extends \W\Model\Model
+use \W\Controller\Controller;
+use \Model\ListModel as ListModel;
+
+class List extends Controller implements MessageComponentInterface
 {
-	//Récupère les commentaires associés à un article
-	// public function findPostComments($postId)
-	// {
-	// 	//...
-	// }
+	public static function showLists($id) {
+		$newLists = new ListModel();
+		$lists = $newLists->findLists($id);
+
+		return $lists;
+	}
 }
