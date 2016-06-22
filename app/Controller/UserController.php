@@ -63,7 +63,7 @@ class UserController extends Controller
 				$errors[] = 'Votre adresse email est vide';
 			}
 			if (strlen($post['pseudo']) < 3 || strlen($post['pseudo']) > 8){
-				$errors[] = 'Votre pseudo doit contenir au moins 7 caractères ';
+				$errors[] = 'Votre pseudo doit contenir entre 3 et 8 caractères';
 			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
