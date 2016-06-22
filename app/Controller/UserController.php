@@ -84,6 +84,8 @@ class UserController extends Controller
 				$userModel->insert($data);
 				// ici l'insertion en base est effectuée!
 				$success =  true;
+				//redirige l'utilisateur vers la page d'accueil
+				$this->redirectToRoute('user_login');
 			}
 			else {
 				// On peut faire un truc ici..........
