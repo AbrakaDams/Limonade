@@ -28,11 +28,11 @@
     	-->
 		<div class="team">
 			<h2>L'équipe</h2>
-			<a href=""><img src="..." alt="avatar-team" class="img-circle">Anastasia</a>
-			<a href=""><img src="..." alt="avatar-team" class="img-circle">Damien</a>
-			<a href=""><img src="..." alt="avatar-team" class="img-circle">Myriam</a>
-			<a href=""><img src="..." alt="avatar-team" class="img-circle">Baptiste</a>
-			<a href=""><img src="..." alt="avatar-team" class="img-circle">Noé</a>
+			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
+			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
+			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
+			<a href=""><img src="../public/assets/img/avatar/baptiste.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
+			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
 		</div>
 
 		<!-- Nous suivre -->
