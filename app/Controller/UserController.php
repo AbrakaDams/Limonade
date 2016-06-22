@@ -88,5 +88,6 @@ class UserController extends Controller
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 		$this->show('default/register', $params);
 	}
+}
 
 	

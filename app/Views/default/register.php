@@ -21,7 +21,7 @@
 	<?php if(isset($successimg) && $successimg === true): ?>
 		<div class="alert alert-success">
 		<p> Voici votre photo de profil </p>
-		<?php echo '<img src="' .$adress. '">'; ?>
+		<?php echo '<img src="' .$avatar. '">'; ?>
 		</div>
 		<div class="alert alert-success">
 		<?php echo  'bonjour :' .$_POST['username'] ; ?>
@@ -31,11 +31,11 @@
 <form method="post" class="form-inline" enctype="multipart/form-data">
 	<div class="form-group">
 	<label for="name"> Prénom </label>
-	<input class="form-control" type="text" placeholder="username..." type="text" style="color:black" name="username"/>
+	<input class="form-control" type="text" placeholder="Prénom..." type="text" style="color:black" name="firstmane"/>
 	<br>
 	<div class="form-group">
 	<label for="username"> Nom </label>
-	<input class="form-control" type="text" placeholder="username..." type="text" style="color:black" name="username"/
+	<input class="form-control" type="text" placeholder="Nom..." type="text" style="color:black" name="lastname"/
 	<label for="email"> votre email </label>
 	<input class="form-control" type="email" placeholder="Email..." type="text" style="color:black" name="email"/>
 	<br>
