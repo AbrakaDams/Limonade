@@ -14,7 +14,7 @@
 	  	<!-- Wrapper for slides -->
 	  	<div class="carousel-inner" role="listbox">
 	    	<div class="item active">
-	      			<img src="../public/assets/img/slider/img_slider.jpg" alt="img-slide" height="900px">      						
+	      			<img src="../public/assets/img/slider/img_slider.jpg" alt="img-slide" height="900px">
 	      		<div class="carousel-caption">
 	        		<h3>Un outil attractif et intuitif</h3>
 	    			<p>Gagnez du temps, de l'énergie et de l'efficacité.</p>
@@ -27,7 +27,7 @@
 	    			<p>Organisez et pilotez tous vos événements de A à Z sur un même outil.</p>
 	      		</div>
 	    	</div>
-	  	</div>	  	
+	  	</div>
 	  	<!-- Controls -->
 	  	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 	    	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -38,20 +38,26 @@
 	    	<span class="sr-only">Suivant</span>
 	  	</a>
 	</div>
-	    	<fieldset>	    		
+	    	<fieldset>
 	      		Avec notre plateforme Limonade, vous pouvez gérer tous vos événements le plus simplement du monde.Pour cela nous mettons à votre disposition une interface simple et intuitif accompagné d'outils nécessaires pour mener à terme vos projets tout en gagnant du temps, de l'énergie et de l'efficacité.
 	      		Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.
 	      		La bise de toute l'équipe Limonade!
 	    	</fieldset>
+
+<?php  if(isset($w_user) && !empty($w_user)): ?>
+	<br>
+	<strong>Vous etes deja connectez. <br><a href="<?= $this->url('default_home') ?>">Retour Accueil espace memebre</a></strong>
+<?php  else: ?>
+
 	<a href="<?= $this->url('user_register'); ?>" class="btn btn-primary btn-lg active" role="button">Inscription</a>
-	<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Connexion</a>	
+	<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Connexion</a>
+
+<?php endif; ?>
 </section>
 <!-- Partie pour afficher les event à proximité -->
 <section class="event-near">
 
 </section>
-		
-	
+
+
 <?php $this->stop('main_content') ?>
-
-
