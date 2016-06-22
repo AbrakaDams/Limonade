@@ -62,7 +62,7 @@ use \W\Security\AuthentificationModel as AuthModel;
 			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
-				$usersModel = new UsersModel();
+				$userModel = new UserModel();
 				$authModel = new AuthModel();
 
 				//on utilise la méthode insert() qui permetd d'insérer des données en bases
@@ -71,7 +71,6 @@ use \W\Security\AuthentificationModel as AuthModel;
 				'username' => $post['username'],
 				'email' => $post['email'],
 				'password' => $authModel->hashPassword($post['password']),
-				'role' => 'users',
 				'avatar' => $adress,
 				];
 				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
@@ -85,7 +84,7 @@ use \W\Security\AuthentificationModel as AuthModel;
 		}
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
-		$this->show('default/second_page', $params);
+		$this->show('default/register', $params);
 	}
 
 	?>
