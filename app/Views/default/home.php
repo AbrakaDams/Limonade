@@ -15,7 +15,7 @@
   				<!-- Wrapper for slides -->
   				<div class="carousel-inner" role="listbox">
     				<div class="item active">
-      						<img src="" alt="img-slide">      						
+      						<img src="../../../public/assets/img/img_slider.jpg" alt="img-slide">      						
       					<div class="carousel-caption">
         					<h3>Une interface simple et intuitive</h3>
     						<p>...</p>
