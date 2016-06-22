@@ -30,24 +30,26 @@
 
 <form method="post" class="form-inline" enctype="multipart/form-data">
 	<div class="form-group">
-	<label for="name"> Prénom </label>
-	<input class="form-control" type="text" placeholder="Prénom..." type="text" style="color:black" name="firstmane"/>
-	<br><br>
-	<div class="form-group">
-	<label for="username"> Nom </label>
-	<input class="form-control" type="text" placeholder="Nom..." type="text" style="color:black" name="lastname"/>
-	<br><br>
-	<label for="email"> votre email </label>
-	<input class="form-control" type="email" placeholder="Email..." type="text" style="color:black" name="email"/>
-	<br><br>
-	<label for="password"> votre password </label>
-	<input class="form-control" type="password" placeholder="password..." type="text" style="color:black" name="password"/>
-	<br><br>
-	<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->  
-  	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
-	<input type="file" name="avatar">
-	<br>
-	<input type="submit" style="color:black" value="Envoyer" />
+		<label for="firstname"> Prénom </label>
+		<input class="form-control" type="text" placeholder="Prénom..." type="text" style="color:black" name="firstname"/>
+		<br><br>
+		<label for="lastname"> Nom </label>
+		<input class="form-control" type="text" placeholder="Nom..." type="text" style="color:black" name="lastname"/>
+		<br><br>
+		<label for="email"> votre email </label>
+		<input class="form-control" type="email" placeholder="Email..." type="text" style="color:black" name="email"/>
+		<br><br>
+		<label for="password"> votre password </label>
+		<input class="form-control" type="password" placeholder="password..." type="text" style="color:black" name="password"/>
+		<br><br>
+		<label for="username"> Pseudo </label>
+		<input class="form-control" type="text" placeholder="Pseudo..." type="text" style="color:black" name="username"/>
+		<br><br>
+		<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->  
+	  	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
+		<input type="file" name="avatar">
+		<br>
+		<input type="submit" style="color:black" value="Envoyer" />
 	</div>
 </form>
 	

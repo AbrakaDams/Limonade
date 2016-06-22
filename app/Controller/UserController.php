@@ -62,6 +62,9 @@ class UserController extends Controller
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'Votre adresse email est vide';
 			}
+			if (strlen($post['pseudo']) < 3 || strlen($post['pseudo']) > 8){
+				$errors[] = 'Votre pseudo doit contenir au moins 7 caractères ';
+			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
 				$userModel = new UserModel();
@@ -70,7 +73,7 @@ class UserController extends Controller
 				//on utilise la méthode insert() qui permetd d'insérer des données en bases
 				$data = [
 					//la clé du tableau correspond au nom de la colone SQL
-				'lastname' => $post['username'],
+				'lastname' => $post['lastname'],
 				'firstname' => $post['firstname'],
 				'email' => $post['email'],
 				'password' => $authModel->hashPassword($post['password']),
