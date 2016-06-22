@@ -10,18 +10,6 @@ class EventController extends Controller
 {
 
 
-	// public function showLists() {
-	//
-	// }
-
-	// public function __construct() {
-	//
-	//     // Create a collection of clients
-	//     $this->clients = new \SplObjectStorage;
-	//
-	//     $this->games = Fixtures::random();
-	// }
-
 	/**
 	 * Page d'accueil par défaut
 	 */

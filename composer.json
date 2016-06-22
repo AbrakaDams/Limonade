@@ -27,7 +27,8 @@
         "ircmaxell/password-compat": "^1.0",
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
-        "cboden/ratchet": "^0.3.5"
+        "cboden/ratchet": "^0.3.5",
+        "react/react": "^0.4.2"
     },
     "autoload": {
         "psr-4": {

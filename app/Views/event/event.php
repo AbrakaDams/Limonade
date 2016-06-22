@@ -40,6 +40,11 @@
 		<?php endif; ?>
 	</section>
 
-
-	<?php var_dump($lists); ?>
+	<script id="lists-template" type="text/x-handlebars-template">
+        {{#each lists}}
+        <div class="list">
+            <div class="list-title">{{title}}</div>
+        </div>
+        {{/each}}
+    </script>
 <?php $this->stop('main_content') ?>
