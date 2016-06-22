@@ -27,7 +27,7 @@
     	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
     	-->
 		<div class="team">
-			<a href="#"><h2>L'équipe</h2></a>
+			<a href="<?= $this->url('default_contact'); ?>"><h2>L'équipe</h2></a>
 			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
