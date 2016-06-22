@@ -6,6 +6,8 @@ use \W\Controller\Controller;
 use \W\Model\UserModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel; 
 
+class UserController extends Controller
+{ 
 /**
 	 * Méthode pour accès inscription
 	 */
@@ -87,4 +89,4 @@ use \W\Security\AuthentificationModel as AuthModel;
 		$this->show('default/register', $params);
 	}
 
-	?>
+	

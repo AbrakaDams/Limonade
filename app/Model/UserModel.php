@@ -8,4 +8,3 @@ class UserModel extends \W\Model\Model
     // BlogUtilisateurs => blog_utilisateurs
 }
 
-?>
