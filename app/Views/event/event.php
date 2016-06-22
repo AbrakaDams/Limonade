@@ -37,14 +37,22 @@
 					<li><?php echo $value['title']; ?></li>
 				<?php endforeach; ?>
 			</ul>
+			<div id="add-new-list">
+				<button type="button" id="add-list-btn">+</button>
+				<form class="hidden" id="add-list-form">
+					<label>Titre de ce liste</label>
+					<input type="text" name="newList" placeholder="Nom de votre nouveau list">
+				</form>
+			</div>
+
 		<?php endif; ?>
 	</section>
 
-	<script id="lists-template" type="text/x-handlebars-template">
+	<!-- <script id="lists-template" type="text/x-handlebars-template">
         {{#each lists}}
         <div class="list">
             <div class="list-title">{{title}}</div>
         </div>
         {{/each}}
-    </script>
+    </script> -->
 <?php $this->stop('main_content') ?>

@@ -32,8 +32,8 @@
 			<img src="../../../Limonade/public/assets/img/avatar/Damien.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="../../../Limonade/public/assets/img/avatar/Myriam.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="../../../Limonade/public/assets/img/avatar/Baptiste.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="../../../Limonade/public/assets/img/avatar/Noé.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">			
-			
+			<img src="../../../Limonade/public/assets/img/avatar/Noé.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
+
 		</div>
 
 		<!-- Nous suivre -->
@@ -55,6 +55,7 @@
 	<!-- Boostrap Js -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<!-- Moustache Js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+	<script src="<?= $this->assetUrl('js/myscript.js') ?>"></script>
 </body>
 </html>

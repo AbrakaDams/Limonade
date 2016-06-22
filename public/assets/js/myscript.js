@@ -1,60 +1,23 @@
-(function(){
+var newList = '<form><label>Titre de ce liste</label><input type="text" name="newList" placeholder="Nom de votre nouveau list"></form>';
 
-    var user;
-    var lists = [];
+$(function() {
+    $('#add-list-btn').click(function(){
+        $('#add-list-btn').addClass('hidden');
+        $('#add-list-form').removeClass('hidden');
+    });
 
-    var lists_template = Handlebars.compile($('#lists-template').html());
+});
 
-    function updateLists(msg){
-        messages.push(msg);
-        var messages_html = lists_template({'messages': messages});
-        $('#messages').html(messages_html);
-        $("#messages").animate({ scrollTop: $('#messages')[0].scrollHeight}, 1000);
+$(document).mouseup(function (e) {
+    var listDiv = $("#add-new-list");
+    var listForm = $.trim($('#add-list-form').val());
+
+    console.log(listForm.length);
+
+    if (!listDiv.is(e.target) && listDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+        if(listForm.length == 0) {
+            $('#add-list-btn').removeClass('hidden');
+            $('#add-list-form').addClass('hidden');
+        }
     }
-
-    var conn = new WebSocket('ws://localhost:8080');
-    conn.onopen = function(e) {
-        console.log("Connection established!");
-    };
-
-    conn.onmessage = function(e) {
-        var msg = JSON.parse(e.data);
-        updateMessages(msg);
-    };
-
-
-
-    $('#send-msg').click(function(){
-        var text = $('#msg').val();
-        var msg = {
-            'user': user,
-            'text': text,
-            'time': moment().format('hh:mm a')
-        };
-        updateMessages(msg);
-        conn.send(JSON.stringify(msg));
-
-        $('#msg').val('');
-    });
-
-
-    $('#leave-room').click(function(){
-
-        var msg = {
-            'user': user,
-            'text': user + ' has left the room',
-            'time': moment().format('hh:mm a')
-        };
-        updateMessages(msg);
-        conn.send(JSON.stringify(msg));
-
-        $('#messages').html('');
-        messages = [];
-
-        $('#main-container').addClass('hidden');
-        $('#user-container').removeClass('hidden');
-
-        conn.close();
-    });
-
-})();
+});

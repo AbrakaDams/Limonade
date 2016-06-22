@@ -9,6 +9,7 @@ use \Model\EventModel as EventModel;
 class EventController extends Controller
 {
 
+	
 
 	/**
 	 * Page d'accueil par défaut
