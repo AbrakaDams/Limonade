@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Model\EventModel;
+use \Model\EventModel as EventModel;
 
 class EventController extends Controller
 {
@@ -13,7 +13,11 @@ class EventController extends Controller
 	 */
 	public function showEvent($id)
 	{
-		$this->show('event/event');
+		$event = new EventModel();
+		$eventData = $event->find($id);
+
+		$showEvent = ['thisEvent' => $eventData];
+		$this->show('event/event', $showEvent);
 	}
 
 }
