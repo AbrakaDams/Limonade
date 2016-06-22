@@ -43,8 +43,8 @@
 	      		Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.
 	      		La bise de toute l'équipe Limonade!
 	    	</fieldset>
-	<a href="#" class="btn btn-primary btn-lg active" role="button">Inscription</a>
-	<a href="#" class="btn btn-default btn-lg active" role="button">Connexion</a>	
+	<a href="<?= $this->url('user_register'); ?>" class="btn btn-primary btn-lg active" role="button">Inscription</a>
+	<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Connexion</a>	
 </section>
 <!-- Partie pour afficher les event à proximité -->
 <section class="event-near">

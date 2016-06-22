@@ -20,8 +20,8 @@ class UserController extends Controller
 		$adress = ''; //adress est visible pour toute la fonction
 
 		//qd j'insère le fichier depuis mon formulaire ça le place dan assets
-		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/avatar';
-		$dbLink = '/limonade/public/assets/avatar';
+		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
+		$dbLink = '/limonade/public/assets/image';
 		$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
 
 		if(!empty($_FILES) && isset($_FILES['avatar'])){
