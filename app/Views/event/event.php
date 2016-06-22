@@ -31,8 +31,12 @@
 	</section>
 
 	<section id="event-lists">
-		<?php if(isset($lists) && empty($lists)): ?>
-			Bla
+		<?php if(isset($lists) && !empty($lists)): ?>
+			<ul>
+				<?php foreach ($lists as $value): ?>
+					<li><?php echo $value['title']; ?></li>
+				<?php endforeach; ?>
+			</ul>
 		<?php endif; ?>
 	</section>
 

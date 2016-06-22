@@ -3,10 +3,10 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Controller\ListController as List;
+use \Controller\ListController;
 use \Model\EventModel as EventModel;
 
-class EventController
+class EventController extends Controller
 {
 
 
@@ -14,13 +14,13 @@ class EventController
 	//
 	// }
 
-	public function __construct() {
-
-	    // Create a collection of clients
-	    $this->clients = new \SplObjectStorage;
-
-	    $this->games = Fixtures::random();
-	}
+	// public function __construct() {
+	//
+	//     // Create a collection of clients
+	//     $this->clients = new \SplObjectStorage;
+	//
+	//     $this->games = Fixtures::random();
+	// }
 
 	/**
 	 * Page d'accueil par défaut
@@ -31,8 +31,8 @@ class EventController
 		$event = new EventModel();
 		$eventData = $event->find($id);
 
-		$list = new List();
-		$lists = List::showLists($id);
+		$list = new ListController();
+		$lists = $list->showLists($id);
 
 
 		// send received data to the event.php
