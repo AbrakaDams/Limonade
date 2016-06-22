@@ -11,9 +11,9 @@
 <body>
 	<div class="container">
 		<header>
-			<h1>Limonade :: Stop la prise de tête pour organiser votre événements</h1>
+			<h1>Limonade : Stop la prise de tête pour organiser votre événements</h1>
 			<h4>Posez vous, sirotez votre verre et laissez notre site faire &#9786;</h4>
-			<h2><?= $this->e($title) ?></h2>						
+									
 		</header>
 
 
@@ -27,17 +27,17 @@
     	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
     	-->
 		<div class="team">
-			<h2>L'équipe</h2>
-			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
-			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
-			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
-			<a href=""><img src="../public/assets/img/avatar/baptiste.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
-			<a href=""><img src="" alt="avatar-team" class="img-circle" height="40px" width="40px"></a>
+			<a href="#"><h2>L'équipe</h2></a>
+			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="../public/assets/img/avatar/baptiste.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="" alt="avatar-team" class="img-circle" height="40px" width="40px">
 		</div>
 
 		<!-- Nous suivre -->
 		<div class="social-network">
-			<h2>Retrouvez-nous sur :</h2>
+			<a href="<?= $this->url('default_contact'); ?>"><h2>Contact</h2></a>
 			<div class="icons-social">
     			<i class="fa fa-facebook-official" aria-hidden="true">Facebook</i>
 				<i class="fa fa-instagram" aria-hidden="true">Instagram</i>    			
