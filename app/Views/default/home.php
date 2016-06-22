@@ -3,13 +3,6 @@
 
 <?php $this->start('main_content') ?>
 
-<body>
-	<div class="container">
-		<header>
-			<h1>Limonade :: Plateforme d'organisation d'événements</h1>
-			<h2><?= $this->e($title) ?></h2>						
-		</header>
-
 		<section class="slider">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
  				 <!-- Indicators -->
@@ -31,7 +24,7 @@
     				<div class="item">
       						<img src="..." alt="img-slide">
       					<div class="carousel-caption">
-        					<h3>Une organisation d'événements</h3>
+        					<h3>Une organisation d'événements/h3>
     						<p>...</p>
       					</div>
     				</div>
@@ -50,14 +43,7 @@
 			</div>
 		</section>
 
-		<section>
-			<?= $this->section('main_content') ?>
-		</section>
-
-		<footer>
-		</footer>
-	</div>
-</body>
+		
 	
 <?php $this->stop('main_content') ?>
 
