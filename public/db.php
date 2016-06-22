@@ -103,15 +103,15 @@ if($sql === false){
 
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `event` (
-`id` INT NOT NULL AUTO_INCREMENT ,
-`category` ENUM('soiree','vacance','repas','journee') NOT NULL ,
-`title` VARCHAR(255) NOT NULL ,
-`description` TEXT NOT NULL ,
-`address` VARCHAR(255) NOT NULL ,
-`date_start` DATETIME NOT NULL ,
-`date_end` DATETIME NOT NULL ,
-`role` ENUM('public','private') NOT NULL ,
-PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`category` ENUM('soiree','vacance','repas','journee') NOT NULL ,
+	`title` VARCHAR(255) NOT NULL ,
+	`description` TEXT NOT NULL ,
+	`address` VARCHAR(255) NOT NULL ,
+	`date_start` DATETIME NOT NULL ,
+	`date_end` DATETIME NOT NULL ,
+	`role` ENUM('public','private') NOT NULL ,
+	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));
@@ -175,12 +175,13 @@ foreach ($events as $event) {
 
 	if($reqTitle->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO event (category, title, description, adress, date_event, role) VALUES (:category, :title, :description, :adress, :date_event, :role)');
+		$sql = $db->prepare('INSERT INTO event (category, title, description, address, date_start, date_end, role) VALUES (:category, :title, :description, :address, :date_start, :date_end, :role)');
     $sql->bindValue(':category', $event['category']);
     $sql->bindValue(':title', $event['title']);
     $sql->bindValue(':description', $event['description']);
-    $sql->bindValue(':adress', $event['adress']);
-    $sql->bindValue(':date_event', $event['date_event'], PDO::PARAM_INT);
+    $sql->bindValue(':address', $event['address']);
+    $sql->bindValue(':date_start', $event['date_start'], PDO::PARAM_INT);
+    $sql->bindValue(':date_end', $event['date_end'], PDO::PARAM_INT);
     $sql->bindValue(':role', $event['role']);
 		$sql->execute();
 	}else{
