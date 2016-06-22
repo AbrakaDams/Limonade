@@ -17,6 +17,18 @@
 		</div>
 	<?php endif; ?>
 
+<?php  if(isset($w_user) && !empty($w_user)): ?>
+
+  <br>
+  <p>
+    <strong>Vous etes deja connectez. <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
+  </p>
+
+
+<?php  else: ?>
+
+
+
 	<form method="post" class="form-inline">
     <div class="form-group">
   		<label for="email">Votre email :</label>
@@ -32,5 +44,7 @@
   		<a href="<?= $this->url('user_register') ?>">créer un compte</a>
     </div>
 	</form>
+
+  <?php  endif; ?>
 
 <?php $this->stop('main_content') ?>
