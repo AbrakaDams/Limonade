@@ -128,7 +128,6 @@ class UserController extends Controller
 				}else{
 					$errors[] = 'Le couple identifiant/mot de passe est invalide';
 				}
-
 			}
 		}
 		$params = ['errors' => $errors];
