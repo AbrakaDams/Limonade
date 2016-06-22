@@ -4,10 +4,10 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Model\UserModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
-use \W\Security\AuthentificationModel as AuthModel; 
+use \W\Security\AuthentificationModel as AuthModel;
 
 class UserController extends Controller
-{ 
+{
 /**
 	 * Méthode pour accès inscription
 	 */
@@ -88,6 +88,46 @@ class UserController extends Controller
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 		$this->show('user/register', $params);
 	}
-}
 
-	
+	public function login(){
+		$post = [];
+		$errors = [];
+		if(!empty($_POST)){
+			// On nettoie les données...c'est l'équivalent de notre foreach
+			$post = array_map('strip_tags', $_POST);
+			$post = array_map('trim', $post);
+
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
+				$errors[] ='Vous devez saisir une adresse email valide';
+			}
+			if(empty($post['password'])){
+				$errors[] ='Vous devez saisir un mot de passe';
+			}
+			if(count($errors) === 0){
+				// On instancie la classe UserModel qui étends la classe model
+				$usersModel = new UserModel();
+				$authModel = new AuthModel();
+
+				// La méthode isValidLoginInfo() retourne un utilisateur si celui-ci existe et que le couple identifiant/mdp existe.
+				$idUser = $authModel->isValidLoginInfo($post['email'], $post['password']);
+				if($idUser){
+
+					// On appelle la méthode find() qui permet de retourner les résultats en fonction d'un ID
+					$user = $usersModel->find($idUser);
+
+
+					// La méthode logUserIn() permet de connecter un utilisateur
+					$authModel->logUserIn($user);
+					// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
+					// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
+				}else{
+					$errors[] = 'Le couple identifiant/mot de passe est invalide';
+				}
+
+			}
+		}
+		$params = ['errors' => $errors];
+		$this->show('user/login', $params);
+	}
+
+}
