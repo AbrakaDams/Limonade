@@ -58,13 +58,14 @@ foreach ($users as $user) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password) VALUES (:username ,:firstname, :lastname, :role, :email, :password)');
+		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar)');
 		$sql->bindValue(':username', $user['username']);
 		$sql->bindValue(':firstname', $user['firstname']);
 		$sql->bindValue(':lastname', $user['lastname']);
 		$sql->bindValue(':role', $user['role']);
 		$sql->bindValue(':email', $user['email']);
 		$sql->bindValue(':password', $user['password']);
+		$sql->bindValue(':avatar', $user['avatar']);
 
 		$sql->execute();
 	}else{
