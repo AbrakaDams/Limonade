@@ -62,7 +62,7 @@ class UserController extends Controller
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'Votre adresse email est vide';
 			}
-			if (strlen($post['pseudo']) < 3 || strlen($post['pseudo']) > 8){
+			if (strlen($post['username']) < 3 || strlen($post['username']) > 8){
 				$errors[] = 'Votre pseudo doit contenir entre 3 et 8 caractères';
 			}
 			if(count($errors) === 0){
@@ -75,6 +75,7 @@ class UserController extends Controller
 					//la clé du tableau correspond au nom de la colone SQL
 				'lastname' => $post['lastname'],
 				'firstname' => $post['firstname'],
+				'username' => $post['username'],
 				'email' => $post['email'],
 				'password' => $authModel->hashPassword($post['password']),
 				'avatar' => $adress,
