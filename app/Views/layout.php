@@ -12,7 +12,7 @@
 	<div class="container">
 		<header>
 			<h1>Limonade :: Stop la prise de tête pour organiser votre événements</h1>
-			<h4>Posez vous, sirotez votre verre et laissez notre site faire</h4>
+			<h4>Posez vous, sirotez votre verre et laissez notre site faire &#9786;</h4>
 			<h2><?= $this->e($title) ?></h2>						
 		</header>
 
@@ -22,17 +22,30 @@
 		</section>
 
 	<footer>
-    	<!-- Nous contacter -->
+    	<!-- 
+    	Nous contacter
+    	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
+    	-->
 		<div class="team">
-
-
+			<h2>L'équipe</h2>
+			<a href=""><img src="..." alt="avatar-team" class="img-circle">Anastasia</a>
+			<a href=""><img src="..." alt="avatar-team" class="img-circle">Damien</a>
+			<a href=""><img src="..." alt="avatar-team" class="img-circle">Myriam</a>
+			<a href=""><img src="..." alt="avatar-team" class="img-circle">Baptiste</a>
+			<a href=""><img src="..." alt="avatar-team" class="img-circle">Noé</a>
 		</div>
 
 		<!-- Nous suivre -->
 		<div class="social-network">
-
+			<h2>Retrouvez-nous sur :</h2>
+			<div class="icons-social">
+    			<i class="fa fa-facebook-official" aria-hidden="true">Facebook</i>
+				<i class="fa fa-instagram" aria-hidden="true">Instagram</i>    			
+    			<i class="fa fa-pinterest-p" aria-hidden="true">Pinterest</i>
+    			<i class="fa fa-github" aria-hidden="true">Github</i>
+			</div>
 		</div>
-
+		<p><?php echo date('Y'); ?> &copy; Limonade &reg;</p>
 	</footer>
 		
 	</div>
