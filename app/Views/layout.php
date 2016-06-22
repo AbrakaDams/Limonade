@@ -9,7 +9,8 @@
 <body>
 	<div class="container">
 		<header>
-			<h1>W :: <?= $this->e($title) ?></h1>
+			<h1>Limonade :: Plateforme d'organisation d'événements</h1>
+			<h2><?= $this->e($title) ?></h2>
 		</header>
 
 		<section>
