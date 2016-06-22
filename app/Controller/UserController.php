@@ -141,4 +141,11 @@ class UserController extends Controller
 		$this->show('user/login', $params);
 	}
 
+	public function logout(){
+
+		$userLogout = new AuthModel();
+		$userLogout->logUserOut();
+		$this->redirectToRoute('default_home');
+	}
+
 }

@@ -7,7 +7,7 @@
 	// elle retourne les infos de l'utilisateur connecté ou null sinon
 	if(!empty($w_user)){
 		echo '<br><br>';
-		// echo '<a href="'.$this->url('user_logout').'">Déconnexion</a>';
+		echo '<a href="'.$this->url('user_logout').'">Déconnexion</a>';
 		echo '<br><br>';
 	} ?>
 
@@ -41,7 +41,7 @@
   		<br><br>
   		<a href="<?= $this->url('default_home') ?>">Retour Accueil</a>
       <br>
-  		<a href="<?= $this->url('user_register') ?>">créer un compte</a>
+  		<a href="<?= $this->url('user_register') ?>"><strong>Créer un compte</strong></a>
     </div>
 	</form>
 

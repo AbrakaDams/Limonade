@@ -30,23 +30,23 @@
 
 <form method="post" class="form-inline" enctype="multipart/form-data">
 	<div class="form-group">
-		<label for="username">Pseudo :</label>
-		<input class="form-control" type="text" placeholder="JohnnyBravo" type="text" style="color:black" name="username"/>
+		<label for="username">Pseudo* :</label>
+		<input class="form-control" type="text" placeholder="JohnnyBravo" type="text" style="color:black" name="username" required>
 		<br><br>
-		<label for="firstname">Prénom :</label>
-		<input class="form-control" type="text" placeholder="John" type="text" style="color:black" name="firstname"/>
+		<label for="firstname">Prénom* :</label>
+		<input class="form-control" type="text" placeholder="John" type="text" style="color:black" name="firstname" required>
 		<br><br>
-		<label for="lastname">Nom :</label>
-		<input class="form-control" type="text" placeholder="Doe" type="text" style="color:black" name="lastname"/>
+		<label for="lastname">Nom* :</label>
+		<input class="form-control" type="text" placeholder="Doe" type="text" style="color:black" name="lastname" required>
 		<br><br>
-		<label for="email">Email :</label>
-		<input class="form-control" type="email" placeholder="JohnDoe@email.com" type="text" style="color:black" name="email"/>
+		<label for="email">Email* :</label>
+		<input class="form-control" type="email" placeholder="JohnDoe@email.com" type="text" style="color:black" name="email" required>
 		<br><br>
-		<label for="password">Mot de passe :</label>
-		<input class="form-control" type="password" placeholder="Mot de passe" type="text" style="color:black" name="password"/>
+		<label for="password">Mot de passe* :</label>
+		<input class="form-control" type="password" placeholder="Mot de passe" type="text" style="color:black" name="password" required>
 		<br><br>
-		<label for="password_confirm">Confirmation Mot de passe :</label>
-		<input class="form-control" type="password" placeholder="Confirmation Mot de passe " type="text" style="color:black" name="password_confirm"/>
+		<label for="password_confirm">Confirmation Mot de passe* :</label>
+		<input class="form-control" type="password" placeholder="Confirmation Mot de passe " type="text" style="color:black" name="password_confirm" required>
 
 		<br><br>
 		<label for="avatar">Choisisez une photo de profil :</label>
@@ -59,6 +59,9 @@
 	</div>
 </form>
 
-<?php endif; ?>
+<br><br><strong>Vous avez deja un compte ? <a href="<?= $this->url('user_login') ?>">Connectez-vous</a></strong>
 
+
+<?php endif; ?>
+<br><br><br><br>
 <?php $this->stop('main_content') ?>
