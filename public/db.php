@@ -17,6 +17,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`email` VARCHAR(255) NOT NULL ,
 		`password` VARCHAR(255) NOT NULL ,
 		`role` ENUM('user','admin') NOT NULL ,
+		`avatar` VARCHAR(255) NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`)) ENGINE = InnoDB;"
 );
@@ -35,6 +36,7 @@ $users = array(
 		'role' 		=> 'admin',
 		'email' 	=> 'admin@gmail.com',
 		'password' 	=>  $password,
+		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 	],
 	[
 		'username' => 'user',
@@ -43,6 +45,7 @@ $users = array(
 		'role' 		=> 'user',
 		'email' 	=> 'user@gmail.com',
 		'password' 	=>  $password,
+		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 	]
 );
 
@@ -55,13 +58,14 @@ foreach ($users as $user) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password) VALUES (:username ,:firstname, :lastname, :role, :email, :password)');
+		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar)');
 		$sql->bindValue(':username', $user['username']);
 		$sql->bindValue(':firstname', $user['firstname']);
 		$sql->bindValue(':lastname', $user['lastname']);
 		$sql->bindValue(':role', $user['role']);
 		$sql->bindValue(':email', $user['email']);
 		$sql->bindValue(':password', $user['password']);
+		$sql->bindValue(':avatar', $user['avatar']);
 
 		$sql->execute();
 	}else{

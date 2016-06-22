@@ -17,6 +17,9 @@ $w_config = [
 	'security_role_property' => 'role',				//nom de la colonne pour le "role"
 
 	'security_login_route_name' => 'login',			//nom de la route affichant le formulaire de connexion
+
+	//config perso
+	'folder_upload' => '/image/', // le repertoire dans /assets/
 ];
 
 require('routes.php');
