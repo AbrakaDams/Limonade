@@ -3,6 +3,7 @@
 
 <?php $this->start('main_content') ?>
 
+<!-- Section slider -->
 <section class="slider">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -54,6 +55,7 @@
 
 <?php endif; ?>
 </section>
+
 <!-- Partie pour afficher les event à proximité -->
 <section class="event-near">
 
