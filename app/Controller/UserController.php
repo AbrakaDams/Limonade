@@ -86,7 +86,7 @@ class UserController extends Controller
 		}
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
-		$this->show('default/register', $params);
+		$this->show('user/register', $params);
 	}
 }
 
