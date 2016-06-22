@@ -4,9 +4,9 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
 
-class List extends Controller implements MessageComponentInterface
+class ListController extends Controller
 {
-	public static function showLists($id) {
+	public function showLists($id) {
 		$newLists = new ListModel();
 		$lists = $newLists->findLists($id);
 
