@@ -11,7 +11,6 @@
 	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 	    	<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 	  	</ol>
-
 	  	<!-- Wrapper for slides -->
 	  	<div class="carousel-inner" role="listbox">
 	    	<div class="item active">
@@ -24,11 +23,11 @@
 	    	<div class="item">
 	      			<img src="..." alt="img-slide">
 	      		<div class="carousel-caption">
-	        		<h3>Une organisation d'événements/h3>
-	    			<p>Organiser et gérer tous vos événements de A à Z sur notre plateforme</p>
+	        		<h3>Une organisation d'événements</h3>
+	    			<p></p>
 	      		</div>
 	    	</div>
-	    	...
+	    	Accéder à un outil attractif et intuitif
 	  	</div>
 	  	<!-- Controls -->
 	  	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -40,9 +39,13 @@
 	    	<span class="sr-only">Suivant</span>
 	  	</a>
 	</div>
+	<a href="#" class="btn btn-primary btn-lg active" role="button">Inscription</a>
+	<a href="#" class="btn btn-default btn-lg active" role="button">Connexion</a>	
 </section>
+<!-- Partie pour afficher les event à proximité -->
+<section class="event-near">
 
-		
+</section>		
 	
 <?php $this->stop('main_content') ?>
 
