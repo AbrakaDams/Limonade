@@ -50,20 +50,23 @@ class UserController extends Controller
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
 			}
-			if (strlen($post['firstname']) < 2){
-				$errors[] = 'Votre prénom doit contenir au moins 2 caractères ';
+			if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+				$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
 			}
-			if (strlen($post['lastname']) < 2){
-				$errors[] = 'Votre nom doit contenir au moins 2 caractères ';
+			if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+				$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
 			}
-			if (strlen($post['password']) < 8){
-				$errors[] = 'Votre mot de passe doit contenir au moins 8 caractères ';
+			if (empty($post['password']) || $post['password'] != $post['password_confirm']){
+				$errors[] = 'Votre mot de passe n\'est pas identique';
 			}
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
-				$errors[] = 'Votre adresse email est vide';
+				$errors[] = 'Votre adresse email n\'est pas valide';
 			}
-			if (strlen($post['username']) < 3 || strlen($post['username']) > 12){
-				$errors[] = 'Votre pseudo doit contenir entre 3 et 12 caractères';
+			if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
+				$errors[] = 'Vous devez choisir un avatar pour continuer';
+			}
+			if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
+				$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
 			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
@@ -73,12 +76,14 @@ class UserController extends Controller
 				//on utilise la méthode insert() qui permetd d'insérer des données en bases
 				$data = [
 					//la clé du tableau correspond au nom de la colone SQL
-				'lastname' => $post['lastname'],
-				'firstname' => $post['firstname'],
-				'username' => $post['username'],
-				'email' => $post['email'],
-				'password' => $authModel->hashPassword($post['password']),
-				'avatar' => $adress,
+					'username' => $post['username'],
+					'firstname' => $post['firstname'],
+					'lastname' => $post['lastname'],
+					'email' => $post['email'],
+					'password' => $authModel->hashPassword($post['password']),
+					'role' => 'user',
+					'avatar' => $adress,
+					'url' => $post['url'],
 				];
 				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
 				$userModel->insert($data);
@@ -88,7 +93,7 @@ class UserController extends Controller
 				$this->redirectToRoute('user_login');
 			}
 			else {
-				// On peut faire un truc ici..........
+				// On peut faire un truc ici...
 			}
 		}
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)

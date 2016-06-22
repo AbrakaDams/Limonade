@@ -18,6 +18,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`password` VARCHAR(255) NOT NULL ,
 		`role` ENUM('user','admin') NOT NULL ,
 		`avatar` VARCHAR(255) NOT NULL,
+		`url` VARCHAR(255) NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`)) ENGINE = InnoDB;"
 );
@@ -37,6 +38,7 @@ $users = array(
 		'email' 	=> 'admin@gmail.com',
 		'password' 	=>  $password,
 		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url'			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 	],
 	[
 		'username' => 'user',
@@ -46,6 +48,7 @@ $users = array(
 		'email' 	=> 'user@gmail.com',
 		'password' 	=>  $password,
 		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 	]
 );
 
@@ -58,7 +61,7 @@ foreach ($users as $user) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar)');
+		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url)');
 		$sql->bindValue(':username', $user['username']);
 		$sql->bindValue(':firstname', $user['firstname']);
 		$sql->bindValue(':lastname', $user['lastname']);
@@ -66,6 +69,7 @@ foreach ($users as $user) {
 		$sql->bindValue(':email', $user['email']);
 		$sql->bindValue(':password', $user['password']);
 		$sql->bindValue(':avatar', $user['avatar']);
+		$sql->bindValue(':url', $user['url']);
 
 		$sql->execute();
 	}else{
@@ -281,9 +285,9 @@ if($sql === false){
 if($upValid){
 	echo '<br><br><center><p style="font-size: 20px;"<strong>Base de données bien mise a jour</strong></p></center><br>';
 	echo '<center><img src="https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif"></center>';
-	echo '<br><center><p style="font-size: 20px;"<strong><a href="http://'.$_SERVER['HTTP_HOST'].'/limonade/pubic/index.php">Cliquer pour continuer vers le site</a></strong></p></center><br><br>';
+	echo '<br><center><p style="font-size: 20px;"<strong><a href="http://'.$_SERVER['HTTP_HOST'].'/limonade/public/">Cliquer pour continuer vers le site</a></strong></p></center><br><br>';
 }else{
 	echo '<br><br><center><p style="font-size: 20px;"<strong>Arrete de recharger la page clique plutot sur ce lien</strong></p></center><br>';
 	echo '<center><img src="https://media.giphy.com/media/3t7RAFhu75Wwg/giphy.gif"></center>';
-	echo '<br><center><p style="font-size: 20px;"<strong><a href="http://'.$_SERVER['HTTP_HOST'].'/limonade/public/index.php">Cliquer pour continuer vers le site</a></strong></p></center><br><br>';
+	echo '<br><center><p style="font-size: 20px;"<strong><a href="http://'.$_SERVER['HTTP_HOST'].'/limonade/public/">Cliquer pour continuer vers le site</a></strong></p></center><br><br>';
 }

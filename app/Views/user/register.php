@@ -30,23 +30,29 @@
 
 <form method="post" class="form-inline" enctype="multipart/form-data">
 	<div class="form-group">
-		<label for="firstname"> Prénom </label>
-		<input class="form-control" type="text" placeholder="Prénom..." type="text" style="color:black" name="firstname"/>
+		<label for="username">Pseudo :</label>
+		<input class="form-control" type="text" placeholder="JohnnyBravo" type="text" style="color:black" name="username"/>
 		<br><br>
-		<label for="lastname"> Nom </label>
-		<input class="form-control" type="text" placeholder="Nom..." type="text" style="color:black" name="lastname"/>
+		<label for="firstname">Prénom :</label>
+		<input class="form-control" type="text" placeholder="John" type="text" style="color:black" name="firstname"/>
 		<br><br>
-		<label for="email"> votre email </label>
-		<input class="form-control" type="email" placeholder="Email..." type="text" style="color:black" name="email"/>
+		<label for="lastname">Nom :</label>
+		<input class="form-control" type="text" placeholder="Doe" type="text" style="color:black" name="lastname"/>
 		<br><br>
-		<label for="password"> votre password </label>
-		<input class="form-control" type="password" placeholder="password..." type="text" style="color:black" name="password"/>
+		<label for="email">Email :</label>
+		<input class="form-control" type="email" placeholder="JohnDoe@email.com" type="text" style="color:black" name="email"/>
 		<br><br>
-		<label for="username"> Pseudo </label>
-		<input class="form-control" type="text" placeholder="Pseudo..." type="text" style="color:black" name="username"/>
+		<label for="password">Mot de passe :</label>
+		<input class="form-control" type="password" placeholder="Mot de passe" type="text" style="color:black" name="password"/>
 		<br><br>
+		<label for="password_confirm">Confirmation Mot de passe :</label>
+		<input class="form-control" type="password" placeholder="Confirmation Mot de passe " type="text" style="color:black" name="password_confirm"/>
+
+		<br><br>
+		<label for="avatar">Choisisez une photo de profil :</label>
+		<input class="form-control" type="text" placeholder="www.mon_image.com" style="color:black" type="text" name="url"/>
 		<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
-	  	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
+	  <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
 		<input type="file" name="avatar">
 		<br>
 		<input type="submit" style="color:black" value="Envoyer" />
