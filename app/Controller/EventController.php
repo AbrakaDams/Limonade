@@ -26,8 +26,11 @@ class EventController extends Controller
 		$news = new NewsFeed();
 		$showNews = $news->newsFeed($id);
 
+		// $comment = new CommentController();
+		// $showComment = $comment->showComments($id);
+
 		$comment = new CommentController();
-		$showComment = $comment->showComments($id);
+		$showComment = $comment->insertComment($id);
 
 
 		// send received data to the event.php

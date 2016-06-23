@@ -2,7 +2,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Controller\ListController;
+use \Model\CommentsModel as CommentModel;
 use \Model\NewsFeedModel as NewsFeedModel;
 
 class CommentController extends Controller
@@ -15,19 +15,33 @@ class CommentController extends Controller
 
     return $showComment;
   }
-  public function insertComments(){
+
+  public function insertComment($id){
     $post = [];
     $error = [];
 
     if(!empty($_POST)){
-			foreach($_POST as $key => $value){
-				$post[$key] = trim(strip_tags($value));
-			}
+      foreach($_POST as $key => $value){
+        $post[$key] = trim(strip_tags($value));
+      }
       if(empty($post['comment'])){
         $error[] = 'Le commentaire ne peut pas etre vide';
       }
       if(count($error) === 0){
-      
+        $commentaire = new CommentModel();
+
+        $date = date("Y-m-d H:i:s");
+
+        $user = $this->getUser();
+
+        $data = [
+          'id_event' => $id,
+          'id_user' => $user['id'],
+          'content' => $post['comment'],
+          'date_add' => $date,
+        ];
+        $insertComment = $commentaire->insert($data);
       }
+    }
   }
 }

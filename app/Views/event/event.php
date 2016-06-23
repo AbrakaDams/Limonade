@@ -54,9 +54,15 @@
 		<?php endif; ?>
 	</section>
 
+<?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
 		<h3>Commentaire</h3>
-		<?php var_dump($comments); ?>
+		<form method="post">
+			<textarea name="comment" rows="2" cols="50"></textarea>
+			<input type="submit" name="submit" value="Commentez">
+		</form>
 	</section>
+<?php else: ?>
 
+<?php endif; ?>
 <?php $this->stop('main_content') ?>
