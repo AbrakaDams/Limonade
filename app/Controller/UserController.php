@@ -180,7 +180,15 @@ class UserController extends Controller
 
 	public function lostPassword(){
 
+		$params = [];
 
 		$this->show('user/lostPassword', $params);
+	}
+
+	public function getNewPassword(){
+
+		$params = [];
+
+		$this->show('user/getNewPassword', $params)
 	}
 }
