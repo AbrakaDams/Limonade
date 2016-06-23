@@ -9,7 +9,7 @@ use \Model\EventModel as EventModel;
 class EventController extends Controller
 {
 
-	
+
 
 	/**
 	 * Page d'accueil par défaut
@@ -23,10 +23,13 @@ class EventController extends Controller
 		$list = new ListController();
 		$lists = $list->showLists($id);
 
+		$addList = $list->addList($id);
+
 
 		// send received data to the event.php
 		$showEvent = ['thisEvent' => $eventData,
 					  'lists'	  => $lists,
+					  'addList'	  => $addList,
 					 ];
 		$this->show('event/event', $showEvent);
 	}
@@ -35,21 +38,9 @@ class EventController extends Controller
 	/**
 	 * Création d'un événement
 	 */
-	public function createEvent($id)
-	{
-		//make a query to the database to get this event data
-		$insert = new EventModel();
-		$eventData = $event->find($id);
-
-		$list = new ListController();
-		$lists = $list->showLists($id);
-
-
-		// send received data to the event.php
-		$createEvent = ['thisEvent' => $eventData,
-					  'lists'	  => $lists,
-					 ];
-		$this->show('event/createEvent', $createEvent);
+	public function createEvent()
+	{		
+		$this->show('event/create_Event');
 	}
 
 }

@@ -87,7 +87,7 @@ class UserController extends Controller
 					'url' => $post['url'],
 				];
 					// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
-					if($userModel->insert($data)){;
+					if($userModel->insert($data)){
 						// ici l'insertion en base est effectuée!
 						$token = md5(uniqid());
 						$success =  true;
@@ -108,8 +108,8 @@ class UserController extends Controller
 							$mail->isHTML(true);                                  // Set email format to HTML
 
 							$mail->Subject = 'Valider votre compte';
-							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/php/Jour28_29_04_2016finalisation_site/confirm.php?id=user_id&token='.$token;
-							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/php/Jour28_29_04_2016finalisation_site/confirm.php?id=user_id&token='.$token;
+							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien '.$this->url('login').'?id=user_id&token='.$token;
+							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien '.$this->url('login').'?id=user_id&token='.$token;
 
 							if(!$mail->send()) {
 									echo 'Message could not be sent.';
@@ -120,12 +120,14 @@ class UserController extends Controller
 
 						//redirige l'utilisateur vers la page d'accueil
 						$this->redirectToRoute('user_login');
-				}
-			}
+					}//if user model
+			}//count error
+
 			else {
 				// On peut faire un truc ici...
 			}
-		}
+		}//if empty post
+
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 		$this->show('user/register', $params);
