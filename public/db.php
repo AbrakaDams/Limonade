@@ -85,6 +85,8 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `email` VARCHAR(255) NOT NULL ,
   `token` VARCHAR(255) NOT NULL ,
+  `date_create` DATETIME NOT NULL,
+  `date_exp` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`email`)) ENGINE = InnoDB;"
 );
