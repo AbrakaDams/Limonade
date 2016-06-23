@@ -59,12 +59,11 @@
 		<h3>Commentaire</h3>
 		<div class="">
 			<?php foreach ($showComments as $value): ?>
-				<?php echo $value['id']; ?></li>
+				<?php echo $value['id_user']; ?></li>
 				<?php echo $value['content']; ?></li>
 				<br>
 			<?php endforeach; ?>
 		</div>
-
 		<form method="post">
 			<textarea name="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">
