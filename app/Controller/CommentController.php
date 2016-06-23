@@ -44,4 +44,12 @@ class CommentController extends Controller
       }
     }
   }
+  public function showAllComments($id){
+    $importComment = new CommentModel();
+
+    $comment = $importComment->findAll($id);
+
+    return $comment;
+  }
+
 }

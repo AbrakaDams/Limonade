@@ -26,11 +26,14 @@ class EventController extends Controller
 		$news = new NewsFeed();
 		$showNews = $news->newsFeed($id);
 
-		// $comment = new CommentController();
-		// $showComment = $comment->showComments($id);
-
 		$comment = new CommentController();
-		$showComment = $comment->insertComment($id);
+		$showComment = $comment->showComments($id);
+
+		$insertComment = new CommentController();
+		$inComment = $insertComment->insertComment($id);
+
+		$showAllComments = new CommentController();
+		$allComments = $showAllComments->showAllComments($id);
 
 
 		// send received data to the event.php
@@ -39,6 +42,7 @@ class EventController extends Controller
 					  'addList'	  => $addList,
 						'newsFeed' => $showNews,
 						'comments' => $showComment,
+						'showComments' => $allComments,
 					 ];
 		$this->show('event/event', $showEvent);
 	}
@@ -47,7 +51,7 @@ class EventController extends Controller
 	/**
 	 * Création d'un événement
 	 */
-	
+
 	public function createEvent()
 	{
 		$post = array();
@@ -57,14 +61,14 @@ class EventController extends Controller
   		foreach ($_POST as $key => $value) {
     		$post[$key] = trim(strip_tags($value));
   		}
-	// Etendue de l event Privée ou Publique  
+	// Etendue de l event Privée ou Publique
   	if(!empty($post['role'])){
     	$errors[] = 'Vous devez cocher un bouton !';
   	}
 	// Catégorie de l event
   	if(!empty($post['category'])){
     	$errors[] = 'Vous devez cocher un bouton !';
-	  	} 
+	  	}
 	// Titre
 	  if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
 	    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
@@ -92,7 +96,7 @@ class EventController extends Controller
 	    if(strlen($post['country']) < 3 || strlen($post['country']) > 30){
 	      $errors[] = 'Votre pays doit être supérieur à 3 caractères';
 	    }
-	  }	  
+	  }
 	}
 		$this->show('event/create_Event');
 	}

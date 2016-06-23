@@ -57,6 +57,13 @@
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
 		<h3>Commentaire</h3>
+		<div class="">
+			<?php foreach ($showComments as $value): ?>
+				<?php echo $value['id']; ?></li>
+				<?php echo $value['content']; ?></li>
+				<br>
+			<?php endforeach; ?>
+		</div>
 
 		<form method="post">
 			<textarea name="comment" rows="2" cols="50"></textarea>
