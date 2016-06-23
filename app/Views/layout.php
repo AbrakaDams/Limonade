@@ -11,9 +11,10 @@
 </head>
 <body>
 	<header>
+
 		<!-- ma navbar -->
 		<nav class="navbar navbar-default">
-	  		<div class="container-fluid">
+	  	<div class="container-fluid">
 	   			<!-- Brand and toggle get grouped for better mobile display -->
 	    		<div class="navbar-header">
 	     			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -31,12 +32,13 @@
 	   		<!--  searchbar -->
 			<?php $this->insert('partials/searchBar') ?>
 			<!-- add list -->
-	      	<li><a href="#ajouter une liste"><i class="glyphicon glyphicon-plus"></i></a></li>
+			<?php if(isset($w_user) && !empty($w_user)): ?>
+	      	<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
 	      	<!-- notifications -->
 	      	<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
 	      	<!-- identité -->
-	        <li><a href="#"> Mon pseudo </a></li>
-	        <li><a href="#"><img class="logo" src="avatar"></a></li>
+	        <li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
+	        <li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php echo $w_user['avatar']; ?>"></a></li>
 
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
@@ -47,12 +49,19 @@
 	            <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Signalez un problème</a></li>
 	            <li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 	          </ul>
-	        </li>
-	      </ul>
+	      </li>
+	    </ul>
+			<?php else:  ?>
+				<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
+				<!-- identité -->
+				<li><a href="<?= $this->url('user_login'); ?>">Connectez vous</a></li>
+				<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
+			<?php endif;  ?>
 	  </div><!-- /.container-fluid -->
 	</nav>
-	<h1>Limonade: Stop la prise de tête pour organiser votre événements</h1>
-	<h4>Posez vous, sirotez votre verre et laissez notre site faire &#9786;</h4>
+
+	<h1>Avec <strong>Limonade</strong> stop la prise de tête pour organiser votre événements !</h1>
+	<h4>Posez vous, sirotez votre verre et laissez nous faire. &#9786;</h4>
 	<h2><?= $this->e($title) ?></h2>
 
 	</header>
@@ -82,7 +91,8 @@
 		<!-- Nous suivre -->
 		<div class="social-network">
 			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>
-Contact</h2></a>
+
+			<h2>Contact</h2></a>
 			<div class="icons-social">
     			<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
 				<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
@@ -94,6 +104,8 @@ Contact</h2></a>
 	</footer>
 
 	</div>
+
+
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Boostrap Js -->

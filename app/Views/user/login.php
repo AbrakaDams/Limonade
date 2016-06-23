@@ -2,15 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-<?php
-	// $w_user est accessible dans tout les fichiers de vue (Views/)
-	// elle retourne les infos de l'utilisateur connecté ou null sinon
-	if(!empty($w_user)){
-		echo '<br><br>';
-		echo '<a href="'.$this->url('user_logout').'">Déconnexion</a>';
-		echo '<br><br>';
-	} ?>
-
 	<?php if(!empty($errors)): ?>
 		<div class="alert alert-danger">
 			<?= implode('<br>', $errors); ?>
@@ -24,10 +15,7 @@
     <strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
   </p>
 
-
 <?php  else: ?>
-
-
 
 	<form method="post" class="form-inline">
     <div class="form-group">
@@ -45,6 +33,6 @@
     </div>
 	</form>
 
-  <?php  endif; ?>
+<?php  endif; ?>
 
 <?php $this->stop('main_content') ?>

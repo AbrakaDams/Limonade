@@ -6,7 +6,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email : </label>
             <div class="col-md-4">
-                <input id="email" type="email" name="email" placeholder="votre@gmail.com" class="form-control input-md" required>
+                <input id="email" type="email" name="email" placeholder="votre_email@gmail.com" class="form-control input-md" required>
             </div>
         </div>
 
