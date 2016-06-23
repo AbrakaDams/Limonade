@@ -47,6 +47,7 @@ class EventController extends Controller
 	/**
 	 * Création d'un événement
 	 */
+	
 	public function createEvent()
 	{
 		$post = array();
@@ -95,7 +96,6 @@ class EventController extends Controller
 	}
 		$this->show('event/create_Event');
 	}
-
 }
 
 /**
