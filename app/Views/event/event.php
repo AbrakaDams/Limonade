@@ -39,9 +39,9 @@
 			</ul>
 			<div id="add-new-list">
 				<button type="button" id="add-list-btn">+</button>
-				<form class="hidden" id="add-list-form">
+				<form class="hidden" id="add-list-form" method="POST">
 					<label>Titre de ce liste</label>
-					<input type="text" name="newList" placeholder="Nom de votre nouveau list">
+					<input type="text" name="newList" id="add-list-input" placeholder="Nom de votre nouveau list">
 				</form>
 			</div>
 

@@ -9,7 +9,7 @@ use \Model\EventModel as EventModel;
 class EventController extends Controller
 {
 
-	
+
 
 	/**
 	 * Page d'accueil par défaut
@@ -23,10 +23,13 @@ class EventController extends Controller
 		$list = new ListController();
 		$lists = $list->showLists($id);
 
+		$addList = $list->addList($id);
+
 
 		// send received data to the event.php
 		$showEvent = ['thisEvent' => $eventData,
 					  'lists'	  => $lists,
+					  'addList'	  => $addList,
 					 ];
 		$this->show('event/event', $showEvent);
 	}
