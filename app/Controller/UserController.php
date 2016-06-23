@@ -189,6 +189,6 @@ class UserController extends Controller
 
 		$params = [];
 
-		$this->show('user/getNewPassword', $params)
+		$this->show('user/getNewPassword', $params);
 	}
 }
