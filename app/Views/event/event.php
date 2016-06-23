@@ -3,7 +3,9 @@
 <?php $this->start('main_content') ?>
 
 	<aside class="">
-		<?php var_dump($thisEvent['showNews']); ?>
+		<h3>Fil actiliter</h3>
+		
+		<?php var_dump($newsFeed); ?>
 	</aside>
 
 	<section id="event-info">
