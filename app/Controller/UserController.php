@@ -187,7 +187,8 @@ class UserController extends Controller
 		$error = [];
 		$post = [];
 		$success = false;
-		$showForm = true;
+		$showForm = false;
+
 		// Traitement des formulaires
 		if(!empty($_POST)) {
 		// Nettoyage des données
@@ -228,7 +229,7 @@ class UserController extends Controller
 		    				$token = md5(uniqid()); // Création du token
 		    				$success = true;
 		                    // we compose a link to send
-		                    $magicLink = '<a href="lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
+		                    $magicLink = '<a href="limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
 		    		       	$mail = new PHPMailer;
 		    		        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 		    		        $mail->isSMTP();                                      
@@ -286,7 +287,92 @@ class UserController extends Controller
 
 	public function lostPassword(){
 
-		$params = [];
+
+		$error = [];
+		$post = [];
+		$showFormPassword = false; // On affiche le 2nd formulaire de mise à jour de notre mdp
+		$showConnectButton = false;
+
+		if(isset($_GET['token']) &&
+  		!empty($_GET['token']) &&
+  		isset($_GET['email']) &&
+ 		!empty($_GET['email'])){
+			
+			// On récupère et nétoie les valeur des GET		
+			foreach ($_GET as $key => $value) {
+	            $get[$key] = trim(strip_tags($value));
+	        }
+
+			$email = $get['email'];
+			$token = $get['token'];
+
+			$tokenModel = new TokenModel();
+
+			// On vérifie que le token et l'email sont bien dans la base de données
+    		$tokenExist = $tokenModel->findToken($email, $token);
+
+    		var_dump($tokenExist);
+
+    		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
+    			// Ici le token est valide et n'a pas expiré, on peut donc afficher le formulaire.
+				$showFormPassword = true;
+			}
+		}//fin if post action
+		
+		// Traitement du 2nd formulaire concernant la maj du mdp
+		if(isset($_POST['action']) && $_POST['action'] == 'updatePassword') {
+
+	        foreach ($_POST as $key => $value) {
+	            $post[$key] = trim(strip_tags($value));
+	        }
+	        
+	        if(strlen($post['new_password']) < 8 || strlen($post['new_password']) > 25 ) { // Nbres de caractères modifiables
+				$error[] = 'Votre mot de passe doit contenir entre 8 et 25 caractères';
+			}
+
+			if($post['new_password'] != $post['new_password_conf']) {
+				$error[] = 'Vos mots de passe doivent correspondre';
+			}
+
+			if(count($error) == 0 ) { // Pas d'erreurs, on continue
+				// Ici, on peut changer le mot de passe
+			
+				// On "Hash" le password
+                $authModel = new AuthModel();
+				$password = $authModel->hashPassword($post['new_password']);
+
+				// On récupère les info de la table user grace à son adresse mail
+				$usersModel = new UsersModel();
+				$infoUser = $usersModel->getUserByUsernameOrEmail($post['email']);
+
+				$data = [
+					'password' => $password,
+				];
+				var_dump($data);
+				echo '<hr>'.$infoUser['id'];
+				if($usersModel->update($data, $infoUser['id'])){
+	    	        // Suppression du token car le mdp est modifié
+
+					if($tokenModel->delete($tokenExist['id'])){
+                        $showFormPassword = false;
+                        $showConnectButton = true;
+                        echo '<div class="alert alert-success">Votre mot de passe a été bien changé, Ne l\'oublié plus :)</div>';
+                    }
+				}
+		        
+		        else{
+		            echo '<div class="alert alert-danger">';
+		            echo implode('<br>', $error);
+		            echo '</div>';
+		        }
+
+			} // fin if count error
+    		else {
+                $error[] = 'Le token et l\'adresse email ne correspondent pas ou la date est expiré !';
+    		} //fin else
+		}
+
+		$params = ['error' => $error];
 
 		$this->show('user/lostPassword', $params);
 	}
