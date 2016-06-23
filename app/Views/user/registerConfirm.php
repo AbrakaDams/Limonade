@@ -7,4 +7,4 @@
 <a href="login.php">Bravo, vous avez bien confirmé votre email 
 <br> pour vous connecter cliquer ici!</a>
 
-<?php $this->stop('main_content') ?>
+<?php $this->stop('main_content') ?> 
