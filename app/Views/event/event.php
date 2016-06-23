@@ -59,11 +59,4 @@
 		<?php var_dump($comments); ?>
 	</section>
 
-	<!-- <script id="lists-template" type="text/x-handlebars-template">
-        {{#each lists}}
-        <div class="list">
-            <div class="list-title">{{title}}</div>
-        </div>
-        {{/each}}
-    </script> -->
 <?php $this->stop('main_content') ?>

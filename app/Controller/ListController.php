@@ -3,7 +3,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
-import zmq;
+
 
 class ListController extends Controller
 {
