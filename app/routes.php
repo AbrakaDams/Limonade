@@ -11,6 +11,7 @@
 		['GET|POST', '/register', 'User#register', 'user_register'],
 		['GET|POST', '/login', 'User#login', 'user_login'],
 		['GET|POST', '/logout', 'User#logout', 'user_logout'],
+		['GET|POST', '/lostpassword', 'User#lostPassword', 'user_lostPassword'],
 
 
 	);
