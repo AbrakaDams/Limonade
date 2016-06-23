@@ -4,7 +4,7 @@ namespace Controller;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
-class Connection implements WampServerInterface
+class Pusher implements WampServerInterface
 {
 	public function onSubscribe(ConnectionInterface $conn, $topic) {
     }
