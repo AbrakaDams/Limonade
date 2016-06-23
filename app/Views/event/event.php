@@ -57,12 +57,17 @@
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
 		<h3>Commentaire</h3>
+
 		<form method="post">
 			<textarea name="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">
 		</form>
 	</section>
 <?php else: ?>
-
+<div class="alert alert-danger">
+	<p>
+		Connectez vous pour voir les commentaire
+	</p>
+</div>
 <?php endif; ?>
 <?php $this->stop('main_content') ?>
