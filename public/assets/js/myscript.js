@@ -6,9 +6,9 @@ CONNECTION FOR WEBSOCKETS
 **************************/
 var conn = new ab.Session('ws://localhost:8080',
     function() {
-        conn.subscribe('kittensCategory', function() {
+        conn.subscribe('kittensCategory', function(topic, data) {
             // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
-            console.log('New list is created');
+            console.log('New article published to category "' + topic + '" : ' + data.title);
         });
     },
     function() {
@@ -48,6 +48,6 @@ $(document).mouseup(function (e) {
     ADD LIST FORM AJAX
 **************************/
 
-// $('#add-list-form').on('submit', function(e) {
-//     e.preventDefault();
-// });
+$('#add-list-form').on('submit', function(e) {
+    e.preventDefault();
+});

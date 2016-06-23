@@ -31,7 +31,7 @@ class ListController extends Controller
 				// create variable to prevent empty insertions
 				$listName = $post['newList'];
 				//form data to insert to the database
-				$insertData = ['title' 		=> $listName,
+				$entryData = ['title' 		=> $listName,
 							   'id_event' 	=> $id,
 							  ];
 				// call model
@@ -46,7 +46,7 @@ class ListController extends Controller
 			    $socket = $context->getSocket(\ZMQ::SOCKET_REQ, 'my pusher');
 			    $socket->connect("tcp://localhost:5555");
 
-			    $socket->send(json_encode($insertData));
+	    		$socket->send(json_encode($entryData));
 			}
 		}
 	}
