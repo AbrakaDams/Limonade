@@ -7,6 +7,7 @@
 		/**************************** event ********************/
 		['GET|POST', '/event/[:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
+		['GET', '/search', 'Event#search', 'event_search'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],

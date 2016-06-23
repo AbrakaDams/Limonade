@@ -97,25 +97,4 @@ class EventController extends Controller
 		$this->show('event/create_Event');
 	}
 
-/**
-	 * Méthode pour searchbar
-	 */
-
-	// Effectue une recherche
-	// Le premier argument est un tableau associatif où la clé correspond à la colonne SQL
-	// Le second argument est l'opérateur OR ou AND pour la recherche
-
-	public function searchEvent()
-	{
-		$search = new EventModel();
-
-		$data =[
-		'title' => $post['search'],
-		'description' => $post['search'],
-		'address' => $post['search'],
-		];
-
-		$search->search($data);
-
-	}
 }
