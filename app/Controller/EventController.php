@@ -4,13 +4,11 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Controller\ListController;
+use \Controller\NewsFeedController as NewsFeed;
 use \Model\EventModel as EventModel;
 
 class EventController extends Controller
 {
-
-
-
 	/**
 	 * Page d'accueil par défaut
 	 */
@@ -25,11 +23,14 @@ class EventController extends Controller
 
 		$addList = $list->addList($id);
 
+		$news = new NewsFeed();
+		$showNews = $news->newsFeed($id);
 
 		// send received data to the event.php
 		$showEvent = ['thisEvent' => $eventData,
 					  'lists'	  => $lists,
 					  'addList'	  => $addList,
+						'newsFeed' => $showNews,
 					 ];
 		$this->show('event/event', $showEvent);
 	}
@@ -39,7 +40,7 @@ class EventController extends Controller
 	 * Création d'un événement
 	 */
 	public function createEvent()
-	{		
+	{
 		$this->show('event/create_Event');
 	}
 

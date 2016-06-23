@@ -2,6 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
+	<aside class="">
+		<?php var_dump($thisEvent['showNews']); ?>
+	</aside>
+
 	<section id="event-info">
 		<!-- SHOW EVENT NAME -->
 		<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
