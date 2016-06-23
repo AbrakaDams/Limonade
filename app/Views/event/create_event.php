@@ -2,38 +2,34 @@
 
 <?php $this->start('main_content') ?>
 
-<?php
-
-$post = array();
-$errors = array();
-
-
-?>
 
 <hr>
 <form class="form-create-event">
   <div class="form-group">
     <label for="type-event">Etendue de l'événement</label><br>
-      <input type="radio" name="type" id="private" value="private"><label for="private">Privée</label>
+      <input type="radio" name="role" id="private" value="private"><label for="private">Privée</label>
       <fieldset>Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.</fieldset><br>
-      <input type="radio" name="type" id="public" value="public"><label for="public">Publique</label>
+      <input type="radio" name="role" id="public" value="public"><label for="public">Publique</label>
       <fieldset>Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.</fieldset><br>    
   </div>
+
   <hr>
   <div class="form-group">
     <label for="cat-event">Catégorie d'événement</label><br>
-      <input type="checkbox" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
-      <input type="checkbox" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
-      <input type="checkbox" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
-      <input type="checkbox" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>                 
+      <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
+      <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
+      <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
+      <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>                 
   </div> 
+
   <hr>
   <div class="form-group">
     <label for="title-event">Intitulé de l'événement</label><br> 
-      <input type="text" placeholder="Title"><br><br>     
+      <input type="text" value="title" placeholder="Title"><br><br>     
     <label for="description-event">Description de l'évenement*</label><br> 
-    <textarea cols="40" placeholder="Description facultative"></textarea>
+    <textarea value="description" cols="40" placeholder="Description facultative"></textarea>
   </div>
+
   <hr> 
   <div class="row">
     <div class="col-xs-6 .col-md-4"> 
@@ -49,21 +45,21 @@ $errors = array();
         <input type="text" name="country" placeholder="..."><br><br>  
     </div><br>
     <div class="col-xs-6 .col-md-4">
-      <label for="date-event">Date de l'événement</label><br>
+      <label for="date_begin">Date du début l'événement</label><br>
       <input type="date" name="date">
     </div><br><br>
     <br>
-    <div class="col-xs-6 .col-md-4"> 
-      <label for="heure-event">Heure de l'événement</label><br>
-      <input type="time" name="heure">
-    </div><br>
-  </div>     
-  <hr>
-  <div class="participants-event">
-    <label class="who-event">Participants</label><br>
-    <textarea cols="40" placeholder="..."></textarea>
+    <div class="col-xs-6 .col-md-4">
+      <label for="date_end">Date de la fin l'événement</label><br>
+      <input type="date" name="date">
+    </div><br><br>
+    <br><br><br>       
+    <div class="col-xs-6 .col-md-4">
+      <label class="who-event">Participants</label><br>
+      <textarea cols="40" placeholder="..."></textarea>
+    </div>
   </div>
-  <hr>
+  <br><hr>
   <button type="submit" class="btn btn-default">Créer l'événement</button>
 </form>
 
