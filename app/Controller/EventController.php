@@ -96,7 +96,6 @@ class EventController extends Controller
 	}
 		$this->show('event/create_Event');
 	}
-}
 
 /**
 	 * Méthode pour searchbar
@@ -111,9 +110,12 @@ class EventController extends Controller
 		$search = new EventModel();
 
 		$data =[
-		'search' => $post['search'],
+		'title' => $post['search'],
+		'description' => $post['search'],
+		'address' => $post['search'],
 		];
 
 		$search->search($data);
 
 	}
+}
