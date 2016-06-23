@@ -3,7 +3,9 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
-
+use \React\ZMQ\Context as ZMQContext;
+// use \React\ZMQ\Context as ZMQ;
+use React\ZMQ;
 
 class ListController extends Controller
 {
@@ -38,11 +40,13 @@ class ListController extends Controller
 				$insertList->insert($insertData);
 
 				// This is our new stuff
-			    $context = new ZMQContext();
-			    $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+				$loop   = \React\EventLoop\Factory::create();
+			    $context = new ZMQContext($loop);
+
+			    $socket = $context->getSocket(\ZMQ::SOCKET_REQ, 'my pusher');
 			    $socket->connect("tcp://localhost:5555");
 
-			    $socket->send(json_encode($entryData));
+			    $socket->send(json_encode($insertData));
 			}
 		}
 	}
