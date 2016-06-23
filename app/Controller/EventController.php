@@ -26,11 +26,16 @@ class EventController extends Controller
 		$news = new NewsFeed();
 		$showNews = $news->newsFeed($id);
 
+		$comment = new CommentController();
+		$showComment = $comment->showComments($id);
+
+
 		// send received data to the event.php
 		$showEvent = ['thisEvent' => $eventData,
 					  'lists'	  => $lists,
 					  'addList'	  => $addList,
 						'newsFeed' => $showNews,
+						'comments' => $showComment,
 					 ];
 		$this->show('event/event', $showEvent);
 	}

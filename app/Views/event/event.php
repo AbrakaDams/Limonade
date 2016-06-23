@@ -4,7 +4,6 @@
 
 	<aside class="">
 		<h3>Fil actiliter</h3>
-		
 		<?php var_dump($newsFeed); ?>
 	</aside>
 
@@ -53,6 +52,11 @@
 			</div>
 
 		<?php endif; ?>
+	</section>
+
+	<section>
+		<h3>Commentaire</h3>
+		<?php var_dump($comments); ?>
 	</section>
 
 	<!-- <script id="lists-template" type="text/x-handlebars-template">
