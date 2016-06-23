@@ -36,13 +36,13 @@
 	        <li><a href="#"><img class="logo" src="avatar"></a></li>
 
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> mon compte <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Créer un nouvel événement </a></li>
+	            <li><a href="default/contact.php">Créer un nouvel événement </a></li>
 	            <li><a href="#">Paramètres </a></li>
 	            <li><a href="#">Assistance </a></li>
 	            <li><a href="#">Signalez un problème</a></li>
-	            <li><a href="#">Deconnexion</a></li>
+	            <li><a href="#">Déconnexion</a></li>
 	          </ul>
 	        </li>
 	      </ul>
@@ -66,7 +66,7 @@
     	-->
 		<div class="team">
 		<link rel="" href=""> <!-- Dossier Img -->
-			<a href="<?= $this->url('default_contact'); ?>"><h2>L'équipe</h2></a>
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-users fa-1x" aria-hidden="true"></i>L'équipe</h2></a>
 			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
@@ -77,12 +77,13 @@
 
 		<!-- Nous suivre -->
 		<div class="social-network">
-			<a href="<?= $this->url('default_contact'); ?>"><h2>Contact</h2></a>
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>
+Contact</h2></a>
 			<div class="icons-social">
-    			<i class="fa fa-facebook-official" aria-hidden="true">Facebook</i>
-				<i class="fa fa-instagram" aria-hidden="true">Instagram</i>
-    			<i class="fa fa-pinterest-p" aria-hidden="true">Pinterest</i>
-    			<i class="fa fa-github" aria-hidden="true">Github</i>
+    			<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+				<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+    			<i class="fa fa-pinterest-p fa-2x" aria-hidden="true"></i>
+    			<i class="fa fa-github fa-2x" aria-hidden="true"></i>
 			</div>
 		</div>
 		<p><?php echo date('Y'); ?> &copy; Limonade &reg;</p>

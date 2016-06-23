@@ -10,7 +10,7 @@
       <div class="caption">
         <h3>Anastasia Nikokosheva Oudin</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
       <div class="caption">
         <h3>Damien Machado</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
       <div class="caption">
         <h3>Myriam Khalfi Bugnazet</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
       <div class="caption">
         <h3>Baptiste Cousin</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
       </div>
     </div>
   </div>
@@ -50,11 +50,12 @@
       <div class="caption">
         <h3> Noé Champigny</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
       </div>
     </div>
   </div>
 </div>
-<a href="<?= $this->url('default_home') ?>">Retour Accueil</a>
+<a href="<?= $this->url('default_home') ?>"><i class="fa fa-home fa-3x" aria-hidden="true">
+Retour Accueil</a></i>
 
 <?php $this->stop('main_content') ?>

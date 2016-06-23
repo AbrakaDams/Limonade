@@ -9,20 +9,19 @@
 	<!-- Indicators -->
 	  	<ol class="carousel-indicators">
 	    	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	    	<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>	    	
 	  	</ol>
 	  	<!-- Wrapper for slides -->
 	  	<div class="carousel-inner" role="listbox">
 	    	<div class="item active">
-	      			<img src="<?= $this->assetUrl('img/slider/img_slider1.jpg') ?>" alt="img-slide" height="900px">
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider1.jpg') ?>" alt="img-slide" height="1000px">
 	      		<div class="carousel-caption">
 	        		<h3>Un outil attractif et intuitif</h3>
 	    			<p>Gagnez du temps, de l'énergie et de l'efficacité.</p>
 	      		</div>
 	    	</div>
 	    	<div class="item">
-	      			<img src="<?= $this->assetUrl('img/slider/img_slider2.jpg') ?>" alt="img-slide" height="900px">
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider2.jpg') ?>" alt="img-slide" height="1000px">
 	      		<div class="carousel-caption">
 	        		<h3>Une organisation d'événements</h3>
 	    			<p>Organisez et pilotez tous vos événements de A à Z sur un même outil.</p>
@@ -41,8 +40,7 @@
 	</div>
 	    	<fieldset>
 	      		Avec notre plateforme Limonade, vous pouvez gérer tous vos événements le plus simplement du monde.Pour cela nous mettons à votre disposition une interface simple et intuitif accompagné d'outils nécessaires pour mener à terme vos projets tout en gagnant du temps, de l'énergie et de l'efficacité.
-	      		Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.
-	      		La bise de toute l'équipe Limonade!
+	      		Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.<br><strong>La bise de toute l'équipe Limonade!</strong>
 	    	</fieldset>
 
 <?php  if(isset($w_user) && !empty($w_user)): ?>
