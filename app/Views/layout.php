@@ -7,6 +7,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
 
+
 </head>
 <body>
 	<header>
@@ -37,17 +38,17 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> mon compte <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">créer un nouvel événement </a></li>
-	            <li><a href="#">paramètres </a></li>
-	            <li><a href="#">assistance </a></li>
-	            <li><a href="#">signalez un problème</a></li>
-	            <li><a href="#">deconnexion</a></li>
+	            <li><a href="#">Créer un nouvel événement </a></li>
+	            <li><a href="#">Paramètres </a></li>
+	            <li><a href="#">Assistance </a></li>
+	            <li><a href="#">Signalez un problème</a></li>
+	            <li><a href="#">Deconnexion</a></li>
 	          </ul>
 	        </li>
 	      </ul>
 	  </div><!-- /.container-fluid -->
 	</nav>
-	<h1>Limonade :: Stop la prise de tête pour organiser votre événements</h1>
+	<h1>Limonade: Stop la prise de tête pour organiser votre événements</h1>
 	<h4>Posez vous, sirotez votre verre et laissez notre site faire &#9786;</h4>
 	<h2><?= $this->e($title) ?></h2>
 
@@ -64,12 +65,13 @@
     	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
     	-->
 		<div class="team">
+		<link rel="" href=""> <!-- Dossier Img -->
 			<a href="<?= $this->url('default_contact'); ?>"><h2>L'équipe</h2></a>
-			<img src="../../../Limonade/public/assets/img/avatar/Anastasia.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="../../../Limonade/public/assets/img/avatar/Damien.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="../../../Limonade/public/assets/img/avatar/Myriam.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="../../../Limonade/public/assets/img/avatar/Baptiste.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="../../../Limonade/public/assets/img/avatar/Noé.jpg" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 
 		</div>
 

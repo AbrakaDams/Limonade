@@ -15,14 +15,14 @@
 	  	<!-- Wrapper for slides -->
 	  	<div class="carousel-inner" role="listbox">
 	    	<div class="item active">
-	      			<img src="../public/assets/img/slider/img_slider2.jpg" alt="img-slide" height="900px">
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider1.jpg') ?>" alt="img-slide" height="900px">
 	      		<div class="carousel-caption">
 	        		<h3>Un outil attractif et intuitif</h3>
 	    			<p>Gagnez du temps, de l'énergie et de l'efficacité.</p>
 	      		</div>
 	    	</div>
 	    	<div class="item">
-	      			<img src="../public/assets/img/slider/img_slider1.jpg" alt="img-slide" height="900px">
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider2.jpg') ?>" alt="img-slide" height="900px">
 	      		<div class="carousel-caption">
 	        		<h3>Une organisation d'événements</h3>
 	    			<p>Organisez et pilotez tous vos événements de A à Z sur un même outil.</p>
