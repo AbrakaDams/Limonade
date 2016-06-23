@@ -21,7 +21,7 @@
 
   <br>
   <p>
-    <strong>Vous etes deja connectez. <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
+    <strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
   </p>
 
 
@@ -31,10 +31,10 @@
 
 	<form method="post" class="form-inline">
     <div class="form-group">
-  		<label for="email">Votre email :</label>
+  		<label for="email">Votre email :</label><br>
   		<input class="form-control" type="email" id="email" name="email" placeholder="votre email">
   		<br><br>
-  		<label for="password">Votre mot de passe (<a href="#">Mot de passe oublier</a>):</label>
+  		<label for="password">Votre mot de passe <br>(<a href="<?= $this->url('user_lostPassword'); ?>">Mot de passe oublié?</a>):</label><br>
   		<input class="form-control" type="password" id="password" name="password" placeholder="votre mot de passe">
   		<br><br>
   		<input class="form-control" type="submit" value="Connexion">
