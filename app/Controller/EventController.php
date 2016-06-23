@@ -38,21 +38,9 @@ class EventController extends Controller
 	/**
 	 * Création d'un événement
 	 */
-	public function createEvent($id)
-	{
-		//make a query to the database to get this event data
-		$insert = new EventModel();
-		$eventData = $event->find($id);
-
-		$list = new ListController();
-		$lists = $list->showLists($id);
-
-
-		// send received data to the event.php
-		$createEvent = ['thisEvent' => $eventData,
-					  'lists'	  => $lists,
-					 ];
-		$this->show('event/createEvent', $createEvent);
+	public function createEvent()
+	{		
+		$this->show('event/create_Event');
 	}
 
 }
