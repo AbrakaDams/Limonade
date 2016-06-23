@@ -57,10 +57,12 @@
 <?php endif; ?>
 </section>
 
-<!-- Partie pour afficher les event à proximité -->
-<section class="event-near">
+<section class="event-near" style="background-color: #868786">
+
+	<h2> Liste des évenement public </h2>
 
 </section>
+
 
 
 <?php $this->stop('main_content') ?>

@@ -65,42 +65,39 @@
 
 
 
-		<section>
+		<section style="background-color: #d8ddd7">
 			<?= $this->section('main_content') ?>
 		</section>
 
-	<footer>
+	<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
     	<!--
     	Nous contacter
     	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
     	-->
 		<div class="team">
-		<link rel="" href=""> <!-- Dossier Img -->
+		<!-- Dossier Img -->
 			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-users fa-1x" aria-hidden="true"></i>L'équipe</h2></a>
 			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
 			<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
-
 		</div>
 
 		<!-- Nous suivre -->
-		<div class="social-network">
-			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>
-
-			<h2>Contact</h2></a>
+		<div class="social-network" >
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>Contact</h2></a>
 			<div class="icons-social">
     			<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
-				<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+					<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
     			<i class="fa fa-pinterest-p fa-2x" aria-hidden="true"></i>
     			<i class="fa fa-github fa-2x" aria-hidden="true"></i>
 			</div>
 		</div>
-		<p><?php echo date('Y'); ?> &copy; Limonade &reg;</p>
+		<p><strong><?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
+
 	</footer>
 
-	</div>
 
 
 	<!-- Jquery -->
