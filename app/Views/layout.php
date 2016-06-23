@@ -38,11 +38,11 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="default/contact.php">Créer un nouvel événement </a></li>
-	            <li><a href="#">Paramètres </a></li>
-	            <li><a href="#">Assistance </a></li>
-	            <li><a href="#">Signalez un problème</a></li>
-	            <li><a href="#">Déconnexion</a></li>
+	            <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
+	            <li><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
+	            <li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Assistance </a></li>
+	            <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Signalez un problème</a></li>
+	            <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 	          </ul>
 	        </li>
 	      </ul>
@@ -53,6 +53,7 @@
 	<h2><?= $this->e($title) ?></h2>
 
 	</header>
+
 
 
 		<section>
