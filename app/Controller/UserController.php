@@ -3,8 +3,9 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \W\Model\UsersModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
+use \W\Model\UsersModel as UsersModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
+use \Model\TokensModel as TokenModel;
 use PHPMailer;
 
 class UserController extends Controller
@@ -71,7 +72,7 @@ class UserController extends Controller
 			}
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
-				$userModel = new UserModel();
+				$usersModel = new UsersModel();
 				$authModel = new AuthModel();
 
 				//on utilise la méthode insert() qui permetd d'insérer des données en bases
@@ -87,7 +88,7 @@ class UserController extends Controller
 					'url' => $post['url'],
 				];
 					// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
-					if($userModel->insert($data)){
+					if($usersModel->insert($data)){
 						// ici l'insertion en base est effectuée!
 						$token = md5(uniqid());
 						$success =  true;
@@ -134,6 +135,7 @@ class UserController extends Controller
 	}//fin de function function register
 
 	public function login(){
+
 		$post = [];
 		$errors = [];
 		if(!empty($_POST)){
@@ -148,8 +150,8 @@ class UserController extends Controller
 				$errors[] ='Vous devez saisir un mot de passe';
 			}
 			if(count($errors) === 0){
-				// On instancie la classe UserModel qui étends la classe model
-				$usersModel = new UserModel();
+				// On instancie la classe UsersModel qui étends la classe model
+				$usersModel = new UsersModel();
 				$authModel = new AuthModel();
 
 				// La méthode isValidLoginInfo() retourne un utilisateur si celui-ci existe et que le couple identifiant/mdp existe.
@@ -180,6 +182,108 @@ class UserController extends Controller
 		$this->redirectToRoute('default_home');
 	}
 
+	public function getNewPassword(){
+
+		$error = [];
+		$post = [];
+		$success = false;
+		$showForm = true;
+		// Traitement des formulaires
+		if(!empty($_POST)) {
+		// Nettoyage des données
+			foreach($_POST as $key => $value) {
+				$post[$key] = trim(strip_tags($value));
+			}
+
+		    // Traitement du formulaire du mail
+		    if(isset($post['email'])) {
+
+
+		    	if(filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+		    		
+		    		// Ici on est sur que l'email est au bon format, on peut donc aller la chercher dans la table USER
+					$usersModel = new UsersModel();
+					$authModel = new AuthModel();
+					$token = md5(uniqid());
+					$email = $post['email'];
+					$userEmail = $usersModel->findEmail($email);
+
+		    		if(!empty($userEmail)) {    // On search une corres avec le mail
+
+		    			$date_create = date('Y-m-d h:i:s');
+						$date_exp = date('Y-m-d h:i:s',strtotime('+2 days'));
+
+		    			$data = [
+		    				//la clé du tableau correspond au nom de la colone SQL
+		    				'email' => $post['email'],
+		    				'token' => $token,
+		    				'date_create' => $date_create,
+		    				'date_exp' => $date_exp,
+		    			];
+
+		    			$tokenModel = new TokenModel();
+
+		    			if($tokenModel->insert($data)) {
+		    				
+		    				$token = md5(uniqid()); // Création du token
+		    				$success = true;
+		                    // we compose a link to send
+		                    $magicLink = '<a href="lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
+		    		       	$mail = new PHPMailer;
+		    		        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+		    		        $mail->isSMTP();                                      
+		    		        // Set mailer to use SMTP
+		    	        	$mail->Host = 'smtp.mailgun.org'; 					  
+		    	        	// Specify main and backup SMTP servers
+		    	        	$mail->SMTPAuth = true;                               
+		    	        	// Enable SMTP authentication
+		    	        	$mail->Username = 'postmaster@wf3.axw.ovh';                 
+		    	        	// SMTP username
+		    	        	$mail->Password = 'WF3sessionPhilo2';                           
+		    	        	// SMTP password
+		    	        	$mail->SMTPSecure = 'tls';                            
+		    	        	// Enable TLS encryption, `ssl` also accepted
+		    	        	$mail->Port = 587;                                    
+		    	        	// TCP port to connect to
+
+		    	        	$mail->setFrom('limowf3@yopmail.com', 'contact du site'); //expéditeur
+		    	        	$mail->addAddress($post['email'], '');  // Add a recipient// Name is optional
+		    	        	$mail->addReplyTo('info@example.com', 'Information');// si on l'enlève ça renvoie auto à l'expéditeur
+
+		    	       	 	$mail->isHTML(true);                                  
+		    	       	 	// Set email format to HTML
+
+		    	        	$mail->Subject = 'Récupération de votre mot de passe.';
+		    	        	$mail->Body    = $magicLink;
+		    	        	$mail->AltBody = $magicLink;
+
+		                    if(!$mail->send()) {
+		                		echo 'Erreur lors de l\'envoi du mail !';
+		               			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		            		} else {
+		                        $showForm = false;
+		               			echo '<p class="noresult-msg">Un lien vous a été envoyé par mail, veuillez le suivre pour modifier votre mot de passe.';
+		        			}
+		    			}//fin if insert execute
+		    		}//if empty emailexist
+		            else {
+		                echo 'Votre email n\'est pas enregistré!';
+		            }
+		    	}//fin filter var
+				else
+				{
+				$error[] = 'Votre adresse email est incorrecte';
+				}
+		    }// fin if EMPTYpost
+		}
+
+
+
+		$params = ['error' => $error, 'success' => $success];
+
+		$this->show('user/getNewPassword', $params);
+	}
+
 	public function lostPassword(){
 
 		$params = [];
@@ -187,10 +291,4 @@ class UserController extends Controller
 		$this->show('user/lostPassword', $params);
 	}
 
-	public function getNewPassword(){
-
-		$params = [];
-
-		$this->show('user/getNewPassword', $params);
-	}
 }

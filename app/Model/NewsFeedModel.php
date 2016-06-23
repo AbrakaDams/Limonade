@@ -82,4 +82,5 @@ class NewsFeedModel extends \W\Model\Model
 
     return $sth->fetchAll();
   }
+
 }

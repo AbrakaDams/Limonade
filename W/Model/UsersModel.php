@@ -99,4 +99,17 @@ class UsersModel extends Model
 
 	    return false;
 	}
+
+	public function findEmail($email)
+	{
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+			return false;
+		}
+
+		$sql = 'SELECT email FROM ' . $this->table . ' WHERE email="' .$email.'"';
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+		var_dump($sql);
+		return $sth->fetch();
+	}
 }

@@ -256,7 +256,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `id_event` INT NOT NULL ,
   `id_user` INT NOT NULL ,
-  `content` INT NOT NULL ,
+  `content` VARCHAR(255) NOT NULL ,
   `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );

@@ -26,8 +26,11 @@ class EventController extends Controller
 		$news = new NewsFeed();
 		$showNews = $news->newsFeed($id);
 
+		// $comment = new CommentController();
+		// $showComment = $comment->showComments($id);
+
 		$comment = new CommentController();
-		$showComment = $comment->showComments($id);
+		$showComment = $comment->insertComment($id);
 
 
 		// send received data to the event.php
@@ -50,3 +53,23 @@ class EventController extends Controller
 	}
 
 }
+
+/**
+	 * Méthode pour searchbar
+	 */
+
+	// Effectue une recherche
+	// Le premier argument est un tableau associatif où la clé correspond à la colonne SQL
+	// Le second argument est l'opérateur OR ou AND pour la recherche
+
+	public function searchEvent()
+	{
+		$search = new EventModel();
+
+		$data =[
+		'search' => $post['search'],
+		];
+
+		$search->search($data);
+
+	}
