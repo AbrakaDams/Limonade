@@ -22,7 +22,10 @@
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				     </button>
-	      			<a class="navbar-brand" href="#">LIMONADE</a>
+
+	      			<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
+	      			<img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px">
+	      			</a>
 	    		</div>
 	    <ul class="nav navbar-nav navbar-right">
 	   		<!--  searchbar -->
@@ -38,11 +41,11 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
+	            <li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 	            <li><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 	            <li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Assistance </a></li>
 	            <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Signalez un problème</a></li>
-	            <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+	            <li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 	          </ul>
 	        </li>
 	      </ul>
