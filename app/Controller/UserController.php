@@ -148,4 +148,9 @@ class UserController extends Controller
 		$this->redirectToRoute('default_home');
 	}
 
+	public function lostPassword(){
+
+
+		$this->show('user/lostPassword', $params);
+	}
 }
