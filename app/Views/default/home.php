@@ -3,13 +3,16 @@
 
 <?php $this->start('main_content') ?>
 
+<h1>Avec <strong>Limonade</strong> stop la prise de tête pour organiser votre événements !</h1>
+<h4>Posez vous, sirotez votre verre et laissez nous faire. &#9786;</h4>
+
 <!-- Section slider -->
 <section class="slider">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	  	<ol class="carousel-indicators">
 	    	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>	    	
+	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 	  	</ol>
 	  	<!-- Wrapper for slides -->
 	  	<div class="carousel-inner" role="listbox">

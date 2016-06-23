@@ -113,7 +113,7 @@ if($sql === false){
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `event` (
 	`id` INT NOT NULL AUTO_INCREMENT ,
-	`category` ENUM('soiree','vacance','repas','journee') NOT NULL ,
+	`category` ENUM('soiree','vacances','repas','journee') NOT NULL ,
 	`title` VARCHAR(255) NOT NULL ,
 	`description` TEXT NOT NULL ,
 	`address` VARCHAR(255) NOT NULL ,
