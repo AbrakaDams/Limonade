@@ -87,8 +87,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens` (
   `token` VARCHAR(255) NOT NULL ,
   `date_create` DATETIME NOT NULL,
   `date_exp` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE (`email`)) ENGINE = InnoDB;"
+  PRIMARY KEY (`id`);"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));
