@@ -5,6 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Model\UsersModel as UserModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
+use PHPMailer;
 
 class UserController extends Controller
 {
@@ -85,12 +86,41 @@ class UserController extends Controller
 					'avatar' => $adress,
 					'url' => $post['url'],
 				];
-				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
-				$userModel->insert($data);
-				// ici l'insertion en base est effectuée!
-				$success =  true;
-				//redirige l'utilisateur vers la page d'accueil
-				$this->redirectToRoute('user_login');
+					// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
+					if($userModel->insert($data)){;
+						// ici l'insertion en base est effectuée!
+						$token = md5(uniqid());
+						$success =  true;
+						$mail = new PHPMailer;
+							//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+							$mail->isSMTP();                                      // Set mailer to use SMTP
+							$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
+							$mail->SMTPAuth = true;                               // Enable SMTP authentication
+							$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
+							$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
+							$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+							$mail->Port = 587;                                    // TCP port to connect to
+
+							$mail->setFrom('limowf3@yopmail.com');
+							$mail->addAddress($data['email'], $data['username']);      // Name is optional
+							//$mail->addReplyTo('info@example.com', 'Information');
+
+							$mail->isHTML(true);                                  // Set email format to HTML
+
+							$mail->Subject = 'Valider votre compte';
+							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/php/Jour28_29_04_2016finalisation_site/confirm.php?id=user_id&token='.$token;
+							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/php/Jour28_29_04_2016finalisation_site/confirm.php?id=user_id&token='.$token;
+
+							if(!$mail->send()) {
+									echo 'Message could not be sent.';
+									echo 'Mailer Error: ' . $mail->ErrorInfo;
+							} else {
+									echo 'Message has been sent';
+							}
+
+						//redirige l'utilisateur vers la page d'accueil
+						$this->redirectToRoute('user_login');
+				}
 			}
 			else {
 				// On peut faire un truc ici...
