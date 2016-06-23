@@ -28,7 +28,8 @@
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
         "cboden/ratchet": "^0.3.5",
-        "react/react": "^0.4.2"
+        "react/react": "^0.4.2",
+        "react/zmq": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

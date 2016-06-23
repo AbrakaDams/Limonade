@@ -41,7 +41,8 @@
 				<button type="button" id="add-list-btn">+</button>
 				<form class="hidden" id="add-list-form" method="POST">
 					<label>Titre de ce liste</label>
-					<input type="text" name="newList" id="add-list-input" placeholder="Nom de votre nouveau list">
+					<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouveau list">
+					<input type="submit" value="Go">
 				</form>
 			</div>
 
