@@ -108,8 +108,8 @@ class UserController extends Controller
 							$mail->isHTML(true);                                  // Set email format to HTML
 
 							$mail->Subject = 'Valider votre compte';
-							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien '.$this->url('login').'?id=user_id&token='.$token;
-							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien '.$this->url('login').'?id=user_id&token='.$token;
+							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/login?id=user_id&token='.$token;
+							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/login?id=user_id&token='.$token;
 
 							if(!$mail->send()) {
 									echo 'Message could not be sent.';
