@@ -51,3 +51,11 @@ $(document).mouseup(function (e) {
 $('#add-list-form').on('submit', function(e) {
     e.preventDefault();
 });
+
+/******************************
+   Formulaire create_event
+*******************************/
+
+//  Calendrier
+
+
