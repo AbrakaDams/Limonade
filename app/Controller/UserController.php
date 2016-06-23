@@ -109,8 +109,8 @@ class UserController extends Controller
 							$mail->isHTML(true);                                  // Set email format to HTML
 
 							$mail->Subject = 'Valider votre compte';
-							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id=user_id&token='.$token;
-							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id=user_id&token='.$token;
+							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id='.$data['id'].'&token='.$token;
+							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id='.$data['id'].'&token='.$token;
 
 							if(!$mail->send()) {
 									echo 'Message could not be sent.';
@@ -133,6 +133,22 @@ class UserController extends Controller
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 		$this->show('user/register', $params);
 	}//fin de function function register
+
+	public function registerConfirm(){
+
+		if(isset($_GET) && isset($_GET['token'])){
+			$token = trim(strip_tags($_GET['token'])); 
+			$authModel = new AuthModel();
+			$id = $_GET['id'];
+			if($authModel->find($id)){
+				$data = [
+				'token' => $token,
+				];	
+				
+				var_dump($token);
+			}
+		}
+	}
 
 	public function login(){
 
