@@ -445,4 +445,59 @@ class UserController extends Controller
 		$this->show('user/lostPassword', $params);
 	}
 
-}
+	public function updateUser(){
+
+		// On instancie nos variables qu'on utilisera plus tard
+		$post = array();
+		$error = array();
+		$data = [];
+
+		//définit si l'utilisateur est connecté
+		$user = $this->getUser();
+		$id = $user['id'];
+
+
+	    //ici je vérifie les données entrée par l'utilisateur
+		if(!empty($_POST)){
+			foreach($_POST as $key => $value){
+				$post[$key] = trim(strip_tags($value));
+			}
+			if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+				$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
+			}
+			if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+				$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
+			}
+			if (empty($post['password']) || $post['password'] != $post['password_confirm']){
+				$errors[] = 'Votre mot de passe n\'est pas identique';
+			}
+			if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
+				$errors[] = 'Vous devez choisir un avatar pour continuer';
+			}
+			if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
+				$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
+			}
+			if(count($errors) === 0){
+				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
+				$usersModel = new UsersModel();
+				$authModel = new AuthModel();
+				//je collecte mes données dans un tableau
+				$data = [
+					//la clé du tableau correspond au nom de la colone SQL
+					'username' => $post['username'],
+					'firstname' => $post['firstname'],
+					'lastname' => $post['lastname'],
+					'password' => $authModel->hashPassword($post['password']),
+					'avatar' => $post['avatar'],
+					'url' => $post['url'],
+					];
+				//je met a jour mes données	
+				$update = $usersModel->update($data, $id);
+			}//fin if count
+		}
+		$this->show('user/udateUser', $params);
+	}//fin de if not empty $POST
+}//fin de fublic function
+
+
+
