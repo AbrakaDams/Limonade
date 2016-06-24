@@ -10,8 +10,8 @@
 		['GET', '/search', 'Event#search', 'event_search'],
 		['GET', '/invite/[i:id]', 'Event#invite', 'event_invite'],
 
-		['GET', '/get-list', 'List#getList', 'list_getList'],
-		['GET|POST', '/add-list', 'List#addList', 'list_addList'],
+		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
+		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],

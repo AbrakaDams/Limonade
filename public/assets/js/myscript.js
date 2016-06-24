@@ -1,30 +1,6 @@
-var newList = '<form><label>Titre de ce liste</label><input type="text" name="newList" placeholder="Nom de votre nouveau list"></form>';
+// var newList = '<form><label>Titre de ce liste</label><input type="text" name="newList" placeholder="Nom de votre nouveau list"></form>';
 
 
-/***************************
-CONNECTION FOR WEBSOCKETS
-**************************/
-// var conn = new ab.Session('ws://localhost:9000',
-//     function() {
-//         conn.subscribe('kittensCategory', function(topic, data) {
-//             // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
-//             console.log('New article published to category "' + topic + '" : ' + data.title);
-//         });
-//     },
-//     function() {
-//         console.warn('WebSocket connection closed');
-//     },
-//     {'skipSubprotocolCheck': true}
-// );
-
-// var conn = new WebSocket('ws://localhost:9000');
-// conn.onopen = function(e) {
-//     console.log("Connection established!");
-// };
-//
-// conn.onmessage = function(e) {
-//     console.log(e.data);
-// };
 
 /***************************
     ADD LIST FORM
@@ -52,7 +28,6 @@ $(document).mouseup(function (e) {
     }
 });
 
-
 /***************************
     ADD LIST FORM AJAX
 **************************/
@@ -70,7 +45,7 @@ $('#add-list-form').on('submit', function(e) {
             console.table(e);
         },
         success: function(output) {
-            console.log(output);
+            //console.log(output);
             if(output == 'success') {
                 $('#add-list-form').each(function(){
                     this.reset();
@@ -80,8 +55,6 @@ $('#add-list-form').on('submit', function(e) {
     });
 
 });
-
-
 
 /**
  * AJAX long-polling
@@ -93,29 +66,36 @@ $('#add-list-form').on('submit', function(e) {
  *
  * @param timestamp
  */
-function getContent(timestamp)
-{
-    var queryString = {'timestamp' : timestamp};
+function getContent(firstDate) {
 
-    $.ajax(
-        {
-            type: 'GET',
-            url: 'get-list',
-            data: queryString,
-            success: function(data){
-                // put result data into "obj"
-                console.log(data);
-                var obj = jQuery.parseJSON(data);
-                // put the data_from_file into #response
-                $('#response').html(obj.data_from_file);
-                // call the function again, this time with the timestamp we just got from server.php
-                getContent(obj.timestamp);
+    var lastDate = firstDate;
+    //console.log(lastDate);
+    $.ajax({
+        type: "POST",
+        url: "../ajax/get-list",
+        cache: false,
+        data: {'myDate': lastDate},
+        dataType: "json",
+        success: function(data){
+            console.log(data);
+            lastDate = data.newDate;
+            if(data.newList.length != 0){
+                $.each(data.newList, function(key, value) {
+                    $('#response').append('<div>'+ value.title +'</div>')
+                })
+
             }
+        },
+        error: function(e) {
+            console.log(e);
+        },
+        complete: function(){
+            setTimeout(function(){getContent(lastDate)}, 7000);
         }
-    );
+    });
 }
 
 // initialize jQuery
 $(function() {
-    getContent();
+    getContent(0);
 });

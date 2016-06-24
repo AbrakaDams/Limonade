@@ -6,13 +6,10 @@ class ListModel extends \W\Model\Model
     /**
     * function to get all the lists of cards for a certain event that depends on id_event
     */
-	public function findLists($id) {
+    public function findLists($id, $lastDate) {
 
-        if (!is_numeric($id)){
-			return false;
-		}
+        $sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
-        $sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event=' . $id;
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 

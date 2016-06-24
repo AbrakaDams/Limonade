@@ -19,7 +19,7 @@ class EventController extends Controller
 		$eventData = $event->find($id);
 
 		$list = new ListController();
-		$lists = $list->showLists($id);
+		// $lists = $list->getList($id);
 
 		$addList = $list->addList($id);
 
@@ -38,7 +38,7 @@ class EventController extends Controller
 
 		// send received data to the event.php
 		$showEvent = ['thisEvent' => $eventData,
-					  'lists'	  => $lists,
+					//   'lists'	  => $lists,
 					  'addList'	  => $addList,
 						'newsFeed' => $showNews,
 						'comments' => $showComment,
@@ -52,7 +52,7 @@ class EventController extends Controller
 	*/
 	public function invite($id)
 	{
-		
+
 
 		$this->show('event/invite');
 	}
@@ -66,7 +66,7 @@ class EventController extends Controller
 		$post = array();
 		$errors = array();
 		$success = null;
-		
+
 
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
@@ -76,7 +76,7 @@ class EventController extends Controller
 	  		if(strtotime($post['date_begin']) <= strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
 	  		}
-	  		
+
 			// Etendue de l event Privée ou Publique
 		  	if(!empty($post['role'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
@@ -121,8 +121,8 @@ class EventController extends Controller
 	  			];
 	  			$eventModel->insert($data);
 
-			}			
-		}	
+			}
+		}
 
 		$params = [
 			'errors' 	=> $errors,
@@ -134,7 +134,7 @@ class EventController extends Controller
 
 
 	/**
-	 * Valide une date au format français 
+	 * Valide une date au format français
 	 * @param string $date Une date au format DD/MM/YYYY
 	 * @return bool true si la date est au bon format, false sinon
 	 */
