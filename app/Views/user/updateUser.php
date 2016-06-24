@@ -16,7 +16,7 @@
 	</div>
 <?php endif; ?>
 
-<form method="POST" class="pure-form" name="updateInfos" id="updateInfos">
+<form method="POST" class="pure-form" enctype="multipart/form-data" id="updateInfos">
 	<div class="form-group">
 		<label for="ident">Pseudo</label>
 		<input type="text" id="ident" name="username" value="<?php echo $w_user['username']; ?>">

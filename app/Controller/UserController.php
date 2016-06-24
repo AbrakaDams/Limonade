@@ -519,13 +519,18 @@ class UserController extends Controller
 				//on utilise la méthode insert() qui permet d'insérer des données en bases
 				$dataUser = [
 					//la clé du tableau correspond au nom de la colone SQL
-					'id' => $id,
+					'id' 		=> $id,
 					'username' 	=> $post['username'],
 					'firstname' => $post['firstname'],
 					'lastname' 	=> $post['lastname'],
 					'password' 	=> $authModel->hashPassword($post['password']),
-					'avatar' 	=> $adress,
+					'url' 		=> $post['url'],
 				];
+				if(!empty($_FILES['avatar'])){
+					$data = [
+						'avatar' 	=> $adress,
+					];
+				}
 				// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
 				// Et on ajoute le token dans la table token_register
 				if($usersModel->update($dataUser, $id)){

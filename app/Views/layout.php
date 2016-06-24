@@ -38,7 +38,7 @@
 					<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
 					<!-- identité -->
 				  <li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
-				  <li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php echo $w_user['avatar']; ?>"></a></li>
+<li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){echo $w_user['avatar'];}elseif(isset($w_user['url']) && !empty($w_user['url'])){echo $w_user['url']; } ?>"></a></li>
 
 					<li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
