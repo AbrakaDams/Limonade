@@ -109,7 +109,7 @@ class UsersModel extends Model
 		$sql = 'SELECT email FROM ' . $this->table . ' WHERE email="' .$email.'"';
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
-		var_dump($sql);
+
 		return $sth->fetch();
 	}
 }
