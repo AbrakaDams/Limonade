@@ -22,6 +22,7 @@ class UserController extends Controller
 		$successimg = false;
 		$adress = ''; //adress est visible pour toute la fonction
 
+
 		//qd j'insère le fichier depuis mon formulaire ça le place dan assets
 		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
 		$dbLink = '/limonade/public/assets/image';
@@ -53,24 +54,31 @@ class UserController extends Controller
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
 			}
+
 			if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
 				$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
 			}
+
 			if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
 				$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
 			}
+
 			if (empty($post['password']) || $post['password'] != $post['password_confirm']){
 				$errors[] = 'Votre mot de passe n\'est pas identique';
 			}
+
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'Votre adresse email n\'est pas valide';
 			}
+
 			if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
 				$errors[] = 'Vous devez choisir un avatar pour continuer';
 			}
+
 			if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
 				$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
 			}
+
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
 				$usersModel = new UsersModel();
@@ -113,49 +121,47 @@ class UserController extends Controller
 
 					$success =  true;
 					$mail = new PHPMailer;
-						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-						$mail->isSMTP();                                      // Set mailer to use SMTP
-						$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
-						$mail->SMTPAuth = true;                               // Enable SMTP authentication
-						$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
-						$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
-						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-						$mail->Port = 587;                                    // TCP port to connect to
+					//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+					$mail->isSMTP();                                      // Set mailer to use SMTP
+					$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
+					$mail->SMTPAuth = true;                               // Enable SMTP authentication
+					$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
+					$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
+					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = 587;                                    // TCP port to connect to
 
-						$mail->setFrom('limowf3@yopmail.com');
-						$mail->addAddress($dataUser['email'], $dataUser['username']);      // Name is optional
-						//$mail->addReplyTo('info@example.com', 'Information');
+					$mail->setFrom('limowf3@yopmail.com');
+					$mail->addAddress($dataUser['email'], $dataUser['username']);      // Name is optional
+					//$mail->addReplyTo('info@example.com', 'Information');
 
-						$mail->isHTML(true);                                  // Set email format to HTML
+					$mail->isHTML(true);                                  // Set email format to HTML
 
-						$mail->Subject = 'Valider votre compte';
-						$mail->Body    =  $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
-						$mail->AltBody = $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
+					$mail->Subject = 'Valider votre compte';
+					$mail->Body    =  $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
+					$mail->AltBody = $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
 
-						if(!$mail->send()) {
-								echo 'Message could not be sent.';
-								echo 'Mailer Error: ' . $mail->ErrorInfo;
-						} else {
-								echo 'Message has been sent';
-						}
+					if(!$mail->send()) {
+							echo 'Message could not be sent.';
+							echo 'Mailer Error: ' . $mail->ErrorInfo;
+					} else {
+							echo 'Message has been sent';
+					}
 
 					//redirige l'utilisateur vers la page d'accueil
 					//$this->redirectToRoute('user_login');
-					} //Fin insertion USER et TOKEN
-					else{
-						$errors[] = 'Problème lors de l\'insertion';
-					}
+				} //Fin insertion USER et TOKEN
+				else{
+					$errors[] = 'Problème lors de l\'insertion';
+				}
 			}//count error
 
-			else {
-				// On peut faire un truc ici...
-			}
 		}//if empty post
-
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 		$this->show('user/register', $params);
+
 	}//fin de function function register
+
 
 	public function registerConfirm(){
 
@@ -451,18 +457,44 @@ class UserController extends Controller
 	}
 
 	public function updateUser(){
-
-		// On instancie nos variables qu'on utilisera plus tard
-		$post = array();
-		$error = array();
-		$data = [];
+		$post = [];
+		$errors = [];
+		$success = false;
+		$successimg = false;
+		$adress = ''; //adress est visible pour toute la fonction
 
 		//définit si l'utilisateur est connecté
 		$user = $this->getUser();
 		$id = $user['id'];
 
 
-	    //ici je vérifie les données entrée par l'utilisateur
+		//qd j'insère le fichier depuis mon formulaire ça le place dan assets
+		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
+		$dbLink = '/limonade/public/assets/image';
+		$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
+
+		if(!empty($_FILES) && isset($_FILES['avatar'])){
+
+			$nomFichier = $_FILES['avatar']['name']; // Récupère le nom de mon fichier
+			$tmpFichier = $_FILES['avatar']['tmp_name']; // Stockage temporaire du fichier
+			$newFichier = $folder.$nomFichier; // Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+			// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
+			if($_FILES['avatar']['size'] <= $maxSize){
+				/*
+				 * move_uploaded_file() retourne un booleen :
+				 *	- true si le fichier a bien été déplacé/envoyé
+				 *  - false si il y a une erreur
+				 */
+				if(move_uploaded_file($tmpFichier, $newFichier)){
+					$successimg = true;
+					$adress = $dbLink.'/'.$nomFichier;
+				}
+				else {
+					$error = 'Erreur lors de l\'envoi du fichier';
+				}
+			}
+		}
+
 		if(!empty($_POST)){
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
@@ -486,23 +518,32 @@ class UserController extends Controller
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
 				$usersModel = new UsersModel();
 				$authModel = new AuthModel();
-				//je collecte mes données dans un tableau
-				$data = [
+
+				//on utilise la méthode insert() qui permet d'insérer des données en bases
+				$dataUser = [
 					//la clé du tableau correspond au nom de la colone SQL
-					'username' => $post['username'],
+					'username' 	=> $post['username'],
 					'firstname' => $post['firstname'],
-					'lastname' => $post['lastname'],
-					'password' => $authModel->hashPassword($post['password']),
-					'avatar' => $post['avatar'],
-					'url' => $post['url'],
-					];
-				//je met a jour mes données	
-				$update = $usersModel->update($data, $id);
-			}//fin if count
-		}
-		$this->show('user/udateUser', $params);
-	}//fin de if not empty $POST
-}//fin de fublic function
-
-
-
+					'lastname' 	=> $post['lastname'],
+					'password' 	=> $authModel->hashPassword($post['password']),
+					'avatar' 	=> $adress,
+					'url' 		=> $post['url'],
+				];
+				
+			
+				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
+				// Et on ajoute le token dans la table token_register
+				if($usersModel->update($dataUser, $id)){
+					$success = true;
+				}
+				else {
+				// On peut faire des trucs ici...
+			}
+		}//if empty post
+	}	
+		//mettre en dehors des verif
+		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
+		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
+		$this->show('user/updateUser', $params);
+	}
+}
