@@ -5,7 +5,8 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Model\UsersModel as UsersModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
-use \Model\TokensModel as TokenModel;
+use \Model\TokensPasswordModel as TokensPasswordModel;
+use \Model\TokensRegisterModel as TokensRegisterModel;
 use PHPMailer;
 
 class UserController extends Controller
@@ -75,53 +76,75 @@ class UserController extends Controller
 				$usersModel = new UsersModel();
 				$authModel = new AuthModel();
 
-				//on utilise la méthode insert() qui permetd d'insérer des données en bases
-				$data = [
+				//on utilise la méthode insert() qui permet d'insérer des données en bases
+				$dataUser = [
 					//la clé du tableau correspond au nom de la colone SQL
-					'username' => $post['username'],
+					'username' 	=> $post['username'],
 					'firstname' => $post['firstname'],
-					'lastname' => $post['lastname'],
-					'email' => $post['email'],
-					'password' => $authModel->hashPassword($post['password']),
-					'role' => 'user',
-					'avatar' => $adress,
-					'url' => $post['url'],
+					'lastname' 	=> $post['lastname'],
+					'email' 	=> $post['email'],
+					'password' 	=> $authModel->hashPassword($post['password']),
+					'role' 		=> 'user',
+					'avatar' 	=> $adress,
+					'url' 		=> $post['url'],
+					'activation'=> 'false',
 				];
-					// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
-					if($usersModel->insert($data)){
-						// ici l'insertion en base est effectuée!
-						$token = md5(uniqid());
-						$success =  true;
-						$mail = new PHPMailer;
-							//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-							$mail->isSMTP();                                      // Set mailer to use SMTP
-							$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
-							$mail->SMTPAuth = true;                               // Enable SMTP authentication
-							$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
-							$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
-							$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-							$mail->Port = 587;                                    // TCP port to connect to
+				// On prépare l'insertion token
+				$date_create = date('Y-m-d h:i:s');
+				$date_exp = date('Y-m-d h:i:s',strtotime('+2 days'));
+				$token = md5(uniqid());
 
-							$mail->setFrom('limowf3@yopmail.com');
-							$mail->addAddress($data['email'], $data['username']);      // Name is optional
-							//$mail->addReplyTo('info@example.com', 'Information');
+				$dataToken = [
+					//la clé du tableau correspond au nom de la colone SQL
+    				'email' 		=> $post['email'],
+    				'token' 		=> $token,
+    				'date_create' 	=> $date_create,
+    				'date_exp' 		=> $date_exp,
+				];
+				// On instancie la class de tokenRegisterModel
+				$tokenRegisterModel = new TokensRegisterModel();
+				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
+				// Et on ajoute le token dans la table token_register
+				if($usersModel->insert($dataUser) && $tokenRegisterModel->insert($dataToken)){
+					// ici l'insertion en base est effectuée!
 
-							$mail->isHTML(true);                                  // Set email format to HTML
+					$userInserted = $usersModel->getUserByUsernameOrEmail($dataUser['email']);
+					echo $userInserted['id'];
 
-							$mail->Subject = 'Valider votre compte';
-							$mail->Body    =  $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id='.$data['id'].'&token='.$token;
-							$mail->AltBody = $data['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?id='.$data['id'].'&token='.$token;
+					$success =  true;
+					$mail = new PHPMailer;
+						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+						$mail->isSMTP();                                      // Set mailer to use SMTP
+						$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
+						$mail->SMTPAuth = true;                               // Enable SMTP authentication
+						$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
+						$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
+						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+						$mail->Port = 587;                                    // TCP port to connect to
 
-							if(!$mail->send()) {
-									echo 'Message could not be sent.';
-									echo 'Mailer Error: ' . $mail->ErrorInfo;
-							} else {
-									echo 'Message has been sent';
-							}
+						$mail->setFrom('limowf3@yopmail.com');
+						$mail->addAddress($dataUser['email'], $dataUser['username']);      // Name is optional
+						//$mail->addReplyTo('info@example.com', 'Information');
 
-						//redirige l'utilisateur vers la page d'accueil
-						$this->redirectToRoute('user_login');
-					}//if user model
+						$mail->isHTML(true);                                  // Set email format to HTML
+
+						$mail->Subject = 'Valider votre compte';
+						$mail->Body    =  $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
+						$mail->AltBody = $dataUser['username'].' Afin de valider votre compte merci de cliquer sur ce lien http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token;
+
+						if(!$mail->send()) {
+								echo 'Message could not be sent.';
+								echo 'Mailer Error: ' . $mail->ErrorInfo;
+						} else {
+								echo 'Message has been sent';
+						}
+
+					//redirige l'utilisateur vers la page d'accueil
+					//$this->redirectToRoute('user_login');
+					} //Fin insertion USER et TOKEN
+					else{
+						$errors[] = 'Problème lors de l\'insertion';
+					}
 			}//count error
 
 			else {
@@ -136,18 +159,50 @@ class UserController extends Controller
 
 	public function registerConfirm(){
 
-		if(isset($_GET) && isset($_GET['token'])){
-			$token = trim(strip_tags($_GET['token'])); 
-			$authModel = new AuthModel();
-			$id = $_GET['id'];
-			if($authModel->find($id)){
+		$error = [];
+		$validation = false;
+
+		if(isset($_GET['token']) && 
+		!empty($_GET['token']) &&
+		isset($_GET['email']) &&
+		!empty($_GET['email'])){
+
+			// On récupère et nétoie les valeur des GET		
+			foreach ($_GET as $key => $value) {
+	            $get[$key] = trim(strip_tags($value));
+	        }
+
+	        // On récupère l'email et le token dans une varialbe
+	        $email = $get['email'];
+	        $token = $get['token'];
+	        // On instancie la class tokensPasswordModel
+			$tokensRegisterModel = new TokensRegisterModel();
+	        // On vérifie que le token et l'email sont bien dans la base de données
+    		$tokenExist = $tokensRegisterModel->findTokenRegister($email, $token);
+
+
+			if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
+    			// Ici le token est valide et n'a pas expiré, on peut donc activer le compte.
+    			// On instancie la classe userModel
+    			$usersModel = new UsersModel();
+    			// On récupère les info de la table user grace à son adresse mail pour modifier la valeur du champ activation
+    			$infoUser = $usersModel->getUserByUsernameOrEmail($get['email']);
 				$data = [
-				'token' => $token,
-				];	
-				
-				var_dump($token);
+					'activation' => 'true'
+				];
+    			// On active enfin le compte
+    			if($usersModel->update($data, $infoUser['id'])){
+    				// Le compte est activé, on supprime donc le token
+    				if($tokensRegisterModel->delete($tokenExist['id'])){
+    					echo 'Tout est ok : Supression du token et activation du compte';
+    				}
+    			}
+			}
+			if($tokenExist['date_exp'] < date('Y-m-d H:i:s')){
+				$error[] = 'Le lien n\'est plus valide ou votre compte est déja activé.' ;
 			}
 		}
+		$this->show('user/registerConfirm');
 	}
 
 	public function login(){
@@ -232,15 +287,15 @@ class UserController extends Controller
 
 		    			$data = [
 		    				//la clé du tableau correspond au nom de la colone SQL
-		    				'email' => $post['email'],
-		    				'token' => $token,
-		    				'date_create' => $date_create,
-		    				'date_exp' => $date_exp,
+		    				'email' 		=> $post['email'],
+		    				'token' 		=> $token,
+		    				'date_create' 	=> $date_create,
+		    				'date_exp' 		=> $date_exp,
 		    			];
 
-		    			$tokenModel = new TokenModel();
+		    			$tokenPasswordModel = new TokensPasswordModel();
 
-		    			if($tokenModel->insert($data)) {
+		    			if($tokenPasswordModel->insert($data)) {
 
 		                    // we compose a link to send
 		                    $magicLink = '<a href="localhost/limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
@@ -320,10 +375,10 @@ class UserController extends Controller
 			$email = $get['email'];
 			$token = $get['token'];
 
-			$tokenModel = new TokenModel();
+			$tokenModel = new TokensPasswordModel();
 
 			// On vérifie que le token et l'email sont bien dans la base de données
-    		$tokenExist = $tokenModel->findToken($email, $token);
+    		$tokenExist = $tokenModel->findTokenPassword($email, $token);
 
     		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
     			// Ici le token est valide et n'a pas expiré, on peut donc afficher le formulaire.
