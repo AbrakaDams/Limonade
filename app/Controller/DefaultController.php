@@ -19,6 +19,15 @@ class DefaultController extends Controller
 
 		}
 	}
+	public function index()
+	{
+		if(isset($w_user) && !empty($w_user)){
+			$this->show('default/index');
+		}else{
+			$this->redirectToRoute('default_home');
+
+		}
+	}
 
 	/**
 	 * Page Contact par défaut
