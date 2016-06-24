@@ -1,13 +1,16 @@
 <?php /* app/Model/CommentModel.php */
 namespace Controller;
 
-use Ratchet\ConnectionInterface;
-use Ratchet\Wamp\WampServerInterface;
+use \Ratchet\ConnectionInterface;
+use \Ratchet\Wamp\WampServerInterface;
 
 class Pusher implements WampServerInterface
 {
+	// public function onSubscribe(ConnectionInterface $conn, $topic) {
+    // }
 	public function onSubscribe(ConnectionInterface $conn, $topic) {
-    }
+	 $this->subscribedTopics[$topic->getId()] = $topic;
+	}
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {
     }
     public function onOpen(ConnectionInterface $conn) {
@@ -30,9 +33,7 @@ class Pusher implements WampServerInterface
 	*/
    protected $subscribedTopics = array();
 
-   public function onSubscribe(ConnectionInterface $conn, $topic) {
-	   $this->subscribedTopics[$topic->getId()] = $topic;
-   }
+
 
    /**
 	* @param string JSON'ified string we'll receive from ZeroMQ
@@ -41,11 +42,11 @@ class Pusher implements WampServerInterface
 	   $entryData = json_decode($entry, true);
 
 	   // If the lookup topic object isn't set there is no one to publish to
-	   if (!array_key_exists($entryData['category'], $this->subscribedTopics)) {
+	   if (!array_key_exists($entryData['title'], $this->subscribedTopics)) {
 		   return;
 	   }
 
-	   $topic = $this->subscribedTopics[$entryData['category']];
+	   $topic = $this->subscribedTopics[$entryData['title']];
 
 	   // re-send the data to all the clients subscribed to that category
 	   $topic->broadcast($entryData);

@@ -44,15 +44,19 @@
 			</ul>
 			<div id="add-new-list">
 				<button type="button" id="add-list-btn">+</button>
-				<form class="hidden" id="add-list-form" method="POST">
+				<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
 					<label>Titre de ce liste</label>
-					<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouveau list">
+					<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 					<input type="submit" value="Go">
 				</form>
 			</div>
 
+
 		<?php endif; ?>
 	</section>
+
+	<h1>Response from server:</h1>
+        <div id="response"></div>
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
