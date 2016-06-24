@@ -51,6 +51,7 @@ class EventController extends Controller
 	 * Création d'un événement
 	 */
 
+<<<<<<< 3030f4cb5dbe5115f03b74700a80448fd90a5b54
 	public function createEvent()
 	{
 		$post = array();
@@ -81,58 +82,58 @@ class EventController extends Controller
 			if(!empty($post['adress'])){
 			  	$errors[] = 'Veuillez indiquer une adresse';
 			}
-					function is_valid_date_start($value, $format = 'dd.mm.yyyy'){ 
-			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
+					function is_valid_date_start($value, $format = 'dd.mm.yyyy'){
+			    		if(strlen($value) >= 6 && strlen($format) == 10){
 
-			        		// trouve les séparateurs 
-			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
+			        		// trouve les séparateurs
+			        		$separator_only = str_replace(array('m','d','y'),'', $format);
 			        		$separator = $separator_only[0]; // separateur 1er caractère
 
-			        		if($separator && strlen($separator_only) == 2){ 
-					            // make regex 
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
+			        		if($separator && strlen($separator_only) == 2){
+					            // make regex
+					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp);
+					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format);
+					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp);
+					            $regexp = str_replace($separator, "\\" . $separator, $regexp);
+				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){
 
 					                // verif format date
-					                $arr=explode($separator,$value); 
-					                $day=$arr[0]; 
-					                $month=$arr[1]; 
-					                $year=$arr[2]; 
-					                if(@checkdate($day, $month, $year)) 
-					                    return true; 
-				            	} 
-			        		} 
-			    		} return false; 
+					                $arr=explode($separator,$value);
+					                $day=$arr[0];
+					                $month=$arr[1];
+					                $year=$arr[2];
+					                if(@checkdate($day, $month, $year))
+					                    return true;
+				            	}
+			        		}
+			    		} return false;
 					}
-					function is_valid_date_end($value, $format = 'dd.mm.yyyy'){ 
-			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
+					function is_valid_date_end($value, $format = 'dd.mm.yyyy'){
+			    		if(strlen($value) >= 6 && strlen($format) == 10){
 
 			        		// On trouve les séparateurs
-			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
-			        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
-			        
-				        	if($separator && strlen($separator_only) == 2){ 
-					            // créa regex 
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
+			        		$separator_only = str_replace(array('m','d','y'),'', $format);
+			        		$separator = $separator_only[0]; // sseparateur du 1er caractères
 
-					                // verif format date 
-					                $arr=explode($separator,$value); 
-					                $day=$arr[0]; 
-					                $month=$arr[1]; 
-					                $year=$arr[2]; 
-					                if(@checkdate($day, $month, $year)) 
-					                    return true; 
-			            		} 
-			        		} 
-			    		} return false; 
-					} 
+				        	if($separator && strlen($separator_only) == 2){
+					            // créa regex
+					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp);
+					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format);
+					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp);
+					            $regexp = str_replace($separator, "\\" . $separator, $regexp);
+					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){
+
+					                // verif format date
+					                $arr=explode($separator,$value);
+					                $day=$arr[0];
+					                $month=$arr[1];
+					                $year=$arr[2];
+					                if(@checkdate($day, $month, $year))
+					                    return true;
+			            		}
+			        		}
+			    		} return false;
+					}
 					if(count($errors) > 0){
 			  			$displayError = true;
 					}
@@ -153,8 +154,8 @@ class EventController extends Controller
 						if($success = $req->execute()){
 							echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
 						}
-					}			
-					if($displayError){			
+					}
+					if($displayError){
 						echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
 					}
 				}

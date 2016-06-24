@@ -8,7 +8,8 @@
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
 		['GET', '/search', 'Event#search', 'event_search'],
-		['GET', '/get-list', 'Event#getList', 'event_getList'],
+
+		['GET', '/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/add-list', 'List#addList', 'list_addList'],
 
 		/***************************** users *************************/
