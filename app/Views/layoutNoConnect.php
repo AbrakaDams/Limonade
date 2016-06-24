@@ -23,27 +23,39 @@
     	Nous contacter
     	L'idée est d'avoir une photo de nous individuellement qui nous amènera sur la page pour Contactez nous
     	-->
-		<div class="team">
+    <div class="row" id="team">	
+		<div class="col-xs-6 col-sm-4">
 		<!-- Dossier Img -->
-			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-users fa-1x" aria-hidden="true"></i>L'équipe</h2></a>
-			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
-			<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="40px" width="40px">
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</h2></a><hr>
+			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
+			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
+			<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
+			<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
+			<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
 		</div>
 
 		<!-- Nous suivre -->
-		<div class="social-network" >
-			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>Contact</h2></a>
+		<div class="col-xs-6 col-sm-4" id="social-network">
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</h2></a><hr>
 			<div class="icons-social">
-    			<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
-					<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
-    			<i class="fa fa-pinterest-p fa-2x" aria-hidden="true"></i>
-    			<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+    			<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+				<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+    			<i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
+    			<i class="fa fa-github fa-3x" aria-hidden="true"></i>
+    			<i class="fa fa-snapchat-square fa-3x" aria-hidden="true"></i>
 			</div>
 		</div>
-		<p><strong><?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
+
+		<div class="col-xs-6 col-sm-4" id="local">			
+		<h1><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h1><hr>
+		<p>115 Rue des peupliers trysomiques<br>
+		33 000 Bordeaux, France<br>		
+		(+33)05 05 28 25 46<br>
+		team_power-ranger@best.com
+		</p>
+		</div>
+	</div>
+	<hr><p><strong><?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 
 	</footer>
 
