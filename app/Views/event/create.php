@@ -13,7 +13,7 @@
 
 <?php else: ?>
 <hr>
-<form class="form-create-event">
+<form method="post" class="form-create-event">
   <div class="form-group">
     <label for="type-event">Etendue de l'événement</label><br>
       <input type="radio" name="role" id="private" value="private"><label for="private">Privée</label>
@@ -38,29 +38,30 @@
     <label for="description-event">Description de l'évenement:</label><br>
     <textarea value="description" cols="40" placeholder="Une brève description de votre événement ?"></textarea>
   </div>
-
   <hr>
-  <div class="row">
-    <div class="col-xs-6 .col-md-4">      
+  <div class="form-group">        
       <label for="lieu-event">Adresse de l'événement:</label><br>        
-        <input type="text" name="adress" value="adress" placeholder="Votre adresse"><br><br>
-    </div><br>
-    <div class="col-xs-6 .col-md-4">
+      <input type="text" name="adress" value="adress" placeholder="Votre adresse"><br><br>
+  </div><br>
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
       <label for="date_begin">Date du début l'événement:</label><br>
-      <input type="date" name="date">
+      <input type="date" name="date_begin">
     </div><br><br>
     <br>
-    <div class="col-xs-6 .col-md-4">
+    <div class="col-xs-6 col-md-4">
       <label for="date_end">Date de la fin l'événement:</label><br>
-      <input type="date" name="date">
-    </div><br><br>
-    <br><br><br>
-    <div class="col-xs-6 .col-md-4">
-      <label class="who-event">Participants:</label><br>
-      <textarea cols="40" placeholder="..."></textarea>
+      <input type="date" name="date_end">
     </div>
   </div>
-  <br><hr>
+  <hr>
+    <div class="col-xs-6 col-md-4">
+      <label class="who-event">Participants:</label><br>
+      <textarea cols="40" placeholder="..."></textarea>
+    </div>  <hr>
+ 
   <button type="submit" class="btn btn-default"><strong>Créer l'événement</strong></button>
 </form>
 
