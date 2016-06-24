@@ -44,6 +44,13 @@
 		//joli print_r sur la variable toujours disponible $w_user
 		//elle contiendra les données sur l'utilisateur connecté, ou sera null sinon
 		debug($w_user);
+
+		// affichera le nom de la route actuelle
+		echo $w_current_route;
+
+		// affichera le nom du site défini dans le fichier de configuration
+		echo $w_current_route
+
 	?>
 &lt;/body>
 &lt;/html>
@@ -116,7 +123,7 @@ Et dans la vue, la variable <span class="code">$username</span> est automatiquem
 
 <h4>Définir plusieurs sections</h4>
 <p>Vous l'aurez peut-être deviné : il est possible de définir autant de sections que vous le souhaitez dans le layout, et de remplacer seulement les sections que vous avez besoin de redéfinir à partir des fichiers de vue enfants.</p>
-<p>Par exemple, nous pouvons créons une section qui permettrait d'ajouter des fichiers css et des fichiers js facilement, à partir de n'importe quelle page du site : </p>
+<p>Par exemple, nous pouvons créer une section qui permettrait d'ajouter des fichiers css et des fichiers js facilement, à partir de n'importe quelle page du site : </p>
 <pre><code>&lt;!DOCTYPE html>
 &lt;html lang="fr">
 &lt;head>

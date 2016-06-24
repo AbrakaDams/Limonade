@@ -13,7 +13,7 @@
 <p>Voici schématiquement comment se déroule une requête (en omettant quelques éléments) :</p>
 <img src="img/parcours-requete-simple.png" alt="Parcours d'une requête" />
 
-<p>Pour créer une page simple avec W, vous avez besoin donc besoin de définir vous-mêmes 3 éléments :</p>
+<p>Pour créer une page simple avec W, vous avez besoin de définir vous-mêmes 3 éléments :</p>
 
 <ul>
 	<li>Une route</li>
@@ -76,7 +76,7 @@ class DefaultController extends \W\Controller\Controller
     //...
 </code></pre>
 
-<p>Les méthodes des contrôleur devraient, après avoir effectuer un éventuel traitement, soit effectuer une redirection, soit afficher un template avec la méthode <span class="code">show()</span>. Cette méthode accepte deux paramètres : </p>
+<p>Les méthodes des contrôleurs devraient, après avoir effectuer un éventuel traitement, soit effectuer une redirection, soit afficher un template avec la méthode <span class="code">show()</span>. Cette méthode accepte deux paramètres : </p>
 
 <ol>
 	<li>Le chemin et le nom du template, sans l'extension</li>

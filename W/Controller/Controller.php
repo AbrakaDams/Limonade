@@ -81,6 +81,7 @@ class Controller
 			[
 				'w_user' 		  => $this->getUser(),
 				'w_current_route' => $app->getCurrentRoute(),
+				'w_site_name'	  => $app->getConfig('site_name'),
 			]
 		);
 

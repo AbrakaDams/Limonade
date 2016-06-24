@@ -18,7 +18,8 @@ $w_config = [
 
 	'security_login_route_name' => 'login',			//nom de la route affichant le formulaire de connexion
 
-	//config perso
+	// configuration globale
+	'site_name'	=> '', 								// contiendra le nom du site
 	'folder_upload' => '/image/', // le repertoire dans /assets/
 ];
 

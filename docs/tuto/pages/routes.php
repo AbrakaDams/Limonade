@@ -65,7 +65,7 @@ sera sélectionnée que si la requête est réalisée en POST.</p>
 
 <p>Dans cette route, <span class="code">[:id]</span> est un paramètre d'URL dynamique. Le routeur considérera l'URL comme correspondant au masque d'URL si elle est de la forme <span class="code">/biens-en-vente/nimporte-quoi-ici/</span>.</p>
 
-<p>Vous pouvez également définir plusieurs paramètres dynamiques. Vous devez simplement que chacun possèdent un nom différent des autres, dans la même URL : </p>
+<p>Vous pouvez également définir plusieurs paramètres dynamiques. Vous devez simplement vous assurer que chacun possèdent un nom différent des autres, dans la même URL : </p>
 <pre><code>["GET", "/biens-en-vente/[:country]/[:city]/[:id]/", "Default#sellListing", "sell_listing"],</code></pre>
 
 <p>AltoRouteur permet également de spécifier une expression rationnelle à laquelle doit correspondre le paramètre dynamique pour être valide. Ainsi, si le paramètre dynamique de l'URL ne correspond pas à l'expression rationnelle spécifier dans la définition de route, la route ne sera pas exécutée. AltoRouter vous fournit en plus quelques raccourcis pour des expressions rationnelles courantes. N'hésitez pas à vous référer à la <a href="http://altorouter.com/usage/mapping-routes.html" title="Documentation d'AltoRouter sur la définition de routes">documentation d'AltoRouter</a> pour plus de détails, mais voici les expressions les plus utiles : </p>
@@ -80,7 +80,7 @@ sera sélectionnée que si la requête est réalisée en POST.</p>
 <p>Notez que le nom des paramètres dynamiques est utile pour générer des URLs ou rediriger vers une route spécifique comprenant des paramètres. Voir les sections ci-dessous.</p>
 
 <h4>Récupérer la valeur des paramètres dynamiques dans le contrôleur</h4>
-<p>Si vous avez choisi de définir une route avec des paramètres dynamiques, il est certain que vous souhaiterez en récupérer la valeur dans votre contrôleur. Par exemple, vous souhaiterez être en mesure de récupérer l'article dans l'identifiant figure dans l'URL. Afin de rendre cette opération courante très simple, le routeur appelle vos méthodes de contrôleurs en vous passant les paramètres dynamiques en argument de votre méthode. Par exemple, pour cette route : </p>
+<p>Si vous avez choisi de définir une route avec des paramètres dynamiques, il est certain que vous souhaiterez en récupérer la valeur dans votre contrôleur. Par exemple, vous souhaiterez être en mesure de récupérer l'article dont l'identifiant figure dans l'URL. Afin de rendre cette opération courante très simple, le routeur appelle vos méthodes de contrôleurs en vous passant les paramètres dynamiques en argument de votre méthode. Par exemple, pour cette route : </p>
 <pre><code>["GET", "/biens-en-vente/[a:country]/[:city]/[i:id]/", "Default#sellListing", "sell_listing"],</code></pre>
 
 <p>vous recevrez les 3 paramètres directement en argument de la méthode sellListing : </p>
@@ -117,7 +117,7 @@ class DefaultController extends \W\Controller\Controller
 		//du code...
 
 		//une redirection vers une route définie avec des paramètres dynamiques
-		//il faut en effet spécifier la valeur des paramètres afin que la routeur puisse générer l'URL
+		//il faut en effet spécifier la valeur des paramètres afin que le routeur puisse générer l'URL
 		$this->redirectToRoute('default_details', ['id' => 35]);
 	}
 

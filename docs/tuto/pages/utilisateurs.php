@@ -2,7 +2,7 @@
 
 <p>Le framework W vous fournit quelques méthodes afin de faciliter la gestion de vos utilisateurs, la connexion et la déconnexion, ainsi que l'autorisation d'accès simple à vos ressources (pages).</p>
 
-<p>Toutefois, puisque chaque application est différent : <em>il est toujours sous votre responsabilité de créer vos formulaires d'enregistrement, de connexion et d'oubli de mot de passe</em>.</p>
+<p>Toutefois, puisque chaque application est différente : <em>il est toujours sous votre responsabilité de créer vos formulaires d'enregistrement, de connexion et d'oubli de mot de passe</em>.</p>
 
 <p>L'utilisation du module de sécurité de W peut vous obliger à configurer quelques éléments supplémentaires, dans le fichier <span class="code">app/config.php</span>. Les voici : </p>
 <pre><code>/* app/config.php */
