@@ -1,15 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Mot de passe oublié']) ?>
 
 <?php $this->start('main_content') ?>
-    error :<br>
-    <?php var_dump($error); ?>
-    <hr>
-    showFormPassword : <br>
-    <?php var_dump($showFormPassword); ?>
-    <hr>
-    showConnectButton : <br>
-    <?php var_dump($showConnectButton); ?>
-
 
     <?php if(isset($error) && !empty($error)) : ?>
          <div class="alert alert-danger">
