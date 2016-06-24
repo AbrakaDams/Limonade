@@ -47,7 +47,6 @@ class EventController extends Controller
 		$this->show('event/event', $showEvent);
 	}
 
-
 	/**
 	 * Création d'un événement
 	 */
@@ -55,144 +54,111 @@ class EventController extends Controller
 	public function createEvent()
 	{
 		$post = array();
-			$errors = array();
-			$displayError = false;
-			$formValid = false;
+		$errors = array();
+		$displayError = false;
+		$formValid = false;
 
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
-		// Etendue de l event Privée ou Publique
-	  	if(!empty($post['role'])){
-	    	$errors[] = 'Vous devez cocher un bouton !';
-	  	}
-		// Catégorie de l event
-	  	if(!empty($post['category'])){
-	    	$errors[] = 'Vous devez cocher un bouton !';
+			// Etendue de l event Privée ou Publique
+		  	if(!empty($post['role'])){
+		    	$errors[] = 'Vous devez cocher un bouton !';
 		  	}
-		// Titre
-		 if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
-		    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
-		  }
-		// Description
-		if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
-		    $errors[] = 'La description doit contenir minimum 5 caractères !';
-		}
-		if(!empty($post['adress'])){
-		  	$errors[] = 'Veuillez indiquer une adresse';
-		}
-
-				function is_valid_date_start($value, $format = 'dd.mm.yyyy'){ 
-		    		if(strlen($value) >= 6 && strlen($format) == 10){ 		        
-		        		// trouve les séparateurs 
-		        		$separator_only = str_replace(array('m','d','y'),'', $format); 
-		        		$separator = $separator_only[0]; // separateur 1er caractère
-
-		        	if($separator && strlen($separator_only) == 2){ 
-		            // make regex 
-		            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-		            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-		            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
-		            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-		            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-
-		                // verif format date
-		                $arr=explode($separator,$value); 
-		                $day=$arr[0]; 
-		                $month=$arr[1]; 
-		                $year=$arr[2]; 
-		                if(@checkdate($day, $month, $year)) 
-		                    return true; 
-		            } 
-		        } 
-		    } 
-		    return false; 
-		}
-		function is_valid_date_end($value, $format = 'dd.mm.yyyy'){ 
-		    		if(strlen($value) >= 6 && strlen($format) == 10){ 		        
-		        		// On trouve les séparateurs
-		        		$separator_only = str_replace(array('m','d','y'),'', $format); 
-		        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
-		        
-		        	if($separator && strlen($separator_only) == 2){ 
-		            // créa regex 
-		            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-		            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-		            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
-		            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-		            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-
-		                // verif format date 
-		                $arr=explode($separator,$value); 
-		                $day=$arr[0]; 
-		                $month=$arr[1]; 
-		                $year=$arr[2]; 
-		                if(@checkdate($day, $month, $year)) 
-		                    return true; 
-		            } 
-		        } 
-		    } 
-		    return false; 
-		} 
-		if(count($errors) > 0){
-		  	$displayError = true;
-		}
-		else {
-			formValid= true;
-
-			$req = $db->prepare('INSERT INTO event(role, category, title, description,adress, date_start, date_end)
-				VALUES(:role, :category, :title, :description, :adress, :date_start, :date_end)');
-
-			$req->bindValue(':role', $post['role']);
-			$req->bindValue(':category', $post['category']);
-			$req->bindValue(':title', $post['title']);
-			$req->bindValue(':description', $post['description']);
-			$req->bindValue(':adress', $post['adress']);
-			$req->bindValue(':date_start', $post['date_start']);
-			$req->bindValue(':date_end', $post['date_end']);
-
-			if($success = $req->execute()){
-				echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
-			} if($success === true){
-				$mail = new PHPMailer;
-        
-			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-			        $mail->isSMTP();                                      // Set mailer to use SMTP
-			        $mail->Host = 'smtp.mailgun.org';  // Specify main and backup SMTP servers
-			        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-			        $mail->Username = 'postmaster@wf3.axw.ovh';                 // SMTP username
-			        $mail->Password = 'WF3sessionPhilo2';                           // SMTP password
-			        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-			        $mail->Port = 587;                                    // TCP port to connect to
-
-			        $mail->setFrom($post['email']; $post['firstname']);
-			        $mail->addAddress('limowf3', 'Admin');     // Add a recipient      
-			        
-
-			        $mail->isHTML(true);                                  // Set email format to HTML
-
-			        $mail->Subject = 'Merci de votre participation, votre événement est bien créee !';
-			        $mail->Body    = $post['title'];
-			        $mail->AltBody = $post['category'], $post['description'], $post['date_start'], $post['date_end'];
-
-			    if(!$mail->send()) {
-			        echo 'Le message n\'as pas été envoyé, veuillez vérifier votre adresse email.';
-			        echo 'Mailer Error: ' . $mail->ErrorInfo;
-			    } else {
-			        echo 'Un message vous a été envoyé';
-			        }
-				}
+			// Catégorie de l event
+		  	if(!empty($post['category'])){
+		    	$errors[] = 'Vous devez cocher un bouton !';
+			  	}
+			// Titre
+			 if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
+			    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
+			  }
+			// Description
+			if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
+			    $errors[] = 'La description doit contenir minimum 5 caractères !';
 			}
-		}
-		if($displayError){			
-			echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
-		}
-	}
-			$this->show('event/create_Event');
-		}
+			if(!empty($post['adress'])){
+			  	$errors[] = 'Veuillez indiquer une adresse';
+			}
+					function is_valid_date_start($value, $format = 'dd.mm.yyyy'){ 
+			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
 
+			        		// trouve les séparateurs 
+			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
+			        		$separator = $separator_only[0]; // separateur 1er caractère
 
+			        		if($separator && strlen($separator_only) == 2){ 
+					            // make regex 
+					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
+					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
+					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
+					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
+				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
+
+					                // verif format date
+					                $arr=explode($separator,$value); 
+					                $day=$arr[0]; 
+					                $month=$arr[1]; 
+					                $year=$arr[2]; 
+					                if(@checkdate($day, $month, $year)) 
+					                    return true; 
+				            	} 
+			        		} 
+			    		} return false; 
+					}
+					function is_valid_date_end($value, $format = 'dd.mm.yyyy'){ 
+			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
+
+			        		// On trouve les séparateurs
+			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
+			        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
+			        
+				        	if($separator && strlen($separator_only) == 2){ 
+					            // créa regex 
+					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
+					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
+					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
+					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
+					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
+
+					                // verif format date 
+					                $arr=explode($separator,$value); 
+					                $day=$arr[0]; 
+					                $month=$arr[1]; 
+					                $year=$arr[2]; 
+					                if(@checkdate($day, $month, $year)) 
+					                    return true; 
+			            		} 
+			        		} 
+			    		} return false; 
+					} 
+					if(count($errors) > 0){
+			  			$displayError = true;
+					}
+					else {
+						$formValid= true;
+
+						$req = $db->prepare('INSERT INTO event(role, category, title, description,adress, date_start, date_end)
+							VALUES(:role, :category, :title, :description, :adress, :date_start, :date_end)');
+
+						$req->bindValue(':role', $post['role']);
+						$req->bindValue(':category', $post['category']);
+						$req->bindValue(':title', $post['title']);
+						$req->bindValue(':description', $post['description']);
+						$req->bindValue(':adress', $post['adress']);
+						$req->bindValue(':date_start', $post['date_start']);
+						$req->bindValue(':date_end', $post['date_end']);
+
+						if($success = $req->execute()){
+							echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
+						}
+					}			
+					if($displayError){			
+						echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
+					}
+				}
+				$this->show('event/create');
+			}
 
 }
