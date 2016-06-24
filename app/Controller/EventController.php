@@ -51,7 +51,7 @@ class EventController extends Controller
 	 * Création d'un événement
 	 */
 
-<<<<<<< 3030f4cb5dbe5115f03b74700a80448fd90a5b54
+
 	public function createEvent()
 	{
 		$post = array();
@@ -86,7 +86,7 @@ class EventController extends Controller
 					function is_valid_date_start($value, $format = 'dd.mm.yyyy'){
 			    		if(strlen($value) >= 6 && strlen($format) == 10){
 
-<<<<<<< HEAD
+
 			        		// trouve les séparateurs 
 			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
 			        		$separator = $separator_only[0]; // separateur 1er caractère
@@ -99,7 +99,7 @@ class EventController extends Controller
 					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
 
 				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-=======
+
 			        		// trouve les séparateurs
 			        		$separator_only = str_replace(array('m','d','y'),'', $format);
 			        		$separator = $separator_only[0]; // separateur 1er caractère
@@ -111,7 +111,7 @@ class EventController extends Controller
 					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp);
 					            $regexp = str_replace($separator, "\\" . $separator, $regexp);
 				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){
->>>>>>> origin/master
+
 
 					                // verif format date
 					                $arr=explode($separator,$value);
@@ -128,7 +128,7 @@ class EventController extends Controller
 			    		if(strlen($value) >= 6 && strlen($format) == 10){
 
 			        		// On trouve les séparateurs
-<<<<<<< HEAD
+
 			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
 			        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
 			        
@@ -152,7 +152,7 @@ class EventController extends Controller
 			        		} 
 			    		} return false; 
 					} 
-=======
+
 			        		$separator_only = str_replace(array('m','d','y'),'', $format);
 			        		$separator = $separator_only[0]; // sseparateur du 1er caractères
 
@@ -175,7 +175,7 @@ class EventController extends Controller
 			        		}
 			    		} return false;
 					}
->>>>>>> origin/master
+
 					if(count($errors) > 0){
 			  			$displayError = true;
 					}
@@ -197,15 +197,15 @@ class EventController extends Controller
 
 						if($success = $req->execute()){
 							echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
-<<<<<<< HEAD
+
 						}*/
 					}			
 					if($displayError){			
-=======
+
 						}
 					}
 					if($displayError){
->>>>>>> origin/master
+
 						echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
 					}				
 				$this->show('event/create');
