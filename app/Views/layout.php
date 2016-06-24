@@ -108,6 +108,10 @@
 	<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
 	<script src="<?= $this->assetUrl('js/myscript.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/bloodhound.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/typeahead.bundle.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/typeahead.jquery.min.js') ?>"></script>
+	
 </body>
 
 </html>
