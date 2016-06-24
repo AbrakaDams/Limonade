@@ -55,6 +55,7 @@ class EventController extends Controller
 	{
 		$post = array();
 		$errors = array();
+		
 		$displayError = false;
 		$formValid = false;
 
@@ -85,15 +86,16 @@ class EventController extends Controller
 			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
 
 			        		// trouve les séparateurs 
-			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
+			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
 			        		$separator = $separator_only[0]; // separateur 1er caractère
 
 			        		if($separator && strlen($separator_only) == 2){ 
 					            // make regex 
 					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
 					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
+					            $regexp = str_replace('yyyy', '(20)?[0-9][0-9]', $regexp); 
 					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
+
 				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
 
 					                // verif format date
@@ -111,15 +113,16 @@ class EventController extends Controller
 			    		if(strlen($value) >= 6 && strlen($format) == 10){ 
 
 			        		// On trouve les séparateurs
-			        		$separator_only = str_replace(array('m','d','y'),'', $format); 
+			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
 			        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
 			        
 				        	if($separator && strlen($separator_only) == 2){ 
 					            // créa regex 
 					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
 					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
+					            $regexp = str_replace('yyyy', '(20)?[0-9][0-9]', $regexp); 
 					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
+
 					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
 
 					                // verif format date 
@@ -139,7 +142,9 @@ class EventController extends Controller
 					else {
 						$formValid= true;
 
-						$req = $db->prepare('INSERT INTO event(role, category, title, description,adress, date_start, date_end)
+						public function insert($post, $stripTags = true)
+
+						/*$req = $db->prepare('INSERT INTO event(role, category, title, description,adress, date_start, date_end)
 							VALUES(:role, :category, :title, :description, :adress, :date_start, :date_end)');
 
 						$req->bindValue(':role', $post['role']);
@@ -152,12 +157,11 @@ class EventController extends Controller
 
 						if($success = $req->execute()){
 							echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
-						}
+						}*/
 					}			
 					if($displayError){			
 						echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
-					}
-				}
+					}				
 				$this->show('event/create');
 			}
 
