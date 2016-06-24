@@ -38,7 +38,8 @@
         <fieldset>Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.</fieldset><br>
     </div>  
     <div class="col-xs-6 .col-md-4">
-      <label for="cat-event">Catégorie de votre événement</label><br>
+      <label for="cat-event">Catégorie de votre événement</label><i class="fa fa-info-circle" aria-hidden="true"></i>
+<br>
         <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
         <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
         <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>

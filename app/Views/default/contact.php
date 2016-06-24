@@ -3,6 +3,7 @@
 <?php $this->start('main_content') ?>
 
 <!-- Contact team de manière individuelle-->
+<h1><i class="fa fa-users" aria-hidden="true"></i></h1>
 <div class="row">
   <div class="col-xs-10 col-md-2">
     <div class="thumbnail">
@@ -58,6 +59,7 @@
 
 <!-- Formulaire de contact -->
 <form id="contact" method="post">
+  <h2><i class="fa fa-paper-plane" aria-hidden="true"></i></h2>
   <h1>Formulaire de contact</h1>
   <div class="row">
     <div class="col-xs-6">
