@@ -7,7 +7,7 @@
   <h2>
     <a href="<?= $this->url('user_login') ?>"><strong>Connectez-vous</strong></a>
     Ou
-    <a href="<?= $this->url('user_register') ?>"><strong>Inscivez-vous</strong></a>
+    <a href="<?= $this->url('user_register') ?>"><strong>Inscrivez-vous</strong></a>
     pour pourvoir créer un évènement !
   </h2>
 
@@ -36,22 +36,14 @@
     <label for="title-event">Intitulé de l'événement:</label><br>
       <input type="text" name="title" placeholder="Le titre de votre évenement..."><br><br>
     <label for="description-event">Description de l'évenement:</label><br>
-    <textarea value="description" cols="40" placeholder="Une bref description de votre évenement ?"></textarea>
+    <textarea value="description" cols="40" placeholder="Une brève description de votre événement ?"></textarea>
   </div>
 
   <hr>
   <div class="row">
-    <div class="col-xs-6 .col-md-4">
-      <label for="infos-event">Informations sur l'événement :</label><br>
-      <label for="lieu-event">Lieu de l'événement:</label><br>
-        <fieldset>Rue:</fieldset>
-        <input type="text" name="street" placeholder="..."><br><br>
-        <fieldset>Code Postal:</fieldset>
-        <input type="text" name="zipcode" placeholder="..."><br><br>
-        <fieldset>Ville:</fieldset>
-        <input type="text" name="city" placeholder="..."><br><br>
-        <fieldset>Pays:</fieldset>
-        <input type="text" name="country" placeholder="..."><br><br>
+    <div class="col-xs-6 .col-md-4">      
+      <label for="lieu-event">Adresse de l'événement:</label><br>        
+        <input type="text" name="adress" value="adress" placeholder="Votre adresse"><br><br>
     </div><br>
     <div class="col-xs-6 .col-md-4">
       <label for="date_begin">Date du début l'événement:</label><br>
