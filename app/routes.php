@@ -3,12 +3,13 @@
 	$w_routes = array(
 		['GET', '/', 'Default#home', 'default_home'],
 		['GET|POST', '/contact', 'Default#contact', 'default_contact'],
-		['GET|POST', '/accueil', 'Default#index', 'default_index'],
 
 		/**************************** event ********************/
-		['GET|POST', '/event/[:id]', 'Event#showEvent', 'event_showEvent'],
+		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
 		['GET', '/search', 'Event#search', 'event_search'],
+		['GET', '/get-list', 'Event#getList', 'event_getList'],
+		['GET|POST', '/add-list', 'List#addList', 'list_addList'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],
