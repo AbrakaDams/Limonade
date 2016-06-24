@@ -14,15 +14,19 @@
 <?php else: ?>
 
 <?php if(isset($success) && $success === true): ?>
-  <p style="color:green;"></p>
-<?php endif; ?>
+<div class="alert alert-success">
+    <p style="color:green;"></p>
+  <?php endif; ?>
+</div>
 
 <?php if(isset($errors) && !empty($errors)): ?>
+<div class="alert alert-warning">
   <p style="color:red;"></p>
 <?php endif; ?>
+</div>
   <hr>
 
-<form method="post" class="form-create-event">
+<form method="post" class="form-create-event" nsubmit="return validateForm()">
 <h1>Votre événement</h1>
 <hr>
   <div class="row">
@@ -46,7 +50,7 @@
   <div class="row">
     <div class="col-xs-6 .col-md-4">
       <label for="title-event">Intitulé de votre événement:</label><br>
-        <input type="text" name="title" placeholder="Le titre"><br><br>
+        <input type="text" name="title" placeholder="Le titre" required><br><br>
     </div>
     <div class="col-xs-6 .col-md-4">    
       <label for="description" >Description de votre évenement:</label><br>
@@ -56,7 +60,7 @@
   <hr>
   <div class="form-group">        
       <label for="lieu-event">Adresse de votre événement:</label><br>        
-      <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement"></textarea>
+      <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
   </div>
   <hr>
 
@@ -70,12 +74,7 @@
       <input type="date" name="date_end">
     </div>
   </div>
-  <hr>
-  <div class="form-group">
-    <label class="who-event">Participants:</label><br>
-    <textarea name="participants" cols="70" placeholder="..."></textarea>
-  </div> 
-  <hr> 
+  <hr>  
   <button type="button" class="btn btn-primary">Créer mon événement</button>
 </form>
 
