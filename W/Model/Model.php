@@ -148,7 +148,6 @@ abstract class Model
 				}
 			}
 		}
-		var_dump($sql); 
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 

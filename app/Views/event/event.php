@@ -1,9 +1,12 @@
 <?php $this->layout('layout', ['title' => 'My event']) ?>
 
 <?php $this->start('main_content') ?>
-
+	
+	<div>
+		<a href="<?= $this->url('event_invite'); echo '/'.$thisEvent['id']; ?>" class="btn btn-default btn-lg active" role="button">Invité des amis</a>
+	</div>
 	<aside class="">
-		<h3>Fil actiliter</h3>
+		<h3>Fil activités</h3>
 		<?php var_dump($newsFeed); ?>
 	</aside>
 
