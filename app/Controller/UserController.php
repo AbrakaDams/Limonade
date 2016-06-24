@@ -505,11 +505,8 @@ class UserController extends Controller
 			if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
 				$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
 			}
-			if (empty($post['password']) || $post['password'] != $post['password_confirm']){
+			if ($post['password'] != $post['password_confirm']){
 				$errors[] = 'Votre mot de passe n\'est pas identique';
-			}
-			if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
-				$errors[] = 'Vous devez choisir un avatar pour continuer';
 			}
 			if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
 				$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
@@ -522,25 +519,22 @@ class UserController extends Controller
 				//on utilise la méthode insert() qui permet d'insérer des données en bases
 				$dataUser = [
 					//la clé du tableau correspond au nom de la colone SQL
+					'id' => $id,
 					'username' 	=> $post['username'],
 					'firstname' => $post['firstname'],
 					'lastname' 	=> $post['lastname'],
 					'password' 	=> $authModel->hashPassword($post['password']),
 					'avatar' 	=> $adress,
-					'url' 		=> $post['url'],
 				];
-				
-			
-				// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
+				// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
 				// Et on ajoute le token dans la table token_register
 				if($usersModel->update($dataUser, $id)){
 					$success = true;
+					$authModel->refreshUser();
 				}
-				else {
-				// On peut faire des trucs ici...
+				
 			}
-		}//if empty post
-	}	
+		}//if empty post	
 		//mettre en dehors des verif
 		# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 		$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];

@@ -76,7 +76,7 @@ class AuthentificationModel
 		$usersModel = new UsersModel();
 		$userFromSession = $this->getLoggedUser();
 		if ($userFromSession){
-			$userFromDb = $userModel->find($userFromSession[$app->getConfig('security_id_property')]);
+			$userFromDb = $usersModel->find($userFromSession[$app->getConfig('security_id_property')]);
 			if($userFromDb){
 				$this->logUserIn($userFromDb);
 				return true;
