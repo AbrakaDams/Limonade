@@ -139,7 +139,18 @@ class EventController extends Controller
 	 * @return bool true si la date est au bon format, false sinon
 	 */
 	public function valideFormatDate($date){
-		$date = preg_match('^\d{1,2}/\d{1,2}/\d{4}$', $date);  // Vérif du format
-		return $date;
+		if(preg_match("/(\d{2})\/(\d{2})\/(\d{4})$/", $date)){  // Vérif du format
+			return true;
+		} else {
+			return false;
+		}
 	}
+	/**
+	* ^ Start of line
+	* \A Start of string
+    * \z End of string
+	*
+	*
+	* $ End of line
+	**/
 }

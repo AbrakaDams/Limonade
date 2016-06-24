@@ -12,57 +12,71 @@
   </h2>
 
 <?php else: ?>
-<hr>
+
+<?php if(isset($success) && $success === true): ?>
+  <p style="color:green;"></p>
+<?php endif; ?>
+
+<?php if(isset($errors) && !empty($errors)): ?>
+  <p style="color:red;"></p>
+<?php endif; ?>
+  <hr>
+
 <form method="post" class="form-create-event">
-  <div class="form-group">
-    <label for="type-event">Etendue de l'événement</label><br>
-      <input type="radio" name="role" id="private" value="private"><label for="private">Privée</label>
-      <fieldset>Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.</fieldset><br>
-      <input type="radio" name="role" id="public" value="public"><label for="public">Publique</label>
-      <fieldset>Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.</fieldset><br>
+<h1>Votre événement</h1>
+<hr>
+  <div class="row">
+    <div class="col-xs-6 .col-md-4">
+      <label for="type-event">Etendue de votre l'événement</label><br>
+        <input type="radio" name="role" id="private" value="private"><label for="private">Privée</label>
+        <fieldset>Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.</fieldset><br>
+        <input type="radio" name="role" id="public" value="public"><label for="public">Publique</label>
+        <fieldset>Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.</fieldset><br>
+    </div>  
+    <div class="col-xs-6 .col-md-4">
+      <label for="cat-event">Catégorie de votre événement</label><br>
+        <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
+        <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
+        <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
+        <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>
+    </div>
   </div>
+  <hr>  
 
-  <hr>
-  <div class="form-group">
-    <label for="cat-event">Catégorie d'événement</label><br>
-      <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
-      <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
-      <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
-      <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>
-  </div>
-
-  <hr>
-  <div class="form-group">
-    <label for="title-event">Intitulé de l'événement:</label><br>
-      <input type="text" name="title" placeholder="Le titre de votre évenement..."><br><br>
-    <label for="description-event">Description de l'évenement:</label><br>
-    <textarea value="description" cols="40" placeholder="Une brève description de votre événement ?"></textarea>
+  <div class="row">
+    <div class="col-xs-6 .col-md-4">
+      <label for="title-event">Intitulé de votre événement:</label><br>
+        <input type="text" name="title" placeholder="Le titre"><br><br>
+    </div>
+    <div class="col-xs-6 .col-md-4">    
+      <label for="description" >Description de votre évenement:</label><br>
+      <textarea name="description" rows="3" cols="70" placeholder="Une brève description de votre événement... "></textarea>
+    </div>  
   </div>
   <hr>
   <div class="form-group">        
-      <label for="lieu-event">Adresse de l'événement:</label><br>        
-      <input type="text" name="adress" value="adress" placeholder="Votre adresse"><br><br>
-  </div><br>
+      <label for="lieu-event">Adresse de votre événement:</label><br>        
+      <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement"></textarea>
+  </div>
   <hr>
 
   <div class="row">
-    <div class="col-xs-6 col-md-4">
-      <label for="date_begin">Date du début l'événement:</label><br>
+    <div class="col-xs-6 .col-md-4">
+      <label for="date_begin">Date du début de votre événement:</label><br>
       <input type="date" name="date_begin">
-    </div><br><br>
-    <br>
-    <div class="col-xs-6 col-md-4">
-      <label for="date_end">Date de la fin l'événement:</label><br>
+    </div>    
+    <div class="col-xs-6 .col-md-4">
+      <label for="date_end">Date de la fin de votre événement:</label><br>
       <input type="date" name="date_end">
     </div>
   </div>
   <hr>
-    <div class="col-xs-6 col-md-4">
-      <label class="who-event">Participants:</label><br>
-      <textarea cols="40" placeholder="..."></textarea>
-    </div>  <hr>
- 
-  <button type="submit" class="btn btn-default"><strong>Créer l'événement</strong></button>
+  <div class="form-group">
+    <label class="who-event">Participants:</label><br>
+    <textarea name="participants" cols="70" placeholder="..."></textarea>
+  </div> 
+  <hr> 
+  <button type="button" class="btn btn-primary">Créer mon événement</button>
 </form>
 
 <?php endif; ?>
