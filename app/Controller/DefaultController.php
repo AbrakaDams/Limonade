@@ -12,7 +12,12 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
-		$this->show('default/home');
+		if(!isset($w_user) && empty($w_user)){
+			$this->show('default/home');
+		}else{
+			$this->redirectToRoute('default_index');
+
+		}
 	}
 
 	/**

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Contact']) ?>
+<?php $this->layout('layoutContact', ['title' => 'Contact']) ?>
 
 <?php $this->start('main_content') ?>
 
@@ -50,12 +50,11 @@
       <div class="caption">
         <h3> Noé Champigny</h3>
         <p></p>
-        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a> </p>
+        <p><a href="#" class="btn btn-primary" role="button">Contacter moi</a></p>
       </div>
     </div>
   </div>
 </div>
-<a href="<?= $this->url('default_home') ?>"><i class="fa fa-home fa-3x" aria-hidden="true">
-Retour Accueil</a></i>
+<a href="<?= $this->url('default_home') ?>"><i class="fa fa-home fa-3x" aria-hidden="true">Retour Accueil</i></a>
 
 <?php $this->stop('main_content') ?>
