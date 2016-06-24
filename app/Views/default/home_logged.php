@@ -15,7 +15,9 @@
 <?php endforeach; ?>
 
 <div style="display:inline-block;" class="">
-  Créer un évenement
+  <p>
+    <a href="<?= $this->url('event_createEvent'); ?>">Créer un évenement</a>
+  </p>
 </div>
 <br><br><hr><br><br>
 <?php foreach ($thisEvent as $value): ?>
@@ -31,7 +33,9 @@
 <?php endforeach; ?>
 
 <div style="display:inline-block;" class="">
-  Créer un évenement
+  <p>
+    <a href="<?= $this->url('event_createEvent'); ?>">Créer un évenement</a>
+  </p>
 </div>
 
 
