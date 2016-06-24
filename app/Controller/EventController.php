@@ -51,19 +51,23 @@ class EventController extends Controller
 	 * Création d'un événement
 	 */
 
-<<<<<<< 3030f4cb5dbe5115f03b74700a80448fd90a5b54
+
 	public function createEvent()
 	{
 		$post = array();
 		$errors = array();
+		$success = null;
 		
-		$displayError = false;
-		$formValid = false;
 
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
+
+	  		if(strtotime($post['date_begin']) <= strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
+	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
+	  		}
+	  		
 			// Etendue de l event Privée ou Publique
 		  	if(!empty($post['role'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
@@ -71,144 +75,62 @@ class EventController extends Controller
 			// Catégorie de l event
 		  	if(!empty($post['category'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
-			  	}
-			// Titre
-			 if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
-			    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
 			  }
+			// Titre
+			if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
+			    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
+			}
 			// Description
 			if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 			    $errors[] = 'La description doit contenir minimum 5 caractères !';
 			}
-			if(!empty($post['adress'])){
+			if(!empty($post['address'])){
 			  	$errors[] = 'Veuillez indiquer une adresse';
 			}
-					function is_valid_date_start($value, $format = 'dd.mm.yyyy'){
-			    		if(strlen($value) >= 6 && strlen($format) == 10){
 
-<<<<<<< HEAD
-			        		// trouve les séparateurs 
-			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
-			        		$separator = $separator_only[0]; // separateur 1er caractère
-
-			        		if($separator && strlen($separator_only) == 2){ 
-					            // make regex 
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(20)?[0-9][0-9]', $regexp); 
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-
-				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-=======
-			        		// trouve les séparateurs
-			        		$separator_only = str_replace(array('m','d','y'),'', $format);
-			        		$separator = $separator_only[0]; // separateur 1er caractère
-
-			        		if($separator && strlen($separator_only) == 2){
-					            // make regex
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp);
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format);
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp);
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp);
-				            	if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){
->>>>>>> origin/master
-
-					                // verif format date
-					                $arr=explode($separator,$value);
-					                $day=$arr[0];
-					                $month=$arr[1];
-					                $year=$arr[2];
-					                if(@checkdate($day, $month, $year))
-					                    return true;
-				            	}
-			        		}
-			    		} return false;
-					}
-					function is_valid_date_end($value, $format = 'dd.mm.yyyy'){
-			    		if(strlen($value) >= 6 && strlen($format) == 10){
-
-			        		// On trouve les séparateurs
-<<<<<<< HEAD
-			        		$separator_only = str_replace(array('d','m','y'),'', $format); 
-			        		$separator = $separator_only[0]; // sseparateur du 1er caractères 
-			        
-				        	if($separator && strlen($separator_only) == 2){ 
-					            // créa regex 
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-					            $regexp = str_replace('yyyy', '(20)?[0-9][0-9]', $regexp); 
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-
-					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-
-					                // verif format date 
-					                $arr=explode($separator,$value); 
-					                $day=$arr[0]; 
-					                $month=$arr[1]; 
-					                $year=$arr[2]; 
-					                if(@checkdate($day, $month, $year)) 
-					                    return true; 
-			            		} 
-			        		} 
-			    		} return false; 
-					} 
-=======
-			        		$separator_only = str_replace(array('m','d','y'),'', $format);
-			        		$separator = $separator_only[0]; // sseparateur du 1er caractères
-
-				        	if($separator && strlen($separator_only) == 2){
-					            // créa regex
-					            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp);
-					            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format);
-					            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp);
-					            $regexp = str_replace($separator, "\\" . $separator, $regexp);
-					            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){
-
-					                // verif format date
-					                $arr=explode($separator,$value);
-					                $day=$arr[0];
-					                $month=$arr[1];
-					                $year=$arr[2];
-					                if(@checkdate($day, $month, $year))
-					                    return true;
-			            		}
-			        		}
-			    		} return false;
-					}
->>>>>>> origin/master
-					if(count($errors) > 0){
-			  			$displayError = true;
-					}
-					else {
-						$formValid= true;
-
-						public function insert($post, $stripTags = true)
-
-						/*$req = $db->prepare('INSERT INTO event(role, category, title, description,adress, date_start, date_end)
-							VALUES(:role, :category, :title, :description, :adress, :date_start, :date_end)');
-
-						$req->bindValue(':role', $post['role']);
-						$req->bindValue(':category', $post['category']);
-						$req->bindValue(':title', $post['title']);
-						$req->bindValue(':description', $post['description']);
-						$req->bindValue(':adress', $post['adress']);
-						$req->bindValue(':date_start', $post['date_start']);
-						$req->bindValue(':date_end', $post['date_end']);
-
-						if($success = $req->execute()){
-							echo '<p class="alert alert-success">Votre événement a bien été créée, nous allons vous envoyer un email pour vous confirmer votre événement';
-<<<<<<< HEAD
-						}*/
-					}			
-					if($displayError){			
-=======
-						}
-					}
-					if($displayError){
->>>>>>> origin/master
-						echo '<p class="alert alert-danger">' .implode('<br>', $error). '<p>';
-					}				
-				$this->show('event/create');
+			if(!$this->valideFormatDate($post['date_begin'])){
+				$error[] = 'La date de début n\'est pas au bon format';
 			}
 
+			if(!$this->valideFormatDate($post['date_end'])){
+				$error[] = 'La date de fin n\'est pas au bon format';
+			}
+
+			if(count($errors) === 0){
+	  			// Il n'y a pas d'erreurs on fait l'insertion SQL
+	  			$eventModel = new EventModel();
+
+
+	  			$data = [
+	  				'category' => $post['category'],
+	  				'role'     => $post['role'],
+	  				'title'     => $post['title'],
+	  				'description' => $post['description'],
+	  				'address' => $post['address'],
+	  				'date_start' => $post['date_begin'],
+	  				'date_end' => $post['date_end'],
+	  			];
+	  			$eventModel->insert($data);
+
+			}			
+		}	
+
+		$params = [
+			'errors' 	=> $errors,
+			'success' 	=> $success,
+		];
+
+		$this->show('event/create', $params);
+	}
+
+
+	/**
+	 * Valide une date au format français 
+	 * @param string $date Une date au format DD/MM/YYYY
+	 * @return bool true si la date est au bon format, false sinon
+	 */
+	public function valideFormatDate($date){
+		$date = preg_match('^\d{1,2}/\d{1,2}/\d{4}$', $date);  // Vérif du format
+		return $date;
+	}
 }

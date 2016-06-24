@@ -1,9 +1,9 @@
 <?php
 namespace Model;
 
-class TokensModel extends \W\Model\Model
+class TokensRegisterModel extends \W\Model\Model
 {
-	public function findToken($email, $token)
+	public function findTokenRegister($email, $token)
 	{
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
 			return false;

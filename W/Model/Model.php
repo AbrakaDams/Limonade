@@ -5,7 +5,7 @@ namespace W\Model;
 /**
  * Le modèle de base à étendre
  */
-abstract class Model 
+abstract class Model
 {
 
 	/** @var string $table Le nom de la table */
@@ -148,6 +148,7 @@ abstract class Model
 				}
 			}
 		}
+		var_dump($sql); 
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 
@@ -170,7 +171,7 @@ abstract class Model
 		}
 
         $sql = 'SELECT * FROM ' . $this->table.' WHERE';
-                
+
 		foreach($search as $key => $value){
 			$sql .= " $key LIKE :$key ";
 			$sql .= $operator;
@@ -256,7 +257,7 @@ abstract class Model
 		if (!is_numeric($id)){
 			return false;
 		}
-		
+
 		$sql = 'UPDATE ' . $this->table . ' SET ';
 		foreach($data as $key => $value){
 			$sql .= "$key = :$key, ";

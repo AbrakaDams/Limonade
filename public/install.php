@@ -19,6 +19,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`role` ENUM('user','admin') NOT NULL ,
 		`avatar` VARCHAR(255) NOT NULL,
 		`url` VARCHAR(255) NOT NULL,
+		`activation` ENUM('true','false') NOT NULL,	
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`)) ENGINE = InnoDB;"
 );
@@ -31,24 +32,26 @@ $password = password_hash( 'limonade', PASSWORD_DEFAULT);
 
 $users = array(
 	[
-		'username'  => 'admin',
-		'firstname' => 'Captain',
-		'lastname'  => 'Obvious',
-		'role' 		=> 'admin',
-		'email' 	=> 'admin@gmail.com',
-		'password' 	=>  $password,
-		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'username'  	=> 'admin',
+		'firstname' 	=> 'Captain',
+		'lastname'  	=> 'Obvious',
+		'role' 			=> 'admin',
+		'email' 		=> 'admin@gmail.com',
+		'password' 		=>  $password,
+		'avatar' 		=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url'			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
 	],
 	[
-		'username' => 'user',
-		'firstname' => 'Not',
-		'lastname'  => 'Obvious',
-		'role' 		=> 'user',
-		'email' 	=> 'user@gmail.com',
-		'password' 	=>  $password,
-		'avatar' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
-		'url' 	=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'username' 		=> 'user',
+		'firstname' 	=> 'Not',
+		'lastname'  	=> 'Obvious',
+		'role' 			=> 'user',
+		'email' 		=> 'user@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
 	]
 );
 
@@ -61,7 +64,7 @@ foreach ($users as $user) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url)');
+		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url, activation) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url, :activation)');
 		$sql->bindValue(':username', $user['username']);
 		$sql->bindValue(':firstname', $user['firstname']);
 		$sql->bindValue(':lastname', $user['lastname']);
@@ -70,6 +73,8 @@ foreach ($users as $user) {
 		$sql->bindValue(':password', $user['password']);
 		$sql->bindValue(':avatar', $user['avatar']);
 		$sql->bindValue(':url', $user['url']);
+		$sql->bindValue(':activation', $user['activation']);
+
 
 		$sql->execute();
 	}else{
@@ -79,9 +84,9 @@ foreach ($users as $user) {
 
 /**************************************END TABLE USERS**********************************/
 
-/**************************************TABLE TOKENS**********************************/
+/**************************************TABLE TOKENS PASSWORD**********************************/
 
-$sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens` (
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens_password` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `email` VARCHAR(255) NOT NULL ,
   `token` VARCHAR(255) NOT NULL ,
@@ -93,7 +98,23 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
-/**************************************END TABLE TOKENS**********************************/
+/**************************************END TABLE TOKENS PASSWORD**********************************/
+
+/**************************************TABLE TOKENS REGISTER**********************************/
+
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens_register` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `email` VARCHAR(255) NOT NULL ,
+  `token` VARCHAR(255) NOT NULL ,
+  `date_create` DATETIME NOT NULL,
+  `date_exp` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+);
+if($sql === false){
+	die(var_dump($db->errorInfo()));
+}
+
+/**************************************END TABLE TOKENS REGISTER**********************************/
 
 /**************************************TABLE COOKIES**********************************/
 
