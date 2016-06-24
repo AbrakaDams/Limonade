@@ -2,5 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
+  <h2>blalblabla</h2>
 
 <?php $this->stop('main_content') ?>
