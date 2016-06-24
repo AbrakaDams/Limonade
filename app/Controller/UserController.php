@@ -203,7 +203,7 @@ class UserController extends Controller
 		$error = [];
 		$post = [];
 		$success = false;
-		$showForm = false;
+		$showForm = true;
 
 		// Traitement des formulaires
 		if(!empty($_POST)) {
@@ -241,9 +241,7 @@ class UserController extends Controller
 		    			$tokenModel = new TokenModel();
 
 		    			if($tokenModel->insert($data)) {
-		    				
-		    				$token = md5(uniqid()); // Création du token
-		    				$success = true;
+
 		                    // we compose a link to send
 		                    $magicLink = '<a href="limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
 		    		       	$mail = new PHPMailer;
@@ -274,17 +272,16 @@ class UserController extends Controller
 		    	        	$mail->Body    = $magicLink;
 		    	        	$mail->AltBody = $magicLink;
 
-		                    if(!$mail->send()) {
-		                		echo 'Erreur lors de l\'envoi du mail !';
-		               			echo 'Mailer Error: ' . $mail->ErrorInfo;
-		            		} else {
+		                    if($mail->send()) {
 		                        $showForm = false;
-		               			echo '<p class="noresult-msg">Un lien vous a été envoyé par mail, veuillez le suivre pour modifier votre mot de passe.';
+		                        $success = true;
+		            		} else {
+		                		$error[] = 'Erreur lors de l\'envoie du mail, veuillez renouvler l\'opération. Si le problème persiste, contactez l\'administrateur.';
 		        			}
 		    			}//fin if insert execute
 		    		}//if empty emailexist
 		            else {
-		                echo 'Votre email n\'est pas enregistré!';
+		                $error[] = 'Votre email n\'est pas enregistré!';
 		            }
 		    	}//fin filter var
 				else
@@ -296,7 +293,7 @@ class UserController extends Controller
 
 
 
-		$params = ['error' => $error, 'success' => $success];
+		$params = ['error' => $error, 'success' => $success, 'showForm' => $showForm];
 
 		$this->show('user/getNewPassword', $params);
 	}
@@ -308,6 +305,7 @@ class UserController extends Controller
 		$post = [];
 		$showFormPassword = false; // On affiche le 2nd formulaire de mise à jour de notre mdp
 		$showConnectButton = false;
+
 
 		if(isset($_GET['token']) &&
   		!empty($_GET['token']) &&
@@ -327,11 +325,12 @@ class UserController extends Controller
 			// On vérifie que le token et l'email sont bien dans la base de données
     		$tokenExist = $tokenModel->findToken($email, $token);
 
-    		var_dump($tokenExist);
-
     		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
     			// Ici le token est valide et n'a pas expiré, on peut donc afficher le formulaire.
 				$showFormPassword = true;
+			}
+			if($tokenExist['date_exp'] < date('Y-m-d H:i:s')){
+				$error[] = 'Le lien n\'est plus valide.' ;
 			}
 		}//fin if post action
 		
@@ -364,7 +363,7 @@ class UserController extends Controller
 				$data = [
 					'password' => $password,
 				];
-				var_dump($data);
+
 				echo '<hr>'.$infoUser['id'];
 				if($usersModel->update($data, $infoUser['id'])){
 	    	        // Suppression du token car le mdp est modifié
@@ -372,23 +371,21 @@ class UserController extends Controller
 					if($tokenModel->delete($tokenExist['id'])){
                         $showFormPassword = false;
                         $showConnectButton = true;
-                        echo '<div class="alert alert-success">Votre mot de passe a été bien changé, Ne l\'oublié plus :)</div>';
                     }
 				}
 		        
 		        else{
-		            echo '<div class="alert alert-danger">';
-		            echo implode('<br>', $error);
-		            echo '</div>';
+		            $error[] = 'Erreur lors du changement de mot de passe, si le problème persiste veuillez contacter l\'administrateur.';
+		            
 		        }
 
 			} // fin if count error
     		else {
-                $error[] = 'Le token et l\'adresse email ne correspondent pas ou la date est expiré !';
+                $error[] = 'Le token et l\'adresse email ne correspondent pas.';
     		} //fin else
 		}
 
-		$params = ['error' => $error];
+		$params = ['error' => $error, 'showFormPassword' => $showFormPassword, 'showConnectButton' => $showConnectButton];
 
 		$this->show('user/lostPassword', $params);
 	}
