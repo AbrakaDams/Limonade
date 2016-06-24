@@ -228,16 +228,21 @@ class UserController extends Controller
 				// La méthode isValidLoginInfo() retourne un utilisateur si celui-ci existe et que le couple identifiant/mdp existe.
 				$idUser = $authModel->isValidLoginInfo($post['email'], $post['password']);
 				if($idUser){
-
 					// On appelle la méthode find() qui permet de retourner les résultats en fonction d'un ID
 					$user = $usersModel->find($idUser);
-
-
-					// La méthode logUserIn() permet de connecter un utilisateur
-					$authModel->logUserIn($user);
-					// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
-					// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
-				}else{
+					// On vérifie que le compte est activé
+					if($user['activation'] == 'true'){
+						// La méthode logUserIn() permet de connecter un utilisateur
+						$authModel->logUserIn($user);
+						// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
+						// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
+						$this->redirectToRoute('default_home');
+					}
+					else{
+						$errors[] = 'Votre compte n\'est pas activé.';
+					}
+				}
+				else{
 					$errors[] = 'Le couple identifiant/mot de passe est invalide';
 				}
 			}
