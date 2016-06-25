@@ -2,7 +2,7 @@
 
 $upValid = true;
 // création d'une data_base Lemonade si elle n'existe pas.
-$db = new PDO('mysql:host=localhost;charset=utf8', 'root', '');
+$db = new PDO('mysql:host=localhost;charset=utf8', 'root', 'root');
 $db->query("create database if not exists lemonade");
 $db->query("use lemonade");
 
@@ -308,12 +308,12 @@ if($sql === false){
 
 /**************************************TABLE CONTACT**********************************/
 
-$sql = $db->exec("CREATE TABLE IF NOT EXIST `contact` ( 
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `contact` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
-	`name` VARCHAR NOT NULL , 
-	`email` VARCHAR NOT NULL , 
-	`object` VARCHAR NOT NULL , 
-	`content` VARCHAR NOT NULL , 
+	`name` VARCHAR(255) NOT NULL , 
+	`email` VARCHAR(255) NOT NULL , 
+	`object` VARCHAR(255) NOT NULL , 
+	`content` VARCHAR(255) NOT NULL , 
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

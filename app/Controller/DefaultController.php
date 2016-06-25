@@ -84,16 +84,15 @@ class DefaultController extends Controller
 	  			];
 	  			$contactModel->insert($data);
 
+			}
+
 		}
 
 		$params = [
 			'errors' 	=> $errors,
 			'success' 	=> $success,
 		];
-
-		$this->show('default/contact');
-
+	
+		$this->show('default/contact', $params);
+		}
 	}
-
-
-}
