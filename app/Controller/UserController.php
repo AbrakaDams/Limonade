@@ -524,10 +524,14 @@ class UserController extends Controller
 					'firstname' => $post['firstname'],
 					'lastname' 	=> $post['lastname'],
 					'password' 	=> $authModel->hashPassword($post['password']),
-					'url' 		=> $post['url'],
 				];
+				if(!empty($post['url'])){
+					$dataUser = [
+						'url' 		=> $post['url'],
+					];
+				}
 				if(!empty($_FILES['avatar'])){
-					$data = [
+					$dataUser = [
 						'avatar' 	=> $adress,
 					];
 				}
