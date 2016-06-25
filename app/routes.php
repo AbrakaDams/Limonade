@@ -23,5 +23,8 @@
 		['GET|POST', '/getnewpassword', 'User#getNewPassword', 'user_getNewPassword'],
 		['GET|POST', '/updateUser', 'User#updateUser', 'user_updateUser'],
 
+		/***************************** admin *************************/
+		['GET|POST', '/back_office', 'Admin#admin', 'admin_admin'],
+
 
 	);

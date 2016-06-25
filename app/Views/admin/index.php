@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'admin']) ?>
+<?php $this->layout('layoutAdmin', ['title' => 'admin']) ?>
 
 <?php $this->start('main_content') ?>
 <h2>zeruiopezriop</h2>
