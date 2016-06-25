@@ -2,7 +2,7 @@
 
 	$w_routes = array(
 		['GET', '/', 'Default#home', 'default_home'],
-		['GET|POST', '/contact', 'Default#contact', 'default_contact'],
+		['GET|POST', '/team', 'Default#team', 'default_team'],
 
 		/**************************** event ********************/
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],

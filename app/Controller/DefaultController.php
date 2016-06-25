@@ -30,11 +30,11 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * Page Contact par défaut
+	 * Page Contact de l'équipe
 	 */
-	public function contact()
+	public function team()
 	{
-		$this->show('default/contact');
+		$this->show('default/team');
 	}
 
 
