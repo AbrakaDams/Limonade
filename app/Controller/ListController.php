@@ -3,15 +3,10 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
+use \Controller\EventController;
 
 class ListController extends Controller
 {
-	// public function showLists($id) {
-	// 	$newLists = new ListModel();
-	// 	$lists = $newLists->findLists($id);
-	//
-	// 	return $lists;
-	// }
 
 	public function addList() {
 		$post = [];
@@ -48,27 +43,27 @@ class ListController extends Controller
 
 	public function getList() {
 
-
+		$id = $_POST['eventId'];
 		// 	$newLists = new ListModel();
 		// 	$lists = $newLists->findLists($id);
 		//if()$lastDate = $_POST['myDate'];
 		if(isset($_POST['myDate']) && !empty($_POST['myDate'])) {
-			$lastDate = 0;
-		} else {
 			$lastDate = $_POST['myDate'];
+		} else {
+			$lastDate = 0;
 		}
 		// var_dump($_POST);
 		// $lists = array();
 
 		$listsData = new ListModel();
-		$newLists = $listsData->findLists(1, $lastDate);
+		$newLists = $listsData->findLists($id, $lastDate);
 
 		foreach($newLists as $key => $value){
 			$lastDate = $value['date_add'];
 		}
 
 		//var_dump($sql);
-		//$this->showJson(['newList' => $newLists, 'newDate' => $lastDate]);
+		$this->showJson(['newList' => $newLists, 'newDate' => $lastDate]);
 
 	}
 

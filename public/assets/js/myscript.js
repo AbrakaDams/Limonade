@@ -28,6 +28,24 @@ $(document).mouseup(function (e) {
     }
 });
 
+
+
+/**
+ * AJAX long-polling
+ *
+ * 1. sends a request to the server (without a timestamp parameter)
+ * 2. waits for an answer from server.php (which can take forever)
+ * 3. if server.php responds (whenever), put data_from_file into #response
+ * 4. and call the function again
+ *
+ * @param timestamp
+ */
+
+var thisEvent = parseInt($('#event-info').text());
+//console.log(thisEvent);
+var lastDate = 0;
+
+
 /***************************
     ADD LIST FORM AJAX
 **************************/
@@ -53,35 +71,25 @@ $('#add-list-form').on('submit', function(e) {
             }
         }
     });
-
+    //getContent(lastDate);
 });
 
-/**
- * AJAX long-polling
- *
- * 1. sends a request to the server (without a timestamp parameter)
- * 2. waits for an answer from server.php (which can take forever)
- * 3. if server.php responds (whenever), put data_from_file into #response
- * 4. and call the function again
- *
- * @param timestamp
- */
-function getContent(firstDate) {
+function getContent(currentDate) {
 
-    var lastDate = firstDate;
-    //console.log(lastDate);
+    console.log(currentDate);
+
     $.ajax({
-        type: "POST",
-        url: "../ajax/get-list",
+        type: 'POST',
+        url: '../ajax/get-list',
         cache: false,
-        data: {'myDate': lastDate},
-        dataType: "json",
+        data: {'myDate': lastDate, 'eventId' : thisEvent},
+        dataType: 'json',
         success: function(data){
             console.log(data);
             lastDate = data.newDate;
             if(data.newList.length != 0){
                 $.each(data.newList, function(key, value) {
-                    $('#response').append('<div>'+ value.title +'</div>')
+                    $('#response').append('<div class="event-list">'+ value.title +'</div>')
                 })
 
             }

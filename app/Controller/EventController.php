@@ -53,8 +53,6 @@ class EventController extends Controller
 	*/
 	public function invite($id)
 	{
-
-
 		$this->show('event/invite');
 	}
 	/**

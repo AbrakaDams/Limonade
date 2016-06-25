@@ -5,5 +5,4 @@ app/config.php
 *.log
 *.json
 package.json
-
-public/install.php
+.DS_Store

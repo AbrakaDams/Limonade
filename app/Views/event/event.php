@@ -1,7 +1,9 @@
 <?php $this->layout('layout', ['title' => 'My event']) ?>
 
 <?php $this->start('main_content') ?>
-	
+
+	<?php echo '<span id="event-info">' .$thisEvent['id'].'</span>'; ?>
+
 	<div>
 		<a href="<?= $this->url('event_invite'); echo '/'.$thisEvent['id']; ?>" class="btn btn-default btn-lg active" role="button">Invité des amis</a>
 	</div>
