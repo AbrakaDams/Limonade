@@ -244,6 +244,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(255) NOT NULL ,
   `id_event` INT NOT NULL ,
+  `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
