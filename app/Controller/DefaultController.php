@@ -41,9 +41,9 @@ class DefaultController extends Controller
 	 * Page Contact
 	 */
 
-	public function team()
+	public function contact()
 	{
-		$this->show('default/team');
+		$this->show('default/contact');
 	}
 
 
