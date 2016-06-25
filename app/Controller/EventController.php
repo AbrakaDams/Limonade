@@ -37,13 +37,14 @@ class EventController extends Controller
 
 
 		// send received data to the event.php
-		$showEvent = ['thisEvent' => $eventData,
-					//   'lists'	  => $lists,
-					  'addList'	  => $addList,
-						'newsFeed' => $showNews,
-						'comments' => $showComment,
-						'showComments' => $allComments,
-					 ];
+		$showEvent = [
+			'thisEvent' => $eventData,
+			//   'lists'	  => $lists,
+			  'addList'	  => $addList,
+			'newsFeed' => $showNews,
+			'comments' => $showComment,
+			'showComments' => $allComments,
+		 ];
 		$this->show('event/event', $showEvent);
 	}
 
