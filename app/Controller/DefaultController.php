@@ -37,5 +37,14 @@ class DefaultController extends Controller
 		$this->show('default/team');
 	}
 
+	/**
+	 * Page Contact
+	 */
+
+	public function team()
+	{
+		$this->show('default/team');
+	}
+
 
 }
