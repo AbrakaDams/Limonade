@@ -288,7 +288,7 @@ if($sql === false){
 
 /**************************************END TABLE COMMENT**********************************/
 
-/**************************************END TABLE NEWSFEED**********************************/
+/**************************************TABLE NEWSFEED**********************************/
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `id` INT NOT NULL AUTO_INCREMENT ,
@@ -304,6 +304,25 @@ if($sql === false){
 }
 
 /**************************************END TABLE NEWSFEED**********************************/
+
+
+/**************************************TABLE CONTACT**********************************/
+
+$sql = $db->exec("CREATE TABLE IF NOT EXIST `contact` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`name` VARCHAR NOT NULL , 
+	`email` VARCHAR NOT NULL , 
+	`object` VARCHAR NOT NULL , 
+	`content` VARCHAR NOT NULL , 
+	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+);
+if($sql === false){
+	die(var_dump($db->errorInfo()));
+}
+
+/**************************************END TABLE CONTACT**********************************/
+
+
 
 if($upValid){
 	echo '<br><br><center><p style="font-size: 20px;"<strong>Base de données bien mise a jour</strong></p></center><br>';
