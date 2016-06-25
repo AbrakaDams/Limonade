@@ -2,7 +2,12 @@
 
 <?php $this->start('main_content') ?>
 
-
+  <?php if(!empty($errors)): ?>
+    <div class="alert alert-danger">
+      <?= implode('<br>', $errors); ?>
+    </div>
+  <?php endif; ?>
+  
 <!-- Formulaire de contact -->
 <form id="contact" method="post">
   <h2><i class="fa fa-paper-plane" aria-hidden="true"></i></h2>
