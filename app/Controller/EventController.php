@@ -168,7 +168,7 @@ class EventController extends Controller
 	* $ End of line
 	**/
 
-	public function listUSername(){
+	public function listUsers(){
 		// On instancie les variables
 		$username = array();
 
