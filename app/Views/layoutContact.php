@@ -10,11 +10,6 @@
 
 </head>
 <body>
-	<header>
-
-	</header>
-
-
 
 		<section style="background-color: #d8ddd7">
 			<?= $this->section('main_content') ?>
@@ -24,6 +19,7 @@
 
 		<!-- Nous suivre -->
 		<div class="social-network" >
+			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i>Contact</h2></a>
 			<div class="icons-social">
     			<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
 					<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>

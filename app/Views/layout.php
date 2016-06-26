@@ -38,17 +38,25 @@
 					<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
 					<!-- identité -->
 				  <li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
-<li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){echo $w_user['avatar'];}elseif(isset($w_user['url']) && !empty($w_user['url'])){echo $w_user['url']; } ?>"></a></li>
+					<li>
+						<a href="#">
+							<img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="
+							<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+												echo $w_user['avatar'];
+											}elseif(isset($w_user['url']) && !empty($w_user['url'])){
+												echo $w_user['url']; } else{ echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+								</a>
+					</li>
 
 					<li class="dropdown">
-					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
-					  <ul class="dropdown-menu">
-					    <li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
-					    <li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
-					    <li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Assistance </a></li>
-					    <li><a href="<?= $this->url('default_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
-					    <li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-					  </ul>
+						 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
+							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
+							<li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Assistance </a></li>
+							<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
+							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+						</ul>
 					</li>
 
 			<?php else:  ?>
@@ -69,10 +77,10 @@
 			<?= $this->section('main_content') ?>
 		</section>
 
-	<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
-		<div class="row" id="team">	
+<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
+	<div class="row" id="team">
 		<div class="col-xs-6 col-sm-4">
-		<!-- Dossier Img -->
+			<!-- Dossier Img -->
 			<a href="<?= $this->url('default_team'); ?>"><h2><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</h2></a><hr>
 			<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
 			<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
@@ -82,30 +90,28 @@
 		</div>
 
 		<!-- Nous suivre -->
-		<div class="col-xs-6 col-sm-4" id="social-network">
-			<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</h2></a><hr>
-			<div class="icons-social">
-    			<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
-				<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-    			<i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
-    			<i class="fa fa-github fa-3x" aria-hidden="true"></i>
-    			<i class="fa fa-snapchat-square fa-3x" aria-hidden="true"></i>
-			</div>
-		</div>
-
-		<div class="col-xs-6 col-sm-4" id="local">			
-		<h1><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h1><hr>
-		<p>115 Rue des peupliers trysomiques<br>
-		33 000 Bordeaux, France<br>		
-		(+33)05 05 28 25 46<br>
-		team_power-ranger@best.com
-		</p>
+	<div class="col-xs-6 col-sm-4" id="social-network">
+		<a href="<?= $this->url('default_contact'); ?>"><h2><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</h2></a><hr>
+		<div class="icons-social">
+			<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+			<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+			<i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
+			<i class="fa fa-github fa-3x" aria-hidden="true"></i>
+			<i class="fa fa-snapchat-square fa-3x" aria-hidden="true"></i>
 		</div>
 	</div>
-	<hr><p><strong><?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
-    	
 
-	</footer>
+		<div class="col-xs-6 col-sm-4" id="local">
+			<h1><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h1><hr>
+			<p>115 Rue des peupliers trysomiques<br> 33 000 Bordeaux, France<br> (+33)05 05 28 25 46<br> team_power-ranger@best.com</p>
+		</div>
+	</div>
+
+	<hr>
+	<p>
+		<strong><?php echo date('Y'); ?> &copy; Limonade &reg;</strong>
+	</p>
+</footer>
 
 
 
@@ -119,7 +125,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
 	<script src="<?= $this->assetUrl('js/typeahead.bundle.min.js') ?>"></script>
 	<?= $this->section('js'); ?>
-	
+
 </body>
 
 </html>
