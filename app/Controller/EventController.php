@@ -134,7 +134,7 @@ class EventController extends Controller
 		// On instancie les variables
 		$username = array();
 
-		$UsersModel = new UsersModel;
+		$UsersModel = new UsersModel();
 		// On récupère les infos de tous les utilisateurs
 		$users = $UsersModel->findAll();
 
@@ -172,7 +172,7 @@ class EventController extends Controller
 		// On instancie les variables
 		$username = array();
 
-		$UsersModel = new UsersModel;
+		$UsersModel = new UsersModel();
 		// On récupère les infos de tous les utilisateurs
 		$users = $UsersModel->findAll();
 
