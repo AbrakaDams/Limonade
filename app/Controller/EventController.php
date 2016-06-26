@@ -6,6 +6,7 @@ use \W\Controller\Controller;
 use \Controller\ListController;
 use \Controller\NewsFeedController as NewsFeed;
 use \Model\EventModel as EventModel;
+use \Model\CommentsModel as CommentsModel;
 
 class EventController extends Controller
 {
@@ -32,8 +33,8 @@ class EventController extends Controller
 		$insertComment = new CommentController();
 		$inComment = $insertComment->insertComment($id);
 
-		$showAllComments = new CommentController();
-		$allComments = $showAllComments->showAllComments($id);
+		$showAllComments = new CommentsModel();
+		$allComments = $showAllComments->joinComment();
 
 
 		// send received data to the event.php

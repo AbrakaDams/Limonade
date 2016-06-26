@@ -67,11 +67,24 @@
 		<h3>Commentaire</h3>
 		<div class="">
 			<?php foreach ($showComments as $value): ?>
-				<?php echo $value['id_user']; ?></li>
-				<?php echo $value['content']; ?></li>
+				<div style="border-radius: 5px; background-color: rgb(163, 161, 208);" class="">
+				<img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="
+				<?php if(isset($value['avatar']) && !empty($value['avatar'])){
+									echo $value['avatar'];
+								}elseif(isset($value['url']) && !empty($value['url'])){
+									echo $value['url']; } else{ echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+				<?php echo 'Posté par :<strong>'.$value['username']. '</strong>'; ?>
+				<?php echo 'le :'.$value['date_add']; ?>
+				<hr>
+				<?php echo $value['content']; ?>
+				<br>
+				<br>
+				<br>
+				</div>
 				<br>
 			<?php endforeach; ?>
 		</div>
+
 		<form method="post">
 			<textarea name="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">
