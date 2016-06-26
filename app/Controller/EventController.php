@@ -7,6 +7,7 @@ use \Controller\ListController;
 use \Controller\NewsFeedController as NewsFeed;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
+use \W\Model\UsersModel as UsersModel;
 
 class EventController extends Controller
 {
@@ -130,7 +131,20 @@ class EventController extends Controller
 	*/
 	public function invite($id)
 	{
-		$this->show('event/invite');
+		// On instancie les variables
+		$username = array();
+
+		$UsersModel = new UsersModel;
+		// On récupère les infos de tous les utilisateurs
+		$users = $UsersModel->findAll();
+
+		// On en sélectionne que les "username"
+		foreach ($users as $user) {
+			$username[] = $user['username'];
+		}
+
+		$params = ['username' => $username];
+		$this->show('event/invite', $params);
 	}
 
 	/**
@@ -153,4 +167,25 @@ class EventController extends Controller
 	*
 	* $ End of line
 	**/
+
+	public function listUSername(){
+		// On instancie les variables
+		$username = array();
+
+		$UsersModel = new UsersModel;
+		// On récupère les infos de tous les utilisateurs
+		$users = $UsersModel->findAll();
+
+		// On en sélectionne que les "username"
+		foreach ($users as $user) {
+			$username[] = $user['username'];
+		}
+
+		var_dump($username);
+		$params = ['username' => $username];
+		$this->showJson(['username' => $username]);
+	}
+
+
+
 }

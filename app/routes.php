@@ -10,6 +10,7 @@
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
 		['GET', '/search', 'Event#search', 'event_search'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
+		['GET|POST', '/listUsers', 'Event#listUsers', 'event_listUsers'],
 
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],

@@ -5,8 +5,7 @@
 	<?php echo '<span id="event-info">' .$thisEvent['id'].'</span>'; ?>
 
 	<div>
-	<?php var_dump($thisEvent);?>
-		<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Invité des amis</a>
+		<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
 	</div>
 	<aside class="">
 		<h3>Fil activités</h3>
