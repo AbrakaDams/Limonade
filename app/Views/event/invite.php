@@ -16,7 +16,7 @@
 <?php $this->start('js'); ?>
 <script type="text/javascript">
 	function add_fields() {
-		document.getElementById('wrapper').innerHTML += '<br><span>Ajouter un ami : <input type="text">  <button class="btn btn-success">Ajouter</button>\r\n';
+		document.getElementById('wrapper').innerHTML += '<br><span>Ajouter un ami : <input type="text" class="typeahead">  <button class="btn btn-success">Ajouter</button>\r\n';
 	}
 	
 	var substringMatcher = function(strs) {
@@ -24,7 +24,7 @@
 	    var matches, substringRegex;
 
 	    // an array that will be populated with substring matches
-	    matches = ['test', 'test2', 'test3'];
+	    matches = [];
 
 	    // regex used to determine if a string contains the substring `q`
 	    substrRegex = new RegExp(q, 'i');

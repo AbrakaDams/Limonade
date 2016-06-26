@@ -50,13 +50,6 @@ class EventController extends Controller
 	}
 
 	/**
-	* Invitation à un évènement
-	*/
-	public function invite($id)
-	{
-		$this->show('event/invite');
-	}
-	/**
 	 * Création d'un événement
 	 */
 
@@ -132,6 +125,13 @@ class EventController extends Controller
 		$this->show('event/create', $params);
 	}
 
+	/**
+	* Invitation à un évènement
+	*/
+	public function invite($id)
+	{
+		$this->show('event/invite');
+	}
 
 	/**
 	 * Valide une date au format français
