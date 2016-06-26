@@ -17,18 +17,9 @@
 
 		<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
 			<div class="row" id="team">
-		 		<div class="col-xs-6 col-sm-4">
-		 <!-- Dossier Img -->
-			<h2><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><hr>
-						<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-					</div>
-			<!-- Nous suivre -->
+		 	<!-- Nous suivre -->
 			<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2>Resaux sociaux</h2><hr>
+					<h2><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><hr>
 				<div class="icons-social">
 					<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
 						<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>

@@ -1,4 +1,4 @@
-<?php $this->layout('layoutContact', ['title' => 'Team']) ?>
+<?php $this->layout('layoutTeam', ['title' => 'Team']) ?>
 
 <?php $this->start('main_content') ?>
 

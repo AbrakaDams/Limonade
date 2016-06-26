@@ -58,11 +58,11 @@
 <?php endif; ?>
 </section>
 
-<section class="event-near" style="background-color: #868786">
+<div class="event-near" style="background-color: #868786">
 
 	<h2> Liste des évenement public </h2>
 
-</section>
+</div>
 
 
 
