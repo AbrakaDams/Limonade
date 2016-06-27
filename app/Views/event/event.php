@@ -53,19 +53,44 @@
 		<div class="add-new-card">
 			<form class="add-card-form" action="<?=$this->url('list_addCard');?>" method="post">
 				<label>Titre de cette tache</label>
-				<input type="text" name="newCard" id="add-card-input" maxlength="150" placeholder="Nom de votre nouvelle card">
+				<input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card">
+				<br>
+
+				<label for="">Description</label>
+				<textarea name="card_desc" rows="8" cols="40"></textarea>
+				<br>
+
+				<label for="">Quantite</label>
+				<input type="number" name="card_quantity">
+				<br>
+
+				<label for="">Prix</label>
+				<input type="number" name="card_price">
+				<br>
+
+
+				<label for="">Responsable</label>
+				<select name="card_person">
+					<option value="0">Choisir</option>
+					<?php
+						foreach ($participants as $key => $value) {
+							echo '<option value ="'.$value['id'].'">'.$value['username'].'</option>';
+						}
+					 ?>
+				</select>
+				<br>
+
 				<input type="submit" value="Go">
 			</form>
 		</div>
-		
+
 		<div id="add-new-list">
 			<button type="button" id="add-list-btn">+</button>
 			<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-				<label>Titre de ce liste</label>
+				<label for="add-list-input">Titre de ce liste</label>
 				<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 				<input type="submit" value="Go">
 			</form>
-
 		</div>
 
 	</section>
@@ -99,7 +124,7 @@
 		</div>
 	</section>
 <?php else: ?>
-	
+
 <div class="alert alert-danger">
 	<p>
 		Connectez vous pour voir les commentaire
@@ -107,3 +132,7 @@
 </div>
 <?php endif; ?>
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+	<script src="<?= $this->assetUrl('js/10_lists.js') ?>"></script>
+<?php $this->stop('js') ?>

@@ -73,6 +73,32 @@ $('#add-list-form').on('submit', function(e) {
     });
 });
 
+$('.add-card-form').on('submit', function(e) {
+    e.preventDefault();
+
+    var formData = $(this).serialize();
+    // console.log(formData);
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        dataType: 'json',
+        error: function(e){
+            console.table(e);
+        },
+        success: function(output) {
+            console.log(output);
+            if(output.answer == 'success') {
+                $('.add-card-form').each(function(){
+                    $(this)[0].reset();
+                });
+                // refresh lists right away, prevent to wait 7 seconds
+                getContent(lastDate);
+            }
+        }
+    });
+});
+
 
 // initialize jQuery
 $(function() {
@@ -99,7 +125,7 @@ function getContent(currentDate) {
                 });
             }
             if(response.newCard.length =! 0) {
-                console.log(response.newCard);
+                // console.log(response.newCard);
             }
         },
         error: function(e) {

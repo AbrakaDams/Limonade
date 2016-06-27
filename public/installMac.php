@@ -265,7 +265,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id_user` INT NOT NULL ,
   `id_list` INT NOT NULL ,
   `id_event` INT NOT NULL ,
-  `date_add` INT NOT NULL ,
+  `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

@@ -17,7 +17,7 @@
 
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
-		['GET|POST', '/ajax/add-list', 'List#addCard', 'list_addCard'],
+		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],
