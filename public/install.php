@@ -325,12 +325,12 @@ if($sql === false){
 
 /**************************************TABLE OURACCOUNT**********************************/
 
-$sql = $db->exec("CREATE TABLE IF NOT EXISTS `ourAccounts` ( 
-	`id` INT NOT NULL AUTO_INCREMENT , 
-	`personn` VARCHAR(255) NOT NULL , 
-	`purchase` VARCHAR(255) NOT NULL , 
-	`quantity` INT NOT NULL , 
-	`price` FLOAT NOT NULL , 
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `count` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`personn` VARCHAR(255) NOT NULL ,
+	`purchase` VARCHAR(255) NOT NULL ,
+	`quantity` INT NOT NULL ,
+	`price` FLOAT NOT NULL ,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

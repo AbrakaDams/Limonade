@@ -10,8 +10,8 @@
 
 	<div>
 		<h3> Liste des participants :</h3>
-
-		<?php
+		
+		<?php 
 		if($participants == null){
 			echo 'aucun participant';
 		}
@@ -88,13 +88,7 @@
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
 		<h3>Commentaire</h3>
-
-		<form method="post" id="comment">
-			<textarea name="comment" id="comment_text" rows="2" cols="50"></textarea>
-			<input type="submit" name="submit" value="Commentez">
-		</form>
-
-		<div class="load_comment">
+		<div class="">
 			<?php foreach ($showComments as $value): ?>
 				<div style="border-radius: 5px; background-color: rgb(163, 161, 208);" class="">
 				<img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="
@@ -114,7 +108,10 @@
 			<?php endforeach; ?>
 		</div>
 
-
+		<form method="post">
+			<textarea name="comment" rows="2" cols="50"></textarea>
+			<input type="submit" name="submit" value="Commentez">
+		</form>
 	</section>
 <?php else: ?>
 <div class="alert alert-danger">
