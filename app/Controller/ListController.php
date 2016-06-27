@@ -104,40 +104,60 @@ class ListController extends Controller
 	 */
 	public function getList() {
 
-		$id = $_POST['eventId'];
+		$id = intval($_POST['eventId']);
+		// $lastDateLists = null;
+		// $lastDateCards = null;
+
 
 		if(isset($_POST['myDate']) && !empty($_POST['myDate'])) {
 			$lastDate = $_POST['myDate'];
 		} else {
 			$lastDate = 0;
 		}
-		$lastDateLists = null;
-		$lastDateCards = null;
+
 
 		$listsData = new ListModel();
-		$newLists = $listsData->findLists($id, $lastDate);
- 		$newCards = $listsData->findCards($id, $lastDate);
+		// $newLists = $listsData->findLists($id, $lastDate);
+ 	// 	$newCards = $listsData->findCards($id, $lastDate);
+ 		$newListsCards = $listsData->findListsCards($id, $lastDate);
 
-		if(!empty($newLists)) {
-			$lastDateLists = end($newLists)['date_add'];
-		}
-		if(!empty($newCards)) {
-			$lastDateCards = end($newCards)['date_add'];
-		}
-		if($lastDateLists != null && $lastDateCards != null) {
-			if($lastDateLists > $lastDateCards) {
-				$lastDate = $lastDateLists;
+		//var_dump($newListsCards);
+		// if(!empty($newLists)) {
+		// 	// $lastDateLists = end($newLists)['date_add'];
+		// 	foreach ($newLists as $key => $value) {
+		// 		$lastDateLists = $value['date_add'];
+		// 	}
+		// }
+		//
+		// if(!empty($newCards)) {
+		// 	// $lastDateCards = end($newCards)['date_add'];
+			foreach ($newListsCards as $key => $value) {
+				$lastDate = $value['date_add'];
 			}
-			else {
-				$lastDate = $lastDateCards;
-			}
-		}
-		elseif($lastDateLists == null && $lastDateCards != null) {
-			$lastDate = $lastDateLists;
-		}
-		elseif($lastDateLists != null && $lastDateCards == null) {
-			$lastDate = $lastDateCards;
-		}
-		$this->showJson(['newList' => $newLists, 'newCard' => $newCards, 'newDate' => $lastDate]);
+		// }
+
+		// var_dump($newListsCards);
+
+		// var_dump($newLists);
+		// var_dump($newCards);
+
+		// if($lastDateLists != null && $lastDateCards != null) {
+		// 	if($lastDateLists > $lastDateCards) {
+		// 		$lastDate = $lastDateLists;
+		// 	}
+		// 	else {
+		// 		$lastDate = $lastDateCards;
+		// 	}
+		// }
+		// elseif($lastDateLists == null && $lastDateCards != null) {
+		// 	$lastDate = $lastDateLists;
+		// }
+		// elseif($lastDateLists != null && $lastDateCards == null) {
+		// 	$lastDate = $lastDateCards;
+		// }
+
+		// $this->showJson(['newList' => $newLists, 'newCard' => $newCards, 'newDate' => $lastDate]);
+		$this->showJson(['bla' => $newListsCards, 'newDate' => $lastDate]);
+
 	}
 }

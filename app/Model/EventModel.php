@@ -21,4 +21,18 @@ class EventModel extends \W\Model\Model
   		return $sth->fetchAll();
 	}
 
+	public function findFullEventInfo($id) {
+
+        $sql = 'SELECT *
+                FROM event
+                INNER JOIN list ON event.id = list.id_event
+                INNER JOIN cards ON list.id = cards.id_list
+                WHERE list.id_event='.$id;
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+    }
+
 }

@@ -119,13 +119,10 @@ function getContent(currentDate) {
 
             console.log(response);
             lastDate = response.newDate;
-            if(response.newList.length != 0){
+            if(response.bla.length != 0){
                 $.each(response.newList, function(key, value) {
                     $('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
                 });
-            }
-            if(response.newCard.length =! 0) {
-                // console.log(response.newCard);
             }
         },
         error: function(e) {

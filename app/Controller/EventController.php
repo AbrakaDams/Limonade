@@ -51,10 +51,12 @@ class EventController extends Controller
 		//make a query to the database to get this event data
 		$eventData = $event->find($id);
 
-		$list = new ListController();
+		//$list = new ListController();
 		// $lists = $list->getList($id);
 
-		$addList = $list->addList($id);
+		//$addList = $list->addList($id);
+		$event = new EventModel();
+		$eventWithLists = $event->findFullEventInfo($id);
 
 		$news = new NewsModel();
 		$showNews = $news->joinNewsFeed($id);
@@ -71,11 +73,19 @@ class EventController extends Controller
 
 		// send received data to the event.php
 		$showEvent = [
+<<<<<<< 9aa8e985d0b9d486bcfaacfd3f0a966724d112c6
 			'thisEvent'				=> $eventData,
 			//'lists'					=> $lists,
 			'addList'					=> $addList,
 			'newsFeed'				=> $showNews,
 			'comments' 				=> $showComment,
+=======
+			'thisEvent'			=> $eventData,
+			'eventLists'		=> $eventWithLists,
+			'addList'			=> $addList,
+			'newsFeed'			=> $showNews,
+			'comments' 			=> $showComment,
+>>>>>>> inner join of events, lists and cards
 			'showComments' 		=> $allComments,
 			'participants'		=> $participants,
 			'allparticipants'	=> $allparticipants,
@@ -105,6 +115,10 @@ class EventController extends Controller
 	  		if(strtotime($post['date_begin']) > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
 	  		}
+<<<<<<< 9aa8e985d0b9d486bcfaacfd3f0a966724d112c6
+=======
+
+>>>>>>> inner join of events, lists and cards
 			// Etendue de l event Privée ou Publique
 		  	if(empty($post['role'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
