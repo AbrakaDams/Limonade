@@ -112,7 +112,7 @@ class UsersModel extends Model
 
 		return $sth->fetch();
 	}
-	
+
 	public function find5($id)
 	{
 		if (!is_numeric($id)){
@@ -123,7 +123,7 @@ class UsersModel extends Model
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':id', $id);
 		$sth->execute();
-
+		
 		return $sth->fetch();
 	}
 }

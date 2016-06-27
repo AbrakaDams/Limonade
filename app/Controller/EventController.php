@@ -17,18 +17,31 @@ class EventController extends Controller
 	public function showEvent($id)
 	{
 		/*
-		* Liste des participants
+		* Liste des participants (5 derniers)
 		*/
 		$participants = array();
+		$idUser = array();
 
 		// On récupère les users participant à l'évènement
 		$event = new EventModel();
 		$EventUsers = $event->getEventUsers($id);
 		// $EventUsers retourne toutes les infos de la table event_users
 		$UsersModel = new UsersModel();
+		// On récupère 5 participants
+		// $idUser récupère l'id de tous les participants à l'évènement
+		
 		foreach ($EventUsers as $infos) {
-			$participants[] = $UsersModel->find5($infos['id_user']);
+			$idUser[] = $infos['id_user'];
 		}
+		if($idUser == null){
+			$participants == null;
+		}
+		// Participants récupère les information de la table user des 5 premiers participants
+		for ($i=0; $i < 5; $i++) {
+			if(!empty($idUser[$i])){
+			$participants[] = $UsersModel->find($idUser[$i]);
+			}
+		}		
 		//make a query to the database to get this event data
 		$eventData = $event->find($id);
 
@@ -53,7 +66,7 @@ class EventController extends Controller
 		// send received data to the event.php
 		$showEvent = [
 			'thisEvent'		=> $eventData,
-			//   'lists'	  => $lists,
+			//'lists'		=> $lists,
 			'addList'		=> $addList,
 			'newsFeed'		=> $showNews,
 			'comments' 		=> $showComment,

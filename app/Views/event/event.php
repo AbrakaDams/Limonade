@@ -12,8 +12,13 @@
 		<h3> Liste des participants :</h3>
 		
 		<?php 
-		foreach ($participants as $infos) {
-			echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+		if($participants == null){
+			echo 'aucun participant';
+		}
+		else{
+			foreach ($participants as $infos) {
+				echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+			}
 		}
 		?>
 	</div>
