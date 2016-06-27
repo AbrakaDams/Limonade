@@ -41,6 +41,40 @@ class ListController extends Controller
 		}
 	}
 
+
+	public function addCard() {
+		$post = [];
+		$inputMaxLength = 151; // restrict list name length
+
+		if(!empty($_POST)) {
+			// clean received data
+			foreach ($_POST as $key => $value) {
+				$post[$key] = trim(strip_tags($value));
+			}
+
+			// if our name input exists in correst state
+			if(isset($post['newCard']) && !empty($post['newCard']) && strlen($post['newCard']) < $inputMaxLength) {
+
+				$user = $this->getUser();
+				$id = $user['id'];
+				// create variable to prevent empty insertions
+				$listName = $post['newCard'];
+				$timestamp = date('Y-m-d H:i:s');
+				//form data to insert to the database
+				$entryData = ['title' 		=> $listName,
+							  'id_event' 	=> $id,
+							  'date_add'	=> $timestamp,
+							 ];
+				// call model
+				$insertList = new ListModel();
+				// insert
+				if($insertList->insert($entryData)) {
+					$this->showJson(['answer' => 'success']);
+				}
+			}
+		}
+	}
+
 	public function getList() {
 
 		$id = $_POST['eventId'];
@@ -57,14 +91,17 @@ class ListController extends Controller
 
 		$listsData = new ListModel();
 		$newLists = $listsData->findLists($id, $lastDate);
+ 		$newCards = $listsData->findCards($id, $lastDate);
 
 		foreach($newLists as $key => $value){
 			$lastDate = $value['date_add'];
 		}
 
 		//var_dump($sql);
-		$this->showJson(['newList' => $newLists, 'newDate' => $lastDate]);
+		$this->showJson(['newList' => $newLists, 'newCard' => $newCards, 'newDate' => $lastDate]);
 
 	}
+
+
 
 }

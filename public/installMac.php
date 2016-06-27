@@ -264,6 +264,8 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `price` INT NOT NULL ,
   `id_user` INT NOT NULL ,
   `id_list` INT NOT NULL ,
+  `id_event` INT NOT NULL ,
+  `date_add` INT NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -322,6 +324,23 @@ if($sql === false){
 }
 
 /**************************************END TABLE CONTACT**********************************/
+
+/**************************************TABLE OURACCOUNT**********************************/
+
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `count` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`personn` VARCHAR(255) NOT NULL ,
+	`purchase` VARCHAR(255) NOT NULL ,
+	`quantity` INT NOT NULL ,
+	`price` FLOAT NOT NULL ,
+	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+);
+if($sql === false){
+	die(var_dump($db->errorInfo()));
+}
+
+/************************************END TABLE OURACCOUNT *********************************/
+
 
 
 

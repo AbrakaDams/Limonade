@@ -77,40 +77,42 @@
 			<?= $this->section('main_content') ?>
 		</section>
 
-		<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
+		<footer>
 			<div class="row" id="team">
+					<!-- Nous suivre -->
+				<div class="col-xs-6 col-sm-4" id="social-network">
+					<h2 class="center"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
+					<div class="icons-social">
+						<i class="fa fa-facebook-official fa-5x" aria-hidden="true"></i>
+						<i class="fa fa-instagram fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-pinterest-p fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-github fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-snapchat-square fa-5x" aria-hidden="true"></i>
+					</div>
+				</div>
+
 		 		<div class="col-xs-6 col-sm-4">
-		 <!-- Dossier Img -->
-			<h2><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><hr>
-						<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-					</div>
-			<!-- Nous suivre -->
-			<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><hr>
-				<div class="icons-social">
-					<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
-						<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-github fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-snapchat-square fa-3x" aria-hidden="true"></i>
-					</div>
-			</div>
+		 		<!-- Dossier Img -->
+					<h2 class="center"><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><br>
+					<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle">
+				</div>
 
-			<div class="col-xs-6 col-sm-4" id="local">
-					<h1><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h1><hr>
-					<p>115 Rue des peupliers trysomiques<br>
-					33 000 Bordeaux, France<br>
-					(+33)05 05 28 25 46<br>
-					team_power-ranger@best.com
-					</p>
-					</div>
-				<hr><p><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
-
-
+				<div class="col-xs-6 col-sm-4" id="local">
+					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
+					<p><i class="fa fa-map-marker" aria-hidden="true"></i> :
+					66 rue de l’Abbé de l’Epée<br>
+					33 000 Bordeaux, France</p>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> :
+					(+33)05 05 28 25 46</p>
+					<p><i class="fa fa-envelope" aria-hidden="true"></i> :
+					team_power-ranger@best.com</p>
+				</div>
+			</div><br>	
+				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 		</footer>
 
 	<!-- Jquery -->

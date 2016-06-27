@@ -2,9 +2,11 @@
 
 <?php $this->start('main_content') ?>
 
+<a href="<?= $this->url('default_home') ?>"><i class="fa fa-home fa-3x" aria-hidden="true">Accueil</i></a>
+
 <!-- Contact team de manière individuelle-->
-<h1><i class="fa fa-users" aria-hidden="true"></i></h1>
-<div class="row">
+<h1 class="center"><i class="fa fa-users fa-4x" aria-hidden="true"></i></h1>
+<div class="row" id="team-contact">
   <div class="col-xs-10 col-md-2">
     <div class="thumbnail">
       <img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="100px" width="100px">
@@ -57,6 +59,5 @@
   </div>
 </div>
 
-<a href="<?= $this->url('default_home') ?>"><i class="fa fa-home fa-3x" aria-hidden="true">Retour Accueil</i></a>
 
 <?php $this->stop('main_content') ?>
