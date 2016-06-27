@@ -13,7 +13,7 @@
 		['GET|POST', '/listUsers', 'Event#listUsers', 'event_listUsers'],
 
 		/**************************** ourAccount ********************/
-		['GET|POST', '/ourAccounts', 'Event#ourAccounts', 'event_ourAccounts'],
+		['GET|POST', '/ourAccounts', 'count#ourAccounts', 'count_ourAccounts'],
 
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
