@@ -2,16 +2,25 @@
 
 <?php $this->start('main_content') ?>
 
+
+
+<!-- Formulaire de contact -->
+<form class="contact-form" id="contact" method="post">
+
+
+  <h2 class="center"><i class="fa fa-paper-plane" aria-hidden="true"></i> Formulaire de contact</h2><br>
   <?php if(!empty($errors)): ?>
     <div class="alert alert-danger">
       <?= implode('<br>', $errors); ?>
     </div>
   <?php endif; ?>
 
+  <?php if(isset($success) && $success === true): ?>
+      <div class="alert alert-success">
+          <p>Votre message a bien été pris en compte.</p>
+      </div>
+  <?php endif; ?>
 
-<!-- Formulaire de contact -->
-<form class="contact-form" id="contact" method="post">
-  <h2 class="center"><i class="fa fa-paper-plane" aria-hidden="true"></i> Formulaire de contact</h2><br>
   <div class="row">
     <div class="col-xs-6">
       <label for="email" class="mail">Votre email :</label>

@@ -18,7 +18,7 @@
 		<footer>
 			<div class="row" id="team">
 					<!-- Nous suivre -->
-				<div class="col-xs-6 col-sm-6" id="social-network">
+				<div class="col-xs-6 col-sm-4" id="social-network">
 					<h2 class="center"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
 					<div class="icons-social">
 						<a href=""><i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
@@ -29,7 +29,21 @@
 					</div>
 				</div>
 
-				<div class="col-xs-6 col-sm-6" id="local">
+				<div class="col-xs-6 col-sm-4">
+				<!-- Dossier Img -->
+				<br>
+				<a href="<?= $this->url('default_home') ?>" class="center"><i class="fa fa-home fa-3x" aria-hidden="true"><strong>Accueil</strong></i></a>
+				<br><br>
+				<ul class="listTeam">
+					<li><a href="<?= $this->url('user_login'); ?>"><strong>Connectez-vous</strong></a></li>
+					<li><a href="<?= $this->url('user_register'); ?>"><strong>Inscrivez-vous</strong></a></li>
+					<li><a href="<?= $this->url('event_createEvent'); ?>"> <i class="fa fa-plus" aria-hidden="true"></i><strong> Créer un nouvel événement</strong> </a></li>
+					<li><a href="<?= $this->url('user_updateUser'); ?>"> <i class="fa fa-cogs" aria-hidden="true"></i><strong> Paramètres</strong></a></li>
+					<li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i><strong> Assistance </strong></a></li>
+				</ul>
+				</div>
+
+				<div class="col-xs-6 col-sm-4" id="local">
 					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
 					<p><i class="fa fa-map-marker" aria-hidden="true"></i> :
 					66 rue de l’Abbé de l’Epée<br>
