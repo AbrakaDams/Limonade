@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var minifyCSS = require('gulp-minify-css');
+var concat = require('gulp-concat');
 
 
 /*******************
@@ -47,8 +48,14 @@ gulp.task('styles', function () {
 				.pipe(gulp.dest('public/assets/css/'))
 });
 
+gulp.task('scripts', function() {
+  return gulp.src(['src/js/*.js'])
+    .pipe(concat('myscript.js'))
+    .pipe(gulp.dest('public/assets/js/'));
+});
+
 // Watch Task
-gulp.task('default', ['styles'], function () { //, 'vendorsJs', 'scriptsJs', 'images', 'browser-sync'
+gulp.task('default', ['styles', 'scripts'], function () { //, 'vendorsJs', 'scriptsJs', 'images', 'browser-sync'
    //gulp.watch('./assets/img/raw/**/*', ['images']);
    gulp.watch('src/scss/*.scss', ['styles']);
    //gulp.watch('./assets/js/**/*.js', ['scriptsJs', browserSync.reload]);
