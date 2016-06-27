@@ -11,6 +11,7 @@
     <p>Rejoint nous : <?php echo $value['address']; ?></p>
     <p>Ca commence a :<?php echo $value['date_start']; ?></p>
     <p> et fini à : <?php echo $value['date_end']; ?></p>
+    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Aller à l'évènement</a>
   </div>
 <?php endforeach; ?>
 
@@ -31,6 +32,8 @@
     <p>Rejoint nous : <?php echo $value['address']; ?></p>
     <p>Ca commence a :<?php echo $value['date_start']; ?></p>
     <p> et fini à : <?php echo $value['date_end']; ?></p>
+    <br>
+    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Aller à l'évènement</a>
   </div>
 <?php endforeach; ?>
 
