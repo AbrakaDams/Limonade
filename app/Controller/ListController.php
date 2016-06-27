@@ -35,7 +35,7 @@ class ListController extends Controller
 				$insertList = new ListModel();
 				// insert
 				if($insertList->insert($entryData)) {
-					$this->showJson(['output' => 'success']);
+					$this->showJson(['answer' => 'success']);
 				}
 			}
 		}

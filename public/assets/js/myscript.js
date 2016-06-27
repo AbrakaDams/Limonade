@@ -1,7 +1,5 @@
 // var newList = '<form><label>Titre de ce liste</label><input type="text" name="newList" placeholder="Nom de votre nouveau list"></form>';
 
-
-
 /***************************
     ADD LIST FORM
 **************************/
@@ -63,15 +61,22 @@ $('#add-list-form').on('submit', function(e) {
             console.table(e);
         },
         success: function(output) {
-            //console.log(output);
-            if(output == 'success') {
+            console.log(output);
+            if(output.answer == 'success') {
                 $('#add-list-form').each(function(){
                     this.reset();
                 });
+                // refresh lists right away, prevent to wait 7 seconds
+                getContent(lastDate);
             }
         }
     });
-    //getContent(lastDate);
+});
+
+
+// initialize jQuery
+$(function() {
+    getContent(0);
 });
 
 function getContent(currentDate) {
@@ -89,7 +94,7 @@ function getContent(currentDate) {
             lastDate = data.newDate;
             if(data.newList.length != 0){
                 $.each(data.newList, function(key, value) {
-                    $('#response').append('<div class="event-list">'+ value.title +'</div>')
+                    $('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
                 })
 
             }
@@ -102,8 +107,3 @@ function getContent(currentDate) {
         }
     });
 }
-
-// initialize jQuery
-$(function() {
-    getContent(0);
-});

@@ -22,7 +22,6 @@ class EventController extends Controller
 
 		$list = new ListController();
 		// $lists = $list->getList($id);
-
 		$addList = $list->addList($id);
 
 		$news = new NewsFeed();
