@@ -16,12 +16,25 @@ class EventController extends Controller
 	 */
 	public function showEvent($id)
 	{
-		//make a query to the database to get this event data
+		/*
+		* Liste des participants
+		*/
+		$participants = array();
+
+		// On récupère les users participant à l'évènement
 		$event = new EventModel();
+		$EventUsers = $event->getEventUsers($id);
+		// $EventUsers retourne toutes les infos de la table event_users
+		$UsersModel = new UsersModel();
+		foreach ($EventUsers as $infos) {
+			$participants[] = $UsersModel->find5($infos['id_user']);
+		}
+		//make a query to the database to get this event data
 		$eventData = $event->find($id);
 
 		$list = new ListController();
 		// $lists = $list->getList($id);
+
 		$addList = $list->addList($id);
 
 		$news = new NewsFeed();
@@ -39,12 +52,13 @@ class EventController extends Controller
 
 		// send received data to the event.php
 		$showEvent = [
-			'thisEvent' => $eventData,
+			'thisEvent'		=> $eventData,
 			//   'lists'	  => $lists,
-			  'addList'	  => $addList,
-			'newsFeed' => $showNews,
-			'comments' => $showComment,
-			'showComments' => $allComments,
+			'addList'		=> $addList,
+			'newsFeed'		=> $showNews,
+			'comments' 		=> $showComment,
+			'showComments' 	=> $allComments,
+			'participants'	=> $participants,
 		 ];
 		$this->show('event/event', $showEvent);
 	}

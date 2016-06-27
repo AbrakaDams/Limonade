@@ -8,4 +8,17 @@ class EventModel extends \W\Model\Model
 	// {
 	// 	//...
 	// }
+
+
+	//Cette fonction permet de récupérer les utilisateurs participant à un évènement donné
+	public function getEventUsers($id) {
+
+		$sql = 'SELECT * FROM event_users WHERE id_event='.$id;
+
+  		$sth = $this->dbh->prepare($sql);
+  		$sth->execute();
+
+  		return $sth->fetchAll();
+	}
+
 }
