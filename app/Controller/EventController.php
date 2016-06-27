@@ -35,7 +35,7 @@ class EventController extends Controller
 		$inComment = $insertComment->insertComment($id);
 
 		$showAllComments = new CommentsModel();
-		$allComments = $showAllComments->joinComment();
+		$allComments = $showAllComments->joinComment($id);
 
 
 		// send received data to the event.php
@@ -174,7 +174,7 @@ class EventController extends Controller
 		// On récupère les infos de tous les utilisateurs
 		$UsersModel = new UsersModel();
 		$users = $UsersModel->findAll();
- 
+
 		// On en sélectionne que les "username"
 		foreach ($users as $user) {
 			$username[] = $user['username'];
