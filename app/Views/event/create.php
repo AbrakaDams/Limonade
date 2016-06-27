@@ -27,56 +27,59 @@
   <hr>
 
 <form method="post" class="form-create-event" nsubmit="return validateForm()">
-<h1>Votre événement</h1>
-<hr>
-  <div class="row">
-    <div class="col-xs-6 .col-md-4">
-      <label for="type-event">Etendue de votre l'événement</label><br>
-        <input type="radio" name="role" id="private" value="private"><label for="private">Privée <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></label>
+  <h1>Votre événement</h1>
+  <hr>
+    <div class="row">
+      <div class="col-xs-6 .col-md-4">
+        <label for="type-event">Etendue de votre l'événement</label><br>
+        <input type="radio" name="role" id="private" value="private">
+
+        <label for="private">Privée <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></label>
         <fieldset>Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.</fieldset><br>
-        <input type="radio" name="role" id="public" value="public"><label for="public">Publique <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></label>
+        <input type="radio" name="role" id="public" value="public">
+        
+        <label for="public">Publique <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </label>
         <fieldset>Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.</fieldset><br>
-    </div>  
-    <div class="col-xs-6 .col-md-4">
-      <label for="cat-event">Catégorie de votre événement</label> <i class="fa fa-info-circle" aria-hidden="true"></i>
-      <br>
-        <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
-        <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
-        <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
-        <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>
+      </div>  
+      <div class="col-xs-6 .col-md-4">
+        <label for="cat-event">Catégorie de votre événement</label> <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <br>
+          <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
+          <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
+          <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
+          <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>
+      </div>
     </div>
-  </div>
-  <hr>  
+    <hr>  
 
-  <div class="row">
-    <div class="col-xs-6 .col-md-4">
-      <label for="title-event">Intitulé de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+    <div class="row">
+      <div class="col-xs-6 .col-md-4">
+        <label for="title-event">Intitulé de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
         <input type="text" name="title" placeholder="Le titre" required><br><br>
+      </div>
+      <div class="col-xs-6 .col-md-4">    
+        <label for="description" >Description de votre évenement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+        <textarea name="description" rows="3" cols="70" placeholder="Une brève description de votre événement "></textarea>
+      </div>  
     </div>
-    <div class="col-xs-6 .col-md-4">    
-      <label for="description" >Description de votre évenement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
-      <textarea name="description" rows="3" cols="70" placeholder="Une brève description de votre événement "></textarea>
-    </div>  
-  </div>
-  <hr>
-  <div class="form-group">        
-      <label for="lieu-event">Adresse de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>        
-      <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
-  </div>
-  <hr>
-
-  <div class="row">
-    <div class="col-xs-6 .col-md-4">
-      <label for="date_begin">Date du début de votre événement: </label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
-      <input type="date" name="date_begin">
-    </div>    
-    <div class="col-xs-6 .col-md-4">
-      <label for="date_end">Date de la fin de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
-      <input type="date" name="date_end">
+    <hr>
+    <div class="form-group">        
+        <label for="lieu-event">Adresse de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>        
+        <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
     </div>
-  </div>
-  <hr>  
-  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+    <hr>
+    <div class="row">
+      <div class="col-xs-6 .col-md-4">
+        <label for="date_begin">Date du début de votre événement: </label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+        <input type="date" name="date_begin">
+      </div>    
+      <div class="col-xs-6 .col-md-4">
+        <label for="date_end">Date de la fin de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+        <input type="date" name="date_end">
+      </div>
+    </div>
+    <hr>  
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 </form>
 
 <?php endif; ?>
