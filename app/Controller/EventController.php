@@ -188,4 +188,13 @@ class EventController extends Controller
 
 		json_encode($username);
 	}
+
+		/**
+	* Gestion des budget
+	*/
+	public function ourAccounts()
+	{
+		
+		$this->show('event/ourAccounts');
+	}
 }
