@@ -22,6 +22,14 @@
 		}
 		?>
 	</div>
+	<div>
+		<h3>Tous les participants de cet évènement :</h3>
+		<?php
+		foreach ($allparticipants as $infos) {
+			echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+		}
+		?>
+	</div>
 	<aside class="">
 		<h3>Fil activités</h3>
 		<?php var_dump($newsFeed); ?>
