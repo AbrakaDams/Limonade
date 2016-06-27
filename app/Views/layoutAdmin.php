@@ -65,29 +65,30 @@
 		<section style="background-color: #d8ddd7">
 			<?= $this->section('main_content') ?>
 		</section>
+
 		<footer>
 			<div class="row" id="team">
 					<!-- Nous suivre -->
 				<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2 class="center"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
+					<h2 class="center"><i class="fa fa-paper-plane" aria-hidden="true"></i> Réseaux Sociau</h2><br>
 					<div class="icons-social">
-						<i class="fa fa-facebook-official fa-5x" aria-hidden="true"></i>
-						<i class="fa fa-instagram fa-5x" aria-hidden="true"></i>
-				    	<i class="fa fa-pinterest-p fa-5x" aria-hidden="true"></i>
-				    	<i class="fa fa-github fa-5x" aria-hidden="true"></i>
-				    	<i class="fa fa-snapchat-square fa-5x" aria-hidden="true"></i>
+						<a href=""><i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
+						<a href=""><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></a>
+						<a href=""><i class="fa fa-pinterest-p fa-4x" aria-hidden="true"></i></a>
+						<a href=""><i class="fa fa-github fa-4x" aria-hidden="true"></i></a>
+						<a href=""><i class="fa fa-snapchat-square fa-4x" aria-hidden="true"></i></a>
 					</div>
 				</div>
 
-		 		<div class="col-xs-6 col-sm-4">
-		 		<!-- Dossier Img -->
+				<div class="col-xs-6 col-sm-4">
+				<!-- Dossier Img -->
 					<h2 class="center"><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><br>
-					<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle">
-					<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle">
-					<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle">
-					<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle">
-					<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle">
-				</div>		
+					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle"></a>
+					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle"></a>
+					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle"></a>
+					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle"></a>
+					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle"></a>
+				</div>
 				<div class="col-xs-6 col-sm-4" id="local">
 					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
 					<p><i class="fa fa-map-marker" aria-hidden="true"></i> :
@@ -98,8 +99,9 @@
 					<p><i class="fa fa-envelope" aria-hidden="true"></i> :
 					team_power-ranger@best.com</p>
 				</div>
-			</div><br>	
-				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
+			</div>
+			<br>
+				<hr id="ligne"><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 		</footer>
 
 
