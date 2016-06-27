@@ -18,12 +18,14 @@ après les vacances, un weekend entre amis, un dîner... </div>
 
 		<td><label for="price">Entrez le montant payé  </label><br>
 		<input name="price" id="price" type="text" placeholder="172 euros"></td>
+
+		<td><label for="total">Montant total </label><br>
+		<input name="total" id="total" type="text" placeholder="172 euros"></td>
 	</tr>	
 	<tr>
 		<td>
 		<br><hr>
 		<button type="submit" value="Calculer" class="btn btn-default" onclick="calculer();"> Calculer </button></td>
-		<td>Total TTC</td>
 	</tr>
 </form>
 </table>
@@ -45,6 +47,9 @@ après les vacances, un weekend entre amis, un dîner... </div>
 
 					<td><label for="price">Entrez le montant payé  </label><br>
 					<input name="price" id="price" type="text" placeholder="172 euros"></td>
+
+					<td><label for="total">Montant total </label><br>
+					<input name="total" id="total" type="text" placeholder="172 euros"></td>
 				</tr>	
 				<tr>
 					<td>
