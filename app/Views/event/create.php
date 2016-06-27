@@ -15,18 +15,24 @@
 
 <?php if(isset($success) && $success === true): ?>
 <div class="alert alert-success">
-    <p style="color:green;"></p>
+    <p style="color:green;">Votre évènement a bien été créé.</p>
+    <p><a href="<?= $this->url('event_showEvent', ['id' => $newId]);?>">Aller à l'évènement</a></p>
   <?php endif; ?>
 </div>
 
 <?php if(isset($errors) && !empty($errors)): ?>
 <div class="alert alert-warning">
-  <p style="color:red;"></p>
+  <p style="color:red;">
+    <?php foreach ($errors as $err) {
+      echo $err.'<br>';
+    }
+    ?>
+  </p>
 <?php endif; ?>
 </div>
   <hr>
 
-<form method="post" class="form-create-event" nsubmit="return validateForm()">
+<form method="post" class="form-create-event" onsubmit="return validateForm()">
 <h1>Votre événement</h1>
 <hr>
   <div class="row">
@@ -61,7 +67,7 @@
   <hr>
   <div class="form-group">        
       <label for="lieu-event">Adresse de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>        
-      <textarea name="adresse" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
+      <textarea name="address" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
   </div>
   <hr>
 
@@ -69,14 +75,20 @@
     <div class="col-xs-6 .col-md-4">
       <label for="date_begin">Date du début de votre événement: </label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
       <input type="date" name="date_begin">
+      <br>
+      <label for="time_begin">Heure du début de votre évènemet: </label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+      <input type="time" name="time_begin">
     </div>    
     <div class="col-xs-6 .col-md-4">
       <label for="date_end">Date de la fin de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
       <input type="date" name="date_end">
+      <br>
+      <label for="date_end">Heure de la fin de votre événement:</label> <i class="fa fa-info-circle" aria-hidden="true"></i><br>
+      <input type="time" name="time_end">
     </div>
   </div>
   <hr>  
-  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 </form>
 
 <?php endif; ?>
