@@ -57,13 +57,14 @@ class ListController extends Controller
 
 		$listsData = new ListModel();
 		$newLists = $listsData->findLists($id, $lastDate);
+		$newCards = $listsData->findCards($id, $lastDate);
 
 		foreach($newLists as $key => $value){
 			$lastDate = $value['date_add'];
 		}
 
 		//var_dump($sql);
-		$this->showJson(['newList' => $newLists, 'newDate' => $lastDate]);
+		$this->showJson(['newList' => $newLists, 'nesCards' => $newCards, 'newDate' => $lastDate]);
 
 	}
 

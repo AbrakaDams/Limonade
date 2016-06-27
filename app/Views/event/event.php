@@ -10,8 +10,8 @@
 
 	<div>
 		<h3> Liste des participants :</h3>
-		
-		<?php 
+
+		<?php
 		if($participants == null){
 			echo 'aucun participant';
 		}
@@ -121,3 +121,7 @@
 </div>
 <?php endif; ?>
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+	<script src="<?= $this->assetUrl('js/10_event.js') ?>"></script>
+<?php $this->stop('js') ?>
