@@ -50,10 +50,6 @@
 			</div><br>	
 				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 
-		
-
-			
-
 		</footer>
 
 

@@ -69,8 +69,7 @@ footer {
 	padding: 3em;
 	width: 100%;
 	background-color: $footerColorNoConnect;
-	bottom: 0;
-}
+	}
 .center{ 
 	text-align: center;
 }
@@ -114,6 +113,22 @@ footer {
 -moz-border-radius: 40px 40px 40px 40px;
 -webkit-border-radius: 40px 40px 40px 40px;
 border: 0px solid #000000;
-}	
+}
+
+/****	
+*** Contact
+****/
+#contact.contact-form{
+	padding:3.5em;
+	font-size: $fontSize;
+	font-family: $fontFam;
+}
+
+/***********
+* Team
+***********/
+#team-contact.row{
+	padding: 7em;	
+}
 
 	
