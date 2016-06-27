@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Login']) ?>
+<?php $this->layout('layoutNoConnect', ['title' => 'Login']) ?>
 
 <?php $this->start('main_content') ?>
 

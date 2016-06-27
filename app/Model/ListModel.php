@@ -8,11 +8,11 @@ class ListModel extends \W\Model\Model
     */
     public function findLists($id, $lastDate) {
 
-        $sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
+      $sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
-		$sth = $this->dbh->prepare($sql);
-		$sth->execute();
+  		$sth = $this->dbh->prepare($sql);
+  		$sth->execute();
 
-		return $sth->fetchAll();
+  		return $sth->fetchAll();
     }
 }
