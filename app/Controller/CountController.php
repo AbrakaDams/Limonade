@@ -7,7 +7,7 @@ use \Controller\EventController;
 
 class CountController extends Controller
 {
-		/**
+	/**
 	* Gestion des budget
 	*/
 	public function ourAccounts()
@@ -35,11 +35,9 @@ class CountController extends Controller
 			if (!int($post['price'])){
 				$errors[] = 'Votre prix doit être un chiffre';
 			}
-
 			if(count($errors) === 0){
 				// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
 				$countModel = new CountModel();
-
 				//on utilise la méthode insert() qui permet d'insérer des données en bases
 				$data = [
 					//la clé du tableau correspond au nom de la colone SQL
@@ -49,7 +47,6 @@ class CountController extends Controller
 					'price' 	=> $post['price'],
 				];
 				$countModel->insert($data);
-
 			}//fin if count
 		}//if!empty post
 			$params = [
@@ -57,7 +54,6 @@ class CountController extends Controller
 			'success' 	=> $success,
 		];
 		$this->show('count/ourAccounts', $params);
-		
 	}//fin public function
 }
 

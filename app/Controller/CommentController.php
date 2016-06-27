@@ -7,6 +7,11 @@ use \Model\NewsFeedModel as NewsFeedModel;
 
 class CommentController extends Controller
 {
+  /**
+   * Affiche les commentaire
+   * @param  $id l'id commentaire
+   * @return Tout les commentaires
+   */
   public function showComments($id){
     $comment = new NewsFeedModel();
 
@@ -16,6 +21,10 @@ class CommentController extends Controller
     return $showComment;
   }
 
+  /**
+	 *  Ajoute un commentaire
+   * @param $id relie l'id users avec l'id commentaire
+	 */
   public function insertComment($id){
     $post = [];
     $error = [];
@@ -44,6 +53,13 @@ class CommentController extends Controller
       }
     }
   }
+
+  
+  /**
+   * Affiche les commentaire
+   * @param  $id l'id commentaire
+   * @return Tout les commentaires
+   */
   public function showAllComments($id){
     $importComment = new CommentModel();
 

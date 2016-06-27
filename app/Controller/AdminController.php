@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \W\Controller\Controller;
@@ -15,7 +15,6 @@ class AdminController extends Controller
 	 */
 	public function admin()
 	{
-		
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');

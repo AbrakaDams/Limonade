@@ -9,18 +9,18 @@ use \Model\ContactModel as Contact;
 
 class ContactController extends Controller
 {
-
+	/**
+	 * traitement formulaire contact
+	 */
 	public function contact(){
 			$post = array();
 			$errors = array();
 			$success = false;
 
-
 			if(!empty($_POST)){
 		  		foreach ($_POST as $key => $value) {
 		    		$post[$key] = trim(strip_tags($value));
 		  		}
-
 				if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 					$errors[] = 'Votre adresse email n\'est pas valide';
 				}
@@ -37,13 +37,11 @@ class ContactController extends Controller
 		  			// Il n'y a pas d'erreurs on fait l'insertion SQL
 		  			$contactModel = new Contact();
 
-
 		  			$data = [
-		  				'name' => $post['name'],
+		  				'name' 			=> $post['name'],
 		  				'email'     => $post['email'],
-		  				'object'     => $post['object'],
-		  				'content' => $post['content'],
-
+	  					'object'    => $post['object'],
+		  				'content' 	=> $post['content'],
 		  			];
 		  			if($contactModel->insert($data))
 						{
@@ -55,7 +53,6 @@ class ContactController extends Controller
 				'errors' 	=> $errors,
 				'success' 	=> $success,
 		];
-
 		$this->show('default/contact', $params);
 	}
 }

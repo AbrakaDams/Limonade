@@ -31,14 +31,10 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * Page Contact de l'équipe
+	 * Page information de l'équipe
 	 */
 	public function team()
 	{
 		$this->show('default/team');
 	}
-
-	/**
-	 * Page Contact
-	 */
 }

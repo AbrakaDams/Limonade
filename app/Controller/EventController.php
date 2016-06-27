@@ -13,7 +13,8 @@ use \W\Model\UsersModel as UsersModel;
 class EventController extends Controller
 {
 	/**
-	 * Page d'accueil par défaut
+	 * Afficher la page d'accueil pour utilisateur connecté
+	 * @param  Récupere $id de lutilisateur
 	 */
 	public function showEvent($id)
 	{
@@ -70,11 +71,11 @@ class EventController extends Controller
 
 		// send received data to the event.php
 		$showEvent = [
-			'thisEvent'			=> $eventData,
-			//'lists'			=> $lists,
-			'addList'			=> $addList,
-			'newsFeed'			=> $showNews,
-			'comments' 			=> $showComment,
+			'thisEvent'				=> $eventData,
+			//'lists'					=> $lists,
+			'addList'					=> $addList,
+			'newsFeed'				=> $showNews,
+			'comments' 				=> $showComment,
 			'showComments' 		=> $allComments,
 			'participants'		=> $participants,
 			'allparticipants'	=> $allparticipants,
@@ -82,11 +83,10 @@ class EventController extends Controller
 		$this->show('event/event', $showEvent);
 	}
 
+
 	/**
-	 * Création d'un événement
+	 * Création d'évènement
 	 */
-
-
 	public function createEvent()
 	{
 		$post = array();
@@ -104,8 +104,7 @@ class EventController extends Controller
 
 	  		if(strtotime($post['date_begin']) > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
-	  		}	  		
-
+	  		}
 			// Etendue de l event Privée ou Publique
 		  	if(empty($post['role'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
@@ -145,12 +144,12 @@ class EventController extends Controller
 	  				'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
 	  				'title'     	=> $post['title'],
-	  				'description' 	=> $post['description'],
+	  				'description' => $post['description'],
 	  				'address' 		=> $post['address'],
 	  				'date_start' 	=> $date_debut,
 	  				'date_end' 		=> $date_fin,
 	  			];
-	  			
+
 	  			if($eventModel->insert($data)){
 	  				$success = true;
 	  				$newId = $eventModel->lastInsertId();
@@ -158,13 +157,11 @@ class EventController extends Controller
 	  			var_dump($newId);
 			}
 		}
-
 		$params = [
 			'errors' 	=> $errors,
 			'success' 	=> $success,
 			'newId'		=> $newId,
 		];
-
 		$this->show('event/create', $params);
 	}
 
@@ -210,6 +207,10 @@ class EventController extends Controller
 	* $ End of line
 	**/
 
+
+	/**
+	 * Permet de trouver les utilisateurs
+	 */
 	public function listUsers(){
 		$username = array();
 
@@ -232,7 +233,7 @@ class EventController extends Controller
 		json_encode($username);
 	}
 
-		/**
+	/**
 	* Gestion des budget
 	*/
 	public function ourAccounts()
