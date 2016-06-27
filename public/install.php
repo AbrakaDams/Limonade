@@ -323,6 +323,23 @@ if($sql === false){
 
 /**************************************END TABLE CONTACT**********************************/
 
+/**************************************TABLE OURACCOUNT**********************************/
+
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `ourAccounts` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`personn` VARCHAR(255) NOT NULL , 
+	`purchase` VARCHAR(255) NOT NULL , 
+	`quantity` INT NOT NULL , 
+	`price` FLOAT NOT NULL , 
+	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+);
+if($sql === false){
+	die(var_dump($db->errorInfo()));
+}
+
+/************************************END TABLE OURACCOUNT *********************************/
+
+
 
 
 if($upValid){
