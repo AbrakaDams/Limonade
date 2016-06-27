@@ -131,7 +131,7 @@ class EventController extends Controller
 	*/
 	public function invite($id)
 	{
-		// On instancie les variables
+		/*// On instancie les variables
 		$username = array();
 
 		$UsersModel = new UsersModel();
@@ -142,9 +142,9 @@ class EventController extends Controller
 		foreach ($users as $user) {
 			$username[] = $user['username'];
 		}
-
-		$params = ['username' => $username];
-		$this->show('event/invite', $params);
+		var_dump($username);
+		$params = ['username' => $username];*/
+		$this->show('event/invite');
 	}
 
 	/**
@@ -169,23 +169,24 @@ class EventController extends Controller
 	**/
 
 	public function listUsers(){
-		// On instancie les variables
 		$username = array();
 
-		$UsersModel = new UsersModel();
 		// On récupère les infos de tous les utilisateurs
+		$UsersModel = new UsersModel();
 		$users = $UsersModel->findAll();
-
+ 
 		// On en sélectionne que les "username"
 		foreach ($users as $user) {
 			$username[] = $user['username'];
 		}
 
-		var_dump($username);
-		$params = ['username' => $username];
-		$this->showJson(['username' => $username]);
+		/*$fp = fopen('usersSearch.json', 'W+');
+		fwrite($fp, json_encode($username));
+		fclose($fp);*/
+
+		/*$params = ['username' => $username];
+		$this->show('event/invite', $params);*/
+
+		json_encode($username);
 	}
-
-
-
 }
