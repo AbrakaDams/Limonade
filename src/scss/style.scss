@@ -2,7 +2,8 @@
 $fontFam: 'BenchNine', sans-serif;
 $footerColorNoConnect: grey;
 $fontSize: 16px;
-$fontColor: wheat;
+$fontSizeSlider: 2em;
+$fontColor: #ffffff;
 /************************************************************/
 * {
 	box-sizing: border-box;
@@ -23,29 +24,40 @@ html {
 	padding: 2em;
 	background-color: yellow;
 }
+
+
 /*************************
 ******* Slider ************
 **************************/
 .slider {
 	overflow: hidden;
-	max-height: 100em;
+	max-height: 100vh;
 	min-width: 100%;
-	border: outset 1em wheat;
+
 }
 .img-slide {
 	width: 100%;
-	height: 70em;
-	max-height: 70em;
+	min-height: 80vh;
+	max-height: 100vh;
 }
 .titleIntro {
 	color: $fontColor;
 	font-family: $fontFam;
-	font-size: $fontSize;
+	font-size: $fontSizeSlider;
+	text-shadow: 0.05em 0.05em 0.06em #000;
 }
 .textIntro {
 	color: $fontColor;
 	font-family: $fontFam;
-	font-size: $fontSize;
+	font-size: $fontSizeSlider;
+	text-shadow: 0.05em 0.05em  0.06em #000;
+}
+.carousel-caption{
+	display: block;
+ 	h1{
+		top:0;
+		left: 0;
+	}
 }
 .btn-default {
 	border-radius: 10px 10px 53px 52px;
@@ -53,6 +65,8 @@ html {
 	-webkit-border-radius: 10px 10px 53px 52px;
 	border: 0 solid #000000;
 }
+
+
 /***********************
 ********** Footer  ****
 ************************/
@@ -95,6 +109,8 @@ footer {
 	color: white;
 	font-size: 1.2em;
 }
+
+
 /********
 ** Login
 *****/
@@ -114,6 +130,8 @@ footer {
 	-webkit-border-radius: 40px 40px 40px 40px;
 	border: 0 solid #000000;
 }
+
+
 /****
 *** Contact
 ****/
@@ -122,11 +140,12 @@ footer {
 	height: 70vh;
 	font-size: $fontSize;
 }
+
+
 /***********
 * Team
 ***********/
 #team{
-
 	text-align: center;
 	.listTeam{
 		li{
