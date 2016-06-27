@@ -27,7 +27,8 @@ class ListModel extends \W\Model\Model
         //$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
   		$sth = $this->dbh->prepare($sql);
-  		$sth->execute();
+  // 		$sth->execute();
+  		$sth->execute() or die(print_r($sth));
 
   		return $sth->fetchAll();
     }
