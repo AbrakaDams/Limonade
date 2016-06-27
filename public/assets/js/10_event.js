@@ -98,6 +98,9 @@ function getContent(currentDate) {
                     $('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
                 });
             }
+            if(response.newCard.length =! 0) {
+                console.log(response.newCard);
+            }
         },
         error: function(e) {
             console.log(e);

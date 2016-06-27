@@ -72,6 +72,15 @@
 			</ul>
 
 		<?php endif; ?>
+		<div id="response"></div>
+		<div class="add-new-card">
+			<form class="add-card-form" action="<?=$this->url('list_addCard');?>" method="post">
+				<label>Titre de cette tache</label>
+				<input type="text" name="newCard" id="add-card-input" maxlength="150" placeholder="Nom de votre nouvelle card">
+				<input type="submit" value="Go">
+			</form>
+		</div>
+		
 		<div id="add-new-list">
 			<button type="button" id="add-list-btn">+</button>
 			<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
@@ -79,11 +88,13 @@
 				<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 				<input type="submit" value="Go">
 			</form>
+
 		</div>
+
 	</section>
 
 
-    <div id="response"></div>
+
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
