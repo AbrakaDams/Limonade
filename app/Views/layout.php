@@ -113,14 +113,6 @@
 
 		</footer>
 
-	<!-- gestion de budget ourAccount.php -->
-	<script type="text/javascript">
-		function Calculer() //fonction qui calcule mon budget
-		{
-			alert(document.getElementById("quantity").value); //valeur du champ quantité
-		}
-		</script>
-
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Boostrap Js -->

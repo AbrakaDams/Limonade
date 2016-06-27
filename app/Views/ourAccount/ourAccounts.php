@@ -56,6 +56,13 @@ après les vacances, un weekend entre amis, un dîner... </div>
 	</form>
 </div>
 
+	<!-- gestion de budget ourAccount.php -->
+	<script type="text/javascript">
+		function Calculer() //fonction qui calcule mon budget
+		{
+			alert(document.getElementById("quantity").value); //valeur du champ quantité
+		}
+		</script>
 
 
 <?php $this->stop('main_content') ?>
