@@ -19,7 +19,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`role` ENUM('user','admin') NOT NULL ,
 		`avatar` VARCHAR(255) NOT NULL,
 		`url` VARCHAR(255) NOT NULL,
-		`activation` ENUM('true','false') NOT NULL,	
+		`activation` ENUM('true','false') NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`)) ENGINE = InnoDB;"
 );
@@ -259,6 +259,7 @@ if($sql === false){
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(255) NOT NULL ,
+  `description` VARCHAR(255) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` INT NOT NULL ,
   `id_user` INT NOT NULL ,
@@ -308,12 +309,12 @@ if($sql === false){
 
 /**************************************TABLE CONTACT**********************************/
 
-$sql = $db->exec("CREATE TABLE IF NOT EXISTS `contact` ( 
-	`id` INT NOT NULL AUTO_INCREMENT , 
-	`name` VARCHAR(255) NOT NULL , 
-	`email` VARCHAR(255) NOT NULL , 
-	`object` VARCHAR(255) NOT NULL , 
-	`content` VARCHAR(255) NOT NULL , 
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `contact` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`name` VARCHAR(255) NOT NULL ,
+	`email` VARCHAR(255) NOT NULL ,
+	`object` VARCHAR(255) NOT NULL ,
+	`content` VARCHAR(255) NOT NULL ,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

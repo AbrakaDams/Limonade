@@ -21,7 +21,9 @@ class ListModel extends \W\Model\Model
 
        // $sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
-        $sql = 'SELECT list.id, list.title, cards.id, cards.title, cards.description, cards.quantity, cards.price, cards.id_user FROM list INNER JOIN cards ON list.id = cards.id_list WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
+        // $sql = 'SELECT list.id, list.title, cards.id, cards.title, cards.description, cards.quantity, cards.price, cards.id_user FROM list INNER JOIN cards ON list.id = cards.id_list WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
+
+        $sql = 'SELECT list.id, list.title, cards.id, cards.title, cards.description, cards.quantity, cards.price, cards.id_user FROM list INNER JOIN cards ON list.id = cards.id_list';
         //$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
   		$sth = $this->dbh->prepare($sql);

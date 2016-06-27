@@ -94,7 +94,7 @@ function getContent(currentDate) {
             lastDate = data.newDate;
             if(data.newList.length != 0){
                 $.each(data.newList, function(key, value) {
-                    $('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
+                    //$('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
                 })
 
             }

@@ -259,6 +259,7 @@ if($sql === false){
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(255) NOT NULL ,
+  `description` VARCHAR(255) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` INT NOT NULL ,
   `id_user` INT NOT NULL ,
