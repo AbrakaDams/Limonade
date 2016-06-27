@@ -18,7 +18,7 @@ après les vacances, un weekend entre amis, un dîner... </div>
 
 		<td><label for="price">Entrez le montant payé  </label><br>
 		<input name="price" id="price" type="text" placeholder="172 euros"></td>
-	</tr>	
+	</tr>
 	<tr>
 		<td>
 		<br><hr>
@@ -45,7 +45,7 @@ après les vacances, un weekend entre amis, un dîner... </div>
 
 					<td><label for="price">Entrez le montant payé  </label><br>
 					<input name="price" id="price" type="text" placeholder="172 euros"></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td>
 					<br><hr>
@@ -55,14 +55,6 @@ après les vacances, un weekend entre amis, un dîner... </div>
 		</table>
 	</form>
 </div>
-
-	<!-- gestion de budget ourAccount.php -->
-	<script type="text/javascript">
-		function Calculer() //fonction qui calcule mon budget
-		{
-			alert(document.getElementById("quantity").value); //valeur du champ quantité
-		}
-		</script>
 
 
 <?php $this->stop('main_content') ?>

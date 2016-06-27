@@ -26,8 +26,6 @@ $(document).mouseup(function (e) {
     }
 });
 
-alert('Privet'); 
-
 
 
 /**
