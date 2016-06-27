@@ -58,8 +58,6 @@ class ListController extends Controller
 		$listsData = new ListModel();
 		$newLists = $listsData->findLists($id, $lastDate);
 
-		$newCards = $listData->findCards($id, $lastDate);
-
 		foreach($newLists as $key => $value){
 			$lastDate = $value['date_add'];
 		}
