@@ -4,7 +4,8 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Controller\ListController;
-use \Controller\NewsFeedController as NewsFeed;
+use \Controller\NewsFeedController as NewsFeedController;
+use \Model\NewsFeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
 use \W\Model\UsersModel as UsersModel;
@@ -40,7 +41,7 @@ class EventController extends Controller
 			$participants[] = $UsersModel->find($idUser[$i]);
 			}
 		}
-		
+
 		foreach ($idUser as $id) {
 			$allparticipants[] = $UsersModel->find($id);
 		}
@@ -54,8 +55,8 @@ class EventController extends Controller
 
 		$addList = $list->addList($id);
 
-		$news = new NewsFeed();
-		$showNews = $news->newsFeed($id);
+		$news = new NewsModel();
+		$showNews = $news->joinNewsFeed($id);
 
 		$comment = new CommentController();
 		$showComment = $comment->showComments($id);
@@ -226,7 +227,7 @@ class EventController extends Controller
 	*/
 	public function ourAccounts()
 	{
-		
+
 		$this->show('event/ourAccounts');
 	}
 }

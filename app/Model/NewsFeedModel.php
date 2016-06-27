@@ -83,13 +83,18 @@ class NewsFeedModel extends \W\Model\Model
     return $sth->fetchAll();
   }
 
-  public function joinNewsFeed(){
+  public function joinNewsFeed($id){
 
-    $sql = 'SELECT newsfeed.id_event FROM users INNER JOIN comments ON users.id = comments.id_user';
-    $sth = $this->dbh->prepare($sql);
-    $sth->execute();
+      $sql = 'SELECT users.id, users.username, users.avatar  FROM users
+      INNER JOIN newsfeed ON users.id = newsfeed.id_user
+      INNER JOIN cards ON cards.id = newsfeed.id_card
+      INNER JOIN comments ON comments.id = newsfeed.id_comment
+      INNER JOIN event ON event.id = newsfeed.id_event WHERE event.id = '.$id;
 
-    return $sth->fetchAll();
-  }
+      $sth = $this->dbh->prepare($sql);
+      $sth->execute();
+
+      return $sth->fetchAll();
+    }
 
 }
