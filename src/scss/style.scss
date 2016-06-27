@@ -13,6 +13,9 @@ $footerColorNoConnect : grey;
 	margin: 0;
 	padding: 0;
 }
+html {
+	height: 100%;
+}
 .hidden {
     display: none !important;
 }
@@ -30,6 +33,7 @@ $footerColorNoConnect : grey;
 ******* Slider ************
 **************************/
 .slider {
+	overflow: hidden;
 	max-height: 100em;
 	min-width: 100%;
 	border: outset 1em wheat;
@@ -64,6 +68,7 @@ footer {
 	padding: 3em;
 	width: 100%;
 	background-color: $footerColorNoConnect;
+	bottom: 0;
 }
 .center{ 
 	text-align: center;

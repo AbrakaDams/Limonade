@@ -55,7 +55,7 @@
 				<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
 				<!-- identité -->
 				<li><a href="<?= $this->url('user_login'); ?>">Connectez vous</a></li>
-				<li><a href="<?= $this->url('default_home'); ?>">back home</a></li>
+				<li><a href="<?= $this->url('default_home'); ?>">Retour accueil</a></li>
 			<?php endif;  ?>
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
 	  </div><!-- /.container-fluid -->
