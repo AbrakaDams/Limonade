@@ -91,44 +91,49 @@ class EventController extends Controller
 	{
 		$post = array();
 		$errors = array();
-		$success = null;
-
+		$success = false;
+		$date_debut = '';
+		$date_fin = '';
+		$newId = NULL;
 
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
+	  		var_dump($post);
 
-	  		if(strtotime($post['date_begin']) <= strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
+	  		if(strtotime($post['date_begin']) > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
-	  		}
+	  		}	  		
 
 			// Etendue de l event Privée ou Publique
-		  	if(!empty($post['role'])){
+		  	if(empty($post['role'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
 		  	}
 			// Catégorie de l event
-		  	if(!empty($post['category'])){
+		  	if(empty($post['category'])){
 		    	$errors[] = 'Vous devez cocher un bouton !';
-			  }
+			}
 			// Titre
-			if(!strlen($post['title']) < 3 || strlen($post['title']) > 20){
+			if(strlen($post['title']) < 3 || strlen($post['title']) > 20){
 			    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
 			}
 			// Description
 			if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 			    $errors[] = 'La description doit contenir minimum 5 caractères !';
 			}
-			if(!empty($post['address'])){
+			if(empty($post['address'])){
 			  	$errors[] = 'Veuillez indiquer une adresse';
 			}
-
-			if(!$this->valideFormatDate($post['date_begin'])){
-				$error[] = 'La date de début n\'est pas au bon format';
+			// On concatène la date et l'heure de début pour avoir un format valable
+			$date_debut = $post['date_begin'].' '.$post['time_begin'].':00';
+			if($this->valideFormatDate($date_debut) == false){
+				$errors[] = 'La date de début n\'est pas au bon format';
 			}
-
-			if(!$this->valideFormatDate($post['date_end'])){
-				$error[] = 'La date de fin n\'est pas au bon format';
+			// On concatène la date et l'heure de fin pour avoir un format valable
+			$date_fin = $post['date_end'].' '.$post['time_end'].':00';
+			if($this->valideFormatDate($date_fin) == false){
+				$errors[] = 'La date de fin n\'est pas au bon format';
 			}
 
 			if(count($errors) === 0){
@@ -137,22 +142,27 @@ class EventController extends Controller
 
 
 	  			$data = [
-	  				'category' => $post['category'],
-	  				'role'     => $post['role'],
-	  				'title'     => $post['title'],
-	  				'description' => $post['description'],
-	  				'address' => $post['address'],
-	  				'date_start' => $post['date_begin'],
-	  				'date_end' => $post['date_end'],
+	  				'category' 		=> $post['category'],
+	  				'role'     		=> $post['role'],
+	  				'title'     	=> $post['title'],
+	  				'description' 	=> $post['description'],
+	  				'address' 		=> $post['address'],
+	  				'date_start' 	=> $date_debut,
+	  				'date_end' 		=> $date_fin,
 	  			];
-	  			$eventModel->insert($data);
-
+	  			
+	  			if($eventModel->insert($data)){
+	  				$success = true;
+	  				$newId = $eventModel->lastInsertId();
+	  			}
+	  			var_dump($newId);
 			}
 		}
 
 		$params = [
 			'errors' 	=> $errors,
 			'success' 	=> $success,
+			'newId'		=> $newId,
 		];
 
 		$this->show('event/create', $params);
