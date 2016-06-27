@@ -48,7 +48,7 @@
 
 <?php  if(isset($w_user) && !empty($w_user)): ?>
 	<br>
-	<strong>Vous etes deja connectez. <br><a href="<?= $this->url('default_home') ?>">Retour Accueil espace memebre</a></strong>
+	<strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil espace membre</a></strong>
 	<?php var_dump($w_user); ?>
 <?php  else: ?>
 
