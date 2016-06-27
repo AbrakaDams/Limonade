@@ -58,6 +58,7 @@ gulp.task('scripts', function() {
 gulp.task('default', ['styles', 'scripts'], function () { //, 'vendorsJs', 'scriptsJs', 'images', 'browser-sync'
    //gulp.watch('./assets/img/raw/**/*', ['images']);
    gulp.watch('src/scss/*.scss', ['styles']);
+   gulp.watch('src/js/*.js', ['scripts']);
    //gulp.watch('./assets/js/**/*.js', ['scriptsJs', browserSync.reload]);
 
 });

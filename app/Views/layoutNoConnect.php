@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> <!-- Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
+	<link href='https://fonts.googleapis.com/css?family=BenchNine' rel='stylesheet' type='text/css'>
 
 
 </head>
@@ -42,14 +43,14 @@
 					<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle">
 				</div>
 				<div class="col-xs-6 col-sm-4" id="local">
-					<h2 class="center"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h2><br>
+					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
 					<p>115 Rue des peupliers trysomiques<br>
 					33 000 Bordeaux, France<br>
 					(+33)05 05 28 25 46<br>
 					team_power-ranger@best.com
 					</p>
 				</div>
-			</div>	
+			</div><br>	
 				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 
 		</footer>
