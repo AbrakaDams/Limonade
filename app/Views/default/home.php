@@ -15,19 +15,22 @@
 	    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 	  	</ol>
 	  	<!-- Wrapper for slides -->
-	  	<div class="carousel-inner" role="listbox">
+	  	<div class="carousel-inner" role="listbox">					
 	    	<div class="item active" ">
-	      			<img src="<?= $this->assetUrl('img/slider/img_slider1.jpg') ?>" style="max-height: 50em; min-width: 100%;" alt="img-slide">
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider1.jpg') ?>" class="img-slide">
 	      		<div class="carousel-caption">
-	        		<h3>Un outil attractif et intuitif</h3>
-	    			<p>Gagnez du temps, de l'énergie et de l'efficacité.</p>
+	        		<h3 class="titleIntro">Un outil attractif et intuitif</h3>
+	    			<p class="textIntro">Avec notre plateforme Limonade, vous pouvez gérer tous vos événements le plus simplement du monde.Pour cela nous mettons à votre disposition une interface simple et intuitif accompagné d'outils nécessaires pour mener à terme vos projets tout en gagnant du temps, de l'énergie et de l'efficacité.</p>
+					<a href="<?= $this->url('user_register'); ?>" class="btn btn-primary btn-lg active" role="button">S'inscrire</a>
 	      		</div>
 	    	</div>
 	    	<div class="item">
-	      			<img src="<?= $this->assetUrl('img/slider/img_slider2.jpg') ?>" style="max-height: 50em; min-width: 100%;" alt="img-slide" >
+	      			<img src="<?= $this->assetUrl('img/slider/img_slider2.jpg') ?>" class="img-slide" >
 	      		<div class="carousel-caption">
-	        		<h3>Une organisation d'événements</h3>
-	    			<p>Organisez et pilotez tous vos événements de A à Z sur un même outil.</p>
+	        		<h3 class="titleIntro">Une organisation d'événements</h3>
+	    			<p class="textIntro">Organisez et pilotez tous vos événements de A à Z sur un même outil.<br>
+	    			Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.</p>
+					<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Se connecter</a>
 	      		</div>
 	    	</div>
 	  	</div>
@@ -40,11 +43,8 @@
 	    	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 	    	<span class="sr-only">Suivant</span>
 	  	</a>
-	</div>
-	    	<fieldset>
-	      		Avec notre plateforme Limonade, vous pouvez gérer tous vos événements le plus simplement du monde.Pour cela nous mettons à votre disposition une interface simple et intuitif accompagné d'outils nécessaires pour mener à terme vos projets tout en gagnant du temps, de l'énergie et de l'efficacité.
-	      		Pour cela Limonade est la plateforme qu'il vous faut pour vos événements.Reposez vous et laissez nous faire.<br><strong>La bise de toute l'équipe Limonade!</strong>
-	    	</fieldset>
+	</div>   	
+	    	
 
 <?php  if(isset($w_user) && !empty($w_user)): ?>
 	<br>
@@ -52,15 +52,13 @@
 	<?php var_dump($w_user); ?>
 <?php  else: ?>
 
-	<a href="<?= $this->url('user_register'); ?>" class="btn btn-primary btn-lg active" role="button">Inscription</a>
-	<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Connexion</a>
 
 <?php endif; ?>
 </section>
 
 <div class="event-near" style="background-color: #868786">
 
-	<h2> Liste des évenement public </h2>
+	<h2 class="center"> Liste des évenement public </h2>
 
 </div>
 

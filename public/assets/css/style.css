@@ -1,3 +1,1 @@
-.hidden{display:none!important}.visible{display:inline-block!important}#add-list{padding:30px;background-color:#ff0}
-
-
+#local,#social-network,.center{text-align:center}*{box-sizing:border-box;margin:0;padding:0}.hidden{display:none!important}.visible{display:inline-block!important}#add-list{padding:2em;background-color:#ff0}.img-slide{max-height:80em;min-width:100%}.textIntro,.titleIntro{color:wheat}footer{padding:3em;width:100%;background-color:grey}#team .img-circle{height:6em;width:6em;margin-left:1.31em;border:double #000}#social-network{color:#fff}.icons-social i{margin-left:.2em}#local{color:#fff}#copy{color:#fff;font-size:1.7em}

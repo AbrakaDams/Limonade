@@ -14,43 +14,43 @@
 
 	</header>
 
-		<section style="background-color: #d8ddd7">
+		<section id="noConnect">
 			<?= $this->section('main_content') ?>
 		</section>
 
-		<footer style="background-color:rgb(168, 163, 162); height: 20%; bottom: 0;">
+		<footer>
 			<div class="row" id="team">
-		 		<div class="col-xs-6 col-sm-4">
-		 <!-- Dossier Img -->
-			<h2><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><hr>
-						<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
-						<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle" height="50px" width="50px">
+					<!-- Nous suivre -->
+				<div class="col-xs-6 col-sm-4" id="social-network">
+					<h2 class="center"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
+					<div class="icons-social">
+						<i class="fa fa-facebook-official fa-5x" aria-hidden="true"></i>
+						<i class="fa fa-instagram fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-pinterest-p fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-github fa-5x" aria-hidden="true"></i>
+				    	<i class="fa fa-snapchat-square fa-5x" aria-hidden="true"></i>
 					</div>
-			<!-- Nous suivre -->
-			<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><hr>
-				<div class="icons-social">
-					<i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
-						<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-github fa-3x" aria-hidden="true"></i>
-		    			<i class="fa fa-snapchat-square fa-3x" aria-hidden="true"></i>
-					</div>
-			</div>
+				</div>
 
-			<div class="col-xs-6 col-sm-4" id="local">
-					<h1><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h1><hr>
+		 		<div class="col-xs-6 col-sm-4">
+		 		<!-- Dossier Img -->
+					<h2 class="center"><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><br>
+					<img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Baptiste.jpg') ?>" alt="avatar-team" class="img-circle">
+					<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle">
+				</div>
+				<div class="col-xs-6 col-sm-4" id="local">
+					<h2 class="center"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h2><br>
 					<p>115 Rue des peupliers trysomiques<br>
 					33 000 Bordeaux, France<br>
 					(+33)05 05 28 25 46<br>
 					team_power-ranger@best.com
 					</p>
-					</div>
-				<hr><p><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
-
+				</div>
+			</div>	
+				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 
 		</footer>
 
@@ -60,10 +60,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Boostrap Js -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<!-- Moustache Js -->
-	<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-	<script src="<?= $this->assetUrl('js/myscript.js') ?>"></script>
+	
 </body>
 
 </html>
