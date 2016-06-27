@@ -58,7 +58,7 @@
 
 <div class="event-near" style="background-color: #868786">
 
-	<h2 class="center"> Liste des évenement public </h2>
+	<h2 class="center"> Liste des évenements public </h2>
 
 </div>
 

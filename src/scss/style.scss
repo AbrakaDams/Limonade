@@ -1,8 +1,8 @@
 /************ Définition des variables ****************************************/
 
-$fontSlide : 'BenchNine', sans-serif;
-$sizeSlide : 26px;
-$colorSlide : wheat;
+$fontFam : 'BenchNine', sans-serif;
+$fontSize : 26px;
+$fontColor : wheat;
 
 $footerColorNoConnect : grey;
 
@@ -39,14 +39,21 @@ $footerColorNoConnect : grey;
 	min-width: 100%;
 }
 .titleIntro {
-color: $colorSlide;
-font-family: $fontSlide;
-font-size: $sizeSlide;
+color: $fontColor;
+font-family: $fontFam;
+font-size: $fontSize;
 }	
 .textIntro {
-color: $colorSlide;
-font-family: $fontSlide;
-font-size: $sizeSlide;
+color: $fontColor;
+font-family: $fontFam;
+font-size: $fontSize;
+}
+
+.btn-default{
+ border-radius: 10px 10px 53px 52px;
+-moz-border-radius: 10px 10px 53px 52px;
+-webkit-border-radius: 10px 10px 53px 52px;
+border: 0px solid #000000;
 }
 
 
@@ -86,9 +93,12 @@ footer {
 /********
 ** Login
 *****/
-.form-inline #form-login {
+.form-inline {
 	text-align: center;
-	color: $colorSlide;
-	font-size: $sizeSlide;
+	color: $fontColor;
+	font-family: $fontFam;
+	font-size: $fontSize;
+	padding-top: 5em;
+	padding-bottom: 5em;	
 }
 	

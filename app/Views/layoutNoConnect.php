@@ -44,15 +44,16 @@
 				</div>
 				<div class="col-xs-6 col-sm-4" id="local">
 					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
-					<p>115 Rue des peupliers trysomiques<br>
-					33 000 Bordeaux, France<br>
-					(+33)05 05 28 25 46<br>
-					team_power-ranger@best.com
-					</p>
+					<p><i class="fa fa-map-marker" aria-hidden="true"></i> :
+					66 rue de l’Abbé de l’Epée<br>
+					33 000 Bordeaux, France</p>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> :
+					(+33)05 05 28 25 46</p>
+					<p><i class="fa fa-envelope" aria-hidden="true"></i> :
+					team_power-ranger@best.com</p>
 				</div>
 			</div><br>	
 				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
-
 		</footer>
 
 
