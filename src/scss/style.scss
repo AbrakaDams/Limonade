@@ -25,6 +25,7 @@ $footerColorNoConnect : grey;
     padding: 2em;
     background-color:yellow;
 }
+
 /*************************
 ******* Slider ************
 **************************/
@@ -80,5 +81,15 @@ footer {
 #copy{
 	color: white;
 	font-size: 1.7em;
+}
+
+/********
+** Login
+*****/
+
+.form-inline #form-login {
+	text-align: center;
+	color: $colorSlide;
+	font-size: $sizeSlide;
 }
 	

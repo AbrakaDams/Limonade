@@ -21,7 +21,7 @@
 	      		<div class="carousel-caption">
 	        		<h3 class="titleIntro">Un outil attractif et intuitif</h3>
 	    			<p class="textIntro">Avec notre plateforme Limonade, vous pouvez gérer tous vos événements le plus simplement du monde.Pour cela nous mettons à votre disposition une interface simple et intuitif accompagné d'outils nécessaires pour mener à terme vos projets tout en gagnant du temps, de l'énergie et de l'efficacité.</p>
-					<a href="<?= $this->url('user_register'); ?>" class="btn btn-primary btn-lg active" role="button">S'inscrire</a>
+					<a href="<?= $this->url('user_register'); ?>" class="btn btn-default btn-lg active" role="button">S'inscrire</a>
 	      		</div>
 	    	</div>
 	    	<div class="item">

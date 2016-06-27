@@ -43,14 +43,14 @@
 					<img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle">
 				</div>
 				<div class="col-xs-6 col-sm-4" id="local">
-					<h2 class="center"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</h2><br>
+					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
 					<p>115 Rue des peupliers trysomiques<br>
 					33 000 Bordeaux, France<br>
 					(+33)05 05 28 25 46<br>
 					team_power-ranger@best.com
 					</p>
 				</div>
-			</div>	
+			</div><br>	
 				<hr><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 
 		</footer>
