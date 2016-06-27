@@ -1,6 +1,12 @@
-$footerColorNoConnect : grey;
-$intro : wheat;
+/************ Définition des variables ****************************************/
 
+$fontSlide : 'BenchNine', sans-serif;
+$sizeSlide : 26px;
+$colorSlide : wheat;
+
+$footerColorNoConnect : grey;
+
+/************************************************************/
 
 * {	
 	box-sizing: border-box;
@@ -19,19 +25,28 @@ $intro : wheat;
     padding: 2em;
     background-color:yellow;
 }
+
 /*************************
 ******* Slider ************
 **************************/
-
+.slider {
+	max-height: 100em;
+	min-width: 100%;
+	border: outset 1em wheat;
+}
 .img-slide {
 	max-height: 80em;
 	min-width: 100%;
 }
 .titleIntro {
-color: $intro;
+color: $colorSlide;
+font-family: $fontSlide;
+font-size: $sizeSlide;
 }	
 .textIntro {
-color: $intro;
+color: $colorSlide;
+font-family: $fontSlide;
+font-size: $sizeSlide;
 }
 
 
@@ -66,5 +81,14 @@ footer {
 #copy{
 	color: white;
 	font-size: 1.7em;
+}
+
+/********
+** Login
+*****/
+.form-inline #form-login {
+	text-align: center;
+	color: $colorSlide;
+	font-size: $sizeSlide;
 }
 	
