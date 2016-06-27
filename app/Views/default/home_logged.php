@@ -4,7 +4,7 @@
 
 <?php foreach ($thisEvent as $value): ?>
   <div style="display:inline-block;" class="">
-    <h2><?php echo $value['title']; ?></h2>
+    <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
     <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<i><?php echo $value['role']; ?></i></p>
     <br>
     <p><?php echo $value['description']; ?></p>
@@ -24,7 +24,7 @@
 
 <?php foreach ($thisEvent as $value): ?>
   <div style="display:inline-block;" class="">
-    <h2><?php echo $value['title']; ?></h2>
+    <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
     <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<i><?php echo $value['role']; ?></i></p>
     <br>
     <p><?php echo $value['description']; ?></p>
