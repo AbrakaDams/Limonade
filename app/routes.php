@@ -11,6 +11,8 @@
 		['GET', '/search', 'Event#search', 'event_search'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
 		['GET|POST', '/listUsers', 'Event#listUsers', 'event_listUsers'],
+
+		/**************************** ourAccount ********************/
 		['GET|POST', '/ourAccounts', 'Event#ourAccounts', 'event_ourAccounts'],
 
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
