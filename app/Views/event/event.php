@@ -128,27 +128,16 @@
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
 		<h3>Commentaire</h3>
-		<form method="post">
-			<textarea name="comment" rows="2" cols="50"></textarea>
+		<form method="post" id="form-comment">
+			<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">
 		</form>
-		<div class="">
-			<?php foreach ($showComments as $value): ?>
-				<div style="border-radius: 5px; background-color: rgb(163, 161, 208);" class="">
-					<img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="
-					<?php if(isset($value['avatar']) && !empty($value['avatar'])){ echo $value['avatar'];}
-					elseif(isset($value['url']) && !empty($value['url'])){ echo $value['url']; }
-					else{ echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
 
-					<?php echo 'Posté par :<strong>'.$value['username']. '</strong>'; ?>
-					<?php echo 'le :'.$value['date_add']; ?>
-					<hr>
-					<?php echo $value['content']; ?>
-					<br><br><br>
-				</div>
-				<br>
-			<?php endforeach; ?>
+		<div id="comments">
+
+
 		</div>
+
 	</section>
 <?php else: ?>
 
@@ -162,4 +151,5 @@
 
 <?php $this->start('js') ?>
 	<script src="<?= $this->assetUrl('js/10_lists.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/11_comment.js') ?>"></script>
 <?php $this->stop('js') ?>

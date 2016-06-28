@@ -12,20 +12,35 @@ class CommentController extends Controller
    * @param  $id l'id commentaire
    * @return Tout les commentaires
    */
-  public function showComments($id){
-    $comment = new NewsFeedModel();
+  public function showComments(){
+    $comment = new CommentModel();
+    $id = 0;
+    if(isset($_POST['id']) && !empty($_POST['id'])){
+        $id = intval($_POST['id']);
+    }
 
-    $showComment = $comment->findAllComment($id);
+    $showComment = $comment->findAllComments($id);
+    $join = $comment->joinComment($id);
+    $this->showJson(['allComments' => $showComment]);
+  }
 
+  public function joinComment(){
+    $comment = new CommentModel();
+    $id = 0;
+    if(isset($_POST['id']) && !empty($_POST['id'])){
+        $id = intval($_POST['id']);
+    }
 
-    return $showComment;
+    $showComment = $comment->findAllComments($id);
+    $join = $comment->joinComment($id);
+    $this->showJson(['allComments' => $join]);
   }
 
   /**
 	 *  Ajoute un commentaire
    * @param $id relie l'id users avec l'id commentaire
 	 */
-  public function insertComment($id){
+  public function insertComment(){
     $post = [];
     $error = [];
 
@@ -42,31 +57,17 @@ class CommentController extends Controller
         $date = date("Y-m-d H:i:s");
 
         $user = $this->getUser();
-
+        $id = $post['id'];
         $data = [
           'id_event' => $id,
           'id_user' => $user['id'],
           'content' => $post['comment'],
           'date_add' => $date,
         ];
-        $insertComment = $commentaire->insert($data);
+        if($commentaire->insert($data)){
+            $this->showJson(['answer' => 'success']);
+        }
       }
     }
   }
-
-  
-  /**
-   * Affiche les commentaire
-   * @param  $id l'id commentaire
-   * @return Tout les commentaires
-   */
-  public function showAllComments($id){
-    $importComment = new CommentModel();
-
-    $comment = $importComment->findAll($id);
-
-    return $comment;
-  }
-
-
 }
