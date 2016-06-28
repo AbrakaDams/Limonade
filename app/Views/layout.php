@@ -50,7 +50,7 @@
 							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 							<li><a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Assistance </a></li>
-							<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
+							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
 					</li>
