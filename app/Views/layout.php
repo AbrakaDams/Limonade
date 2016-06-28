@@ -15,20 +15,19 @@
 		<!-- ma navbar -->
 		<nav class="navbar navbar-default">
 	  	<div class="container-fluid">
-	   			<!-- Brand and toggle get grouped for better mobile display -->
-	    		<div class="navbar-header">
-	     			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				     </button>
-
-	      			<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
+	   		<!-- Brand and toggle get grouped for better mobile display -->
+	    	<div class="navbar-header">
+	     		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				    <span class="sr-only">Toggle navigation</span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				</button>
+	      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
 	      			<img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px">
-	      			</a>
-	    		</div>
-					<ul class="nav navbar-nav navbar-right">
+	      		</a>
+	    	</div>
+				<ul class="nav navbar-nav navbar-right">
 			<?php if(isset($w_user) && !empty($w_user)): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
@@ -37,15 +36,13 @@
 					<!-- notifications -->
 					<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
 					<!-- identité -->
-				  <li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
-					<li>
-						<a href="#">
-							<img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="
-							<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
-												echo $w_user['avatar'];
-											}elseif(isset($w_user['url']) && !empty($w_user['url'])){
-												echo $w_user['url']; } else{ echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
-								</a>
+				  	<li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
+					<li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+						echo $w_user['avatar'];
+					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
+						echo $w_user['url']; } else{ 
+							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+						</a>
 					</li>
 
 					<li class="dropdown">
