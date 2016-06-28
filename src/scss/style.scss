@@ -92,11 +92,8 @@ footer {
 	margin: 0 auto;
 	padding: 0 auto;
 }
-.center {
-	text-align: center;
-	color: wheat;
-}
-#team .img-circle {
+
+#team.img-circle {
 	height: 7em;
 	width: 7em;
 	margin: 0.69em;
@@ -205,3 +202,15 @@ footer {
 		}
 	}
 }
+/*************
+**** Form Create Event
+**********************/
+#createEvent{
+	color: black;
+	background-color: #ECECEC;
+	padding: 2em;
+	#validCreaEvent{
+		margin: 0 auto;
+	}
+}
+

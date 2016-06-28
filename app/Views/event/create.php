@@ -32,8 +32,8 @@
 </div>
   <hr>
 
-<form method="post" class="form-create-event" onsubmit="return validateForm()">
-<h1>Votre événement</h1>
+<form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
+<h1 class="center">Votre événement</h1>
 <hr>
   <div class="row">
     <div class="col-xs-6 .col-md-4">
@@ -88,17 +88,9 @@
     </div>
   </div>
   <hr>  
-  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+  <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
 </form>
 
 <?php endif; ?>
-
-<!-- Repas participatif
-     Soirée déguisée
-     Anniversaire surprise
-     Vacances entre amis(séjours)
-     Organisation de jeux
-     Ateliers (belotte,couture,etc)
-     Sorties(plages,rando,piknik,etc) -->
 
 <?php $this->stop('main_content') ?>

@@ -23,7 +23,7 @@
 			<div class="row" id="team">
 					<!-- Nous suivre -->
 				<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2 class="center"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
+					<h2 class="centerh2"><a href="<?= $this->url('contact_contact');?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact</a></h2><br>
 					<div class="icons-social">
 						<a href=""><i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
 						<a href=""><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></a>
@@ -35,7 +35,7 @@
 
 		 		<div class="col-xs-6 col-sm-4">
 		 		<!-- Dossier Img -->
-					<h2 class="center"><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><br>
+					<h2 class="centerh2"><a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a></h2><br>
 					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Anastasia.jpg') ?>" alt="avatar-team" class="img-circle"></a>
 					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Damien.jpg') ?>" alt="avatar-team" class="img-circle"></a>
 					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Myriam.jpg') ?>" alt="avatar-team" class="img-circle"></a>
@@ -43,7 +43,7 @@
 					<a href="#"><img src="<?= $this->assetUrl('img/avatar/Noé.jpg') ?>" alt="avatar-team" class="img-circle"></a>
 				</div>
 				<div class="col-xs-6 col-sm-4" id="local">
-					<h2 class="center"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
+					<h2 class="centerh2"><a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Informations</a></h2><br>
 					<p><i class="fa fa-map-marker" aria-hidden="true"></i> :
 					66 rue de l’Abbé de l’Epée<br>
 					33 000 Bordeaux, France</p>
