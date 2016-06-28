@@ -26,7 +26,6 @@ html {
 	background-color: yellow;
 }
 
-
 /*************************
 ******* Home non connecté
 ***********  Slider
@@ -72,11 +71,8 @@ html {
 ************************/
 #eventPublic.event-public {
 	background-color: #BFBFBF;
-	padding: 2em;
-	
+	padding: 2em;	
 }
-
-
 
 /******************************
 ********** Footer  
@@ -129,19 +125,30 @@ footer {
 	text-align: center;
 	color: $fontColor;
 	font-family: $fontFam;
-	font-size: $fontSize;
-	padding-top: 1em;
-	padding-bottom: 1em;
+	padding-top: 1.5em;
+	padding-bottom: 1em;	
 }
 #form-login.form-group {
-	background-color: grey;
-	padding: 4em;
+	background-color: grey;	
+	text-align: left;
+	padding: 5em;
+	width: 70em;
+	height: 50em;
 	border-radius: 40px 40px 40px 40px;
 	-moz-border-radius: 40px 40px 40px 40px;
 	-webkit-border-radius: 40px 40px 40px 40px;
 	border: 0 solid #000000;
 }
-
+#option-contact.option{
+	text-align: right;
+	font-size: 2em;
+}
+#formContact{
+	font-size: 2em;
+}
+.form-control{
+	font-size: 1.4em;
+}
 
 /***************************
 *** Contact
