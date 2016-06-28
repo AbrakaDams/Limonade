@@ -27,7 +27,7 @@
 	      			<img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px">
 	      		</a>
 	    	</div>
-				<ul class="nav navbar-nav navbar-right">
+				<ul id="userAvatar" class="nav navbar-nav navbar-right">
 			<?php if(isset($w_user) && !empty($w_user)): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
@@ -37,10 +37,10 @@
 					<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
 					<!-- identité -->
 				  	<li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
-					<li><a href="#"><img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+					<li><a href="#"><img class="logo" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
 						echo $w_user['avatar'];
 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
-						echo $w_user['url']; } else{ 
+						echo $w_user['url']; } else{
 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
 						</a>
 					</li>
@@ -109,7 +109,7 @@
 			<br>
 				<hr id="ligne"><p class="center" id="copy"><strong> <?php echo date('Y'); ?> &copy; Limonade &reg;</strong></p>
 		</footer>
-		
+
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Boostrap Js -->

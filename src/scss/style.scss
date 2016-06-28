@@ -71,7 +71,7 @@ html {
 ************************/
 #eventPublic.event-public {
 	background-color: #BFBFBF;
-	padding: 2em;	
+	padding: 2em;
 }
 
 /***********************
@@ -151,28 +151,11 @@ footer {
 
 
 /***********
-* Team
+* Team FOOTER
 ***********/
 
-#team-contact.row{
-	padding: 7em;
-	padding-left: 15em;	
-}
-
-.uniq{
-	border-radius: 40px;
-	height: 20em;
-	background-color: #BDC3C7;
-	border: double black;
-}
-.img-circle-avatar{
-	overflow:hidden;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:50px;
-    width:90px;
-}
 #team{
+
 	text-align: center;
 	.listTeam{
 		li{
@@ -182,7 +165,7 @@ footer {
 	}
 }
 #team-contact{
-	padding: 10.42em;
+	padding: 10em;
 	h1{
 		margin-top: -2em;
 	}
@@ -210,6 +193,8 @@ footer {
 		}
 	}
 }
+
+
 /*************
 **** Form Create Event
 **********************/
@@ -217,4 +202,18 @@ footer {
 	color: black;
 	background-color: #ECECEC;
 	padding: 2em;
-}	
+}
+
+
+/*************
+**** BArre nav
+**********************/
+#userAvatar{
+	li{
+		.logo{
+			height:2em;
+			width: 2em;
+			border-radius:2em;
+		}
+	}
+}
