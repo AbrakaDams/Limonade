@@ -92,6 +92,7 @@ class ListController extends Controller
 				  'price' 			=> $post['card_price'],
 				  'id_user' 		=> $responsible,
 				  'id_event' 		=> $id,
+				  'id_list' 		=> 1,
 				  'date_add'		=> $timestamp,
 				];
 				// call model

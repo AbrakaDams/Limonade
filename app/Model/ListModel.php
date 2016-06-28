@@ -26,23 +26,4 @@ class ListModel extends \W\Model\Model
 		return $sth->fetchAll();
     }
 
-    // public function findListsCards($id, $lastDate) {
-    //
-    //     // $sql = 'SELECT *
-    //     //         FROM list
-    //     //         INNER JOIN cards ON cards.id_list = list.id
-    //     //         WHERE list.id_event='.$id.' AND list.date_add > "' .  $lastDate .'"';
-    //
-    //     $sql = 'SELECT list.id, list.title, cards.id, cards.id_list, cards.title, cards.description, cards.price, cards.date_add
-    //             FROM list
-    //             INNER JOIN cards ON list.id = cards.id_list
-    //             WHERE list.id_event='.$id;
-    //
-	// 	$sth = $this->dbh->prepare($sql);
-	// 	$sth->execute();
-    //
-	// 	return $sth->fetchAll();
-    // }
-
-
 }

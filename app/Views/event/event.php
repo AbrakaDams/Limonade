@@ -67,50 +67,7 @@
 	</section>
 
 	<section id="event-lists">
-		<?php if(isset($lists) && !empty($lists)): ?>
-			<ul>
-				<?php foreach ($lists as $value): ?>
-					<li><?php echo $value['title']; ?></li>
-				<?php endforeach; ?>
-			</ul>
-
-		<?php endif; ?>
-		<div id="response"></div> <hr>
-		<div id="response-cards"></div>
-		<div class="add-new-card">
-			<form class="add-card-form" action="<?=$this->url('list_addCard');?>" method="post">
-				<label>Titre de cette tache</label>
-				<input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card">
-				<br>
-
-				<label for="">Description</label>
-				<textarea name="card_desc" rows="8" cols="40"></textarea>
-				<br>
-
-				<label for="">Quantite</label>
-				<input type="number" name="card_quantity">
-				<br>
-
-				<label for="">Prix</label>
-				<input type="number" name="card_price">
-				<br>
-
-
-				<label for="">Responsable</label>
-				<select name="card_person">
-					<option value="0">Choisir</option>
-					<?php
-						foreach ($participants as $key => $value) {
-							echo '<option value ="'.$value['id'].'">'.$value['username'].'</option>';
-						}
-					 ?>
-				</select>
-				<br>
-
-				<input type="submit" value="Go">
-			</form>
-		</div>
-
+		
 		<div id="add-new-list">
 			<button type="button" id="add-list-btn">+</button>
 			<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">

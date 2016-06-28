@@ -1,4 +1,4 @@
-// var newList = '<form><label>Titre de ce liste</label><input type="text" name="newList" placeholder="Nom de votre nouveau list"></form>';
+var newCard = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc" rows="8" cols="40"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option></select><br><input type="submit" value="Go"></form></div>';
 
 /***************************
     ADD LIST FORM
@@ -10,6 +10,12 @@ $(function() {
         $('#add-list-form').removeClass('hidden');
     });
 
+    $('body').on('click', '.add-card-btn', function(e){
+        //console.log(e);
+        console.log($(this));
+        $(this).addClass('hidden');
+        $(this).next().removeClass('hidden');
+    });
 });
 
 // hide our add list input if we click anywhere else and if our input is empty
@@ -22,6 +28,28 @@ $(document).mouseup(function (e) {
         if(listForm.length == 0) {
             $('#add-list-btn').removeClass('hidden');
             $('#add-list-form').addClass('hidden');
+        }
+    }
+});
+
+// hide our add list input if we click anywhere else and if our input is empty
+$(document).mouseup(function (e) {
+    // if we click anywhere else but not our form
+    var cardDiv = $('.add-new-card');
+
+    if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+
+        var countEmptyFields = 0;
+        
+        $('.add-card-form:visible').each(function (){
+            if ($.trim(this.value) != '') {
+                countEmptyFields++;
+            }
+        });
+
+        if(countEmptyFields == 0) {
+            $('.add-card-btn').removeClass('hidden');
+            $('.add-card-form').addClass('hidden');
         }
     }
 });
@@ -119,12 +147,18 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('#response').append('<div class="list"><div class="event-list-'+value.id+'"></div>'+ value.title +'</div>')
+                    $('#event-lists').prepend('<div class="event-list"><div class="list" data-id-list="'+value.id+'">'+ value.title + '</div><div class="cards"></div>' + newCard + '</div>')
                 });
             }
             if(response.newCards.length != 0){
                 $.each(response.newCards, function(key, value) {
-                    $('#response-cards').append('<div class="card"><div class="event-card-'+value.id+'"></div>'+ value.title +'</div>')
+
+                    var dataToFind = '[data-id-list="'+value.id_list+'"]';
+                    var divToFind = 'div[data-id-list="'+value.id_list+'"]';
+
+                    if($(dataToFind).length == 1) {
+                        $(divToFind).next().append('<div class="card"><div data-id-card="'+value.id+'"></div>'+ value.title +'</div>');
+                    }
                 });
             }
         },
