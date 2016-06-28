@@ -19,7 +19,7 @@
 			<div class="row" id="team">
 					<!-- Nous suivre -->
 				<div class="col-xs-6 col-sm-4" id="social-network">
-					<h2 class="center"><i class="fa fa-paper-plane" aria-hidden="true"></i> Réseaux Sociau</h2><br>
+					<h2 class="center"><i class="fa fa-paper-plane" aria-hidden="true"></i> Réseaux Sociaux</h2><br>
 					<div class="icons-social">
 						<a href=""><i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
 						<a href=""><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></a>
