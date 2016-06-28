@@ -5,13 +5,13 @@
 	<title><?= $this->e($title) ?></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> <!-- Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
+	<link rel="icon" type="image/png" href="<?= ">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
 
 
 </head>
 <body>
 	<header>
-
 		<!-- ma navbar -->
 		<nav class="navbar navbar-default">
 	  	<div class="container-fluid">
@@ -44,7 +44,6 @@
 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
 						</a>
 					</li>
-
 					<li class="dropdown">
 						 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votre compte <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -55,7 +54,6 @@
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
 					</li>
-
 			<?php else:  ?>
 				<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
 				<!-- identité -->
