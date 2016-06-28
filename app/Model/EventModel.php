@@ -65,12 +65,12 @@ class EventModel extends \W\Model\Model
 	{
 		$sql = 'SELECT * FROM ' . $this->table .' WHERE role = :role ORDER BY date_start ASC' ;
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':role', $role);		
+		$sth->bindValue(':role', $role);
 		$sth->execute();
 
 		return $sth->fetchAll();
 	}
-	
+
 	public function deleteParticipant($idEvent, $idUser)
 	{
 		$sql = 'DELETE FROM event_users WHERE id_event = :idEvent AND id_user = :idUser';

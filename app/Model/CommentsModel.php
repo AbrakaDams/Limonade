@@ -8,13 +8,14 @@ class CommentsModel extends \W\Model\Model
     $sql = 'SELECT users.username, users.avatar, users.url, comments.content, comments.date_add
     FROM users
     INNER JOIN comments ON users.id = comments.id_user
-    WHERE comments.id_event='.$id.' ORDER BY comments.date_add DESC ';
+    WHERE comments.id_event='.$id.' ORDER BY comments.date_add DESC LIMIT 10';
 
     $sth = $this->dbh->prepare($sql);
     $sth->execute();
 
     return $sth->fetchAll();
   }
+  
   public function findAllComments($orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null, $id = null)
   {
 

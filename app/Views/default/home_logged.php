@@ -2,10 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
-<?php foreach ($thisEvent as $value): ?>
+<?php foreach ($thisEventPublic as $value): ?>
   <div style="display:inline-block;" class="">
     <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
-    <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<i><?php echo $value['role']; ?></i></p>
+    <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<strong><i><?php echo $value['role']; ?></i></strong></p>
     <br>
     <p><?php echo $value['description']; ?></p>
     <p>Rejoint nous : <?php echo $value['address']; ?></p>
@@ -23,10 +23,10 @@
 
   <br><br><hr><br><br>
 
-<?php foreach ($thisEvent as $value): ?>
+<?php foreach ($thisEventPrivate as $value): ?>
   <div style="display:inline-block;" class="">
     <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
-    <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<i><?php echo $value['role']; ?></i></p>
+    <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<strong><i><?php echo $value['role']; ?></i></strong></p>
     <br>
     <p><?php echo $value['description']; ?></p>
     <p>Rejoint nous : <?php echo $value['address']; ?></p>

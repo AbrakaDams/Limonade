@@ -18,22 +18,28 @@ class DefaultController extends Controller
 
 
 		if(!isset($loggedUser)){
-			// non connecté		
+			// non connecté
 			$event = new EventModel();
 			$role = 'public';
 
 			$eventPublic = $event->getEventPublic($role);
 			$showEventPublic = [
 			'thisEvent' => $eventPublic,
-			];			
+			];
 
 			$this->show('default/home', $showEventPublic);
 		}else{
 			// Connecté
 			$event = new EventModel();
-			$eventData = $event->findAll($orderBy = 'date_start', $orderDir = 'DESC', $limit = 3);
+			$role = 'public';
+			$eventPublic = $event->getEventPublic($role);
 
-			$showEvent = ['thisEvent' => $eventData,
+			$role = 'private';
+			$eventPrivate = $event->getEventPublic($role);
+
+			$showEvent = [
+				'thisEventPublic' => $eventPublic,
+				'thisEventPrivate' => $eventPrivate,
 			];
 			$this->show('default/home_logged', $showEvent);
 		}
@@ -45,5 +51,5 @@ class DefaultController extends Controller
 	public function team()
 	{
 		$this->show('default/team');
-	}	
+	}
 }
