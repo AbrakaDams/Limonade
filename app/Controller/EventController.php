@@ -81,12 +81,14 @@ class EventController extends Controller
 	 * Création d'évènement
 	 */
 	public function createEvent()
-	{
+		{
+		{
 		$post = array();
 		$errors = array();
 		$success = false;
 		$date_debut = '';
 		$date_fin = '';
+		$newEvent = '';
 		$newId = NULL;
 
 		if(!empty($_POST)){
@@ -144,10 +146,20 @@ class EventController extends Controller
 
 	  			$newEvent = $eventModel->insert($data);
 	  			if(!empty($newEvent)){
-	  				$success = true;
-
+	  				$infoUser = $this->getUser();
+	  				$id = $infoUser['id'];
+	  				$dataEvent = [
+	  					'id_event'	=> $newEvent['id'],
+	  					'id_user'	=> $id,
+	  					'role'		=> 'event_admin',
+	  				];
+	  				if($eventModel->insertEventUsers($dataEvent)){
+	  					$success = true;
+	  				}
+	  				else{
+	  					echo $errors[] = 'erreur lors de la création de l\'évènement';
+	  				}
 	  			}
-	  			var_dump($newEvent);
 			}
 		}
 		$params = [

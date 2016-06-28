@@ -24,10 +24,10 @@ class EventModel extends \W\Model\Model
 	public function findFullEventInfo($id) {
 
         $sql = 'SELECT *
-                FROM event
-                INNER JOIN list ON event.id = list.id_event
-                INNER JOIN cards ON list.id = cards.id_list
-                WHERE list.id_event='.$id;
+            FROM event
+            INNER JOIN list ON event.id = list.id_event
+            INNER JOIN cards ON list.id = cards.id_list
+            WHERE list.id_event='.$id;
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
@@ -35,4 +35,28 @@ class EventModel extends \W\Model\Model
 		return $sth->fetchAll();
     }
 
+    public function insertEventUsers(array $data, $stripTags = true)
+    {
+   		$colNames = array_keys($data);
+		$colNamesString = implode(', ', $colNames);
+
+		$sql = 'INSERT INTO event_users(' . $colNamesString . ') VALUES (';
+		foreach($data as $key => $value){
+			$sql .= ":$key, ";
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ')';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+			$value = ($stripTags) ? strip_tags($value) : $value;
+			$sth->bindValue(':'.$key, $value);
+		}
+
+		if (!$sth->execute()){
+			return false;
+		}
+		return $this->find($this->lastInsertId());
+	}
 }
