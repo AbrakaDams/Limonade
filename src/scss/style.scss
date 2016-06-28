@@ -3,6 +3,7 @@ $fontFam: 'BenchNine', sans-serif;
 $footerColorNoConnect: grey;
 $fontSize: 16px;
 $fontSizeSlider: 2em;
+$txtShadowSlider : 0.05em 0.05em 0.06em #000; 
 $fontColor: #ffffff;
 /************************************************************/
 * {
@@ -44,13 +45,13 @@ html {
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSizeSlider;
-	text-shadow: 0.05em 0.05em 0.06em #000;
+	text-shadow: $txtShadowSlider;
 }
 .textIntro {
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSizeSlider;
-	text-shadow: 0.05em 0.05em  0.06em #000;
+	text-shadow: $txtShadowSlider;
 }
 .carousel-caption{
 	display: block;
