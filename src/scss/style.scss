@@ -3,7 +3,6 @@ $fontFam: 'BenchNine', sans-serif;
 $footerColorNoConnect: grey;
 $fontSize: 16px;
 $fontSizeSlider: 2em;
-$txtShadowSlider : 0.05em 0.05em 0.06em #000; 
 $fontColor: #ffffff;
 /************************************************************/
 * {
@@ -25,16 +24,10 @@ html {
 	padding: 2em;
 	background-color: yellow;
 }
-input.form-control{
-	font-size: 1.4em;
-	color: black;
-}
-
 
 
 /*************************
-******* Home non connecté
-***********  Slider
+******* Slider ************
 **************************/
 .slider {
 	overflow: hidden;
@@ -51,13 +44,13 @@ input.form-control{
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSizeSlider;
-	text-shadow: $txtShadowSlider;
+	text-shadow: 0.05em 0.05em 0.06em #000;
 }
 .textIntro {
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSizeSlider;
-	text-shadow: $txtShadowSlider;
+	text-shadow: 0.05em 0.05em  0.06em #000;
 }
 .carousel-caption{
 	display: block;
@@ -72,6 +65,7 @@ input.form-control{
 	-webkit-border-radius: 10px 10px 53px 52px;
 	border: 0 solid #000000;
 }
+
 /***********
 * Show eventPublic
 ************************/
@@ -80,9 +74,10 @@ input.form-control{
 	padding: 2em;	
 }
 
-/******************************
-********** Footer  
-**********************************/
+/***********************
+********** Footer  ****
+************************/
+
 footer {
 	padding: 0.1em;
 	width: 100%;
@@ -92,8 +87,10 @@ footer {
 	margin: 0 auto;
 	padding: 0 auto;
 }
-
-#team.img-circle {
+.center {
+	text-align: center;
+}
+#team .img-circle {
 	height: 7em;
 	width: 7em;
 	margin: 0.69em;
@@ -122,38 +119,30 @@ footer {
 }
 
 
-/************************
+/********
 ** Login
-***************************/
+*****/
 .form-inline {
 	text-align: center;
 	color: $fontColor;
 	font-family: $fontFam;
+	font-size: $fontSize;
 	padding-top: 1.5em;
-	padding-bottom: 1em;	
+	padding-bottom: 1em;
 }
 #form-login.form-group {
-	background-color: grey;	
-	text-align: left;
-	padding: 5em;
-	width: 70em;
-	height: 50em;
+	background-color: grey;
+	padding: 4em;
 	border-radius: 40px 40px 40px 40px;
 	-moz-border-radius: 40px 40px 40px 40px;
 	-webkit-border-radius: 40px 40px 40px 40px;
 	border: 0 solid #000000;
 }
-#option-contact.option{
-	text-align: right;
-	font-size: 2em;
-}
-#formContact{
-	font-size: 2em;
-}
 
-/***************************
+
+/****
 *** Contact
-**************************/
+****/
 #contact.contact-form {
 	padding: 2em 2.5em 2.5em 2em;
 	height: 70vh;
@@ -161,9 +150,28 @@ footer {
 }
 
 
-/*********************
+/***********
 * Team
-******************************/
+***********/
+
+#team-contact.row{
+	padding: 7em;
+	padding-left: 15em;	
+}
+
+.uniq{
+	border-radius: 40px;
+	height: 20em;
+	background-color: #BDC3C7;
+	border: double black;
+}
+.img-circle-avatar{
+	overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:90px;
+}
 #team{
 	text-align: center;
 	.listTeam{
@@ -209,8 +217,4 @@ footer {
 	color: black;
 	background-color: #ECECEC;
 	padding: 2em;
-	#validCreaEvent{
-		margin: 0 auto;
-	}
-}
-
+}	
