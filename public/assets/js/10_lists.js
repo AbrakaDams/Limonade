@@ -99,14 +99,12 @@ $('.add-card-form').on('submit', function(e) {
 });
 
 
-// initialize jQuery
+// initialize getContent function on page load
 $(function() {
-    getContent(0);
+    getContent(lastDate);
 });
 
 function getContent(currentDate) {
-
-    console.log(currentDate);
 
     $.ajax({
         type: 'POST',
@@ -117,7 +115,7 @@ function getContent(currentDate) {
         success: function(response){
 
             console.log(response);
-
+            //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {

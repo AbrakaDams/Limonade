@@ -30,7 +30,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-					'title' 		=> $listName,
+				  'title' 		=> $listName,
 				  'id_event' 	=> $id,
 				  'date_add'	=> $timestamp,
 				];
@@ -86,12 +86,11 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-					'title' 			=> $post['card_title'],
-				  'description' => $post['card_desc'],
+				  'title' 			=> $post['card_title'],
+				  'description' 	=> $post['card_desc'],
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],
 				  'id_user' 		=> $responsible,
-					//'id_list' 	=> $idList,
 				  'id_event' 		=> $id,
 				  'date_add'		=> $timestamp,
 				];
@@ -135,7 +134,7 @@ class ListController extends Controller
 			}
 		}
 		if(!empty($newCards)) {
-			foreach ($newLists as $key => $value) {
+			foreach ($newCards as $key => $value) {
 				$lastDateCards = $value['date_add'];
 			}
 		}
@@ -149,10 +148,10 @@ class ListController extends Controller
 			}
 		}
 		elseif($lastDateLists == null && $lastDateCards != null) {
-			$lastDate = $lastDateLists;
+			$lastDate = $lastDateCards;
 		}
 		elseif($lastDateLists != null && $lastDateCards == null) {
-			$lastDate = $lastDateCards;
+			$lastDate = $lastDateLists;
 		}
 
 		$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate]);
