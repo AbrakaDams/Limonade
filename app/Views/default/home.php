@@ -35,8 +35,8 @@
 	    	<div class="item active">
 	      		<img src="<?= $this->assetUrl('img/slider/img_slider3.jpg') ?>" class="img-slide" >
 	      		<div class="carousel-caption">
-	      			<h1 class="titleIntro">Un événement est un fait important, un fait marquant pour vous tout comme pour nous.</h1><br>	        			    		
-		    		<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Se connecter</a>
+	      			<h1 class="titleIntro">Un événement est un fait important, un fait marquant pour vous tout comme pour nous.</h1><br>
+	      			<a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Se connecter</a>
 		    		<a href="<?= $this->url('user_register'); ?>" class="btn btn-default btn-lg active" role="button">S'inscrire</a>		    							
 	      		</div>
 	    	</div>
@@ -64,8 +64,19 @@
 </section>
 
 <div class="event-near" style="background-color: #868786">
-
 	<h2 class="center"> Liste des évenements public </h2>
+	<?php foreach ($thisEvent as $value): ?>
+  <div style="display:inline-block;" class="">
+    <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
+    <p>Evènement de type :<i><?php echo $value['category']; ?></i> et :<i><?php echo $value['role']; ?></i></p>
+    <br>
+    <p><?php echo $value['description']; ?></p>
+    <p>Ou? <?php echo $value['address']; ?></p>
+    <p>Commençe le :<?php echo $value['date_start']; ?></p>
+    <p>Fini le : <?php echo $value['date_end']; ?></p>
+    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Aller à l'évènement</a>
+  </div>
+<?php endforeach; ?>
 
 </div>
 

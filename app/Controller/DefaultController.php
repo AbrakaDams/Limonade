@@ -10,15 +10,24 @@ class DefaultController extends Controller
 {
 
 	/**
-	 * Page d'accueil par défaut Si non-connecter  Sinon page accueil connecter
+	 * Page d'accueil par défaut Si non-connecté  Sinon page accueil connecté
 	 */
 	public function home()
 	{
 		$loggedUser = $this->getUser();
 
+
 		if(!isset($loggedUser)){
-			// non connecté
-			$this->show('default/home');
+			// non connecté		
+			$event = new EventModel();
+			$role = 'public';
+
+			$eventPublic = $event->getEventPublic($role);
+			$showEventPublic = [
+			'thisEvent' => $eventPublic,
+			];			
+
+			$this->show('default/home', $showEventPublic);
 		}else{
 			// Connecté
 			$event = new EventModel();
@@ -36,5 +45,5 @@ class DefaultController extends Controller
 	public function team()
 	{
 		$this->show('default/team');
-	}
+	}	
 }
