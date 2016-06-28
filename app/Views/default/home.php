@@ -63,8 +63,8 @@
 <?php endif; ?>
 </section>
 
-<div class="event-public">
-	<h1 class="center"> Liste des évenements public </h1>
+<div class="event-public" id="eventPublic">
+	<h1 class="center"> Liste des évenements public</h1><hr>
 		<?php foreach ($thisEvent as $value): ?>
   	<div style="display:inline-block;" class="event">
 	    <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
