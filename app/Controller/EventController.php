@@ -53,23 +53,15 @@ class EventController extends Controller
 		$news = new NewsModel();
 		$showNews = $news->joinNewsFeed($id);
 
-		$comment = new CommentController();
-		$showComment = $comment->showComments($id);
-
 		$insertComment = new CommentController();
 		$inComment = $insertComment->insertComment($id);
-
-		$showAllComments = new CommentsModel();
-		$allComments = $showAllComments->joinComment($id);
 
 
 		// send received data to the event.php
 		$showEvent = [
 			'thisEvent'			=> $eventData,
 			'newsFeed'			=> $showNews,
-			'comments' 			=> $showComment,
 			'newsFeed'			=> $showNews,
-			'showComments' 		=> $allComments,
 			'participants'		=> $participants,
 			'allparticipants'	=> $allparticipants,
 		 ];
