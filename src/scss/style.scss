@@ -28,7 +28,8 @@ html {
 
 
 /*************************
-******* Slider ************
+******* Home non connecté
+***********  Slider
 **************************/
 .slider {
 	overflow: hidden;
@@ -66,11 +67,19 @@ html {
 	-webkit-border-radius: 10px 10px 53px 52px;
 	border: 0 solid #000000;
 }
-
-
-/***********************
-********** Footer  ****
+/***********
+* Show eventPublic
 ************************/
+#eventPublic.event-public {
+	background-color: blue;
+	
+}
+
+
+
+/******************************
+********** Footer  
+**********************************/
 footer {
 	padding: 0.1em;
 	width: 100%;
@@ -112,9 +121,9 @@ footer {
 }
 
 
-/********
+/************************
 ** Login
-*****/
+***************************/
 .form-inline {
 	text-align: center;
 	color: $fontColor;
@@ -133,9 +142,9 @@ footer {
 }
 
 
-/****
+/***************************
 *** Contact
-****/
+**************************/
 #contact.contact-form {
 	padding: 2em 2.5em 2.5em 2em;
 	height: 70vh;
@@ -143,9 +152,9 @@ footer {
 }
 
 
-/***********
+/*********************
 * Team
-***********/
+******************************/
 #team{
 	text-align: center;
 	.listTeam{
