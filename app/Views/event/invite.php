@@ -6,15 +6,15 @@
 	<h2>Inviter des amis à votre évènement</h2>
     <!-- <input type="button" class="btn btn-warning" id="more_fields" onclick="add_fields();" value="+ 1 ami"> -->
 
-    <div class="content" id="remote"> 
-        <span>
-        	Ajouter un ami : <input type="text" class="typeahead"> <button class="btn btn-success">Ajouter</button>
-        </span>
-    </div>
+    <form method="post" class="content" id="remote"> 
+        	Ajouter un ami : <input type="text" id="username" class="typeahead"> 
+        	<button type="submit" class="btn btn-success">Ajouter</button>
+    </form>
+
     <div>
     	<h2>Liste des amis participants :</h2>
     	<?php foreach ($allParticipants as $user):?>
-    		<p>
+    		<p class="item-participant">
     			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
     			<a class="delete" href="<?= $this->url('event_deleteParticipant',  ['idEvent' => $idEvent, 'idUser' => $user['id']]); ?>">
     				Supprimer
@@ -54,13 +54,35 @@
 	  };
 	};
 
-	$('#remote .typeahead').typeahead(null, {
+	$('form#remote input.typeahead').typeahead(null, {
 		name: 'countries',
 		source:  new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.whitespace,
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
 			prefetch: '../ajax/list-users?v='+Math.random()
 		}),
+	});
+
+	$('form#remote button').on('click', function(e){
+		e.preventDefault();
+
+		$.ajax({
+			type: 'post',
+			url: '../ajax/addParticipant',
+			dataType: 'json',
+			data: {'username': $('#username').val(), 'idEvent': <?=$idEvent;?>},
+			success: function(data){
+
+				if(data.resultat == 'ok'){
+
+					$('.item-participant').insertAfter(
+
+						'<p class="item-participant">'+ $('#username').val() + '</p>'
+					);
+				}
+			},
+		});
+
 	});
 
 </script>

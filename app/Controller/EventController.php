@@ -167,20 +167,28 @@ class EventController extends Controller
 	*/
 	public function invite($id)
 	{
-		/*// On instancie les variables
-		$username = array();
-
+		$idEvent = $id;
+		$allParticipants = array();
+		$idUser = array();
+		// On récupère les users participant à l'évènement
+		$event = new EventModel();
+		$EventUsers = $event->getEventUsers($id);
+		// $EventUsers retourne toutes les infos de la table event_users
 		$UsersModel = new UsersModel();
-		// On récupère les infos de tous les utilisateurs
-		$users = $UsersModel->findAll();
-
-		// On en sélectionne que les "username"
-		foreach ($users as $user) {
-			$username[] = $user['username'];
+		// On veut récupèrer 5 participants
+		// $idUser récupère l'id de tous les participants à l'évènement
+		foreach ($EventUsers as $infos) {
+			$idUser[] = $infos['id_user'];
 		}
-		var_dump($username);
-		$params = ['username' => $username];*/
-		$this->show('event/invite');
+		foreach ($idUser as $id) {
+			$allParticipants[] = $UsersModel->find($id);
+		}
+		$params = [
+			'allParticipants' 	=> $allParticipants,
+			'idEvent'			=> $idEvent
+		];
+
+		$this->show('event/invite', $params);
 	}
 
 	/**
@@ -216,7 +224,7 @@ class EventController extends Controller
 		/*$params = ['username' => $username];
 		$this->show('event/invite', $params);*/
 
-		json_encode($username);
+		$this->showJson($username);
 	}
 
 	/**
@@ -227,6 +235,38 @@ class EventController extends Controller
 
 		$this->show('event/ourAccounts');
 	}
+
+	public function addParticipant()
+	{
+		if(!empty($_POST)){
+	  		foreach ($_POST as $key => $value) {
+	    		$post[$key] = trim(strip_tags($value));
+	  		}
+
+	  		$idEvent = $post['idEvent'];
+	  		$username = $post['username'];
+	  		$eventModel = new EventModel();
+			$UserModel = new UsersModel();
+			
+			
+			$userInfo = $UserModel->getUserByUsernameOrEmail($username);
+			$idUser = $userInfo['id'];
+
+			$dataEvent = [
+				'id_event'	=> $idEvent,
+				'id_user'	=> $idUser,
+				'role'		=> 'event_user',
+			];
+			if($eventModel->insertEventUsers($dataEvent)){
+				$json = ['resultat' => 'ok'];
+			}
+			else {
+				$json = ['resultat' => 'ko'];
+			}
+		}
+		$this->showJson($json);
+	}
+
 	public function deleteParticipant($idEvent, $idUser)
 	{
 		$EventModel = new EventModel();
@@ -236,10 +276,5 @@ class EventController extends Controller
 		}
 		
 		$this->showJson('event/deleteParticipant');
-	}
-
-	public function addParticipant($idEvent, $idUser)
-	{
-		
 	}
 }
