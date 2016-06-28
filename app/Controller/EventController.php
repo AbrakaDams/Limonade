@@ -47,16 +47,8 @@ class EventController extends Controller
 			$allparticipants[] = $UsersModel->find($id);
 		}
 
-		//var_dump($allparticipants);
 		//make a query to the database to get this event data
 		$eventData = $event->find($id);
-
-		//$list = new ListController();
-		//$lists = $list->getList($id);
-
-		//$addList = $list->addList($id);
-		$event = new EventModel();
-		$eventWithLists = $event->findFullEventInfo($id);
 
 		$news = new NewsModel();
 		$showNews = $news->joinNewsFeed($id);
@@ -76,7 +68,6 @@ class EventController extends Controller
 			'thisEvent'			=> $eventData,
 			'newsFeed'			=> $showNews,
 			'comments' 			=> $showComment,
-			'eventLists'		=> $eventWithLists,
 			'newsFeed'			=> $showNews,
 			'showComments' 		=> $allComments,
 			'participants'		=> $participants,
@@ -154,7 +145,7 @@ class EventController extends Controller
 	  			$newEvent = $eventModel->insert($data);
 	  			if(!empty($newEvent)){
 	  				$success = true;
-	  				
+
 	  			}
 	  			var_dump($newEvent);
 			}

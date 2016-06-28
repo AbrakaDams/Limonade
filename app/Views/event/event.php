@@ -4,7 +4,7 @@
 
 	<?php echo '<span id="event-info">' .$thisEvent['id'].'</span>'; ?>
 
-	<?php var_dump($eventLists); ?>
+
 
 	<div>
 		<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
