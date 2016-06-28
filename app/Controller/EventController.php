@@ -9,6 +9,7 @@ use \Model\NewsFeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
 use \W\Model\UsersModel as UsersModel;
+use \Model\EventUsersModel as EventUsersModel;
 
 class EventController extends Controller
 {
@@ -17,38 +18,41 @@ class EventController extends Controller
 	 * @param  Récupere $id de lutilisateur
 	 */
 	public function showEvent($id)
-	{
-		/*
+	{/*
 		* Liste des participants (5 derniers)
 		*/
-		$allparticipants = array();
 		$participants = array();
-		$idUser = array();
+		$allparticipants = array();
+		$idUsers = array();
 
 		// On récupère les users participant à l'évènement
-		$event = new EventModel();
-		$EventUsers = $event->getEventUsers($id);
-		// $EventUsers retourne toutes les infos de la table event_users
+		$EventModel = new EventModel();
 		$UsersModel = new UsersModel();
+		$EventUsersModel = new EventUsersModel();
+		
+		$EventParticipants = $EventUsersModel->getEventUsers($id);
+
+		// $EventUsers retourne toutes les infos de la table event_users
 		// On veut récupèrer 5 participants
 		// $idUser récupère l'id de tous les participants à l'évènement
-		foreach ($EventUsers as $infos) {
-			$idUser[] = $infos['id_user'];
+		foreach ($EventParticipants as $infosParticipant) {
+			$idUsers[] = $infosParticipant['id_user'];
 		}
 
 		// Participants récupère les information de la table user des 5 premiers participants
 		for ($i=0; $i < 5; $i++) {
-			if(!empty($idUser[$i])){
-			$participants[] = $UsersModel->find($idUser[$i]);
+			if(!empty($idUsers[$i])){
+			$participants[] = $UsersModel->find($idUsers[$i]);
 			}
 		}
 
-		foreach ($idUser as $id) {
-			$allparticipants[] = $UsersModel->find($id);
+		foreach ($idUsers as $idUser) {
+			$allparticipants[] = $UsersModel->find($idUser);
 		}
 
 		//make a query to the database to get this event data
-		$eventData = $event->find($id);
+		$eventData = $EventModel->find($id);
+
 
 		$news = new NewsModel();
 		$showNews = $news->joinNewsFeed($id);
@@ -172,7 +176,8 @@ class EventController extends Controller
 		$idUser = array();
 		// On récupère les users participant à l'évènement
 		$event = new EventModel();
-		$EventUsers = $event->getEventUsers($id);
+		$EventUsersModel = new EventUsersModel();
+		$EventUsers = $EventUsersModel->getEventUsers($id);
 		// $EventUsers retourne toutes les infos de la table event_users
 		$UsersModel = new UsersModel();
 		// On veut récupèrer 5 participants
@@ -245,9 +250,9 @@ class EventController extends Controller
 
 	  		$idEvent = $post['idEvent'];
 	  		$username = $post['username'];
+
 	  		$eventModel = new EventModel();
 			$UserModel = new UsersModel();
-			
 			
 			$userInfo = $UserModel->getUserByUsernameOrEmail($username);
 			$idUser = $userInfo['id'];
@@ -257,7 +262,11 @@ class EventController extends Controller
 				'id_user'	=> $idUser,
 				'role'		=> 'event_user',
 			];
-			if($eventModel->insertEventUsers($dataEvent)){
+
+			$EventUsersModel = new EventUsersModel();
+			$insert = $EventUsersModel->insert($dataEvent);
+
+			if($insert){
 				$json = ['resultat' => 'ok'];
 			}
 			else {
@@ -269,9 +278,9 @@ class EventController extends Controller
 
 	public function deleteParticipant($idEvent, $idUser)
 	{
-		$EventModel = new EventModel();
+		$EventUsersModel = new EventUsersModel();
 
-		if($EventModel->deleteParticipant($idEvent, $idUser)){
+		if($EventUsersModel->deleteParticipant($idEvent, $idUser)){
 			echo 'BLABLABLA';
 		}
 		
