@@ -21,7 +21,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`url` VARCHAR(255) NOT NULL,
 		`activation` ENUM('true','false') NOT NULL,
 		PRIMARY KEY (`id`),
-		UNIQUE (`email`)) ENGINE = InnoDB;"
+		UNIQUE (`email`, `username`)) ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));

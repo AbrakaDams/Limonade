@@ -11,12 +11,12 @@
         	<button type="submit" class="btn btn-success">Ajouter</button>
     </form>
 
-    <div>
+    <div class="list-participants">
     	<h2>Liste des amis participants :</h2>
     	<?php foreach ($allParticipants as $user):?>
     		<p class="item-participant">
     			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
-    			<a class="delete" href="<?= $this->url('event_deleteParticipant',  ['idEvent' => $idEvent, 'idUser' => $user['id']]); ?>">
+    			<a class="delete" id="<?= $user['id'];?>" href="<?= $this->url('event_deleteParticipant',  ['idEvent' => $idEvent, 'idUser' => $user['id']]); ?>">
     				Supprimer
     			</a>
     		</p>
@@ -73,17 +73,29 @@
 			data: {'username': $('#username').val(), 'idEvent': <?=$idEvent;?>},
 			success: function(data){
 
+				console.log(data);
 				if(data.resultat == 'ok'){
+					/*var insert = '<p class="item-participant">'+ $('#username').val() + '</p>';
 
-					$('.item-participant').insertAfter(
+					$(insert).insertAfter('.list-participants');*/
 
-						'<p class="item-participant">'+ $('#username').val() + '</p>'
-					);
+
+					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
 				}
 			},
 		});
-
 	});
+
+	/*$('.delete').on('click', function(e){
+		e.preventDefault();
+
+		$.ajax({
+			type: 'post',
+			url: '../ajax/deleteParticipant',
+			dataType: 'json',
+			data :
+		});
+	});*/
 
 </script>
 <?php $this->stop('js'); ?>
