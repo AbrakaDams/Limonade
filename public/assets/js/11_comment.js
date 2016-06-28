@@ -20,8 +20,8 @@ $('#form-comment').on('submit', function(e) {
                 console.log(html);
                 if(html.answer == 'success'){
                     showComment();
-                    $('#fomr-comment').each(function(){
-                        $(this).reset();
+                    $('#form-comment').each(function(){
+                        $(this)[0].reset();
                     });
                 } // J'affiche cette réponse
             },
@@ -44,7 +44,7 @@ function showComment(){
         success: function(html) { // Je récupère la réponse du fichier PHP
             console.log(html);
             if(html.allComments.length > 0 ){
-                $('#comments').text(' ');
+                $('#comments').text('');
                 $.each(html.allComments, function(key, value) {
                     $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'  <img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">  ' + value.date_add + '<br>' + value.content + '<hr>' +'</div>')
                 });
