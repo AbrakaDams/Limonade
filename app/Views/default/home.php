@@ -74,7 +74,7 @@
 	    <p>Ou? <?php echo $value['address']; ?></p>
 	    <p>Commençe le :<?php echo $value['date_start']; ?></p>
 	    <p>Fini le : <?php echo $value['date_end']; ?></p>
-	    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Aller à l'évènement</a>
+	    <a href="<?= $this->url('user_register'); ?>">S'inscrire</a>    
   	</div>
 	<?php endforeach; ?>
 </div>
