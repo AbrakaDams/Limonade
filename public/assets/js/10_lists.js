@@ -38,20 +38,16 @@ $(document).mouseup(function (e) {
     var cardDiv = $('.add-new-card');
 
     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
-
-        //counter
-        var countEmptyFields = 0;
-
         // check every field of the visible form
         // increase counter if one of the is not empty
-        $('.add-card-form:visible').each(function (){
-            if ($.trim(this.value) != '') {
-                countEmptyFields++;
-            }
-        });
-        console.log(countEmptyFields);
+        // $('.add-card-form:visible').each(function (){
+        //     if ($.trim(this.value) != '') {
+        //         countEmptyFields++;
+        //     }
+        // });
+
         // if all the fields are empty
-        if(countEmptyFields == 0) {
+        if($(".add-card-form:visible").length == 0) {
             $('.add-card-btn').removeClass('hidden');
             $('.add-card-form').addClass('hidden');
         }
@@ -73,7 +69,7 @@ $(document).mouseup(function (e) {
 var thisEvent = parseInt($('#event-info').text());
 //console.log(thisEvent);
 var lastDate = 0;
-console.log(lastDate);
+// /console.log(lastDate);
 
 /***************************
     ADD LIST FORM AJAX
@@ -83,23 +79,24 @@ $('#add-list-form').on('submit', function(e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
+
     $.ajax({
         type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
+        url: '../ajax/add-list',
+        data: formData+'&eventId='+thisEvent,
         dataType: 'json',
         success: function(output) {
-            console.log(output);
+            //console.log(output);
             if(output.answer == 'success') {
                 $('#add-list-form').each(function(){
-                    this.reset();
+                    $(this)[0].reset();
                 });
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
             }
         },
         error: function(e){
-            console.table(e);
+            console.log(e);
         }
     });
 });
@@ -108,10 +105,11 @@ $('.add-card-form').on('submit', function(e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
-    // console.log(formData);
+    var listId = $(this).parent().previous().attr('data-id-list');
+    console.log(listId);
     $.ajax({
         type: 'POST',
-        url: $(this).attr('action'),
+        url: '../ajax/add-card',
         data: formData,
         dataType: 'json',
         error: function(e){

@@ -16,15 +16,18 @@ class ListController extends Controller
 		$post = [];
 		$inputMaxLength = 151; // restrict list name length
 
+		// var_dump($_POST['eventId']);
 		if(!empty($_POST)) {
 			// clean received data
 			foreach ($_POST as $key => $value) {
 				$post[$key] = trim(strip_tags($value));
 			}
 			// if our name input exists in correst state
-			if(isset($post['newList']) && !empty($post['newList']) && strlen($post['newList']) < $inputMaxLength) {
-				$user = $this->getUser();
-				$id = $user['id'];
+			if(isset($post['newList']) && !empty($post['newList']) && isset($post['eventId']) && !empty($post['eventId'])) {
+				//$user = $this->getUser();
+				$id = intval($post['eventId']);
+
+				var_dump($id);
 				// create variable to prevent empty insertions
 				$listName = $post['newList'];
 				$timestamp = date('Y-m-d H:i:s');
