@@ -52,7 +52,7 @@ class EventController extends Controller
 		$eventData = $event->find($id);
 
 		//$list = new ListController();
-		// $lists = $list->getList($id);
+		//$lists = $list->getList($id);
 
 		//$addList = $list->addList($id);
 		$event = new EventModel();
@@ -102,7 +102,6 @@ class EventController extends Controller
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
-	  		var_dump($post);
 
 	  		if(strtotime($post['date_begin']) > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
@@ -152,17 +151,18 @@ class EventController extends Controller
 	  				'date_end' 		=> $date_fin,
 	  			];
 
-	  			if($eventModel->insert($data)){
+	  			$newEvent = $eventModel->insert($data);
+	  			if(!empty($newEvent)){
 	  				$success = true;
-	  				$newId = $eventModel->lastInsertId();
+	  				
 	  			}
-	  			var_dump($newId);
+	  			var_dump($newEvent);
 			}
 		}
 		$params = [
 			'errors' 	=> $errors,
 			'success' 	=> $success,
-			'newId'		=> $newId,
+			'newEvent'	=> $newEvent,
 		];
 		$this->show('event/create', $params);
 	}

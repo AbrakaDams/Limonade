@@ -16,7 +16,7 @@
 <?php if(isset($success) && $success === true): ?>
 <div class="alert alert-success">
     <p style="color:green;">Votre évènement a bien été créé.</p>
-    <p><a href="<?= $this->url('event_showEvent', ['id' => $newId]);?>">Aller à l'évènement</a></p>
+    <p><a href="<?= $this->url('event_showEvent', ['id' => $newEvent['id']]);?>">Aller à l'évènement</a></p>
   <?php endif; ?>
 </div>
 

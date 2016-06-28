@@ -9,6 +9,30 @@
 	<div>
 		<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
 	</div>
+
+	<div>
+		<h3> Liste des participants :</h3>
+		
+		<?php 
+		if($participants == null){
+			echo 'aucun participant';
+		}
+		else{
+			foreach ($participants as $infos) {
+				echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+			}
+		}
+		?>
+	</div>
+	<div>
+		<h3>Tous les participants de cet évènement :</h3>
+		<?php
+		foreach ($allparticipants as $infos) {
+			echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+		}
+		?>
+	</div>
+	
 	<aside class="">
 		<h3>Fil activités</h3>
 		<?php var_dump($newsFeed); ?>
