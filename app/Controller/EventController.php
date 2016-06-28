@@ -128,12 +128,12 @@ class EventController extends Controller
 			}
 			// On concatène la date et l'heure de début pour avoir un format valable
 			$date_debut = $post['date_begin'].' '.$post['time_begin'].':00';
-			if($this->valideFormatDate($date_debut) == false){
+			if($this->validateDate($date_debut) == false){
 				$errors[] = 'La date de début n\'est pas au bon format';
 			}
 			// On concatène la date et l'heure de fin pour avoir un format valable
 			$date_fin = $post['date_end'].' '.$post['time_end'].':00';
-			if($this->valideFormatDate($date_fin) == false){
+			if($this->validateDate($date_fin) == false){
 				$errors[] = 'La date de fin n\'est pas au bon format';
 			}
 
@@ -190,25 +190,14 @@ class EventController extends Controller
 
 	/**
 	 * Valide une date au format français
-	 * @param string $date Une date au format DD/MM/YYYY
+	 * @param string $date Une date au format DD/MM/YYYY HH:MM:SS
 	 * @return bool true si la date est au bon format, false sinon
 	 */
-	public function valideFormatDate($date){
-		if(preg_match("/(\d{2})\/(\d{2})\/(\d{4})$/", $date)){  // Vérif du format
-			return true;
-		} else {
-			return false;
-		}
+	public function validateDate($date, $format = 'Y-m-d H:i:s')
+	{
+	    $d = \DateTime::createFromFormat($format, $date);
+	    return $d && $d->format($format) == $date;
 	}
-	/**
-	* ^ Start of line
-	* \A Start of string
-    * \z End of string
-	*
-	*
-	* $ End of line
-	**/
-
 
 	/**
 	 * Permet de trouver les utilisateurs
