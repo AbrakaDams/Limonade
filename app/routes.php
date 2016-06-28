@@ -21,6 +21,7 @@
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],
+		['GET|POST', '/ajax/join-comment', 'Comment#joinComment', 'comment_joinComment'],
 		['GET|POST', '/ajax/list-users', 'Event#listUsers', 'event_listUsers'],
 		['GET|POST', '/ajax/addParticipant', 'Event#addParticipant', 'event_addParticipant'],
 		['GET|POST', '/ajax/deleteParticipant/[i:idEvent]/[i:idUser]', 'Event#deleteParticipant', 'event_deleteParticipant'],
