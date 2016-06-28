@@ -66,7 +66,7 @@ html {
 	border: 0 solid #000000;
 }
 
-/***********
+/*****************************
 * Show eventPublic
 ************************/
 #eventPublic.event-public {
@@ -89,6 +89,7 @@ footer {
 }
 .center {
 	text-align: center;
+	font-size: 2em;
 }
 #team .img-circle {
 	height: 7em;
@@ -119,9 +120,9 @@ footer {
 }
 
 
-/********
+/***********************
 ** Login
-*****/
+*******************************/
 .form-inline {
 	text-align: center;
 	color: $fontColor;
@@ -140,9 +141,9 @@ footer {
 }
 
 
-/****
+/**************************
 *** Contact
-****/
+********************************/
 #contact.contact-form {
 	padding: 2em 2.5em 2.5em 2em;
 	height: 70vh;
@@ -150,9 +151,9 @@ footer {
 }
 
 
-/***********
+/************************
 * Team FOOTER
-***********/
+*************************/
 
 #team{
 
@@ -195,19 +196,26 @@ footer {
 }
 
 
-/*************
+/****************************
 **** Form Create Event
-**********************/
-#createEvent{
-	color: black;
-	background-color: #ECECEC;
-	padding: 2em;
+***********************************/
+#createUser{
+	background-color: #D2D7D3;
+	border-radius: 10em;
+	label{
+		color: black;
+		font-size:$fontSize;		
+	}
+	input{
+		color: black;
+		font-size: 1.5em;
+	}
 }
 
 
-/*************
+/*************************
 **** BArre nav
-**********************/
+*******************************/
 #userAvatar{
 	li{
 		.logo{

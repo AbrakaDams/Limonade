@@ -4,7 +4,7 @@
 
 	<h1 class="center"> CREATION D'UN COMPTE EN UN SEUL CLIC ! </h1>
 	<br>
-	<p class="center"> Un compte sur Limonde vous donne accès à tout nos services d'organisation </p>
+	<p class="center"> Un compte sur Limonade vous donnera accès à tous nos services de gestion d'évènements </p>
 
 	<?php if(!empty($errors)): ?>
 		<div class="alert alert-danger">
@@ -14,7 +14,7 @@
 
 	<?php if(isset($success) && $success === true): ?>
 		<div class="alert alert-success">
-		<p> Votre inscription a bien été prise en compte. Bienvenue ! </p>
+		<p> Votre inscription a bien été prise en compte. Bienvenue chez nous ! </p>
 		</div>
 	<?php endif; ?>
 
@@ -22,13 +22,12 @@
 
 	  <br>
 	  <p>
-	    <strong>Vous etes deja connectez. <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
+	    <strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
 	  </p>
-
 
 	<?php  else: ?>
 
-<form method="post" class="form-inline" enctype="multipart/form-data">
+<form method="post" class="form-inline" id="createUser" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="username">Pseudo* :</label>
 		<input class="form-control" type="text" placeholder="JohnnyBravo" type="text" name="username" required>
@@ -58,7 +57,7 @@
 	</div>
 </form>
 
-<br><br><strong>Vous avez deja un compte ? <a href="<?= $this->url('user_login') ?>">Connectez-vous</a></strong>
+<br><br><strong>Vous avez déjà un compte ? <a href="<?= $this->url('user_login') ?>">Connectez-vous</a></strong>
 
 
 <?php endif; ?>
