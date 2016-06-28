@@ -12,8 +12,8 @@
 
 	<div>
 		<h3> Liste des participants :</h3>
-		
-		<?php 
+
+		<?php
 		if($participants == null){
 			echo 'aucun participant';
 		}
@@ -32,7 +32,7 @@
 		}
 		?>
 	</div>
-	
+
 	<aside class="">
 		<h3>Fil activités</h3>
 		<?php var_dump($newsFeed); ?>
@@ -75,7 +75,8 @@
 			</ul>
 
 		<?php endif; ?>
-		<div id="response"></div>
+		<div id="response"></div> <hr>
+		<div id="response-cards"></div>
 		<div class="add-new-card">
 			<form class="add-card-form" action="<?=$this->url('list_addCard');?>" method="post">
 				<label>Titre de cette tache</label>

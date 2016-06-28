@@ -27,7 +27,6 @@ $(document).mouseup(function (e) {
 });
 
 
-
 /**
  * AJAX long-polling
  *
@@ -42,7 +41,7 @@ $(document).mouseup(function (e) {
 var thisEvent = parseInt($('#event-info').text());
 //console.log(thisEvent);
 var lastDate = 0;
-
+console.log(lastDate);
 
 /***************************
     ADD LIST FORM AJAX
@@ -57,9 +56,6 @@ $('#add-list-form').on('submit', function(e) {
         url: $(this).attr('action'),
         data: formData,
         dataType: 'json',
-        error: function(e){
-            console.table(e);
-        },
         success: function(output) {
             console.log(output);
             if(output.answer == 'success') {
@@ -69,6 +65,9 @@ $('#add-list-form').on('submit', function(e) {
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
             }
+        },
+        error: function(e){
+            console.table(e);
         }
     });
 });
@@ -118,10 +117,16 @@ function getContent(currentDate) {
         success: function(response){
 
             console.log(response);
+
             lastDate = response.newDate;
-            if(response.bla.length != 0){
-                $.each(response.newList, function(key, value) {
-                    $('#response').append('<div class="event-list-'+value.id+'">'+ value.title +'</div>')
+            if(response.newLists.length != 0){
+                $.each(response.newLists, function(key, value) {
+                    $('#response').append('<div class="list"><div class="event-list-'+value.id+'"></div>'+ value.title +'</div>')
+                });
+            }
+            if(response.newCards.length != 0){
+                $.each(response.newCards, function(key, value) {
+                    $('#response-cards').append('<div class="card"><div class="event-card-'+value.id+'"></div>'+ value.title +'</div>')
                 });
             }
         },
