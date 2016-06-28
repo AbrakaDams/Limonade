@@ -7,13 +7,11 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
 	<link href='https://fonts.googleapis.com/css?family=BenchNine' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>"> <!-- Style Css -->
 
 
 </head>
 <body>
-	<header>
-
-	</header>
 
 		<section id="noConnect">
 			<?= $this->section('main_content') ?>
@@ -63,6 +61,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<!-- Boostrap Js -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/carous.js') ?>"></script>
 
 </body>
 

@@ -25,46 +25,103 @@ html {
 	background-color: yellow;
 }
 
-
 /*************************
 ******* Slider ************
 **************************/
-.slider {
-	overflow: hidden;
-	max-height: 100vh;
-	min-width: 100%;
 
+.slider {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    height: 65vh;
+		.imofront{
+			// ici on modifie les image
+		}
 }
-.img-slide {
-	width: 100%;
-	min-height: 80vh;
-	max-height: 100vh;
+
+@media print {
+  header {
+    display: none !important;
+  }
+  .show-one-image .index-recipe-img {
+      height: 10em;
+      -o-object-fit: cover;
+      object-fit: cover;
+  }
 }
-.titleIntro {
-	color: $fontColor;
-	font-family: $fontFam;
-	font-size: $fontSizeSlider;
-	text-shadow: 0.05em 0.05em 0.06em #000;
+
+.connect-sub {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 2em;
+    width: 100%;
+    background-color: rgba(10,10,10,.7);
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 300;
+    z-index: 1;
 }
-.textIntro {
-	color: $fontColor;
-	font-family: $fontFam;
-	font-size: $fontSizeSlider;
-	text-shadow: 0.05em 0.05em  0.06em #000;
+
+.connect-sub a {
+    display: inline-block;
+    margin-left: 1em;
+    padding: .5em;
+    border: 1px solid #fff;
+    border-radius: .5em;
+    color: #fff;
 }
-.carousel-caption{
-	display: block;
- 	h1{
-		top:0;
-		left: 0;
-	}
+
+.connect-sub a:hover,
+.connect-sub a:focus {
+    background-color: #b17070;
+    border-color: #b17070;
+    text-decoration: none;
+    transition: all 500ms ease;
 }
-.btn-default {
-	border-radius: 10px 10px 53px 52px;
-	-moz-border-radius: 10px 10px 53px 52px;
-	-webkit-border-radius: 10px 10px 53px 52px;
-	border: 0 solid #000000;
+
+/****** Header's carousel styling ******/
+
+.item {
+    width: 100%;
+    height: 65vh;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+    position: relative;
 }
+.owl-prev,
+.owl-next {
+    font-size: 2em;
+    color: #fff;
+}
+.owl-prev {
+    position: absolute;
+    top: 35%;
+    margin-left: 1em;
+}
+
+.owl-next {
+    position: absolute;
+    top: 35%;
+    right: 0;
+    margin-right: 1em;
+}
+
+.owl-carousel .promo {
+    z-index: 3;
+    position: absolute;
+    top: 1%;
+    padding-left: 4em;
+    padding-right: .5em;
+    color: #E4F1FE;
+    -webkit-border-radius: 0 5em 5em 0;
+    border-radius: 0 5em 5em 0;
+    background-color:rgba(10,10,5,.7);
+}
+/******End of header ******/
 
 /*****************************
 * Show eventPublic
@@ -204,7 +261,7 @@ footer {
 	border-radius: 10em;
 	label{
 		color: black;
-		font-size:$fontSize;		
+		font-size:$fontSize;
 	}
 	input{
 		color: black;
@@ -224,4 +281,17 @@ footer {
 			border-radius:2em;
 		}
 	}
+}
+/*************************
+**** TOOLTIP
+*******************************/
+.tooltip {
+	 display:none;
+	 position:absolute;
+	 border:1px solid #333;
+	 background-color:#161616 ;
+	 border-radius:5px;
+	 padding:10px;
+	 color:blue;
+	 font-size:12px Arial;
 }

@@ -7,6 +7,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
 	<link rel="icon" type="image/png" href="<?= $this->assetUrl('img/avatar/lemonade_brand.jpg') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>"> <!-- Style Css -->
 
 
 </head>
