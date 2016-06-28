@@ -1,9 +1,11 @@
-var newCard = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc" rows="8" cols="40"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option></select><br><input type="submit" value="Go"></form></div>';
+
+// html to insert a new card
+var newCard = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc" rows="8" cols="40"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option></select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';
 
 /***************************
-    ADD LIST FORM
+ADD LIST FORM/ ADD CARD FORM
 **************************/
-
+// hide + button and show hidden form
 $(function() {
     $('#add-list-btn').click(function(){
         $('#add-list-btn').addClass('hidden');
@@ -11,8 +13,6 @@ $(function() {
     });
 
     $('body').on('click', '.add-card-btn', function(e){
-        //console.log(e);
-        console.log($(this));
         $(this).addClass('hidden');
         $(this).next().removeClass('hidden');
     });
@@ -32,21 +32,25 @@ $(document).mouseup(function (e) {
     }
 });
 
-// hide our add list input if we click anywhere else and if our input is empty
+// hide our add card form if we click anywhere else and if our form is empty
 $(document).mouseup(function (e) {
     // if we click anywhere else but not our form
     var cardDiv = $('.add-new-card');
 
     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
 
+        //counter
         var countEmptyFields = 0;
-        
+
+        // check every field of the visible form
+        // increase counter if one of the is not empty
         $('.add-card-form:visible').each(function (){
             if ($.trim(this.value) != '') {
                 countEmptyFields++;
             }
         });
-
+        console.log(countEmptyFields);
+        // if all the fields are empty
         if(countEmptyFields == 0) {
             $('.add-card-btn').removeClass('hidden');
             $('.add-card-form').addClass('hidden');

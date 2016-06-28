@@ -14,7 +14,11 @@
     <strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
   </p>
 
+
 <?php  else: ?>
+	<?php if (isset($loginUrl) && !empty($loginUrl)): ?>
+		<a href="<?php echo htmlspecialchars($loginUrl); ?>"></a>
+	<?php endif; ?>
 
 	<form method="post" class="form-inline">
     <div class="form-group" id="form-login">
@@ -34,7 +38,7 @@
       <br>
   		<i class="fa fa-user-plus" aria-hidden="true"></i>
       <a href="<?= $this->url('user_register') ?>"><strong>Créer un compte</strong></a>
-    </div>  
+    </div>
     </div>
   </form>
 
