@@ -25,6 +25,15 @@ html {
 	padding: 2em;
 	background-color: yellow;
 }
+input.form-control{
+	font-size: 1.4em;
+	color: black;
+}
+.brand-img{
+	max-width: 2em;
+	height: 1em;
+}
+
 
 /*************************
 ******* Home non connecté
@@ -88,6 +97,7 @@ footer {
 }
 .center {
 	text-align: center;
+	color: wheat;
 }
 #team .img-circle {
 	height: 7em;
@@ -145,9 +155,6 @@ footer {
 }
 #formContact{
 	font-size: 2em;
-}
-.form-control{
-	font-size: 1.4em;
 }
 
 /***************************

@@ -23,7 +23,7 @@
   		<input class="form-control" type="email" id="email" name="email" placeholder="votre email">
   		<br><br>
   		<label for="password" id="formContact">Votre mot de passe :<br>
-      <a href="<?= $this->url('user_getNewPassword'); ?>">Mot de passe oublié?</a></label><i class="fa fa-question-circle" aria-hidden="true"></i><br>
+      <a href="<?= $this->url('user_getNewPassword'); ?>">Mot de passe oublié ?</a></label><i class="fa fa-question-circle" aria-hidden="true"></i><br>
   		<input class="form-control" type="password" id="password" name="password" placeholder="votre mot de passe">
   		<br><br>
   		<input class="form-control" type="submit" value="Connexion">
