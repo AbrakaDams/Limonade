@@ -82,7 +82,6 @@ class EventController extends Controller
 	 */
 	public function createEvent()
 		{
-		{
 		$post = array();
 		$errors = array();
 		$success = false;
@@ -95,6 +94,7 @@ class EventController extends Controller
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
+
 
 	  		if(strtotime($post['date_begin']) > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 	  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
