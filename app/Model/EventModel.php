@@ -70,4 +70,13 @@ class EventModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}
+	public function deleteParticipant($idEvent, $idUser)
+	{
+		$sql = 'DELETE FROM event_users WHERE id_event = :idEvent AND id_user = :idUser';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idEvent', $idEvent);
+		$sth->bindValue(':idUser', $idUser);
+
+		return $sth->execute();
+	}
 }

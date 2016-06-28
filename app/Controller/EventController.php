@@ -227,4 +227,19 @@ class EventController extends Controller
 
 		$this->show('event/ourAccounts');
 	}
+	public function deleteParticipant($idEvent, $idUser)
+	{
+		$EventModel = new EventModel();
+
+		if($EventModel->deleteParticipant($idEvent, $idUser)){
+			echo 'BLABLABLA';
+		}
+		
+		$this->showJson('event/deleteParticipant');
+	}
+
+	public function addParticipant($idEvent, $idUser)
+	{
+		
+	}
 }

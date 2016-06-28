@@ -11,15 +11,19 @@
 		['GET', '/search', 'Event#search', 'event_search'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
 		['GET|POST', '/listUsers', 'Event#listUsers', 'event_listUsers'],
+		['GET|POST', '/deleteParticipant/[i:idEvent]/[i:idUser]', 'Event#deleteParticipant', 'event_deleteParticipant'],
+
 
 		/**************************** ourAccount ********************/
 		['GET|POST', '/ourAccounts', 'Count#ourAccounts', 'count_ourAccounts'],
 
+		/**************************** ajax ****************************/
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],
+		['GET|POST', '/ajax/list-users', 'Event#listUsers', 'event_listUsers'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],

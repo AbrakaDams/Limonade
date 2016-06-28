@@ -115,7 +115,7 @@
 	<!-- Boostrap Js -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<!-- Moustache Js -->
-	<script src="<?= $this->assetUrl('js/myscript.js') ?>"></script>
+	<!--script src="<?= $this->assetUrl('js/myscript.js') ?>"></script-->
 	<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
 	<script src="<?= $this->assetUrl('js/typeahead.bundle.min.js') ?>"></script>

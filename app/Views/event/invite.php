@@ -3,12 +3,24 @@
 <?php $this->start('main_content') ?>
 	
 <div id="room_fileds">
-<h2>Inviter des amis à votre évènement
-    <input type="button" class="btn btn-warning" id="more_fields" onclick="add_fields();" value="+ 1 ami"></h2>
+	<h2>Inviter des amis à votre évènement</h2>
+    <!-- <input type="button" class="btn btn-warning" id="more_fields" onclick="add_fields();" value="+ 1 ami"> -->
+
     <div class="content" id="remote"> 
         <span>
         	Ajouter un ami : <input type="text" class="typeahead"> <button class="btn btn-success">Ajouter</button>
         </span>
+    </div>
+    <div>
+    	<h2>Liste des amis participants :</h2>
+    	<?php foreach ($allParticipants as $user):?>
+    		<p>
+    			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
+    			<a class="delete" href="<?= $this->url('event_deleteParticipant',  ['idEvent' => $idEvent, 'idUser' => $user['id']]); ?>">
+    				Supprimer
+    			</a>
+    		</p>
+    	<?php endforeach; ?>
     </div>
 </div>
 
@@ -16,10 +28,10 @@
 
 <?php $this->start('js'); ?>
 <script type="text/javascript">
-	function add_fields() {
+	/*function add_fields() {
 		document.getElementById('wrapper').innerHTML += '<br><span>Ajouter un ami : <input type="text" class="typeahead">  <button class="btn btn-success">Ajouter</button>\r\n';
-	}
-	
+	}*/
+
 	var substringMatcher = function(strs) {
 	  return function findMatches(q, cb) {
 	    var matches, substringRegex;
@@ -42,50 +54,13 @@
 	  };
 	};
 
-	/*var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-	  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-	  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-	  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-	  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-	  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-	  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-	  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-	  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-	];
-
-	$('.typeahead').typeahead({
-	  hint: true,
-	  highlight: true,
-	  minLength: 1
-	},
-	{
-	  name: 'states',
-	  source: substringMatcher(states)
-	});*/
-
-	var countries = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		// url points to a json file that contains an array of country names, see
-		// https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-		remote: {
-			url : '../listUsers'
-		}
-	});
-	
-	var promise = countries.initialize();
-
-	promise
-	.done(function() { console.log('ready to go!'); })
-	.fail(function() { console.log('err, something went wrong :('); });
-
-	console.log(countries.remote.url);
-	// passing in `null` for the `options` arguments will result in the default
-	// options being used
 	$('#remote .typeahead').typeahead(null, {
 		name: 'countries',
-		display : 'value',
-		source: countries
+		source:  new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			prefetch: '../ajax/list-users?v='+Math.random()
+		}),
 	});
 
 </script>
