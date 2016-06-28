@@ -246,7 +246,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`) ,
-  FOREIGN KEY (event_id) REFERENCES event (id))
+  FOREIGN KEY (id_event) REFERENCES event (id))
   ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -269,7 +269,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`) ,
-  FOREIGN KEY (list_id) REFERENCES list (id))
+  FOREIGN KEY (id_list) REFERENCES list (id))
   ENGINE = InnoDB;"
 );
 if($sql === false){
