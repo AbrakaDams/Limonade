@@ -27,7 +27,6 @@ class ListController extends Controller
 				//$user = $this->getUser();
 				$id = intval($post['eventId']);
 
-				var_dump($id);
 				// create variable to prevent empty insertions
 				$listName = $post['newList'];
 				$timestamp = date('Y-m-d H:i:s');
@@ -55,6 +54,8 @@ class ListController extends Controller
 		$errors = [];
 		$inputMaxLength = 151; // restrict list name length
 		$responsible = 0;
+		$idList = 0;
+		$idEvent = 0;
 
 		if(!empty($_POST)) {
 
@@ -69,23 +70,37 @@ class ListController extends Controller
 			if(!isset($post['card_desc']) && empty($post['card_desc']) && strlen($post['card_desc']) > $inputMaxLength) {
 				$errors[] = 'Description de la tache est incorrect';
 			}
-			if(!isset($post['card_quantity']) && empty($post['card_quantity']) && !intval($post['card_quantity'])) {
+			if(!isset($post['card_quantity']) && empty($post['card_quantity']) && !is_numeric($post['card_quantity']) && $post['card_quantity'] < 0) {
 				$errors[] = 'Qantite de la tache est incorrect';
 			}
-			if(!isset($post['card_price']) && empty($post['card_price']) && !intval($post['card_price'])) {
+			if(!isset($post['card_price']) && empty($post['card_price']) && !is_numeric($post['card_price']) && $post['card_price'] < 0) {
 				$errors[] = 'Prix de la tache est incorrect';
 			}
-			if(count($errors) == 0) {
-				$user = $this->getUser();
-				$id = $user['id'];
-				// create variable to prevent empty insertions
-				if(isset($post['card_person']) && !empty($post['card_person'])) {
-					$responsible = $post['card_person'];
-				}
-				else {
-					$responsible = 0;
-				}
+			// create variable to prevent empty insertions
+			if(isset($post['card_person']) && !empty($post['card_person'])) {
+				$responsible = $post['card_person'];
+			}
+			else {
+				$responsible = 0;
+			}
+			// check id of the event
 
+			if(isset($post['eventId']) && !empty($post['eventId'])) {
+				$idEvent = intval($post['eventId']);
+			}
+			else {
+				$errors[] = 'Impossible inserer cette tache dans event';
+			}
+			// check id of the list
+			if(isset($post['listId']) && !empty($post['listId'])) {
+				$idList = intval($post['listId']);
+			}
+			else {
+				$errors[] = 'Impossible inserer cette tache dans la liste';
+			}
+			// if input data is valid
+			if(count($errors) == 0) {
+				// current time for date_add
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
@@ -94,8 +109,8 @@ class ListController extends Controller
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],
 				  'id_user' 		=> $responsible,
-				  'id_event' 		=> $id,
-				  'id_list' 		=> 1,
+				  'id_event' 		=> $idEvent,
+				  'id_list' 		=> $idList,
 				  'date_add'		=> $timestamp,
 				];
 				// call model
@@ -104,6 +119,9 @@ class ListController extends Controller
 				if($insertList->insert($entryData)) {
 					$this->showJson(['answer' => 'success']);
 				}
+			}
+			else {
+				$this->showJson(['errors' => $errors, 'list' => $idList, 'event' => $idEvent]);
 			}
 		}
 	}

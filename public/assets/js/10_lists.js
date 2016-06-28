@@ -47,7 +47,7 @@ $(document).mouseup(function (e) {
         // });
 
         // if all the fields are empty
-        if($(".add-card-form:visible").length == 0) {
+        if($('.add-card-form:visible').length == 0) {
             $('.add-card-btn').removeClass('hidden');
             $('.add-card-form').addClass('hidden');
         }
@@ -93,6 +93,8 @@ $('#add-list-form').on('submit', function(e) {
                 });
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
+                $('#add-list-btn').removeClass('hidden');
+                $('#add-list-form').addClass('hidden');
             }
         },
         error: function(e){
@@ -101,16 +103,19 @@ $('#add-list-form').on('submit', function(e) {
     });
 });
 
-$('.add-card-form').on('submit', function(e) {
+$('body').on('submit', '.add-card-form', function(e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
-    var listId = $(this).parent().previous().attr('data-id-list');
+
+    // get list's id where we want to append our card
+    var listId = $(this).parent().siblings().attr('data-id-list');
+
     console.log(listId);
     $.ajax({
         type: 'POST',
         url: '../ajax/add-card',
-        data: formData,
+        data: formData + '&eventId=' + thisEvent + '&listId=' + listId,
         dataType: 'json',
         error: function(e){
             console.table(e);
@@ -123,6 +128,9 @@ $('.add-card-form').on('submit', function(e) {
                 });
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
+                console.log('.add-card-btn:hidden');
+                // $(this).removeClass('hidden');
+                // $().addClass('hidden');
             }
         }
     });
@@ -149,7 +157,7 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('#event-lists').prepend('<div class="event-list"><div class="list" data-id-list="'+value.id+'">'+ value.title + '</div><div class="cards"></div>' + newCard + '</div>')
+                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2></div><div class="cards"></div>' + newCard + '</div>')
                 });
             }
             if(response.newCards.length != 0){
@@ -159,7 +167,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card"><div data-id-card="'+value.id+'"></div>'+ value.title +'</div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span></div>');
                     }
                 });
             }
