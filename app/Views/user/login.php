@@ -16,9 +16,6 @@
 
 
 <?php  else: ?>
-	<?php if (isset($loginUrl) && !empty($loginUrl)): ?>
-		<a href="<?php echo htmlspecialchars($loginUrl); ?>"></a>
-	<?php endif; ?>
 
 	<form method="post" class="form-inline">
     <div class="form-group" id="form-login">

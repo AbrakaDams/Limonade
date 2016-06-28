@@ -34,6 +34,9 @@
 		['GET|POST', '/lostpassword', 'User#lostPassword', 'user_lostPassword'],
 		['GET|POST', '/getnewpassword', 'User#getNewPassword', 'user_getNewPassword'],
 		['GET|POST', '/updateUser', 'User#updateUser', 'user_updateUser'],
+		
+		['GET|POST', '/facebook/auth', 'User#loginFacebook', 'user_loginFacebook'],
+		['GET|POST', '/facebook/logged', 'User#fbCallBack', 'user_fbCallBack'],
 
 		/***************************** admin *************************/
 		['GET|POST', '/back_office', 'Admin#admin', 'admin_admin'],

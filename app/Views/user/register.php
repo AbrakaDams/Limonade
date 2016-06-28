@@ -27,6 +27,11 @@
 
 	<?php  else: ?>
 
+		<a href="<?=$this->url('user_loginFacebook');?>" class="btn btn-primary" style="border-radius:0;">
+			<i class="fa fa-facebook square"></i>
+			Connexion Facebook
+		</a>
+
 <form method="post" class="form-inline" id="createUser" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="username">Pseudo* :</label>
