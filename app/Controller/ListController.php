@@ -30,7 +30,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-					'title' 		=> $listName,
+				  'title' 		=> $listName,
 				  'id_event' 	=> $id,
 				  'date_add'	=> $timestamp,
 				];
@@ -76,16 +76,21 @@ class ListController extends Controller
 				$user = $this->getUser();
 				$id = $user['id'];
 				// create variable to prevent empty insertions
-				$responsible = $post['card_person'];
+				if(isset($post['card_person']) && !empty($post['card_person'])) {
+					$responsible = $post['card_person'];
+				}
+				else {
+					$responsible = 0;
+				}
+
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-					'title' 			=> $post['card_title'],
-				  'description' => $post['card_desc'],
+				  'title' 			=> $post['card_title'],
+				  'description' 	=> $post['card_desc'],
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],
 				  'id_user' 		=> $responsible,
-					//'id_list' 	=> $idList,
 				  'id_event' 		=> $id,
 				  'date_add'		=> $timestamp,
 				];
@@ -104,60 +109,52 @@ class ListController extends Controller
 	 */
 	public function getList() {
 
+		//get id of event from ajax
 		$id = intval($_POST['eventId']);
-		// $lastDateLists = null;
-		// $lastDateCards = null;
 
+		//temporary time vars
+		$lastDateLists = null;
+		$lastDateCards = null;
 
+		// define lastDate for the first time
 		if(isset($_POST['myDate']) && !empty($_POST['myDate'])) {
 			$lastDate = $_POST['myDate'];
 		} else {
 			$lastDate = 0;
 		}
 
-
 		$listsData = new ListModel();
-		// $newLists = $listsData->findLists($id, $lastDate);
- 	// 	$newCards = $listsData->findCards($id, $lastDate);
- 		$newListsCards = $listsData->findListsCards($id, $lastDate);
+		// get lists and cards
+		$newLists = $listsData->findLists($id, $lastDate);
+ 		$newCards = $listsData->findCards($id, $lastDate);
 
-		//var_dump($newListsCards);
-		// if(!empty($newLists)) {
-		// 	// $lastDateLists = end($newLists)['date_add'];
-		// 	foreach ($newLists as $key => $value) {
-		// 		$lastDateLists = $value['date_add'];
-		// 	}
-		// }
-		//
-		// if(!empty($newCards)) {
-		// 	// $lastDateCards = end($newCards)['date_add'];
-			foreach ($newListsCards as $key => $value) {
-				$lastDate = $value['date_add'];
+		if(!empty($newLists)) {
+			foreach ($newLists as $key => $value) {
+				$lastDateLists = $value['date_add'];
 			}
-		// }
+		}
+		if(!empty($newCards)) {
+			foreach ($newCards as $key => $value) {
+				$lastDateCards = $value['date_add'];
+			}
+		}
 
-		// var_dump($newListsCards);
+		if( $lastDateLists != null && $lastDateCards != null) {
+			if($lastDateLists > $lastDateCards) {
+				$lastDate = $lastDateLists;
+			}
+			else {
+				$lastDate = $lastDateCards;
+			}
+		}
+		elseif($lastDateLists == null && $lastDateCards != null) {
+			$lastDate = $lastDateCards;
+		}
+		elseif($lastDateLists != null && $lastDateCards == null) {
+			$lastDate = $lastDateLists;
+		}
 
-		// var_dump($newLists);
-		// var_dump($newCards);
-
-		// if($lastDateLists != null && $lastDateCards != null) {
-		// 	if($lastDateLists > $lastDateCards) {
-		// 		$lastDate = $lastDateLists;
-		// 	}
-		// 	else {
-		// 		$lastDate = $lastDateCards;
-		// 	}
-		// }
-		// elseif($lastDateLists == null && $lastDateCards != null) {
-		// 	$lastDate = $lastDateLists;
-		// }
-		// elseif($lastDateLists != null && $lastDateCards == null) {
-		// 	$lastDate = $lastDateCards;
-		// }
-
-		// $this->showJson(['newList' => $newLists, 'newCard' => $newCards, 'newDate' => $lastDate]);
-		$this->showJson(['bla' => $newListsCards, 'newDate' => $lastDate]);
+		$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate]);
 
 	}
 }
