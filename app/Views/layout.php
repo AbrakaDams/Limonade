@@ -9,7 +9,63 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>"> <!-- Style Css -->
 
-
+	<style>
+		#notification_li
+		{
+		position:relative
+		}
+		#notificationContainer 
+		{
+		background-color: #fff;
+		border: 1px solid rgba(100, 100, 100, .4);
+		-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+		overflow: visible;
+		position: absolute;
+		top: 4em;
+		margin-left: -170px;
+		width: 400px;
+		z-index: 10;
+		display: none; // Enable this after jquery implementation 
+		}
+		// Popup Arrow
+		#notificationContainer:before {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 0;
+		height: 0;
+		color: transparent;
+		border: 10px solid black;
+		border-color: transparent transparent white;
+		margin-top: -20px;
+		margin-left: 188px;
+		}
+		#notificationTitle
+		{
+		font-weight: bold;
+		padding: 8px;
+		font-size: 13px;
+		background-color: #ffffff;
+		position: fixed;
+		z-index: 1000;
+		width: 384px;
+		border-bottom: 1px solid #dddddd;
+		}
+		#notificationsBody
+		{
+		padding: 33px 0px 0px 0px !important;
+		min-height:300px;
+		}
+		#notificationFooter
+		{
+		background-color: #e9eaed;
+		text-align: center;
+		font-weight: bold;
+		padding: 8px;
+		font-size: 12px;
+		border-top: 1px solid #dddddd;
+		}
+		</style>
 </head>
 <body>
 	<header>
@@ -35,7 +91,19 @@
 					<!-- add list -->
 					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
 					<!-- notifications -->
-					<li><a href="#notification"><i class="glyphicon glyphicon-bell"></i></a></li>
+					<li id="notification_li">
+						<a href="#notification" id="notificationLink">
+							<i class="glyphicon glyphicon-bell"></i>
+						</a>
+						<div id="notificationContainer">
+							<div id="notificationTitle">Notifications</div>
+							<div id="notificationsBody" class="notifications"></div>
+							<div id="notificationFooter"><a href="#">See All</a></div>
+						</div>
+					</li>
+
+
+
 					<!-- identité -->
 				  	<li><a href="#"> <?php echo $w_user['username']; ?> </a></li>
 					<li><a href="#"><img class="logo" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
@@ -120,7 +188,8 @@
 	<!--script src="<?= $this->assetUrl('js/myscript.js') ?>"></script-->
 	<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-	<script src="<?= $this->assetUrl('js/typeahead.bundle.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/notifications.js') ?>"></script>
+
 	<?= $this->section('js'); ?>
 
 </body>
