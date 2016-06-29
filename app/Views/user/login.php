@@ -52,6 +52,10 @@
     </div>
     </div>
   </form>
+  <a href="<?=$this->url('user_loginFacebook');?>" class="btn btn-primary" style="border-radius:0;">
+      <i class="fa fa-facebook square"></i>
+      Connexion Facebook
+    </a>
 
 <?php  endif; ?>
 
