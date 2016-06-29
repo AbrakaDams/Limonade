@@ -64,21 +64,21 @@ class ListController extends Controller
 				$post[$key] = trim(strip_tags($value));
 			}
 			// if our name input exists in correst state
-			if(!isset($post['card_title']) && empty($post['card_title']) && strlen($post['card_title']) > $inputMaxLength) {
+			if(!isset($post['card_title']) || empty($post['card_title'])) {
 				$errors[] = 'Titre de la tache est incorrect';
 			}
-			if(!isset($post['card_desc']) && empty($post['card_desc']) && strlen($post['card_desc']) > $inputMaxLength) {
+			if(!isset($post['card_desc']) || empty($post['card_desc'])) {
 				$errors[] = 'Description de la tache est incorrect';
 			}
-			if(!isset($post['card_quantity']) && empty($post['card_quantity']) && !is_numeric($post['card_quantity']) && $post['card_quantity'] < 0) {
-				$errors[] = 'Qantite de la tache est incorrect';
+			if(!isset($post['card_quantity']) || empty($post['card_quantity']) && $post['card_quantity'] < 0) {
+				$errors[] = 'Quantite de la tache est incorrect';
 			}
-			if(!isset($post['card_price']) && empty($post['card_price']) && !is_numeric($post['card_price']) && $post['card_price'] < 0) {
+			if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] < 0) {
 				$errors[] = 'Prix de la tache est incorrect';
 			}
 			// create variable to prevent empty insertions
 			if(isset($post['card_person']) && !empty($post['card_person'])) {
-				$responsible = $post['card_person'];
+				$responsible = intval($post['card_person']);
 			}
 			else {
 				$responsible = 0;

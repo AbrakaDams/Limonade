@@ -27,6 +27,7 @@
 		['GET|POST', '/ajax/list-users', 'Event#listUsers', 'event_listUsers'],
 		['GET|POST', '/ajax/add-participant', 'Event#addParticipant', 'event_addParticipant'],
 		['GET|POST', '/ajax/delete-participant', 'Event#deleteParticipant', 'event_deleteParticipant'],
+		['GET|POST', '/ajax/get-all-participants', 'Event#getAllParticipants', 'event_getAllParticipants'],
 
 		/***************************** users *************************/
 		['GET|POST', '/register', 'User#register', 'user_register'],

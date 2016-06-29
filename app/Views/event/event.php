@@ -2,10 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-	<?php echo '<span id="event-info">' .$thisEvent['id'].'</span>'; ?>
-
-
-
 	<div>
 		<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
 	</div>
@@ -38,7 +34,7 @@
 		<?php var_dump($newsFeed); ?>
 	</aside>
 
-	<section id="event-info">
+	<section id="event-info" data-event-id="<?=$thisEvent['id'];?>">
 		<!-- SHOW EVENT NAME -->
 		<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
 			<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>

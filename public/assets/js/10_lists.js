@@ -1,6 +1,4 @@
-
-// html to insert a new card
-var newCard = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc" rows="8" cols="40"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option></select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';
+var thisEvent = parseInt($('#event-info').data('eventId'));
 
 /***************************
 ADD LIST FORM/ ADD CARD FORM
@@ -33,28 +31,60 @@ $(document).mouseup(function (e) {
 });
 
 // hide our add card form if we click anywhere else and if our form is empty
-$(document).mouseup(function (e) {
-    // if we click anywhere else but not our form
-    var cardDiv = $('.add-new-card:active');
-    console.log(cardDiv + '.add-card-form');
+// $(document).mouseup(function (e) {
+//     // if we click anywhere else but not our form
+//     var cardDiv = $('.add-new-card:active').find('.add-card-form:visible');
+//     console.log(cardDiv);
+//     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+//         var countEmptyFields = 0;
+//         // check every field of the visible form
+//         // increase counter if one of the is not empty
+//         $(cardDiv).each(function (){
+//             if ($.trim(this.value) != '') {
+//                 countEmptyFields++;
+//             }
+//         });
+//         console.log(countEmptyFields);
+//         //if all the fields are empty
+//         if(countEmptyFields == 0) {
+//             $('.add-card-btn:hidden').removeClass('hidden');
+//             $('.add-card-form:visible').addClass('hidden');
+//         }
+//     }
+// });
 
-    if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
-        // check every field of the visible form
-        // increase counter if one of the is not empty
-        $('.add-card-form:visible').each(function (){
-            if ($.trim(this.value) != '') {
-                countEmptyFields++;
-            }
-        });
 
-        // if all the fields are empty
-        // if(cardForm.length == 0) {
-        //     $('.add-card-btn').removeClass('hidden');
-        //     $('.add-card-form').addClass('hidden');
-        // }
-    }
+// html to insert a new card
+// first part of the form
+var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc" rows="8" cols="40"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option>';
+// we suppose to append more options to selecs with js
+// the rest of the form
+var newCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';
+
+var newCard;
+
+// get all event participants
+$(document).ready(function() {
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/get-all-participants',
+        dataType: 'json',
+        data: 'idEvent=' + thisEvent,
+        success: function(data) {
+            newCard = newCardStart + createCardOptions(data.users) + newCardEnd;
+        },
+    });
 });
 
+
+function createCardOptions(users) {
+    // console.log(users);
+    var allOptions = '';
+        $.each(users, function(key, value) {
+            allOptions += '<option value="' + value.id +' ">'+ value.firstname + ' '+ value.lastname +'</option>'
+        });
+    return allOptions;
+}
 
 /**
  * AJAX long-polling
@@ -66,11 +96,11 @@ $(document).mouseup(function (e) {
  *
  * @param timestamp
  */
+ // get event id from even t.php
+var thisEvent = parseInt($('#event-info').data('eventId'));
 
-var thisEvent = parseInt($('#event-info').text());
-//console.log(thisEvent);
 var lastDate = 0;
-// /console.log(lastDate);
+
 
 /***************************
     ADD LIST FORM AJAX
@@ -112,7 +142,6 @@ $('body').on('submit', '.add-card-form', function(e) {
     // get list's id where we want to append our card
     var listId = $(this).parent().siblings().attr('data-id-list');
 
-    console.log(listId);
     $.ajax({
         type: 'POST',
         url: '../ajax/add-card',
@@ -122,16 +151,15 @@ $('body').on('submit', '.add-card-form', function(e) {
             console.table(e);
         },
         success: function(output) {
-            console.log(output);
+            // console.log(output);
             if(output.answer == 'success') {
                 $('.add-card-form').each(function(){
                     $(this)[0].reset();
                 });
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
-                console.log('.add-card-btn:hidden');
-                // $(this).removeClass('hidden');
-                // $().addClass('hidden');
+                $(this).addClass('hidden');
+                $(this).siblings('.add-card-btn').addClass('hidden');
             }
         }
     });
@@ -153,7 +181,7 @@ function getContent(currentDate) {
         dataType: 'json',
         success: function(response){
 
-            console.log(response);
+            // console.log(response);
             //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){

@@ -55,13 +55,11 @@ class EventController extends MasterController
 			//make a query to the database to get this event data
 			$eventData = $EventModel->find($id);
 
-
 			$news = new NewsModel();
 			$showNews = $news->joinNewsFeed($id);
 
 			$insertComment = new CommentController();
 			$inComment = $insertComment->insertComment($id);
-
 
 			// send received data to the event.php
 			$showEvent = [
@@ -76,7 +74,21 @@ class EventController extends MasterController
 		}
 
 
+	public function getAllParticipants() {
+		if(!empty($_POST)) {
 
+			$idEvent = 0;
+
+			if(isset($_POST['idEvent']) && !empty($_POST['idEvent'])) {
+				$idEvent = intval($_POST['idEvent']);
+			}
+
+			$allUsers = new EventUsersModel();
+			$eventUsers = $allUsers->findAllUsers($idEvent);
+
+			$this->showJson(['users' => $eventUsers]);
+		}
+	}
 	/**
 	 * Création d'évènement
 	 */
@@ -326,7 +338,7 @@ class EventController extends MasterController
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
-	  		} 
+	  		}
 	  		$idEvent = $post['idEvent'];
 	  		$idUser = $post['idUser'];
 
