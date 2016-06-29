@@ -3,7 +3,6 @@
 <?php $this->start('main_content') ?>
 
 <!-- Formulaire pour modifier l'évènement -->
-<p class="checkEvent"> Modifier mon évènement. <p>
 <?php if(isset($success) && $success == true): ?>
 	<div class="alert alert-success">
 		<p>Tout est bon, votre évènement a bien été modifié.</p>
@@ -19,7 +18,7 @@
 
 
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
-	<h1 class="center">Votre événement</h1>	
+	<h1 class="center">Modifier votre évènement</h1>	
 	<hr>
 	<div class="row">	
 	    <div class="col-xs-6 .col-md-4">
