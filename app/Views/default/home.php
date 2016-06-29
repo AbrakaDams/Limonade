@@ -14,7 +14,9 @@
 	<div class="connect-sub">
 		<a href="<?= $this->url('user_login'); ?>">Connectez-vous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
 	</div>
+
 </section>
+
 
 <div class="event-public" id="eventPublic">
 	<h1 class="center"> Liste des évenements public</h1><hr>
@@ -31,6 +33,14 @@
   	</div>
 	<?php endforeach; ?>
 </div>
+<div class="infos" id="infos">
+	<div class="informations" id="informations">		
+		<h2>Informations</h2>
+		<p>Vous souhaitez créer votre event sans vous prendre la tête? Vous êtes sur la bon site alors.<br>Avec l'aide de notre plateforme <strong>Limonade</strong> prenez en main la gestion de vos évènements.</p>
+		<p>Nous sommes à votre disposition pour toutes vos questions.N'hésitez pas à nous contacter via notre <a href="<?= $this->url('contact_contact'); ?>">formulaire de contact</a>.</p>
+	</div>
+</div>
+
 
 
 
