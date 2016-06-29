@@ -1,3 +1,4 @@
+// get event id
 var thisEvent = parseInt($('#event-info').data('eventId'));
 
 /***************************
@@ -61,6 +62,7 @@ var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type=
 // the rest of the form
 var newCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';
 
+// newCard = newCardStart + createCardOptions(data.users) + newCardEnd
 var newCard;
 
 // get all event participants
@@ -86,20 +88,8 @@ function createCardOptions(users) {
     return allOptions;
 }
 
-/**
- * AJAX long-polling
- *
- * 1. sends a request to the server (without a timestamp parameter)
- * 2. waits for an answer from server.php (which can take forever)
- * 3. if server.php responds (whenever), put data_from_file into #response
- * 4. and call the function again
- *
- * @param timestamp
- */
- // get event id from even t.php
-var thisEvent = parseInt($('#event-info').data('eventId'));
 
-var lastDate = 0;
+
 
 
 /***************************
@@ -166,6 +156,7 @@ $('body').on('submit', '.add-card-form', function(e) {
 });
 
 
+var lastDate = 0;
 // initialize getContent function on page load
 $(function() {
     getContent(lastDate);
@@ -181,7 +172,7 @@ function getContent(currentDate) {
         dataType: 'json',
         success: function(response){
 
-            // console.log(response);
+            console.log(response);
             //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){
@@ -196,7 +187,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
                     }
                 });
             }
