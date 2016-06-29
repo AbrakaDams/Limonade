@@ -12,6 +12,6 @@ $(document).ready(function(){
 
 	//Popup on click
 	$("#notificationContainer").click(function(){
-	return false;
+		
 	});
 });

@@ -124,6 +124,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `notifications` (
   `id_event` INT NOT NULL ,
   `content` VARCHAR(255) NOT NULL ,
   `date_create` DATETIME NOT NULL,
+  `read` ENUM('unread','read') NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

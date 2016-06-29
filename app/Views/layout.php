@@ -99,10 +99,10 @@
 							<div id="notificationTitle">Notifications</div>
 							<div id="notificationsBody" class="notifications">
 								<?php foreach ($w_notifications as $notification):?>
-									<a href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>">
-										<div class="notification">
+									<a class="<?= $notification['read']?>" href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>">
+										<span class="notification">
 											<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>								
-											</div>
+										</span>
 									</a><hr>								
 								<?php endforeach; ?>
 							</div>
