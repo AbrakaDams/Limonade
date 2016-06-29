@@ -35,10 +35,11 @@
   	</div>
 	<?php endforeach; ?>
 </div>
+
 <hr>
 
 <div class="infos" id="infos">
-	<div class="informations" id="informations">		
+	<div class="informations" id="informations">
 		<h1 class="center">Informations</h1><hr>
 		<p>Vous souhaitez créer votre event sans vous prendre la tête? Vous êtes sur le bon site alors.<br>Avec l'aide de notre plateforme <strong>Limonade</strong> prenez en main la gestion de tous vos évènements.<br>
 		Un évènement est un fait important, un fait marquant pour vous tout comme pour nous.Il peut s'agir d'une soirée d'anniversaire pour votre enfant, une après-midi jeux de sociétés avec des inconnus afin de rencontrer de nouvelles personnes ou une journée à la plage avec vos amis.Tout le monde peut être concerné.<br>Organiser un évènement n'est pas toujours de tout repos à organiser, à gérer alors que ce doit être un moment de détente.
