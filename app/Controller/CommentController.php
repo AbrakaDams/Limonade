@@ -70,4 +70,14 @@ class CommentController extends Controller
       }
     }
   }
+    public function deleteComment(){
+        $idComment = 0;
+        if(isset($_POST['idComment']) && !empty($_POST['idComment'])){
+            $idComment = $_POST['idComment'];
+        }
+        $comment = new CommentModel();
+        $comment->delete($idComment);
+        $this->showJson(['suppression' => 'ok']);
+
+    }
 }

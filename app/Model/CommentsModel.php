@@ -5,7 +5,7 @@ class CommentsModel extends \W\Model\Model
 {
   public function joinComment($id){
 
-    $sql = 'SELECT users.username, users.avatar, users.url, comments.content, comments.date_add
+    $sql = 'SELECT users.username, users.avatar, users.url, comments.content, comments.date_add, comments.id
     FROM users
     INNER JOIN comments ON users.id = comments.id_user
     WHERE comments.id_event='.$id.' ORDER BY comments.date_add DESC LIMIT 10';
@@ -15,7 +15,7 @@ class CommentsModel extends \W\Model\Model
 
     return $sth->fetchAll();
   }
-  
+
   public function findAllComments($orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null, $id = null)
   {
 

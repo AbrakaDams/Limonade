@@ -23,6 +23,7 @@
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],
 		['GET|POST', '/ajax/join-comment', 'Comment#joinComment', 'comment_joinComment'],
+		['GET|POST', '/ajax/delete-comment', 'Comment#deleteComment', 'commment_deleteComment'],
 		['GET|POST', '/ajax/list-users', 'Event#listUsers', 'event_listUsers'],
 		['GET|POST', '/ajax/add-participant', 'Event#addParticipant', 'event_addParticipant'],
 		['GET|POST', '/ajax/delete-participant', 'Event#deleteParticipant', 'event_deleteParticipant'],
@@ -35,7 +36,7 @@
 		['GET|POST', '/lostpassword', 'User#lostPassword', 'user_lostPassword'],
 		['GET|POST', '/getnewpassword', 'User#getNewPassword', 'user_getNewPassword'],
 		['GET|POST', '/updateUser', 'User#updateUser', 'user_updateUser'],
-		
+
 		['GET|POST', '/facebook/auth', 'User#loginFacebook', 'user_loginFacebook'],
 		['GET|POST', '/facebook/logged', 'User#fbCallBack', 'user_fbCallBack'],
 

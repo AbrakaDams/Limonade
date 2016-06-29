@@ -43,12 +43,12 @@ function showComment(){
         data: 'id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
         success: function(html) { // Je récupère la réponse du fichier PHP
             console.log(html);
-            if(html.allComments.length > 0 ){
+            
                 $('#comments').text('');
                 $.each(html.allComments, function(key, value) {
-                    $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'  <img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">  ' + value.date_add + '<br>' + value.content + ' <a href="#"  class="delete">Supprimer</a>' + '<hr>' + '</div>')
+                    $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'<img class="comment-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">' + value.date_add + '<br>' + value.content + '<a href="#"  class="delete" data-delete-comment="' + value.id + '">Supprimer</a>' + '<hr>' + '</div>');
                 });
-            } // J'affiche cette réponse
+             // J'affiche cette réponse
         },
         error : function(e){
             console.log(e);
@@ -58,17 +58,20 @@ function showComment(){
 
 $('body').on('click', '.delete', function(e){
     e.preventDefault();
-    console.log('hello');
+    var idComment = $(this).attr('data-delete-comment');
     $.ajax({
-        type: 'post',
+        type: 'POST',
         url: '../ajax/delete-comment',
         dataType: 'json',
-        data : {'thisEventId': thisEventId,},
+        data : 'idComment=' + idComment,
         success: function(data){
             console.log(data);
+            if(data.suppression == 'ok'){
+                showComment();
+            }
         },
-        error: function(data){
-            console.log(data);
+        error: function(e){
+            console.log(e);
         }
     });
 });

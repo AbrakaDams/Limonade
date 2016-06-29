@@ -104,6 +104,7 @@
 	</p>
 </div>
 <?php endif; ?>
+
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
