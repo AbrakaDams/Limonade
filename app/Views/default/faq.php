@@ -19,4 +19,3 @@
 </div>	
 
 <?php $this->stop('main_content') ?>
-

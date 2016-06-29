@@ -4,6 +4,7 @@
 		['GET', '/', 'Default#home', 'default_home'],
 		['GET|POST', '/team', 'Default#team', 'default_team'],
 		['GET|POST', '/contact', 'Contact#contact', 'contact_contact'],
+		['GET|POST', '/faq', 'Default#faq', 'default_faq'],
 
 		/**************************** event ********************/
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],

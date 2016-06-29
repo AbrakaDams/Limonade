@@ -52,4 +52,14 @@ class DefaultController extends Controller
 	{
 		$this->show('default/team');
 	}
+
+	/**
+	 * Page FAQ
+	 */
+	public function faq()
+	{
+		$this->show('default/FAQ');
+	}
+
+
 }
