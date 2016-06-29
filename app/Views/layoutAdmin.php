@@ -25,7 +25,7 @@
 				     </button>
 
 	      			<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
-	      			<img class="brand-img" alt="brand-img" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>">
+	      			<img class="brand-img" width="60px" height="50px" alt="brand-img" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>">
 	      			</a>
 	    		</div>
 					<ul class="nav navbar-nav navbar-right">

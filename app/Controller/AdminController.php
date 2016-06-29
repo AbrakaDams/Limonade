@@ -4,6 +4,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\CommentsModel as CommentModel;
 use \Model\NewsFeedModel as NewsFeedModel;
+use \Model\AdminModel as AdminModel;  
 
 class AdminController extends Controller
 {
@@ -27,16 +28,24 @@ class AdminController extends Controller
 	/**
 	* Function pour modifier un event
 	*/
-	public function checkEvent()
+	public function checkEvent($id)
 	{
 		$post = array();
 		$errors = array();
 		$success = false;
 		$date_start = '';
 		$date_end = '';
-		$newEvent = '';
+		$eventData = array();
 
-		if(!empty($_POST)){
+		if(isset($id) && is_numeric($id)){
+
+			$adminModel = new AdminModel;
+			$eventData = $adminModel->findEvent($id);
+
+			var_dump($eventData);
+
+		}
+		/*if(!empty($_POST)){
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
 			}
@@ -72,7 +81,7 @@ class AdminController extends Controller
 				$eventModel = new EventModel();
 				$EventUsersModel = new EventUsersModel();
 
-				$date = [
+				$data = [
 					'id'            => $id,
 					'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
@@ -83,21 +92,28 @@ class AdminController extends Controller
 	  				'date_end' 		=> $date_end,
 				];
 
-				$newEvent = $eventModel->insert($data);
-				if($EventUsersModel->insert($dataEvent)){
+				$newEvent = $eventModel->find($data['id']);
+				//var_dump($newEvent);
+				if($EventUsersModel->update($dataEvent)){
 					$success = true;
 				}
 				else{
 					echo $errors[] = 'Il y a eu une erreur dans la création de l\'évènement !';
 				}				
 			}
-		}
-		$prams = [
+		}*/
+		$params = [
 			'errors'   => $errors,
 			'success'  => $success,
-			'newEvent' => $newEvent,
+			'newEvent' => $eventData,
 		];
 		$this->show('admin/checkEvent', $params);
+	}
+
+	public function recupRole($role){
+		if($role == 'repas'){
+			echo '<select'
+		}
 	}
 
 }
