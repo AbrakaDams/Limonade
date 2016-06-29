@@ -80,7 +80,7 @@
 					<div class="icons-social">
 						<a href=""><i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
 						<a href=""><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></a>
-						<a href=""><i class="fa fa-pinterest-p fa-4x" aria-hidden="true"></i></a>
+						<a href=""><i class="fa fa-pinterest-p fa-4x" aria-hidden="true"></i></a>						
 						<a href=""><i class="fa fa-github fa-4x" aria-hidden="true"></i></a>
 						<a href=""><i class="fa fa-snapchat-square fa-4x" aria-hidden="true"></i></a>
 					</div>

@@ -7,9 +7,11 @@
 <!-- Section slider -->
 <section class="slider">
 	<div class="owl-carousel">
-			<div class="item carousel-item-1"><img class="imofront" src="<?= $this->assetUrl('img/slider/birthday.jpg') ?>" alt="food"><h1 class="promo">Un outil attractif et intuitif</h1></div>
-			<div class="item carousel-item-2"><img class="imofront" src="<?= $this->assetUrl('img/slider/party.jpg') ?>" alt="food"><h1 class="promo">Une organisation d'événements</div>
-			<div class="item carousel-item-3"><img class="imofront" src="<?= $this->assetUrl('img/slider/pic.jpg') ?>" alt="food"><h1 class="promo">Un événement est un fait important, un fait marquant pour vous tout comme pour nous.</h1></div>
+			<div class="item carousel-item-1"><img class="imofront" src="<?= $this->assetUrl('img/slider/img_slider7.jpg') ?>" alt="food"><h1 class="promo">La joie d'un évènement bien organisé.</h1></div>
+			<div class="item carousel-item-2"><img class="imofront" src="<?= $this->assetUrl('img/slider/img_slider9.jpg') ?>" alt="food"><h1 class="promo">Une organisation d'événements.</div>
+			<div class="item carousel-item-3"><img class="imofront" src="<?= $this->assetUrl('img/slider/img_slider11.jpg') ?>" alt="food"><h1 class="promo">Un événement est un fait important, un fait marquant pour vous tout comme pour nous.</h1></div>
+			<div class="item carousel-item-4"><img class="imofront" src="<?= $this->assetUrl('img/slider/img_slider5.jpg') ?>" alt="food"><h1 class="promo">Jetez-vous à l'eau et rejoignez Limonade.</div>
+			<div class="item carousel-item-5"><img class="imofront" src="<?= $this->assetUrl('img/slider/img_slider4.jpg') ?>" alt="food"><h1 class="promo">Détendez vous, on s'occupe de tout.</h1></div>
 	</div>
 	<div class="connect-sub">
 		<a href="<?= $this->url('user_login'); ?>">Connectez-vous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
