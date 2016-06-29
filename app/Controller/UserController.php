@@ -245,12 +245,15 @@ class UserController extends Controller
 		$urlFacebook = $helper->getLoginUrl($urlRedirect, $permissions);
 
 		$this->redirect($urlFacebook);
-
 	}
+	
 	/**
 	 * Fonction Permettant de revenir depuis fb au site web
 	 */
 	public function fbCallBack(){
+
+		 $data = [];
+		 $success = false;
 
 		 $fb = new \Facebook\Facebook([
 	      'app_id' => '602369446588975', // Replace {app-id} with your app id
@@ -325,13 +328,32 @@ class UserController extends Controller
   	    // Pour récuperer l'user, l'accessToken est obligatoire
 	    $response = $fb->get('/me?fields=id,name,email', $accessToken->getValue());
 	    $user = $response->getGraphUser();
-	    var_dump($user);
 
+	    $usersModel = new UsersModel();
+	    
 
+	    if(!empty($user)){
+	    	$data = [ 
+	    		'id' => $user['id'],
+	    		'username' => $user['name'],
+	    		'email' => $user['email'],
+	    	];
+	    }
+	    ;
+
+	   if($user = $usersModel->insert($data)){
+	  		$success = true;
+	  		$this->redirectToRoute('default_home');
+
+	  	}
+	  	else{
+	  		echo $errors[] = 'erreur lors de la création du profil';
+	  	}
+	
 	    // User is logged in with a long-lived access token.
 	    // You can redirect them to a members-only page.
 	    //header('Location: https://example.com/members.php');
-		}
+	}
 
 	/**
 	 * Fonction Permettant de se connecter
