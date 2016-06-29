@@ -35,6 +35,7 @@
 	</aside>
 
 	<section id="event-info" data-event-id="<?=$thisEvent['id'];?>">
+
 		<!-- SHOW EVENT NAME -->
 		<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
 			<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
@@ -79,8 +80,9 @@
 
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
-	<section>
-		<h3>CommentaireS</h3>
+	<section id="comment-info" data-comment-id="<?=$comment;?>">
+			<?php var_dump($comment); ?>
+		<h3>Commentaires</h3>
 		<form method="post" id="form-comment">
 			<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">

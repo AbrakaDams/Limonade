@@ -1,9 +1,9 @@
 var thisEventId = parseInt($('#event-info').data('eventId'));
+var thisCommentId = parseInt($('#comment-info').data('commentId'));
 //si comment id_user = users id
 // Lorsque je soumets le formulaire
 $('#form-comment').on('submit', function(e) {
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
-
     var formData = $(this).serialize(); // L'objet jQuery du formulaire
 
     // Je vérifie une première fois pour ne pas lancer la requête HTTP
@@ -19,6 +19,9 @@ $('#form-comment').on('submit', function(e) {
             data: formData + '&id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             success: function(html) { // Je récupère la réponse du fichier PHP
                 if(html.answer == 'success'){
+
+
+                  console.log(thisCommentId);
                     showComment();
                     $('#form-comment').each(function(){
                         $(this)[0].reset();
@@ -39,6 +42,7 @@ function showComment(){
         data: 'id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
         success: function(html) { // Je récupère la réponse du fichier PHP
                     $('#comments').text('');
+                    console.log(thisEventId);
                 $.each(html.allComments, function(key, value) {
                     $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'<img class="comment-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">' + value.date_add + '<br>' + value.content + '<a href="#"  class="delete" data-delete-comment="' + value.id + '">Supprimer</a>' + '<hr>' + '</div>');
                 });
