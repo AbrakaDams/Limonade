@@ -42,7 +42,10 @@ class AdminController extends Controller
 			$adminModel = new AdminModel;
 			$eventData = $adminModel->findEvent($id);
 
-			var_dump($eventData);
+			
+			//echo $role;
+			
+			//echo $category;
 
 		}
 		/*if(!empty($_POST)){
@@ -103,17 +106,12 @@ class AdminController extends Controller
 			}
 		}*/
 		$params = [
-			'errors'   => $errors,
-			'success'  => $success,
-			'newEvent' => $eventData,
+			'errors'    => $errors,
+			'success' 	=> $success,
+			'eventData' => $eventData,		
+			
 		];
 		$this->show('admin/checkEvent', $params);
-	}
-
-	public function recupRole($role){
-		if($role == 'repas'){
-			echo '<select'
-		}
 	}
 
 }
