@@ -287,8 +287,9 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
   `id_user` INT NOT NULL ,
   `content` VARCHAR(255) NOT NULL ,
   `date_add` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`),
   FOREIGN KEY (id_event) REFERENCES event (id))
-  PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+  ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));

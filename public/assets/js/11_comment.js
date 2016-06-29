@@ -46,7 +46,7 @@ function showComment(){
             if(html.allComments.length > 0 ){
                 $('#comments').text('');
                 $.each(html.allComments, function(key, value) {
-                    $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'  <img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">  ' + value.date_add + '<br>' + value.content + '<hr>' +'</div>')
+                    $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'  <img class="logo" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">  ' + value.date_add + '<br>' + value.content + ' <a href="#"  class="delete">Supprimer</a>' + '<hr>' + '</div>')
                 });
             } // J'affiche cette réponse
         },
@@ -55,3 +55,20 @@ function showComment(){
         }
     });
 }
+
+$('body').on('click', '.delete', function(e){
+    e.preventDefault();
+    console.log('hello');
+    $.ajax({
+        type: 'post',
+        url: '../ajax/delete-comment',
+        dataType: 'json',
+        data : {'thisEventId': thisEventId,},
+        success: function(data){
+            console.log(data);
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+});
