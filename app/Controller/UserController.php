@@ -546,10 +546,10 @@ class UserController extends Controller
 		    		       	$mail = new PHPMailer;
 							//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 							$mail->isSMTP();                                      // Set mailer to use SMTP
-							$mail->Host = 'mailtrap.io';					  // Specify main and backup SMTP servers
+							$mail->Host = 'mailtrap.io';					      // Specify main and backup SMTP servers
 							$mail->SMTPAuth = true;                               // Enable SMTP authentication
-							$mail->Username = 'f12564c2d967d2';           // SMTP username
-							$mail->Password = 'f693c45ea37fa0';                 // SMTP password
+							$mail->Username = 'f12564c2d967d2';                   // SMTP username
+							$mail->Password = 'f693c45ea37fa0';                   // SMTP password
 							$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 							$mail->Port = 465;                                    // TCP port to connect to
 							
@@ -571,22 +571,18 @@ class UserController extends Controller
 		                		$error[] = 'Erreur lors de l\'envoie du mail, veuillez renouvler l\'opération. Si le problème persiste, contactez l\'administrateur.';
 		        			}
 		    			}//fin if insert execute
-		    		}//if empty emailexist
-		            else {
-		                $error[] = 'Votre email n\'est pas enregistré!';
-		            }
-		    	}//fin filter var
-				else
-				{
-				$error[] = 'Votre adresse email est incorrecte';
+			    	}//if empty emailexist
+			        else {
+			        $error[] = 'Votre email n\'est pas enregistré!';
+			        }
+			    }//fin filter var
+				else {
+					$error[] = 'Votre adresse email est incorrecte';
 				}
-		    }// fin if EMPTYpost
+			}// fin if EMPTYpost
 		}
 
-
-
 		$params = ['error' => $error, 'success' => $success, 'showForm' => $showForm];
-
 		$this->show('user/getNewPassword', $params);
 	}
 
@@ -614,10 +610,10 @@ class UserController extends Controller
 			$tokenModel = new TokensPasswordModel();
 
 			// On vérifie que le token et l'email sont bien dans la base de données
-  		$tokenExist = $tokenModel->findTokenPassword($email, $token);
+	  		$tokenExist = $tokenModel->findTokenPassword($email, $token);
 
-  		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
-  			// Ici le token est valide et n'a pas expiré, on peut donc afficher le formulaire.
+	  		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
+	  			// Ici le token est valide et n'a pas expiré, on peut donc afficher le formulaire.
 				$showFormPassword = true;
 			}
 			if($tokenExist['date_exp'] < date('Y-m-d H:i:s')){
@@ -629,54 +625,55 @@ class UserController extends Controller
 		if(isset($_POST['action']) && $_POST['action'] == 'updatePassword') {
 
 	    foreach ($_POST as $key => $value) {
-        $post[$key] = trim(strip_tags($value));
-	    }
-      if(strlen($post['new_password']) < 8 || strlen($post['new_password']) > 25 ) { // Nbres de caractères modifiables
+	        $post[$key] = trim(strip_tags($value));
+		    }
+
+	    if(strlen($post['new_password']) < 8 || strlen($post['new_password']) > 25 ) { // Nbres de caractères modifiables
 				$error[] = 'Votre mot de passe doit contenir entre 8 et 25 caractères';
 			}
-			if($post['new_password'] != $post['new_password_conf']) {
-				$error[] = 'Vos mots de passe doivent correspondre';
+		if($post['new_password'] != $post['new_password_conf']) {
+			$error[] = 'Vos mots de passe doivent correspondre';
+		}
+		if(count($error) == 0 ) { // Pas d'erreurs, on continue
+			// Ici, on peut changer le mot de passe
+
+			// On "Hash" le password
+        	$authModel = new AuthModel();
+			$password = $authModel->hashPassword($post['new_password']);
+
+			// On récupère les info de la table user grace à son adresse mail
+			$usersModel = new UsersModel();
+			$infoUser = $usersModel->getUserByUsernameOrEmail($post['email']);
+
+			$data = [
+				'password' => $password,
+			];
+
+			echo '<hr>'.$infoUser['id'];
+			if($usersModel->update($data, $infoUser['id'])){
+	        // Suppression du token car le mdp est modifié
+					
+				if($tokenModel->delete($tokenExist['id'])){
+					$showFormPassword = false;
+					$showConnectButton = true;
+            	}
+			}else {
+				$error[] = 'Erreur lors du changement de mot de passe, si le problème persiste veuillez contacter l\'administrateur.';
 			}
-			if(count($error) == 0 ) { // Pas d'erreurs, on continue
-				// Ici, on peut changer le mot de passe
-
-				// On "Hash" le password
-        $authModel = new AuthModel();
-				$password = $authModel->hashPassword($post['new_password']);
-
-				// On récupère les info de la table user grace à son adresse mail
-				$usersModel = new UsersModel();
-				$infoUser = $usersModel->getUserByUsernameOrEmail($post['email']);
-
-				$data = [
-					'password' => $password,
-				];
-
-				echo '<hr>'.$infoUser['id'];
-				if($usersModel->update($data, $infoUser['id'])){
-  	        // Suppression du token car le mdp est modifié
-						if($tokenModel->delete($tokenExist['id'])){
-              $showFormPassword = false;
-              $showConnectButton = true;
-            }
-				}
-				else{
-					$error[] = 'Erreur lors du changement de mot de passe, si le problème persiste veuillez contacter l\'administrateur.';
-				}
-			} // fin if count error
+		} // fin if count error
     	else{
           $error[] = 'Le token et l\'adresse email ne correspondent pas.';
     	} //fin else
-		}
+		}//fin if isset
 		$params = ['error' => $error, 'showFormPassword' => $showFormPassword, 'showConnectButton' => $showConnectButton];
 		$this->show('user/lostPassword', $params);
 	}
 
 	/**
-	 * Fonction permettant de mettre a jour les donnés de l'utilisateur connecté
+	 * Fonction permettant de mettre a jour les données de l'utilisateur connecté
 	 */
 	public function updateUser(){
-		// Si il n'est pas conecté on le redirige
+		// Si il n'est pas connecté on le redirige
 		$loggedUser = $this->getUser();
 
 		if(!isset($loggedUser)){
@@ -687,7 +684,7 @@ class UserController extends Controller
 			$errors = [];
 			$success = false;
 			$successimg = false;
-			$adress = ''; //adress est visible pour toute la fonction
+			$adress = ''; //adresse est visible pour toute la fonction
 
 			//définit si l'utilisateur est connecté
 			$user = $this->getUser();
@@ -703,7 +700,7 @@ class UserController extends Controller
 
 				$nomFichier = $_FILES['avatar']['name']; // Récupère le nom de mon fichier
 				$tmpFichier = $_FILES['avatar']['tmp_name']; // Stockage temporaire du fichier
-				$newFichier = $folder.$nomFichier; // Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+				$newFichier = $folder.$nomFichier; // Créer une chaîne de caractère contenant le nom du dossier de destination et le nom du fichier final
 				// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
 				if($_FILES['avatar']['size'] <= $maxSize){
 					/*
@@ -774,6 +771,6 @@ class UserController extends Controller
 			# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 			$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 			$this->show('user/updateUser', $params);
-		}
+		}//fin else !isset
 	}
 }
