@@ -1,6 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Modifier votre évènement']) ?>
 
-<?php $this->start('main_content') ?>
 
 <!-- Formulaire pour modifier l'évènement -->
 <p class="checkEvent"> Modifier mon évènement. <p>
@@ -80,7 +78,7 @@
 	    </div>
 	</div>
 	<hr>  
-	<button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
+	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier</button>
 </form>
 
 <div id="eventUpdate"></div>

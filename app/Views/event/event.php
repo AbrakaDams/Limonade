@@ -62,7 +62,7 @@
 		<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
 			<p class="event-address"><?php echo $thisEvent['address']; ?></p>
 		<?php else: ?>
-			<p class="event-address">Adresse n'est pas encore precisé</p>
+			<p class="event-address">Adresse n'est pas encore preciséE</p>
 		<?php endif; ?>
 	</section>
 
@@ -75,7 +75,7 @@
 	<div id="add-new-list">
 		<button type="button" id="add-list-btn">+</button>
 		<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-			<label for="add-list-input">Titre de ce liste</label>
+			<label for="add-list-input">Titre de cette liste</label>
 			<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 			<input type="submit" value="Go">
 		</form>
@@ -84,7 +84,7 @@
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
-		<h3>Commentaire</h3>
+		<h3>CommentaireS</h3>
 		<form method="post" id="form-comment">
 			<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
 			<input type="submit" name="submit" value="Commentez">
@@ -100,7 +100,7 @@
 
 <div class="alert alert-danger">
 	<p>
-		Connectez vous pour voir les commentaire
+		Connectez vous pour voir les commentaireS
 	</p>
 </div>
 <?php endif; ?>

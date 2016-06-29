@@ -23,6 +23,10 @@ class AdminController extends Controller
 			$this->allowTo('admin');
 			$this->show('admin/index');}
 	}
+
+	/**
+	* Function pour modifier un event
+	*/
 	public function checkEvent()
 	{
 		$post = array();
@@ -58,6 +62,7 @@ class AdminController extends Controller
 			if($this->validateDate($date_start) === false){
 				$errors[] = 'La date de début n\'est pas au bon format';
 			}
+			
 			$date_end = $post['date_end'].' '.$post['time_end'].':00';
 			if($this->validateDate($date_end) === false){
 				$errors[] = 'La date de fin n\'est pas au bon format';

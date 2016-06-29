@@ -96,6 +96,7 @@
   </div>
   <hr>  
   <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
+  <button type="submit" id="modifEvent" class="btn btn-primary">Modifier le formulaire</button>
 </form>
 
 <?php endif; ?>
