@@ -11,6 +11,8 @@
         	<button type="submit" class="btn btn-success">Ajouter</button>
     </form>
 
+    <div id="invite-message"></div>
+    
     <div class="list-participants">
     	<h2>Liste des amis participants :</h2>
     	<?php foreach ($allParticipants as $user):?>
@@ -68,34 +70,45 @@
 
 		$.ajax({
 			type: 'post',
-			url: '../ajax/addParticipant',
+			url: '../ajax/add-participant',
 			dataType: 'json',
 			data: {'username': $('#username').val(), 'idEvent': <?=$idEvent;?>},
 			success: function(data){
 
-				console.log(data);
-				if(data.resultat == 'ok'){
-					/*var insert = '<p class="item-participant">'+ $('#username').val() + '</p>';
-
-					$(insert).insertAfter('.list-participants');*/
-
-
-					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
+				if(data.resultat == 'exist'){
+					$('#invite-message').text("");
+					$('#invite-message').text("Vous avez déjà invité cette personne.");
 				}
+				if(data.resultat == 'ok'){
+					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
+					$('#invite-message').text("");
+					$('#invite-message').text("Vous avez bien invité votre ami.");
+					$('#remote').each(function(){
+                        $(this)[0].reset();
+                    });
+				}
+				if(data.resultat == 'ko'){
+					$('#invite-message').text("");
+					$('#invite-message').text("Erreur lors de l'invitation.");
+				}
+				console.log(data);
 			},
+			error: function(e){
+				console.log(e);
+			}
 		});
 	});
 
-	/*$('.delete').on('click', function(e){
+	$('.delete').on('click', function(e){
 		e.preventDefault();
 
 		$.ajax({
 			type: 'post',
-			url: '../ajax/deleteParticipant',
+			url: '../ajax/delete-participant',
 			dataType: 'json',
 			data :
 		});
-	});*/
+	});
 
 </script>
 <?php $this->stop('js'); ?>

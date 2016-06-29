@@ -23,4 +23,14 @@ class EventUsersModel extends \W\Model\Model
 
 		return $sth->execute();
 	}
+	public function findUserInEvent($idEvent, $idUser)
+	{
+		$sql = 'SELECT * FROM ' . $this->table .' WHERE id_event = :idEvent AND id_user = :idUser';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idEvent', $idEvent);
+		$sth->bindValue(':idUser', $idUser);
+		$sth->execute();
+
+		return $sth->fetchAll(); 
+	}
 }
