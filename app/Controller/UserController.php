@@ -3,28 +3,29 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \W\Model\UsersModel as UsersModel; // permet d'importerla classe UsersModel que l'on pourra instancier via UsersModel();
+use \W\Model\UsersModel as UsersModel; // permet d'importer la classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
 use \Model\TokensPasswordModel as TokensPasswordModel;
 use \Model\TokensRegisterModel as TokensRegisterModel;
 use PHPMailer;
+use \W\Security\StringUtils;
 
 class UserController extends Controller
 {
-
 	/**
-	 * Function pour enregistrer l'utilisateur via formulaire
+	 * Fonction pour enregistrer l'utilisateur via formulaire
 	 */
 	public function register()
 	{
-		// Si il est conecter on le redirige
+		// On va chercher l'utilisateur pour le connecter
 		$loggedUser = $this->getUser();
-
+		//Si loggedUser est définie
 		if(isset($loggedUser)){
-			//connecté
+			//On redirige vers l'accueil des utilisateurs connectés
 			$this->redirectToRoute('default_home');
-		}else{
 
+		}else{
+			//instancie variables
 			$post = [];
 			$errors = [];
 			$success = false;
@@ -33,16 +34,19 @@ class UserController extends Controller
 
 
 
-			//qd j'insère le fichier depuis mon formulaire ça le place dan assets
+			//A l'insertion de l'image dans le formulaire, il est placé dans le fichier assets
 			$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
 			$dbLink = '/limonade/public/assets/image';
 			$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
 
 			if(!empty($_FILES) && isset($_FILES['avatar'])){
 
-				$nomFichier = $_FILES['avatar']['name']; // Récupère le nom de mon fichier
-				$tmpFichier = $_FILES['avatar']['tmp_name']; // Stockage temporaire du fichier
-				$newFichier = $folder.$nomFichier; // Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+				// Récupère le nom de mon fichier
+				$nomFichier = $_FILES['avatar']['name']; 
+				// Stockage temporaire du fichier
+				$tmpFichier = $_FILES['avatar']['tmp_name'];
+				// Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+				$newFichier = $folder.$nomFichier; 
 				// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
 				if($_FILES['avatar']['size'] <= $maxSize){
 					/*
@@ -60,6 +64,7 @@ class UserController extends Controller
 				}
 			}
 
+			//Je nettoye et vérifie les données
 			if(!empty($_POST)){
 				foreach($_POST as $key => $value){
 					$post[$key] = trim(strip_tags($value));
@@ -90,11 +95,11 @@ class UserController extends Controller
 				}
 
 				if(count($errors) === 0){
-					// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
+					// Ici il n'y a pas d'erreurs, on enregistre en Db
 					$usersModel = new UsersModel();
 					$authModel = new AuthModel();
 
-					//on utilise la méthode insert() qui permet d'insérer des données en bases
+					//Méthode insert(), permet d'insérer des données en bases
 					$dataUser = [
 						//la clé du tableau correspond au nom de la colone SQL
 						'username' 	=> $post['username'],
@@ -119,12 +124,12 @@ class UserController extends Controller
 	    				'date_create' 	=> $date_create,
 	    				'date_exp' 		=> $date_exp,
 					];
-					// On instancie la class de tokenRegisterModel
+					// On instancie la classe de tokenRegisterModel
 					$tokenRegisterModel = new TokensRegisterModel();
 					// on passe le tableau $data à la méthode insert() pour enregistrer nos données en base.
 					// Et on ajoute le token dans la table token_register
 					if($usersModel->insert($dataUser) && $tokenRegisterModel->insert($dataToken)){
-						// ici l'insertion en base est effectuée!
+						// L'insertion en base est effectuée, bravo!
 
 						$userInserted = $usersModel->getUserByUsernameOrEmail($dataUser['email']);
 						echo $userInserted['id'];
@@ -133,15 +138,15 @@ class UserController extends Controller
 						$mail = new PHPMailer;
 						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 						$mail->isSMTP();                                      // Set mailer to use SMTP
-						$mail->Host = 'mailtrap.io';					  // Specify main and backup SMTP servers
+						$mail->Host = 'mailtrap.io';					  	  // Specify main and backup SMTP servers
 						$mail->SMTPAuth = true;                               // Enable SMTP authentication
-						$mail->Username = 'f12564c2d967d2';           // SMTP username
-						$mail->Password = 'f693c45ea37fa0';                 // SMTP password
+						$mail->Username = 'f12564c2d967d2';                   // SMTP username
+						$mail->Password = 'f693c45ea37fa0';                   // SMTP password
 						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 						$mail->Port = 465;                                    // TCP port to connect to
 
 						$mail->setFrom('limowf3@yopmail.com');
-						$mail->addAddress($dataUser['email'], $dataUser['username']);      // Name is optional
+						$mail->addAddress($dataUser['email'], $dataUser['username']); // Name is optional
 						//$mail->addReplyTo('info@example.com', 'Information');
 
 						$mail->isHTML(true);                                  // Set email format to HTML
@@ -159,23 +164,23 @@ class UserController extends Controller
 
 						//redirige l'utilisateur vers la page d'accueil
 						//$this->redirectToRoute('user_login');
-					} //Fin insertion USER et TOKEN
-					else{
+
+					} else {
 						$errors[] = 'Problème lors de l\'insertion';
 					}
-				}//count error
+				}
 
-			}//if empty post
+			}
 			# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 
 			$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 			$this->show('user/register', $params);
 		}
-	}//fin de function function register
+	}
 
 
 	/**
-	 * Function Pour comfirmer le compte
+	 * Function Pour confirmer le compte
 	 */
 	public function registerConfirm(){
 
@@ -187,38 +192,47 @@ class UserController extends Controller
 		isset($_GET['email']) &&
 		!empty($_GET['email'])){
 
-			// On récupère et nétoie les valeur des GET
-			foreach ($_GET as $key => $value) {
-          $get[$key] = trim(strip_tags($value));
-      }
-      // On récupère l'email et le token dans une varialbe
-      $email = $get['email'];
-      $token = $get['token'];
-	    // On instancie la class tokensPasswordModel
-			$tokensRegisterModel = new TokensRegisterModel();
-	    // On vérifie que le token et l'email sont bien dans la base de données
+		//On récupère et nettoye les valeur des GET
+		foreach ($_GET as $key => $value) {
+          	$get[$key] = trim(strip_tags($value));
+      	}
+
+      	//On récupère l'email et le token dans une varialbe
+      	$email = $get['email'];
+     	$token = $get['token'];
+
+	    //On instancie la class tokensPasswordModel
+		$tokensRegisterModel = new TokensRegisterModel();
+
+	    //On vérifie que le token et l'email sont bien dans la bdd
     	$tokenExist = $tokensRegisterModel->findTokenRegister($email, $token);
 
-			if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
-    			// Ici le token est valide et n'a pas expiré, on peut donc activer le compte.
-    			// On instancie la classe userModel
-    			$usersModel = new UsersModel();
-    			// On récupère les info de la table user grace à son adresse mail pour modifier la valeur du champ activation
-    			$infoUser = $usersModel->getUserByUsernameOrEmail($get['email']);
-					$data = [
-						'activation' => 'true'
-					];
-    			// On active enfin le compte
-    			if($usersModel->update($data, $infoUser['id'])){
-    				// Le compte est activé, on supprime donc le token
-    				if($tokensRegisterModel->delete($tokenExist['id'])){
-    					echo 'Tout est ok : Supression du token et activation du compte';
-    				}
-    			}
+		//Si le token est valide et n'a pas expiré, on peut donc activer le compte
+		if(!empty($tokenExist) && ($tokenExist['date_exp'] > date('Y-m-d H:i:s'))) {
+		
+			// On instancie la classe UsersModel pour utiliser les fonctions du UserSModel
+			$usersModel = new UsersModel();
+
+			// On récupère : infos de table user, via son adresse mail, cela change la valeur du champ activation de false a true 
+			$infoUser = $usersModel->getUserByUsernameOrEmail($get['email']);
+				$data = [
+					'activation' => 'true'
+				];
+
+			// Le compte est enfin actif
+			if($usersModel->update($data, $infoUser['id'])){
+				// Comme le compte est activé, supression du token
+				if($tokensRegisterModel->delete($tokenExist['id'])){
+
+					echo 'Tout est ok : Supression du token et activation du compte';
+				}
 			}
-			if($tokenExist['date_exp'] < date('Y-m-d H:i:s')){
-				$error[] = 'Le lien n\'est plus valide ou votre compte est déja activé.' ;
-			}
+		}
+
+		if($tokenExist['date_exp'] < date('Y-m-d H:i:s')){
+			$error[] = 'Le lien n\'est plus valide ou votre compte est déja activé.' ;
+		}
+
 		}
 		$this->show('user/registerConfirm');
 	}
@@ -252,12 +266,12 @@ class UserController extends Controller
 	 */
 	public function fbCallBack(){
 
-		 $data = [];
-		 $success = false;
+		$data = [];
+		$success = false;
 
-		 $fb = new \Facebook\Facebook([
-	      'app_id' => '602369446588975', // Replace {app-id} with your app id
-	      'app_secret' => 'dd68c176483e918625b46de16c01419e',
+		$fb = new \Facebook\Facebook([
+	      'app_id' => '602369446588975', // Votre id est sur l'app fb dév
+	      'app_secret' => 'dd68c176483e918625b46de16c01419e', // Votre secret est sur l'app fb dév
 	      'default_graph_version' => 'v2.2',
 	      ]);
 
@@ -293,7 +307,7 @@ class UserController extends Controller
 
 	    // Logged in
 	    echo '<h3>Access Token</h3>';
-	    var_dump($accessToken->getValue());
+	    $accessToken->getValue();
 
 
 	    // The OAuth 2.0 client handler helps us manage access tokens
@@ -302,7 +316,6 @@ class UserController extends Controller
 	    // Get the access token metadata from /debug_token
 	    $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 	    echo '<h3>Metadata</h3>';
-	    var_dump($tokenMetadata);
 
 	    // Validation (these will throw FacebookSDKException's when they fail)
 	    $tokenMetadata->validateAppId('602369446588975'); // Replace {app-id} with your app id
@@ -311,64 +324,118 @@ class UserController extends Controller
 	    $tokenMetadata->validateExpiration();
 
 	    if(!$accessToken->isLongLived()) {
-	      // Exchanges a short-lived access token for a long-lived one
-	      try {
-	        $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
-	      } catch (Facebook\Exceptions\FacebookSDKException $e) {
-	        echo "<p>Error getting long-lived access token: " . $helper->getMessage() . "</p>\n\n";
-	        exit;
-	      }
+			// Exchanges a short-lived access token for a long-lived one
+			try {
+			$accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
+			} catch (Facebook\Exceptions\FacebookSDKException $e) {
+			echo "<p>Error getting long-lived access token: " . $helper->getMessage() . "</p>\n\n";
+			exit;
+			}
 
-	      echo '<h3>Long-lived</h3>';
-	      var_dump($accessToken->getValue());
+			echo '<h3>Long-lived</h3>';
+			$accessToken->getValue();
+			}
+
+			$_SESSION['fb_access_token'] = (string) $accessToken;
+
+		// Pour récuperer l'user, l'accessToken est obligatoire
+		$response = $fb->get('/me?fields=id,name,first_name,last_name,email,picture', $accessToken->getValue());
+		$user = $response->getGraphUser();
+		$usersModel = new UsersModel();
+
+
+	    if(isset($user['picture']) && !empty($user['picture'])){
+
+	    	$userPic = json_decode($user['picture']);
+	    	$picture = $userPic->url;
+	    }
+	    else {
+	    	$picture = ''; // Avatar par défaut
 	    }
 
-	    $_SESSION['fb_access_token'] = (string) $accessToken;
-
-  	    // Pour récuperer l'user, l'accessToken est obligatoire
-	    $response = $fb->get('/me?fields=id,name,email', $accessToken->getValue());
-	    $user = $response->getGraphUser();
-
-	    $usersModel = new UsersModel();
-	    
+	    $stringUtils = new StringUtils();
+	    $authModel = new AuthModel();
+	    $passwordPlain = $stringUtils->randomString(10);
+	    $passwordHash = $authModel->hashPassword($passwordPlain);
 
 	    if(!empty($user)){
 	    	$data = [ 
-	    		'id' => $user['id'],
-	    		'username' => $user['name'],
-	    		'email' => $user['email'],
+	    		'username' 		=> $user['name'],
+	    		'firstname' 	=> $user['first_name'],
+	    		'lastname' 		=> $user['last_name'],
+	    		'email' 		=> $user['email'],
+	    		'password'		=> $passwordHash,
+	    		'avatar'		=> $picture,
+	    		'id_facebook'	=> $user['id'],
+	    		'activation' 	=> 'true',
 	    	];
-	    }
-	    ;
+		}
 
-	   if($user = $usersModel->insert($data)){
+		$newUser = $usersModel->insert($data);
+		if($newUser){
 	  		$success = true;
-	  		$this->redirectToRoute('user_login');
+	  		// Ici on envoi l'email avec le mot de passe $passwordPlain
 
+			$mail = new PHPMailer;
+			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'mailtrap.io';					      // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'f12564c2d967d2';                   // SMTP username
+			$mail->Password = 'f693c45ea37fa0';                   // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 465;                                    // TCP port to connect to
+
+			$mail->setFrom('limowf3@yopmail.com');
+			$mail->addAddress($data['email'], $data['username']); // Name is optional
+			//$mail->addReplyTo('info@example.com', 'Information');
+
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject =  'Valider votre compte lemonade';
+			$mail->Body    =  'Bonjour' .$data['username'].' voici votre mot de passe de connexion '.$passwordPlain;
+			$mail->AltBody =  'Bonjour' .$data['username'].' voici votre mot de passe de connexion '.$passwordPlain;
+
+			if(!$mail->send()) {
+					echo 'Message could not be sent.';
+					echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+					echo 'Message has been sent';
+			}
+
+
+	  		// Ici on connecte l'utilisateur puis on redirige
+	  		$authModel->logUserIn($newUser); // Connecte l'utilisateur
+	  		$this->redirectToRoute('default_home'); // Le redirige
 	  	}
-	  	else{
+	  	else {
 	  		echo $errors[] = 'erreur lors de la création du profil';
 	  	}
-	
+
 	    // User is logged in with a long-lived access token.
 	    // You can redirect them to a members-only page.
 	    //header('Location: https://example.com/members.php');
-	}
+		}
 
-	/**
-	 * Fonction Permettant de se connecter
-	 */
+		/**
+		 * Fonction Permettant de se connecter
+		 */
 	public function login(){
+
 		// Si il est conecter on le redirige
 		$loggedUser = $this->getUser();
 
 		if(isset($loggedUser)){
 			//connecté
 		$this->redirectToRoute('default_home');
-		}else{
+		}
+		else
+		{
 			$post = [];
 			$errors = [];
+
 			if(!empty($_POST)){
+
 				// On nettoie les données...c'est l'équivalent de notre foreach
 				$post = array_map('strip_tags', $_POST);
 				$post = array_map('trim', $post);
@@ -386,6 +453,7 @@ class UserController extends Controller
 
 					// La méthode isValidLoginInfo() retourne un utilisateur si celui-ci existe et que le couple identifiant/mdp existe.
 					$idUser = $authModel->isValidLoginInfo($post['email'], $post['password']);
+
 					if($idUser){
 						// On appelle la méthode find() qui permet de retourner les résultats en fonction d'un ID
 						$user = $usersModel->find($idUser);
@@ -396,12 +464,10 @@ class UserController extends Controller
 							// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
 							// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
 							$this->redirectToRoute('default_home');
-						}
-						else{
+						}else {
 							$errors[] = 'Votre compte n\'est pas activé.';
 						}
-					}
-					else{
+					}else {
 						$errors[] = 'Le couple identifiant/mot de passe est invalide';
 					}
 				}
@@ -412,10 +478,10 @@ class UserController extends Controller
 	}
 
 	/**
-	 * Function permettant de se déconnecté
+	 * Function permettant de se déconnecter
 	 */
 	public function logout(){
-		// Si il n'est pas conecter on le redirige
+		// Si il n'est pas connecté on le redirige
 		$loggedUser = $this->getUser();
 
 		if(!isset($loggedUser)){
@@ -429,7 +495,7 @@ class UserController extends Controller
 	}
 
 	/**
-	 * Fonction permettant de recevoir un nouveau password
+	 * Fonction permettant de recevoir un nouveau mot de passe
 	 */
 	public function getNewPassword(){
 
