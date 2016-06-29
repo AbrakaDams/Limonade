@@ -1,10 +1,4 @@
-/************ Définition des variables ****************************************/
-$fontFam: 'BenchNine', sans-serif;
-$footerColorNoConnect: grey;
-$fontSize: 16px;
-$fontSizeSlider: 2em;
-$fontColor: #ffffff;
-/************************************************************/
+@import '_variables.scss';
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -129,7 +123,7 @@ html {
 #eventPublic{
 	.event{
 		display: inline-block;
-		
+
 	}
 }
 
