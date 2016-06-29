@@ -18,9 +18,9 @@ class ListModel extends \W\Model\Model
 
     public function findCards($id, $lastDate) {
 
-        $sql = 'SELECT cards.id, cards.title, cards.id_list, cards.description, cards.quantity, cards.price, cards.date_add, users.username, users.firstname, users.lastname
+        $sql = 'SELECT cards.id, cards.title, cards.id_list, cards.description, cards.quantity, cards.price, cards.id_user, cards.date_add, users.username, users.firstname, users.lastname
         FROM cards
-        INNER JOIN users ON cards.id_user = users.id
+        LEFT JOIN users ON cards.id_user = users.id
         WHERE cards.id_event='.$id.' AND date_add > "' .  $lastDate .'"';
 
 		$sth = $this->dbh->prepare($sql);

@@ -20,6 +20,7 @@
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
+		['GET|POST', '/ajax/delete-card', 'List#deleteCard', 'list_deleteCard'],
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],
 		['GET|POST', '/ajax/join-comment', 'Comment#joinComment', 'comment_joinComment'],

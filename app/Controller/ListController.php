@@ -179,4 +179,17 @@ class ListController extends Controller
 		$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate]);
 
 	}
+
+	public function deleteCard() {
+		// just 0 so he can find nothing
+		$idCard = 0;
+		if(isset($_POST['idCard']) && !empty($_POST['idCard'])) {
+			$idCard = intval($_POST['idCard']);
+		}
+
+		$deleteCard = new ListModel();
+		if($deleteCard->delete($idCard)) {
+			$this->showJson(['delete' => 'done']);
+		}
+	}
 }

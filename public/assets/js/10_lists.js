@@ -31,7 +31,7 @@ $(document).mouseup(function (e) {
     }
 });
 
-// hide our add card form if we click anywhere else and if our form is empty
+//hide our add card form if we click anywhere else and if our form is empty
 // $(document).mouseup(function (e) {
 //     // if we click anywhere else but not our form
 //     var cardDiv = $('.add-new-card:active').find('.add-card-form:visible');
@@ -74,6 +74,7 @@ $(document).ready(function() {
         data: 'idEvent=' + thisEvent,
         success: function(data) {
             newCard = newCardStart + createCardOptions(data.users) + newCardEnd;
+            getContent(lastDate);
         },
     });
 });
@@ -137,9 +138,9 @@ $('body').on('submit', '.add-card-form', function(e) {
         url: '../ajax/add-card',
         data: formData + '&eventId=' + thisEvent + '&listId=' + listId,
         dataType: 'json',
-        error: function(e){
-            console.table(e);
-        },
+        // error: function(e){
+        //     console.table(e);
+        // },
         success: function(output) {
             // console.log(output);
             if(output.answer == 'success') {
@@ -158,9 +159,9 @@ $('body').on('submit', '.add-card-form', function(e) {
 
 var lastDate = 0;
 // initialize getContent function on page load
-$(function() {
-    getContent(lastDate);
-});
+
+
+
 
 function getContent(currentDate) {
 
@@ -181,13 +182,14 @@ function getContent(currentDate) {
                 });
             }
             if(response.newCards.length != 0){
+
                 $.each(response.newCards, function(key, value) {
 
                     var dataToFind = '[data-id-list="'+value.id_list+'"]';
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><a href="#" class="delete-card" data-delete-card="'+value.id+'">Supprimer cette tache</a><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
                     }
                 });
             }
@@ -200,3 +202,22 @@ function getContent(currentDate) {
         }
     });
 }
+
+$('#event-lists').on('click', '.delete-card', function(e) {
+    e.preventDefault();
+
+    var idCard = $(this).data('deleteCard');
+    var card = $(this).parent();
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/delete-card',
+        dataType: 'json',
+        data: 'idCard=' + idCard,
+        success: function(data) {
+            console.log(data);
+            if(data.delete == 'done') {
+                $(card).fadeOut();
+            }
+        }
+    })
+});
