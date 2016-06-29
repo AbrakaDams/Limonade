@@ -15,12 +15,14 @@ class searchController extends Controller
 	// Le premier argument est un tableau associatif où la clé correspond à la colonne SQL
 	// Le second argument est l'opérateur OR ou AND pour la recherche
 
-	public function search()
+	public function searchBar()
 	{
+
 		if(!empty($_GET) && isset($_GET['search'])){
 
 			$keyword = trim(strip_tags($_GET['search']));
 			$search = new EventModel();
+			$search->search();
 
 			$data =[
 			'title' => $keyword,
@@ -34,4 +36,4 @@ class searchController extends Controller
 		}
 		$this->show('event/search'); 
 
-	}
+	} 

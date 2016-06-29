@@ -242,6 +242,13 @@ class UserController extends Controller
 	 */
 	public function loginFacebook(){
 
+		// On va chercher l'utilisateur pour le connecter
+		$loggedUser = $this->getUser();
+		//Si loggedUser est définie
+		if(isset($loggedUser)){
+			//On redirige vers l'accueil des utilisateurs connectés
+			$this->redirectToRoute('default_home');
+		}else{
 		//on s'identifie vers l'api facebook et on est redirigé vers loginhelper
 		$fb = new \Facebook\Facebook([
 		'app_id' => '602369446588975',
@@ -260,7 +267,7 @@ class UserController extends Controller
 
 		$this->redirect($urlFacebook);
 	}
-	
+	}
 	/**
 	 * Fonction Permettant de revenir depuis fb au site web
 	 */
