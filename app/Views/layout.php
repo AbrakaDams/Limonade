@@ -21,7 +21,7 @@
 		-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
 		overflow: visible;
 		position: absolute;
-		top: 4em;
+		top: 4.2em;
 		margin-left: -170px;
 		width: 400px;
 		z-index: 10;
@@ -97,7 +97,9 @@
 						</a>
 						<div id="notificationContainer">
 							<div id="notificationTitle">Notifications</div>
-							<div id="notificationsBody" class="notifications"></div>
+							<div id="notificationsBody" class="notifications">
+								<a href="#"><div class="notification">Notification 1</div></a>
+							</div>
 							<div id="notificationFooter"><a href="#">See All</a></div>
 						</div>
 					</li>
