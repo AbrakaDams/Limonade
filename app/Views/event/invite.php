@@ -76,27 +76,31 @@
 			data: {'username': $('#username').val(), 'idEvent': <?=$idEvent;?>},
 			success: function(data){
 
-				if(data.resultat == 'exist'){
-					$('#invite-message').text("");
-					$('#invite-message').text("Vous avez déjà invité cette personne.");
-				}
 				if(data.resultat == 'ok'){
 					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
 					$('#invite-message').text("");
+					$('#delete-message').text("");
 					$('#invite-message').text("Vous avez bien invité votre ami.");
 					$('#remote').each(function(){
                         $(this)[0].reset();
                     });
 				}
+				if(data.resultat == 'exist'){
+					$('#invite-message').text("");
+					$('#delete-message').text("");
+					$('#invite-message').text("Vous avez déjà invité cette personne.");
+				}
 				if(data.resultat == 'ko'){
 					$('#invite-message').text("");
+					$('#delete-message').text("");
 					$('#invite-message').text("Erreur lors de l'invitation.");
 				}
-				console.log(data);
+				if(data.resultat == 'empty'){
+					$('#invite-message').text("");
+					$('#delete-message').text("");
+					$('#invite-message').text("Veuillez entrer le pseudo votre ami à inviter.");
+				}
 			},
-			error: function(e){
-				console.log(e);
-			}
 		});
 	});
 
@@ -104,7 +108,6 @@
 		e.preventDefault();
 		var idEvent = $(this).parent().find(".idEvent").data("idEvent");
 		var idUser = $(this).parent().find( ".idUser" ).data("idUser");
-		console.log(idUser);
 		$.ajax({
 			type: 'post',
 			url: '../ajax/delete-participant',
@@ -114,14 +117,11 @@
 
 				if(data.suppression == 'ok'){
 					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
+					$('#invite-message').text("");
 					$('#delete-message').text("");
 					$('#delete-message').text("Cette personne ne fait plus partie de cet évènement.");
 				}
-			console.log(data);
 			},
-			error: function(data){
-				console.log(data);
-			}
 		});
 	});
 

@@ -257,36 +257,42 @@ class EventController extends Controller
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
-	  		$idEvent = $post['idEvent'];
-	  		$username = $post['username'];
+	  		if(!empty($post['username'])){
 
-	  		$eventModel = new EventModel();
-			$UserModel = new UsersModel();
-			$EventUsersModel = new EventUsersModel();
+		  		$idEvent = $post['idEvent'];
+		  		$username = $post['username'];
 
-			$userInfo = $UserModel->getUserByUsernameOrEmail($username);
-			$idUser = $userInfo['id'];
+		  		$eventModel = new EventModel();
+				$UserModel = new UsersModel();
+				$EventUsersModel = new EventUsersModel();
 
-			$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
+				$userInfo = $UserModel->getUserByUsernameOrEmail($username);
+				$idUser = $userInfo['id'];
 
-			if(!empty($exist)){
-				$json = ['resultat' => 'exist'];
+				$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
+
+				if(!empty($exist)){
+					$json = ['resultat' => 'exist'];
+				}
+				else{
+					$dataEvent = [
+						'id_event'	=> $idEvent,
+						'id_user'	=> $idUser,
+						'role'		=> 'event_user',
+					];
+					$EventUsersModel = new EventUsersModel();
+					$insert = $EventUsersModel->insert($dataEvent);
+
+					if($insert){
+						$json = ['resultat' => 'ok'];
+					}
+					else {
+						$json = ['resultat' => 'ko'];
+					}
+				}
 			}
 			else{
-				$dataEvent = [
-					'id_event'	=> $idEvent,
-					'id_user'	=> $idUser,
-					'role'		=> 'event_user',
-				];
-				$EventUsersModel = new EventUsersModel();
-				$insert = $EventUsersModel->insert($dataEvent);
-
-				if($insert){
-					$json = ['resultat' => 'ok'];
-				}
-				else {
-					$json = ['resultat' => 'ko'];
-				}
+				$json = ['resultat' => 'empty']; // Ici c'est si on a entré un champ vide
 			}
 		}
 		$this->showJson($json);
