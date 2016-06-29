@@ -32,27 +32,19 @@ $(document).mouseup(function (e) {
 });
 
 //hide our add card form if we click anywhere else and if our form is empty
-// $(document).mouseup(function (e) {
-//     // if we click anywhere else but not our form
-//     var cardDiv = $('.add-new-card:active').find('.add-card-form:visible');
-//     console.log(cardDiv);
-//     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
-//         var countEmptyFields = 0;
-//         // check every field of the visible form
-//         // increase counter if one of the is not empty
-//         $(cardDiv).each(function (){
-//             if ($.trim(this.value) != '') {
-//                 countEmptyFields++;
-//             }
-//         });
-//         console.log(countEmptyFields);
-//         //if all the fields are empty
-//         if(countEmptyFields == 0) {
-//             $('.add-card-btn:hidden').removeClass('hidden');
-//             $('.add-card-form:visible').addClass('hidden');
-//         }
-//     }
-// });
+$(document).mouseup(function (e) {
+    // if we click anywhere else but not our form
+    var cardDiv = $('.add-card-btn:active');
+    console.log(cardDiv);
+
+    if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+        //if all the fields are empty
+
+        $('.add-card-btn:hidden').removeClass('hidden');
+        $('.add-card-form:visible').addClass('hidden');
+
+    }
+});
 
 
 // html to insert a new card
@@ -173,7 +165,7 @@ function getContent(currentDate) {
         dataType: 'json',
         success: function(response){
 
-            console.log(response);
+            // console.log(response);
             //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){
