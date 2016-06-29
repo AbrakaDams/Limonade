@@ -42,6 +42,7 @@
 
 		/***************************** admin *************************/
 		['GET|POST', '/back_office', 'Admin#admin', 'admin_admin'],
+		['GET|POST', '/back_office', 'Admin#checkEvent', 'admin_checkEvent'],
 
 
 	);
