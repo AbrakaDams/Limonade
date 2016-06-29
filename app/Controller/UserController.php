@@ -133,12 +133,12 @@ class UserController extends Controller
 						$mail = new PHPMailer;
 						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 						$mail->isSMTP();                                      // Set mailer to use SMTP
-						$mail->Host = 'smtp.mailgun.org';					  // Specify main and backup SMTP servers
+						$mail->Host = 'mailtrap.io';					  // Specify main and backup SMTP servers
 						$mail->SMTPAuth = true;                               // Enable SMTP authentication
-						$mail->Username = 'postmaster@wf3.axw.ovh';           // SMTP username
-						$mail->Password = 'WF3sessionPhilo2';                 // SMTP password
+						$mail->Username = 'f12564c2d967d2';           // SMTP username
+						$mail->Password = 'f693c45ea37fa0';                 // SMTP password
 						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-						$mail->Port = 587;                                    // TCP port to connect to
+						$mail->Port = 465;                                    // TCP port to connect to
 
 						$mail->setFrom('limowf3@yopmail.com');
 						$mail->addAddress($dataUser['email'], $dataUser['username']);      // Name is optional
@@ -167,7 +167,7 @@ class UserController extends Controller
 
 			}//if empty post
 			# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
-			
+
 			$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
 			$this->show('user/register', $params);
 		}
@@ -230,7 +230,7 @@ class UserController extends Controller
 
 		//on s'identifie vers l'api facebook et on est redirigé vers loginhelper
 		$fb = new \Facebook\Facebook([
-		'app_id' => '602369446588975', 
+		'app_id' => '602369446588975',
 		'app_secret' => 'dd68c176483e918625b46de16c01419e',
 		'default_graph_version' => 'v2.2',
 		]);
@@ -262,12 +262,12 @@ class UserController extends Controller
 
 	    try {
 	      $accessToken = $helper->getAccessToken();
-	    } 
+	    }
 	    catch(\Facebook\Exceptions\FacebookResponseException $e) {
 	      // When Graph returns an error
 	      echo 'Graph returned an error: ' . $e->getMessage();
 	      exit;
-	    } 
+	    }
 	    catch(\Facebook\Exceptions\FacebookSDKException $e) {
 	      // When validation fails or other local issues
 	      echo 'Facebook SDK returned an error: ' . $e->getMessage();
@@ -280,7 +280,7 @@ class UserController extends Controller
 	        echo "Error Code: " . $helper->getErrorCode() . "\n";
 	        echo "Error Reason: " . $helper->getErrorReason() . "\n";
 	        echo "Error Description: " . $helper->getErrorDescription() . "\n";
-	      } 
+	      }
 	      else {
 	        header('HTTP/1.0 400 Bad Request');
 	        echo 'Bad request';
@@ -456,22 +456,15 @@ class UserController extends Controller
 		                    // we compose a link to send
 		                    $magicLink = '<a href="localhost/limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
 		    		       	$mail = new PHPMailer;
-		    		        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
-		    		        $mail->isSMTP();
-		    		        // Set mailer to use SMTP
-		    	        	$mail->Host = 'smtp.mailgun.org';
-		    	        	// Specify main and backup SMTP servers
-		    	        	$mail->SMTPAuth = true;
-		    	        	// Enable SMTP authentication
-		    	        	$mail->Username = 'postmaster@wf3.axw.ovh';
-		    	        	// SMTP username
-		    	        	$mail->Password = 'WF3sessionPhilo2';
-		    	        	// SMTP password
-		    	        	$mail->SMTPSecure = 'tls';
-		    	        	// Enable TLS encryption, `ssl` also accepted
-		    	        	$mail->Port = 587;
-		    	        	// TCP port to connect to
-
+							//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+							$mail->isSMTP();                                      // Set mailer to use SMTP
+							$mail->Host = 'mailtrap.io';					  // Specify main and backup SMTP servers
+							$mail->SMTPAuth = true;                               // Enable SMTP authentication
+							$mail->Username = 'f12564c2d967d2';           // SMTP username
+							$mail->Password = 'f693c45ea37fa0';                 // SMTP password
+							$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+							$mail->Port = 465;                                    // TCP port to connect to
+							
 		    	        	$mail->setFrom('limowf3@yopmail.com', 'contact du site'); //expéditeur
 		    	        	$mail->addAddress($post['email'], '');  // Add a recipient// Name is optional
 		    	        	$mail->addReplyTo('info@example.com', 'Information');// si on l'enlève ça renvoie auto à l'expéditeur
