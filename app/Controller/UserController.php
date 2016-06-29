@@ -343,7 +343,7 @@ class UserController extends Controller
 
 	   if($user = $usersModel->insert($data)){
 	  		$success = true;
-	  		$this->redirectToRoute('default_home');
+	  		$this->redirectToRoute('user_login');
 
 	  	}
 	  	else{
