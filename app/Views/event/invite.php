@@ -3,6 +3,8 @@
 <?php $this->start('main_content') ?>
 	
 <div id="room_fileds">
+	<a href="<?= $this->url('event_showEvent', ['id' => $idEvent]);?>">Retour à votre évènement</a>
+
 	<h2>Inviter des amis à votre évènement</h2>
 
     <form method="post" class="content" id="remote"> 
