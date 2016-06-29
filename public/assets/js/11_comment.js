@@ -1,4 +1,5 @@
-var thisEventId = parseInt($('#event-info').text());
+var thisEventId = parseInt($('#event-info').data('eventId'));
+
 // Lorsque je soumets le formulaire
 $('#form-comment').on('submit', function(e) {
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
@@ -17,7 +18,6 @@ $('#form-comment').on('submit', function(e) {
             dataType: 'json', // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             data: formData + '&id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             success: function(html) { // Je récupère la réponse du fichier PHP
-                console.log(html);
                 if(html.answer == 'success'){
                     showComment();
                     $('#form-comment').each(function(){
@@ -25,9 +25,6 @@ $('#form-comment').on('submit', function(e) {
                     });
                 } // J'affiche cette réponse
             },
-            error : function(e){
-                console.log(e);
-            }
         });
     }
 });
@@ -42,17 +39,12 @@ function showComment(){
         dataType: 'json', // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
         data: 'id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
         success: function(html) { // Je récupère la réponse du fichier PHP
-            console.log(html);
-            
-                $('#comments').text('');
+                    $('#comments').text('');
                 $.each(html.allComments, function(key, value) {
                     $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'<img class="comment-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">' + value.date_add + '<br>' + value.content + '<a href="#"  class="delete" data-delete-comment="' + value.id + '">Supprimer</a>' + '<hr>' + '</div>');
                 });
              // J'affiche cette réponse
         },
-        error : function(e){
-            console.log(e);
-        }
     });
 }
 
@@ -70,8 +62,6 @@ $('body').on('click', '.delete', function(e){
                 showComment();
             }
         },
-        error: function(e){
-            console.log(e);
-        }
+
     });
 });

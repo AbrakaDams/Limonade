@@ -75,30 +75,26 @@ footer {
 ** Login
 *******************************/
 .form-inline {
-	text-align: center;	
-    background-image:linear-gradient(#115058
-, black);
+	text-align: center;
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSize;
 	padding-top: 1.5em;
 	padding-bottom: 1em;
 }
+.centerNoConnect{
+	text-align: center;
+	color: black;
+	padding: 1.01em;
+}
 #form-login.form-group {
-	background-color: grey;
-	padding: 5em;
-	border-radius: 40px 40px 40px 40px;
-	-moz-border-radius: 40px 40px 40px 40px;
-	-webkit-border-radius: 40px 40px 40px 40px;
-	border: 0 solid #000000;	
-	h2{
-		color: wheat;
-		text-align: center;
-		padding-top: 1.5em;
-	}
+	margin: 0 auto;
+	padding: 0em 0em 6.4em 6em;
+	width: 600px;
+
 	label{
 		color: black;
-		font-size:$fontSize;		
+		font-size:$fontSize;
 	}
 	input{
 		color: black;
@@ -106,13 +102,11 @@ footer {
 		width: 20em;
 	}
 	input.submit{
-		color: blue;
 		width: 20em;
-
 	}
 	a{
-		color: white;
 		font-size: 1.2em;
+		text-align: center;
 	}
 }
 
@@ -173,19 +167,10 @@ footer {
 
 
 /****************************
-**** Form Create Event
+**** Form REGISTER
 ***********************************/
 #createUser{
-	background-color: #D2D7D3;
-	border-radius: 10em;
-	label{
-		color: black;
-		font-size:$fontSize;
-	}
-	input{
-		color: black;
-		font-size: 1.5em;
-	}
+	color: black;
 }
 
 
