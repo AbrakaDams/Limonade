@@ -8,13 +8,14 @@
 	<link rel="icon" type="image/png" href="<?= $this->assetUrl('img/avatar/lemonade_brand.jpg') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>"> <!-- Style Css -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>"> <!-- Style Css -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 
 	<style>
 		#notification_li
 		{
 		position:relative
 		}
-		#notificationContainer 
+		#notificationContainer
 		{
 		background-color: #fff;
 		border: 1px solid rgba(100, 100, 100, .4);
@@ -25,7 +26,7 @@
 		margin-left: -170px;
 		width: 400px;
 		z-index: 10;
-		display: none; // Enable this after jquery implementation 
+		display: none; // Enable this after jquery implementation
 		}
 		// Popup Arrow
 		#notificationContainer:before {
@@ -101,9 +102,9 @@
 								<?php foreach ($w_notifications as $notification):?>
 									<a class="<?= $notification['read']?>" href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>">
 										<span class="notification">
-											<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>								
+											<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>
 										</span>
-									</a><hr>								
+									</a><hr>
 								<?php endforeach; ?>
 							</div>
 							<div id="notificationFooter"><a href="#">See All</a></div>

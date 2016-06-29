@@ -2,95 +2,172 @@
 ******* Slider ************
 **************************/
 
+@media print {
+    .slider {
+        display: none !important;
+    }
+}
+
 .slider {
     position: relative;
     margin-left: 0;
     margin-right: 0;
     width: 100%;
-    height: 65vh;
-		.imofront{
-			// ici on modifie les image
-		}
+    height: $sliderHeight;
+
+    .owl-carousel {
+        .item {
+            width: 100%;
+            height: $sliderHeight;
+            background-size: cover;
+            background-position: center center;
+            z-index: 1;
+            position: relative;
+        }
+        .owl-prev {
+            position: absolute;
+            top: 35%;
+            margin-left: 1em;
+            font-size: 2em;
+            color: #fff;
+        }
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            right: 0;
+            margin-right: 1em;
+            font-size: 2em;
+            color: #fff;
+        }
+        .slider-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-phrase {
+            z-index: 3;
+            position: absolute;
+            top: 1%;
+            padding: .5em;
+            padding-left: 4em;
+            color: #E4F1FE;
+            -webkit-border-radius: 0 5em 5em 0;
+            border-radius: 0 5em 5em 0;
+            background-color:rgba(10,10,5,.7);
+        }
+    }
+
+    .connect-sub {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 2em;
+        width: 100%;
+        background-color: rgba(10,10,10,.7);
+        color: $white;
+        text-align: center;
+        text-transform: uppercase;
+        z-index: 1;
+
+        a {
+            display: inline-block;
+            margin-left: 1em;
+            padding: .7em;
+            border: 1px solid $white;
+            border-radius: .5em;
+            color: $white;
+
+            &:hover,
+            &:focus {
+                border-color: transparent;
+                text-decoration: none;
+                transition: all 500ms ease;
+            }
+            &:first-child:hover {
+                background-color: $lightGreen;
+            }
+            &:last-child:hover {
+                background-color: $darkYellow;
+            }
+        }
+    }
 }
 
-@media print {
-  header {
-    display: none !important;
-  }
-  .show-one-image .index-recipe-img {
-      height: 10em;
-      -o-object-fit: cover;
-      object-fit: cover;
-  }
-}
-
-.connect-sub {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 2em;
-    width: 100%;
-    background-color: rgba(10,10,10,.7);
-    color: #fff;
+section#index-guide {
+    padding: 6em 0;
     text-align: center;
-    text-transform: uppercase;
-    font-size: 300;
-    z-index: 1;
+
+    .index-guide-title {
+        margin-bottom: 2em;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .index-guide-box {
+        margin-bottom: 1.6em;
+        padding: 2em .3em;
+        background-color: $lightGray;
+
+        .index-guide-box-title {
+            color: $green;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+
+        .index-guide-icon {
+            color: $lightGreen;
+        }
+    }
 }
 
-.connect-sub a {
-    display: inline-block;
-    margin-left: 1em;
-    padding: .5em;
-    border: 1px solid #fff;
-    border-radius: .5em;
-    color: #fff;
-}
+section#index-events {
+    padding: 4em 0;
+    background-color: $greenBlue;
 
-.connect-sub a:hover,
-.connect-sub a:focus {
-    background-color: #b17070;
-    border-color: #b17070;
-    text-decoration: none;
-    transition: all 500ms ease;
-}
+    h2 {
+        margin-bottom: 1em;
+        text-align: center;
+    }
 
-/****** Header's carousel styling ******/
+    .index-one-event {
+        margin: .4em .2em;
+        padding: 1.5em;
+        background-color: $milky;
+        border-radius: .5em;
 
-.item {
-    width: 100%;
-    height: 65vh;
-    background-size: cover;
-    background-position: center center;
-    z-index: 1;
-    position: relative;
-}
-.owl-prev,
-.owl-next {
-    font-size: 2em;
-    color: #fff;
-}
-.owl-prev {
-    position: absolute;
-    top: 35%;
-    margin-left: 1em;
-}
+        .index-event-title {
+            font-size: 1.5em;
+            text-decoration: underline;
 
-.owl-next {
-    position: absolute;
-    top: 35%;
-    right: 0;
-    margin-right: 1em;
-}
+            a {
+                position: relative;
+                color: #000;
 
-.owl-carousel .promo {
-    z-index: 3;
-    position: absolute;
-    top: 1%;
-    padding-left: 4em;
-    padding-right: .5em;
-    color: #E4F1FE;
-    -webkit-border-radius: 0 5em 5em 0;
-    border-radius: 0 5em 5em 0;
-    background-color:rgba(10,10,5,.7);
+                .index-event-category {
+                    position: absolute;
+                    top: -.3em;
+                    right: -2.8em;
+                    font-size: .8em;
+                    background-color: $darkYellow;
+                }
+            }
+        }
+        .index-event-btn {
+            display: inline-block;
+            width: auto;
+            margin: .5em auto;
+            padding: .3em .5em;
+            border: .2em solid $darkYellow;
+            border-radius: .5em;
+            color: #000;
+            transition: all 500ms ease;
+
+            &:hover {
+                text-decoration: none;
+                background-color: $darkYellow;
+                color: #fff;
+            }
+        }
+
+    }
 }
