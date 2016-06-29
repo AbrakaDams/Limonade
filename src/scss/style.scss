@@ -126,9 +126,11 @@ html {
 /*****************************
 * Show eventPublic
 ************************/
-#eventPublic.event-public {
-	background-color: #BFBFBF;
-	padding: 2em;
+#eventPublic{
+	.event{
+		display: inline-block;
+		
+	}
 }
 
 /***********************
