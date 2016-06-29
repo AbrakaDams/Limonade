@@ -129,7 +129,7 @@ class EventController extends Controller
 			if(count($errors) === 0){
 	  			// Il n'y a pas d'erreurs on fait l'insertion SQL
 	  			$eventModel = new EventModel();
-
+	  			$EventUsersModel = new EventUsersModel();
 
 	  			$data = [
 	  				'category' 		=> $post['category'],
@@ -150,7 +150,7 @@ class EventController extends Controller
 	  					'id_user'	=> $id,
 	  					'role'		=> 'event_admin',
 	  				];
-	  				if($eventModel->insertEventUsers($dataEvent)){
+	  				if($EventUsersModel->insert($dataEvent)){
 	  					$success = true;
 	  				}
 	  				else{
