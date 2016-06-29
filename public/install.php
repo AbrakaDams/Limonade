@@ -20,7 +20,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`avatar` VARCHAR(255) NOT NULL,
 		`url` VARCHAR(255) NOT NULL,
 		`activation` ENUM('true','false') NOT NULL,
-		`id_facebook` BIGINT(11) NOT NULL;
+		`id_facebook` BIGINT(11) NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`, `username`)) ENGINE = InnoDB;"
 );
