@@ -17,13 +17,14 @@
     	<h2>Liste des amis participants :</h2>
     	<?php foreach ($allParticipants as $user):?>
     		<p class="item-participant">
+    			<span class="idUser" data-id-user="<?= $user['id'] ?>"></span>
+    			<span class="idEvent" data-id-event="<?= $idEvent ?>"></span>
     			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
-    			<a class="delete" id="<?= $user['id'];?>" href="<?= $this->url('event_deleteParticipant',  ['idEvent' => $idEvent, 'idUser' => $user['id']]); ?>">
-    				Supprimer
-    			</a>
+    			<a class="delete">Supprimer</a>
     		</p>
     	<?php endforeach; ?>
     </div>
+    <div id="delete-message"></div>
 </div>
 
 <?php $this->stop('main_content') ?>
@@ -99,14 +100,28 @@
 		});
 	});
 
-	$('.delete').on('click', function(e){
+	$('body').on('click', '.delete', function(e){
 		e.preventDefault();
-
+		var idEvent = $(this).parent().find(".idEvent").data("idEvent");
+		var idUser = $(this).parent().find( ".idUser" ).data("idUser");
+		console.log(idUser);
 		$.ajax({
 			type: 'post',
 			url: '../ajax/delete-participant',
 			dataType: 'json',
-			data :
+			data : {'idEvent': idEvent, 'idUser': idUser},
+			success: function(data){
+
+				if(data.suppression == 'ok'){
+					$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
+					$('#delete-message').text("");
+					$('#delete-message').text("Cette personne ne fait plus partie de cet évènement.");
+				}
+			console.log(data);
+			},
+			error: function(data){
+				console.log(data);
+			}
 		});
 	});
 

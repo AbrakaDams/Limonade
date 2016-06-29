@@ -292,14 +292,24 @@ class EventController extends Controller
 		$this->showJson($json);
 	}
 
-	public function deleteParticipant($idEvent, $idUser)
+	public function deleteParticipant()
 	{
-		$EventUsersModel = new EventUsersModel();
+		if(!empty($_POST)){
+	  		foreach ($_POST as $key => $value) {
+	    		$post[$key] = trim(strip_tags($value));
+	  		} 
+	  		$idEvent = $post['idEvent'];
+	  		$idUser = $post['idUser'];
 
-		if($EventUsersModel->deleteParticipant($idEvent, $idUser)){
-			echo 'BLABLABLA';
+			$EventUsersModel = new EventUsersModel();
+
+			if($EventUsersModel->deleteParticipant($idEvent, $idUser)){
+				$json = ['suppression' => 'ok'];
+			}
+			else{
+				$json = ['suppression' => 'ko'];
+			}
 		}
-
-		$this->showJson('event/deleteParticipant');
+		$this->showJson($json);
 	}
 }
