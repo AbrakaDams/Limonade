@@ -75,7 +75,9 @@ footer {
 ** Login
 *******************************/
 .form-inline {
-	text-align: center;
+	text-align: center;	
+    background-image:linear-gradient(#115058
+, black);
 	color: $fontColor;
 	font-family: $fontFam;
 	font-size: $fontSize;
@@ -84,11 +86,34 @@ footer {
 }
 #form-login.form-group {
 	background-color: grey;
-	padding: 4em;
+	padding: 5em;
 	border-radius: 40px 40px 40px 40px;
 	-moz-border-radius: 40px 40px 40px 40px;
 	-webkit-border-radius: 40px 40px 40px 40px;
-	border: 0 solid #000000;
+	border: 0 solid #000000;	
+	h2{
+		color: wheat;
+		text-align: center;
+		padding-top: 1.5em;
+	}
+	label{
+		color: black;
+		font-size:$fontSize;		
+	}
+	input{
+		color: black;
+		font-size: 1.2em;
+		width: 20em;
+	}
+	input.submit{
+		color: blue;
+		width: 20em;
+
+	}
+	a{
+		color: white;
+		font-size: 1.2em;
+	}
 }
 
 
