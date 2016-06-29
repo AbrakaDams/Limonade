@@ -34,6 +34,7 @@
 
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
 <h1 class="center">Votre événement</h1>
+<progress max="100" value="0" form="form-id">0%</progress>
 <hr>
   <div class="row">
     <div class="col-xs-6 .col-md-4">
