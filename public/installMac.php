@@ -21,7 +21,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`url` VARCHAR(255) NOT NULL,
 		`activation` ENUM('true','false') NOT NULL,
 		PRIMARY KEY (`id`),
-		UNIQUE (`email`)) ENGINE = InnoDB;"
+		UNIQUE (`email`, `username`)) ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));
@@ -239,11 +239,12 @@ if($sql === false){
 
 /************************************** TABLE LIST**********************************/
 
+
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
-  `list_id` INT NOT NULL AUTO_INCREMENT ,
-  `list_title` VARCHAR(255) NOT NULL ,
-  `list_id_event` INT NOT NULL ,
-  `list_date_add` DATETIME NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(255) NOT NULL ,
+  `id_event` INT NOT NULL ,
+  `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`) ,
   FOREIGN KEY (id_event) REFERENCES event (id))
   ENGINE = InnoDB;"
@@ -258,15 +259,15 @@ if($sql === false){
 
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
-  `card_id` INT NOT NULL AUTO_INCREMENT ,
-  `card_title` VARCHAR(255) NOT NULL ,
-  `card_description` VARCHAR(255) NOT NULL ,
-  `card_quantity` INT NOT NULL ,
-  `card_price` INT NOT NULL ,
-  `card_id_user` INT NOT NULL ,
-  `card_id_list` INT NOT NULL ,
-  `card_id_event` INT NOT NULL ,
-  `card_date_add` DATETIME NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(255) NOT NULL ,
+  `description` VARCHAR(255) NOT NULL ,
+  `quantity` INT NOT NULL ,
+  `price` INT NOT NULL ,
+  `id_user` INT NOT NULL ,
+  `id_list` INT NOT NULL ,
+  `id_event` INT NOT NULL ,
+  `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`) ,
   FOREIGN KEY (id_list) REFERENCES list (id))
   ENGINE = InnoDB;"
@@ -286,6 +287,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
   `id_user` INT NOT NULL ,
   `content` VARCHAR(255) NOT NULL ,
   `date_add` DATETIME NOT NULL ,
+  FOREIGN KEY (id_event) REFERENCES event (id))
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
