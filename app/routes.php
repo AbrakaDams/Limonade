@@ -9,7 +9,7 @@
 		/**************************** event ********************/
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
-		['GET', '/search', 'Event#search', 'event_search'],
+		['GET', '/search', 'Search#search', 'event_search'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
 
 
