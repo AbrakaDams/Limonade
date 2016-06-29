@@ -42,6 +42,7 @@ $users = array(
 		'avatar' 		=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url'			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'id_facebook'	=> '',
 	],
 	[
 		'username' 		=> 'user',
@@ -53,7 +54,80 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
-	]
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'Taileaux',
+		'firstname' 	=> 'Michel',
+		'lastname'  	=> 'Telo',
+		'role' 			=> 'user',
+		'email' 		=> 'Michel.telo@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'Swaglordidu13',
+		'firstname' 	=> 'Kevin',
+		'lastname'  	=> 'De Lacastagne',
+		'role' 			=> 'user',
+		'email' 		=> 'SwagSISI@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'Patator',
+		'firstname' 	=> 'Jean',
+		'lastname'  	=> 'Lucas',
+		'role' 			=> 'user',
+		'email' 		=> 'j.lucas@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'lila33',
+		'firstname' 	=> 'Lucie',
+		'lastname'  	=> 'Canaillou',
+		'role' 			=> 'user',
+		'email' 		=> 'Lucie.C@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'true',
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'babar27',
+		'firstname' 	=> 'Quentin',
+		'lastname'  	=> 'Blanchard',
+		'role' 			=> 'user',
+		'email' 		=> 'babar27@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'false',
+		'id_facebook'	=> '',
+	],
+	[
+		'username' 		=> 'Coca Cola',
+		'firstname' 	=> 'Pepsi',
+		'lastname'  	=> 'Entertaiment',
+		'role' 			=> 'user',
+		'email' 		=> 'Capitaliste@gmail.com',
+		'password' 		=>	$password,
+		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
+		'activation'	=> 'false',
+		'id_facebook'	=> '',
+	],
 );
 
 
@@ -66,15 +140,15 @@ foreach ($users as $user) {
 	if($reqEmail->rowCount() == 0){
 
 		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url, activation) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url, :activation)');
-		$sql->bindValue(':username', $user['username']);
-		$sql->bindValue(':firstname', $user['firstname']);
-		$sql->bindValue(':lastname', $user['lastname']);
-		$sql->bindValue(':role', $user['role']);
-		$sql->bindValue(':email', $user['email']);
-		$sql->bindValue(':password', $user['password']);
-		$sql->bindValue(':avatar', $user['avatar']);
-		$sql->bindValue(':url', $user['url']);
-		$sql->bindValue(':activation', $user['activation']);
+		$sql->bindValue(':username', 	$user['username']);
+		$sql->bindValue(':firstname', 	$user['firstname']);
+		$sql->bindValue(':lastname', 	$user['lastname']);
+		$sql->bindValue(':role', 		$user['role']);
+		$sql->bindValue(':email', 		$user['email']);
+		$sql->bindValue(':password', 	$user['password']);
+		$sql->bindValue(':avatar', 		$user['avatar']);
+		$sql->bindValue(':url', 		$user['url']);
+		$sql->bindValue(':activation', 	$user['activation']);
 
 
 		$sql->execute();
@@ -99,6 +173,42 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
+$tokens_password = array(
+	[
+		'email' 		=> 'admin@gmail.com',
+		'token' 		=> '',
+		'date_create' 	=> '2016-06-30 08:00:00',
+		'date_exp' 		=> '2016-07-01 08:00:00'
+	],
+	[
+		'email' 		=> 'user@gmail.com',
+		'token' 		=> '',
+		'date_create' 	=> '2016-06-30 08:00:00',
+		'date_exp' 		=> '2016-07-01 08:00:00'
+	]
+);
+
+foreach ($tokens_password as $token_password) {
+
+	$reqEmail = $db->prepare('SELECT email FROM tokens_password WHERE email = :email');
+	$reqEmail->bindValue(':email', $token_password['email']);
+	$reqEmail->execute();
+
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO tokens_password (email, token, date_create, date_exp) VALUES (:email, :token, :date_create, :date_exp)');
+		$sql->bindValue(':email', 		$token_password['email']);
+		$sql->bindValue(':token',		$token_password['token']);
+		$sql->bindValue(':date_create', $token_password['date_create']);
+		$sql->bindValue(':date_exp', 	$token_password['date_exp']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
+}
+
+
 /**************************************END TABLE TOKENS PASSWORD**********************************/
 
 /**************************************TABLE TOKENS REGISTER**********************************/
@@ -113,6 +223,41 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `tokens_register` (
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));
+}
+
+$tokens_register = array(
+	[
+		'email' 		=> 'babar27@gmail.com',
+		'token' 		=> '',
+		'date_create' 	=> '2016-06-30 08:00:00',
+		'date_exp' 		=> '2016-07-01 08:00:00'
+	],
+	[
+		'email' 		=> 'Capitaliste@gmail.com',
+		'token' 		=> '',
+		'date_create' 	=> '2016-06-30 08:00:00',
+		'date_exp' 		=> '2016-07-01 08:00:00'
+	]
+);
+
+foreach ($tokens_register as $token_register) {
+
+	$reqEmail = $db->prepare('SELECT email FROM tokens_register WHERE email = :email');
+	$reqEmail->bindValue(':email', $token_register['email']);
+	$reqEmail->execute();
+	var_dump($reqEmail);
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO tokens_register (email, token, date_create, date_exp) VALUES (:email, :token, :date_create, :date_exp)');
+		$sql->bindValue(':email', 		$token_register['email']);
+		$sql->bindValue(':token',		$token_register['token']);
+		$sql->bindValue(':date_create', $token_register['date_create']);
+		$sql->bindValue(':date_exp', 	$token_register['date_exp']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
 }
 
 /**************************************END TABLE TOKENS REGISTER**********************************/
@@ -130,6 +275,75 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `notifications` (
 if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
+
+$notifications = array(
+	[
+		'id_user' 		=> '1',
+		'id_event' 		=> '1',
+		'content' 		=> 'Vous avez été invité à l\'évènement : La soirée du siècle !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+	[
+		'id_user' 		=> '1',
+		'id_event' 		=> '2',
+		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+	[
+		'id_user' 		=> '1',
+		'id_event' 		=> '3',
+		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+	[
+		'id_user' 		=> '4',
+		'id_event' 		=> '3',
+		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+	[
+		'id_user' 		=> '3',
+		'id_event' 		=> '3',
+		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+	[
+		'id_user' 		=> '2',
+		'id_event' 		=> '2',
+		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
+		'date_create' 	=> '2016-07-01 08:00:00',
+		'read' 			=> 'unread'
+	],
+);
+foreach ($notifications as $notification) {
+
+	$reqEmail = $db->prepare('SELECT * FROM notifications WHERE id_user = :id_user AND id_event = :id_event');
+	$reqEmail->bindValue(':id_user', $notification['id_user']);
+	$reqEmail->bindValue(':id_event', $notification['id_event']);
+	$reqEmail->execute();
+
+	//rowCount($reqEmail);
+
+	//if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, read) VALUES (:id_user, :id_event, :content, :date_create, :read)');
+		$sql->bindValue(':id_user', 		$notification['id_user']);
+		$sql->bindValue(':id_event',		$notification['id_event']);
+		$sql->bindValue(':content', 		$notification['content']);
+		$sql->bindValue(':date_create', 	$notification['date_create']);
+		$sql->bindValue(':read', 			$notification['read']);
+		
+		$sql->execute();
+	//}else{
+		//$upValid = false;
+	//}
+}
+
 
 /**************************************END TABLE NOTIFICATION*************************************/
 
