@@ -1,5 +1,5 @@
 var thisEventId = parseInt($('#event-info').data('eventId'));
-
+//si comment id_user = users id
 // Lorsque je soumets le formulaire
 $('#form-comment').on('submit', function(e) {
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
@@ -31,7 +31,6 @@ $('#form-comment').on('submit', function(e) {
 $(function() {
     showComment();
 });
-
 function showComment(){
     $.ajax({
         url: '../ajax/join-comment', // Le nom du fichier indiqué dans le formulaire
