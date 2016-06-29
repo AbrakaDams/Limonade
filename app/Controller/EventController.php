@@ -2,16 +2,18 @@
 
 namespace Controller;
 
-use \W\Controller\Controller;
+use \Controller\MasterController;
 use \Controller\ListController;
 use \Controller\NewsFeedController as NewsFeedController;
 use \Model\NewsFeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
-use \W\Model\UsersModel as UsersModel;
 use \Model\EventUsersModel as EventUsersModel;
+use \Model\NotificationsModel;
+use \W\Model\UsersModel as UsersModel;
 
-class EventController extends Controller
+
+class EventController extends MasterController
 {
 	/**
 	 * Afficher la page d'accueil pour utilisateur connecté
@@ -69,7 +71,8 @@ class EventController extends Controller
 				'participants'		=> $participants,
 				'allparticipants'	=> $allparticipants,
 			 ];
-			$this->show('event/event', $showEvent);
+			 
+			$this->showWithNotif('event/event', $showEvent);
 		}
 
 
@@ -164,7 +167,7 @@ class EventController extends Controller
 			'success' 	=> $success,
 			'newEvent'	=> $newEvent,
 		];
-		$this->show('event/create', $params);
+		$this->showWithNotif('event/create', $params);
 	}
 
 	/**
@@ -200,7 +203,7 @@ class EventController extends Controller
 				'idEvent'			=> $idEvent
 			];
 
-			$this->show('event/invite', $params);
+			$this->showWithNotif('event/invite', $params);
 		}
 	}
 
@@ -251,39 +254,59 @@ class EventController extends Controller
 
 	public function addParticipant()
 	{
-  		$json = ['resultat' => 'rien'];
-
 		if(!empty($_POST)){
 	  		foreach ($_POST as $key => $value) {
 	    		$post[$key] = trim(strip_tags($value));
 	  		}
 	  		if(!empty($post['username'])){
-
+	  			// On récupère les infos envoyées
 		  		$idEvent = $post['idEvent'];
 		  		$username = $post['username'];
-
-		  		$eventModel = new EventModel();
+		  		$eventInfo = '';
+		  		// On instancie les class
 				$UserModel = new UsersModel();
 				$EventUsersModel = new EventUsersModel();
 
+				// On vérifie si l'utilisateur est déjà dans l'évent
 				$userInfo = $UserModel->getUserByUsernameOrEmail($username);
 				$idUser = $userInfo['id'];
-
 				$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
 
+				// Si il y est déjà
 				if(!empty($exist)){
 					$json = ['resultat' => 'exist'];
 				}
+				// S'il n'y est pas on l'insère
 				else{
-					$dataEvent = [
+		  			
+
+					$dataEventUser = [
 						'id_event'	=> $idEvent,
 						'id_user'	=> $idUser,
 						'role'		=> 'event_user',
 					];
 					$EventUsersModel = new EventUsersModel();
-					$insert = $EventUsersModel->insert($dataEvent);
 
-					if($insert){
+					// Si l'insertion se fait
+					if($EventUsersModel->insert($dataEventUser)){
+						// On récupère le titre de l'évènement
+						$eventModel = new EventModel();
+						$eventInfo = $eventModel->find($idEvent);
+						$phraseType = 'Vous avez été invité à l\'évènement : ';
+						$phraseType .= $eventInfo['title'];
+
+						// On prépare la notification
+						$date_create = date('Y-m-d h:i:s');
+						$dataNotification = [
+							'id_user' 		=> $idUser,
+							'id_Event' 		=> $idEvent,
+							'content'		=> $phraseType,
+							'date_create'	=> $date_create,
+						];
+						$NotificationsModel = new NotificationsModel();
+						// On créé la notification
+						$NotificationsModel->insert($dataNotification);
+
 						$json = ['resultat' => 'ok'];
 					}
 					else {

@@ -98,7 +98,13 @@
 						<div id="notificationContainer">
 							<div id="notificationTitle">Notifications</div>
 							<div id="notificationsBody" class="notifications">
-								<a href="#"><div class="notification">Notification 1</div></a>
+								<?php foreach ($w_notifications as $notification):?>
+									<a href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>">
+										<div class="notification">
+											<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>								
+											</div>
+									</a><hr>								
+								<?php endforeach; ?>
 							</div>
 							<div id="notificationFooter"><a href="#">See All</a></div>
 						</div>

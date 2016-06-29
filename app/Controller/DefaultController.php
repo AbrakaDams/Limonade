@@ -2,11 +2,11 @@
 
 namespace Controller;
 
-use \W\Controller\Controller;
+use \Controller\MasterController;
 use \Model\EventModel as EventModel;
 use \Model\ContactModel as Contact;
 
-class DefaultController extends Controller
+class DefaultController extends MasterController
 {
 
 	/**
@@ -41,7 +41,7 @@ class DefaultController extends Controller
 				'thisEventPublic' => $eventPublic,
 				'thisEventPrivate' => $eventPrivate,
 			];
-			$this->show('default/home_logged', $showEvent);
+			$this->showWithNotif('default/home_logged', $showEvent);
 		}
 	}
 
@@ -50,7 +50,7 @@ class DefaultController extends Controller
 	 */
 	public function team()
 	{
-		$this->show('default/team');
+		$this->showWithNotif('default/team');
 	}
 
 	/**
@@ -58,7 +58,7 @@ class DefaultController extends Controller
 	 */
 	public function faq()
 	{
-		$this->show('default/FAQ');
+		$this->showWithNotif('default/FAQ');
 	}
 
 

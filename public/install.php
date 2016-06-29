@@ -115,6 +115,21 @@ if($sql === false){
 }
 
 /**************************************END TABLE TOKENS REGISTER**********************************/
+/**************************************TABLE NOTIFICATIONS ****************************************/
+
+$sql = $db->exec("CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `id_user` INT NOT NULL ,
+  `id_event` INT NOT NULL ,
+  `content` VARCHAR(255) NOT NULL ,
+  `date_create` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+);
+if($sql === false){
+	die(var_dump($db->errorInfo()));
+}
+
+/**************************************END TABLE NOTIFICATION*************************************/
 
 /**************************************TABLE COOKIES**********************************/
 

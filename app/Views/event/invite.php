@@ -105,6 +105,10 @@
 						$('#invite-message').text("Veuillez entrer le pseudo votre ami à inviter.");
 					}
 				},
+				error: function(e){
+					console.log(e);
+				}
+				
 			});
 		});
 		/***************************
