@@ -35,22 +35,23 @@ $(document).mouseup(function (e) {
 // hide our add card form if we click anywhere else and if our form is empty
 $(document).mouseup(function (e) {
     // if we click anywhere else but not our form
-    var cardDiv = $('.add-new-card');
+    var cardDiv = $('.add-new-card:active');
+    console.log(cardDiv + '.add-card-form');
 
     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
         // check every field of the visible form
         // increase counter if one of the is not empty
-        // $('.add-card-form:visible').each(function (){
-        //     if ($.trim(this.value) != '') {
-        //         countEmptyFields++;
-        //     }
-        // });
+        $('.add-card-form:visible').each(function (){
+            if ($.trim(this.value) != '') {
+                countEmptyFields++;
+            }
+        });
 
         // if all the fields are empty
-        if($('.add-card-form:visible').length == 0) {
-            $('.add-card-btn').removeClass('hidden');
-            $('.add-card-form').addClass('hidden');
-        }
+        // if(cardForm.length == 0) {
+        //     $('.add-card-btn').removeClass('hidden');
+        //     $('.add-card-form').addClass('hidden');
+        // }
     }
 });
 
