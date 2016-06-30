@@ -185,12 +185,12 @@ class ListController extends Controller
 		// just 0 so he can find nothing
 		$idList = 0;
 		if(isset($_POST['idList']) && !empty($_POST['idList'])) {
-			$idCard = intval($_POST['idList']);
+			$idList = intval($_POST['idList']);
 		}
 
 		$deleteList = new ListModel();
 		if($deleteList->delete($idList)) {
-			$this->showJson(['deleteList' => 'done']);
+			$this->showJson(['deleteList' => 'done', 'idList' => $idList]);
 		}
 	}
 
@@ -202,8 +202,8 @@ class ListController extends Controller
 		}
 
 		$deleteCard = new ListModel();
-		if($deleteCard->delete($idCard)) {
-			$this->showJson(['delete' => 'done']);
+		if($deleteCard->deleteCard($idCard)) {
+			$this->showJson(['deleteCard' => 'done']);
 		}
 	}
 }

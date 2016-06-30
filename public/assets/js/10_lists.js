@@ -32,19 +32,19 @@ $(document).mouseup(function (e) {
 });
 
 //hide our add card form if we click anywhere else and if our form is empty
-$(document).mouseup(function (e) {
-    // if we click anywhere else but not our form
-    var cardDiv = $('.add-card-btn:active');
-    console.log(cardDiv);
-
-    if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
-        //if all the fields are empty
-
-        $('.add-card-btn:hidden').removeClass('hidden');
-        $('.add-card-form:visible').addClass('hidden');
-
-    }
-});
+// $(document).mouseup(function (e) {
+//     // if we click anywhere else but not our form
+//     var cardDiv = $('.add-card-btn:active');
+//     console.log(cardDiv);
+//
+//     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+//         //if all the fields are empty
+//
+//         $('.add-card-btn:hidden').removeClass('hidden');
+//         $('.add-card-form:visible').addClass('hidden');
+//
+//     }
+// });
 
 
 // html to insert a new card
@@ -170,7 +170,7 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2><a href="#"></div><div class="cards"></div>' + newCard + '</div>')
+                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2><a href="#" data-delete-list="'+value.id+'" class="delete-list">Delete</a></div><div class="cards"></div>' + newCard + '</div>')
                 });
             }
             if(response.newCards.length != 0){
@@ -195,10 +195,30 @@ function getContent(currentDate) {
     });
 }
 
+$('#event-lists').on('click', '.delete-list', function(e) {
+    e.preventDefault();
+
+    var idList = $(this).attr('data-delete-list');
+    var list = $(this).closest('div.event-list');
+    console.log(list);
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/delete-list',
+        dataType: 'json',
+        data: 'idList=' + idList,
+        success: function(data) {
+            if(data.deleteList == 'done') {
+                $(list).fadeOut();
+                //console.log(data.deleteList);
+            }
+        }
+    })
+});
+
 $('#event-lists').on('click', '.delete-card', function(e) {
     e.preventDefault();
 
-    var idCard = $(this).data('deleteCard');
+    var idCard = $(this).attr('data-delete-card');
     var card = $(this).parent();
     $.ajax({
         type: 'POST',
@@ -207,28 +227,8 @@ $('#event-lists').on('click', '.delete-card', function(e) {
         data: 'idCard=' + idCard,
         success: function(data) {
             console.log(data);
-            if(data.delete == 'done') {
+            if(data.deleteCard == 'done') {
                 $(card).fadeOut();
-            }
-        }
-    })
-});
-
-$('#event-lists').on('click', '.delete-list', function(e) {
-    e.preventDefault();
-
-    var idList = $(this).data('deleteList');
-    //var card = $(this).parent();
-    $.ajax({
-        type: 'POST',
-        url: '../ajax/delete-list',
-        dataType: 'json',
-        data: 'idList=' + idList,
-        success: function(data) {
-            console.log(data);
-            if(data.deleteList == 'done') {
-                //$(card).fadeOut();
-                console.log(data.deleteList);
             }
         }
     })

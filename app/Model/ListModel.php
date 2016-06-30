@@ -29,4 +29,16 @@ class ListModel extends \W\Model\Model
 		return $sth->fetchAll();
     }
 
+    public function deleteCard($id)
+	{
+		if (!is_numeric($id)){
+			return false;
+		}
+
+		$sql = 'DELETE FROM cards WHERE ' . $this->primaryKey .' = :id LIMIT 1';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id', $id);
+		return $sth->execute();
+	}
+
 }

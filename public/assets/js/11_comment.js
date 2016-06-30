@@ -39,7 +39,7 @@ function showComment(){
         data: 'id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
         success: function(html) { // Je récupère la réponse du fichier PHP
                     $('#comments').text('');
-                    console.log(html);
+                    // console.log(html);
                 $.each(html.allComments, function(key, value) {
                     console.log(value.id_user == html.idUser);
                     if(value.id_user == html.idUser){
@@ -64,7 +64,7 @@ $('body').on('click', '.delete', function(e){
         dataType: 'json',
         data : 'idComment=' + idComment,
         success: function(data){
-            console.log(data);
+            // console.log(data);
             if(data.suppression == 'ok'){
                 showComment();
             }
