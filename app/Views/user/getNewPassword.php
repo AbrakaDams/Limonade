@@ -14,7 +14,7 @@
     
     <?php if($success == true): ?>
         <div class="alert alert-success">
-            Un lien vous a été envoyé par mail, veuillez le suivre pour modifier votre mot de passe.
+            Un lien vous a été envoyé par mail, veuillez cliquer sur ce lien pour modifier votre mot de passe.
         </div>
     <?php endif; ?>
 
