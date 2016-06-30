@@ -578,7 +578,7 @@ foreach ($lists as $list) {
 	if($reqEmail->rowCount() == 0){
 
 		$sql = $db->prepare('INSERT INTO list (title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
-		$sql->bindValue(':title', 		$list['title']);
+		$sql->bindValue(':title', 		$list['list_title']);
 		$sql->bindValue(':id_event',	$list['id_event']);
 		$sql->bindValue(':date_add', 	$list['date_add']);
 
@@ -684,7 +684,7 @@ foreach ($cards as $card) {
 	if($reqEmail->rowCount() == 0){
 
 		$sql = $db->prepare('INSERT INTO cards (title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
-		$sql->bindValue(':title', 		$card['title']);
+		$sql->bindValue(':title', 		$card['card_title']);
 		$sql->bindValue(':description',	$card['description']);
 		$sql->bindValue(':quantity', 	$card['quantity']);
 		$sql->bindValue(':price', 		$card['price']);
