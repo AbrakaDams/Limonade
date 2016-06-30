@@ -570,14 +570,14 @@ $lists = array(
 
 foreach ($lists as $list) {
 
-	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND title = :title');
+	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND list_title = :title');
 	$reqEmail->bindValue(':id_event', $list['id_event']);
 	$reqEmail->bindValue(':title', $list['list_title']);
 	$reqEmail->execute();
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO list (title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
+		$sql = $db->prepare('INSERT INTO list (list_title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
 		$sql->bindValue(':title', 		$list['list_title']);
 		$sql->bindValue(':id_event',	$list['id_event']);
 		$sql->bindValue(':date_add', 	$list['date_add']);
@@ -675,7 +675,7 @@ $cards = array(
 
 foreach ($cards as $card) {
 
-	$reqEmail = $db->prepare('SELECT * FROM cards WHERE title = :title AND id_list = :id_list AND id_event = :id_event ');
+	$reqEmail = $db->prepare('SELECT * FROM cards WHERE card_title = :title AND id_list = :id_list AND id_event = :id_event ');
 	$reqEmail->bindValue(':title', $card['card_title']);
 	$reqEmail->bindValue(':id_list', $card['id_list']);
 	$reqEmail->bindValue(':id_event', $card['id_event']);
@@ -683,7 +683,7 @@ foreach ($cards as $card) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO cards (title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
+		$sql = $db->prepare('INSERT INTO cards (card_title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
 		$sql->bindValue(':title', 		$card['card_title']);
 		$sql->bindValue(':description',	$card['description']);
 		$sql->bindValue(':quantity', 	$card['quantity']);
