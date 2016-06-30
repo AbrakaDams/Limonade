@@ -49,7 +49,7 @@ class ListController extends Controller
 						'id_event' => $idEvent,
 						'id_user' => $user['id'],
 						'action' => 'add',
-						'id_comment' => $listInsertion['id'],
+						'id_list' => $listInsertion['id'],
 						'date_news' => $timestamp,
 					];
 
@@ -234,7 +234,7 @@ class ListController extends Controller
 				'id_event' => $idEvent,
 				'id_user' => $user['id'],
 				'action' => 'remove',
-				'id_comment' => $idList,
+				'id_list' => $idList,
 				'date_news' => $timestamp,
 			];
 
