@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use \W\Controller\Controller;
+use \Controller\MasterController;
 use \W\Model\UsersModel as UsersModel; // permet d'importer la classe UsersModel que l'on pourra instancier via UsersModel();
 use \W\Security\AuthentificationModel as AuthModel;
 use \Model\TokensPasswordModel as TokensPasswordModel;
@@ -10,7 +10,7 @@ use \Model\TokensRegisterModel as TokensRegisterModel;
 use PHPMailer;
 use \W\Security\StringUtils;
 
-class UserController extends Controller
+class UserController extends MasterController
 {
 	/**
 	 * Fonction pour enregistrer l'utilisateur via formulaire
@@ -777,7 +777,7 @@ class UserController extends Controller
 			//mettre en dehors des verif
 			# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
 			$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
-			$this->show('user/updateUser', $params);
+			$this->showWithNotif('user/updateUser', $params);
 		}//fin else !isset
 	}
 }

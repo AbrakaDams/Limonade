@@ -16,16 +16,24 @@ $(document).ready(function(){
 		var idNotif = $(this).attr('data-id-notif');
 		lien = $(this).attr('href');
 
+		var pageCourante = window.location.pathname;
+		console.log(pageCourante);
+
+		if(pageCourante == '/limonade/public/' || pageCourante == '/limonade/public/updateUser'){
+			url = "	ajax/update-notif";
+		}else{
+			url = "../ajax/update-notif";
+		}
+
 		$.ajax({
 			type: 'post',
-			url: '../ajax/update-notif',
+			url: url,
 			dataType: 'json',
 			data : {'idNotif': idNotif},
 			success: function(data){
 				console.log(data);
 				if(data.update == 'ok'){
-					//var link = $(this).attr(href);
-					document.location.href=lien;
+					document.location.href=lien;						
 					/*$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
 					$('#invite-message').text("");
 					$('#delete-message').text("");
