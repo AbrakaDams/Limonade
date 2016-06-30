@@ -245,7 +245,7 @@ foreach ($tokens_register as $token_register) {
 	$reqEmail = $db->prepare('SELECT email FROM tokens_register WHERE email = :email');
 	$reqEmail->bindValue(':email', $token_register['email']);
 	$reqEmail->execute();
-	var_dump($reqEmail);
+
 	if($reqEmail->rowCount() == 0){
 
 		$sql = $db->prepare('INSERT INTO tokens_register (email, token, date_create, date_exp) VALUES (:email, :token, :date_create, :date_exp)');
@@ -282,28 +282,28 @@ $notifications = array(
 		'id_event' 		=> '1',
 		'content' 		=> 'Vous avez été invité à l\'évènement : La soirée du siècle !',
 		'date_create' 	=> '2016-07-01 08:00:00',
-		'read' 			=> 'unread'
+		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-07-01 08:00:00',
-		'read' 			=> 'unread'
+		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-07-01 08:00:00',
-		'read' 			=> 'unread'
+		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '4',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-07-01 08:00:00',
-		'read' 			=> 'unread'
+		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '3',
@@ -317,31 +317,29 @@ $notifications = array(
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-07-01 08:00:00',
-		'read' 			=> 'unread'
+		'read' 			=> 'unread',
 	],
 );
 foreach ($notifications as $notification) {
 
-	$reqEmail = $db->prepare('SELECT * FROM notifications WHERE id_user = :id_user AND id_event = :id_event');
-	$reqEmail->bindValue(':id_user', $notification['id_user']);
-	$reqEmail->bindValue(':id_event', $notification['id_event']);
-	$reqEmail->execute();
+	$reqExist = $db->prepare('SELECT * FROM notifications WHERE id_user = :id_user AND id_event = :id_event');
+	$reqExist->bindValue(':id_user', $notification['id_user'], PDO::PARAM_INT);
+	$reqExist->bindValue(':id_event', $notification['id_event'], PDO::PARAM_INT);
+	$reqExist->execute();
 
-	//rowCount($reqEmail);
-
-	//if($reqEmail->rowCount() == 0){
+	if($reqExist->rowCount() == 0){
 
 		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, read) VALUES (:id_user, :id_event, :content, :date_create, :read)');
-		$sql->bindValue(':id_user', 		$notification['id_user']);
-		$sql->bindValue(':id_event',		$notification['id_event']);
+		$sql->bindValue(':id_user', 		$notification['id_user'], PDO::PARAM_INT);
+		$sql->bindValue(':id_event',		$notification['id_event'], PDO::PARAM_INT);
 		$sql->bindValue(':content', 		$notification['content']);
 		$sql->bindValue(':date_create', 	$notification['date_create']);
 		$sql->bindValue(':read', 			$notification['read']);
 		
 		$sql->execute();
-	//}else{
-		//$upValid = false;
-	//}
+	}else{
+		$upValid = false;
+	}
 }
 
 
@@ -466,6 +464,59 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
+$event_users = array(
+	[
+		'id_user' 	=> '1',
+		'id_event' 	=> '1',
+		'role'		=> 'event_admin',
+	],
+	[
+		'id_user' 	=> '1',
+		'id_event' 	=> '2',
+		'role'		=> 'event_admin',
+	],
+	[
+		'id_user' 	=> '1',
+		'id_event' 	=> '3',
+		'role'		=> 'event_user',
+	],
+	[
+		'id_user' 	=> '4',
+		'id_event' 	=> '3',
+		'role'		=> 'event_user',
+	],
+	[
+		'id_user' 	=> '3',
+		'id_event' 	=> '3',
+		'role'		=> 'event_user',
+	],
+	[
+		'id_user' 	=> '2',
+		'id_event' 	=> '2',
+		'role'		=> 'event_user',
+	],
+);
+foreach ($event_users as $event_user) {
+
+	$reqEmail = $db->prepare('SELECT * FROM event_users WHERE id_user = :id_user AND id_event = :id_event');
+	$reqEmail->bindValue(':id_user', $event_user['id_user']);
+	$reqEmail->bindValue(':id_event', $event_user['id_event']);
+	$reqEmail->execute();
+
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO event_users (id_user, id_event, role) VALUES (:id_user, :id_event, :role)');
+		$sql->bindValue(':id_user', 		$event_user['id_user']);
+		$sql->bindValue(':id_event',		$event_user['id_event']);
+		$sql->bindValue(':role', 		$event_user['role']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
+}
+
+
 /**************************************END TABLE event_users**********************************/
 
 /************************************** TABLE LIST**********************************/
@@ -484,6 +535,58 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
+$lists = array(
+	[
+		'title' 	=> 'Alcool !!',
+		'id_event' 	=> '1',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+	[
+		'title' 	=> 'Gateaux',
+		'id_event' 	=> '1',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+	[
+		'title' 	=> 'Hébergement',
+		'id_event' 	=> '2',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+	[
+		'title' 	=> 'Transport',
+		'id_event' 	=> '2',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+	[
+		'title' 	=> 'Viandes',
+		'id_event' 	=> '3',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+	[
+		'title' 	=> 'Boissons',
+		'id_event' 	=> '3',
+		'date_add'	=> '2017-10-01 01:12:06',
+	],
+);
+
+foreach ($lists as $list) {
+
+	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND title = :title');
+	$reqEmail->bindValue(':id_event', $list['id_event']);
+	$reqEmail->bindValue(':title', $list['title']);
+	$reqEmail->execute();
+
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO list (title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
+		$sql->bindValue(':title', 		$list['title']);
+		$sql->bindValue(':id_event',	$list['id_event']);
+		$sql->bindValue(':date_add', 	$list['date_add']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
+}
 /**************************************END TABLE LIST**********************************/
 
 /************************************** TABLE CARDS**********************************/
@@ -507,6 +610,94 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
+$cards = array(
+	[
+	  'title'  => 'Bières',
+	  'description'  => 'Des bière à boire avec modération bien sur.',
+	  'quantity'  => '30',
+	  'price'  => '30',
+	  'id_user'  => '6',
+	  'id_list'  => '1',
+	  'id_event'  => '1',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+	[
+	  'title'  => 'Tarte au citron',
+	  'description'  => 'Parce que c\'est les tiennes les meilleurs',
+	  'quantity'  => '2',
+	  'price'  => '10',
+	  'id_user'  => '2',
+	  'id_list'  => '2',
+	  'id_event'  => '1',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+	[
+	  'title'  => 'Camping',
+	  'description'  => 'Faire la réservation du camping, on ne dort pas sous un pont à Arcachon.',
+	  'quantity'  => '1',
+	  'price'  => '200',
+	  'id_user'  => '5',
+	  'id_list'  => '3',
+	  'id_event'  => '2',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+	[
+	  'title'  => 'Ma petite fiat Panda',
+	  'description'  => 'J\'ai 2 places dans ma modeste voiture :)',
+	  'quantity'  => '2',
+	  'price'  => '5',
+	  'id_user'  => '1',
+	  'id_list'  => '4',
+	  'id_event'  => '2',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+	[
+	  'title'  => 'Saucisses',
+	  'description'  => 'De bonnes saucisses pour bien manger',
+	  'quantity'  => '50',
+	  'price'  => '30',
+	  'id_user'  => '4',
+	  'id_list'  => '5',
+	  'id_event'  => '3',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+	[
+	  'title'  => 'Bières',
+	  'description'  => 'Pas de bon barbeuk sans de bonnes bières.',
+	  'quantity'  => '100',
+	  'price'  => '40',
+	  'id_user'  => '3',
+	  'id_list'  => '6',
+	  'id_event'  => '3',
+	  'date_add'  => '2016-06-30 10:11:55',
+	],
+);
+
+foreach ($cards as $card) {
+
+	$reqEmail = $db->prepare('SELECT * FROM cards WHERE title = :title AND id_list = :id_list AND id_event = :id_event ');
+	$reqEmail->bindValue(':title', $card['title']);
+	$reqEmail->bindValue(':id_list', $card['id_list']);
+	$reqEmail->bindValue(':id_event', $card['id_event']);
+	$reqEmail->execute();
+
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO cards (title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
+		$sql->bindValue(':title', 		$card['title']);
+		$sql->bindValue(':description',	$card['description']);
+		$sql->bindValue(':quantity', 	$card['quantity']);
+		$sql->bindValue(':price', 		$card['price']);
+		$sql->bindValue(':id_user', 	$card['id_user']);
+		$sql->bindValue(':id_list', 	$card['id_list']);
+		$sql->bindValue(':id_event', 	$card['id_event']);
+		$sql->bindValue(':date_add', 	$card['date_add']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
+}
 /**************************************END TABLE CARDS**********************************/
 
 /************************************** TABLE COMMENT**********************************/
