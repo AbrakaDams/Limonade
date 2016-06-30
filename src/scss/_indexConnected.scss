@@ -1,10 +1,17 @@
 /*****************************
 * style de home logged
 ************************/
-
 .column-home{
-	background-color: #2199a3;
-	height: 33em;
-	vertical-align: top;
-	padding: 3em;
-}
+			
+			height: 33em;
+			vertical-align: top;
+			padding: 3em;
+			margin-top: 1em;
+			margin-bottom: 1em;
+			background-color: $lightGray;
+
+			border-radius: 80px 0px 80px 0px;
+			-moz-border-radius: 80px 0px 80px 0px;
+			-webkit-border-radius: 80px 0px 80px 0px;
+			border: 0px solid #00d6b8;
+			}
