@@ -84,10 +84,10 @@
 				</button>
 	      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
 	      			<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
-					Limonad
+					Lemonade
 	      		</a>
 	    	</div>
-				<ul class="nav navbar-nav navbar-right">
+				<ul id="userAvatar" class="nav navbar-nav navbar-right">
 			<?php if(isset($w_user) && !empty($w_user)): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
@@ -114,18 +114,13 @@
 					</li>
 
 
-
-					<!-- identité -->
-				  	<li><a href="#"> </li>
-					<li><a href="#">
-						</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<?php echo $w_user['username']; ?>
-							 <img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){echo $w_user['avatar'];} elseif(isset($w_user['url']) && !empty($w_user['url'])) { echo $w_user['url']; } else { echo 'http://www.actionudaipur.com/static/img/no_img.jpg';} ?>"> 
-							 <span class="caret"></span>
-						 </a>
+					<li class="dropdown show-account">
+						 <a href="#" class="dropdown-toggle show-account-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $w_user['username']; ?> <img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+	 						echo $w_user['avatar'];
+	 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
+	 						echo $w_user['url']; } else{
+	 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+						<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
