@@ -5,7 +5,7 @@ namespace Controller;
 use \Controller\MasterController;
 use \Controller\ListController;
 use \Controller\NewsFeedController;
-use \Model\NewsFeedModel as NewsModel;
+use \Model\NewsfeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
 use \Model\EventUsersModel as EventUsersModel;
@@ -134,11 +134,11 @@ class EventController extends MasterController
 			// d 2 caractères m 2 caractères y 4 caractères h 2 caract m 2 caract
 			if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_start'])){
     			$errors[] = 'La date n\'est pas au bon format';
-			}			
+			}
 
 			if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_end'])){
     			$errors[] = 'La date n\'est pas au bon format';
-			}			
+			}
 			/* On concatène la date et l'heure de début pour avoir un format valable
 			$date_debut = $post['date_begin'].' '.$post['time_begin'].':00';
 			if($this->validateDate($date_debut) == false){
@@ -162,8 +162,8 @@ class EventController extends MasterController
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
-	  				'date_start'	=> $post['date_start'], 
-	  				'date_end'	    => $post['date_start'],	  				
+	  				'date_start'	=> $post['date_start'],
+	  				'date_end'	    => $post['date_start'],
 	  			];
 
 	  			$newEvent = $eventModel->insert($data);

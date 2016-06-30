@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class NewsFeedModel extends \W\Model\Model
+class NewsfeedModel extends \W\Model\Model
 {
     public function joinNewsFeed($id){
 

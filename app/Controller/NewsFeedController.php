@@ -3,7 +3,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Controller\ListController;
-use \Model\NewsFeedModel;
+use \Model\NewsfeedModel;
 
 class NewsFeedController extends Controller
 {
