@@ -5,7 +5,9 @@ use \W\Controller\Controller;
 use \Model\CommentsModel as CommentModel;
 use \Model\EventModel;
 use \Model\NewsFeedModel as NewsFeedModel;
-use \Model\AdminModel as AdminModel;  
+use \Model\AdminModel as AdminModel; 
+
+use \W\Model\UsersModel as UsersModel; 
 
 class AdminController extends Controller
 {
@@ -107,6 +109,84 @@ class AdminController extends Controller
 		];
 		$this->show('admin/checkEvent', $params);
 	}
+
+	public function checkUser()
+	{
+		$post = array();
+		$errors = array();
+		$success = false;
+		$successimg = false;
+
+		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
+			$dbLink = '/limonade/public/assets/image';
+			$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
+
+			if(!empty($_FILES) && isset($_FILES['avatar'])){
+
+				// Récupère le nom de mon fichier
+				$nomFichier = $_FILES['avatar']['name']; 
+				// Stockage temporaire du fichier
+				$tmpFichier = $_FILES['avatar']['tmp_name'];
+				// Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+				$newFichier = $folder.$nomFichier; 
+				// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
+				if($_FILES['avatar']['size'] <= $maxSize){
+					/*
+					 * move_uploaded_file() retourne un booleen :
+					 *	- true si le fichier a bien été déplacé/envoyé
+					 *  - false si il y a une erreur
+					 */
+					if(move_uploaded_file($tmpFichier, $newFichier)){
+						$successimg = true;
+						$adress = $dbLink.'/'.$nomFichier;
+					}
+					else {
+						$error = 'Erreur lors de l\'envoi du fichier';
+					}
+				}
+			}
+			if(!empty($_POST)){
+					foreach($_POST as $key => $value){
+						$post[$key] = trim(strip_tags($value));
+					}
+					if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
+						$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
+					}
+					if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+						$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
+					}
+					if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+						$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
+					}				
+					if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
+						$errors[] = 'Vous devez choisir un avatar pour continuer';
+					}
+
+					if(count($errors) === 0){
+
+						$usersModel = new UsersModel();
+						$authModel = new AuthModel();
+
+						$data = [
+							'username' 	=> $post['username'],
+							'firstname' => $post['firstname'],
+							'lastname' 	=> $post['lastname'],
+							'email' 	=> $post['email'],
+							'role' 		=> 'user',
+							'avatar' 	=> $post['url'],						
+						];
+						if($usersModel->insert($dataUser) && $tokenRegisterModel->insert($dataToken)){					
+						}else {
+							$errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';
+						}
+					}
+					$params = [
+						'errors' => $errors,
+						'success' => $success,
+					];
+					$this->show('admin/checkUser', $params);	
+			}
+
 
 	
 

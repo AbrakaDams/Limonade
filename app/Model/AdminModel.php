@@ -17,4 +17,19 @@ class AdminModel extends \W\Model\Model
 		return $sth->fetch();
 
 	}
+
+	public function findUser($id)
+	{
+		if (!is_numeric($id)){
+			return false;
+		}
+
+		$sql = 'SELECT * FROM users WHERE ' . $this->primaryKey .'  = :id LIMIT 1';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id', $id);
+		$sth->execute();
+
+		return $sth->fetch();
+
+	}
 }

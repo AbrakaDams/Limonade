@@ -18,7 +18,7 @@
 
 
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
-	<h1 class="center">Modifier votre évènement</h1>	
+	<h1 class="center">Modifier un évènement</h1>	
 	<hr>
 	<div class="row">	
 	    <div class="col-xs-6 .col-md-4">
