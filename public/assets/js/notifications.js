@@ -11,7 +11,27 @@ $(document).ready(function(){
 	});
 
 	//Popup on click
-	$("#notificationContainer").click(function(){
+	$("a.notification-link").click(function(e){
+		e.preventDefault();
+		var idNotif = $(this).attr('data-id-notif');
 		
+		$.ajax({
+			type: 'post',
+			url: 'ajax/update-notif',
+			dataType: 'json',
+			data : {'idNotif': idNotif},
+			success: function(data){
+				console.log(data);
+				if(data.update == 'ok'){
+					/*$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
+					$('#invite-message').text("");
+					$('#delete-message').text("");
+					$('#delete-message').text("Cette personne ne fait plus partie de cet évènement.");*/
+				}
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
 	});
 });

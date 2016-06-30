@@ -30,4 +30,24 @@ class NotificationsModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}
+
+	public function updateNotif($read, $id){
+		echo $read;
+		echo $id;
+		if(empty($data) || empty($id)){
+			return false; // S'il manque une des 2 infos
+		}
+
+		$sql = 'UPDATE ' . $this->table . ' SET read = "read" WHERE id = :id';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':read', $read);
+		$sth->bindValue(':id', $id);		
+		$sth->execute();
+
+		if(!$sth->execute()){
+			return false;
+		}
+
+		return $this->find($id);
+	}
 }
