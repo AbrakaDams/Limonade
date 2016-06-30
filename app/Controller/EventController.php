@@ -11,7 +11,7 @@ use \Model\CommentsModel as CommentsModel;
 use \Model\EventUsersModel as EventUsersModel;
 use \Model\NotificationsModel;
 use \W\Model\UsersModel as UsersModel;
-
+use \PDO;
 
 class EventController extends MasterController
 {
@@ -34,28 +34,14 @@ class EventController extends MasterController
 
 			$EventParticipants = $EventUsersModel->getEventUsers($id);
 
-			// $EventUsers retourne toutes les infos de la table event_users
-			// On veut récupèrer 5 participants
-			// $idUser récupère l'id de tous les participants à l'évènement
-			foreach ($EventParticipants as $infosParticipant) {
-				$idUsers[] = $infosParticipant['id_user'];
-			}
+			
 
-			// Participants récupère les information de la table user des 5 premiers participants
-			for ($i=0; $i < 5; $i++) {
-				if(!empty($idUsers[$i])){
-				$participants[] = $UsersModel->find($idUsers[$i]);
-				}
-			}
-
-			foreach ($idUsers as $idUser) {
-				$allparticipants[] = $UsersModel->find($idUser);
-			}
-
-			//make a query to the database to get this event data
+			$participants = $EventUsersModel->findAllUsers($id);
+			var_dump($participants);
+			
 			$eventData = $EventModel->find($id);
 
-			$news = new NewsfeedController();
+			$news = new NewsFeedController();
 			$newsFeed = $news->newsFeed($id);
 
 
@@ -64,7 +50,6 @@ class EventController extends MasterController
 				'thisEvent'			=> $eventData,
 				'showNewsFeed'		=> $newsFeed,
 				'participants'		=> $participants,
-				'allparticipants'	=> $allparticipants,
 			 ];
 
 			$this->showWithNotif('event/event', $showEvent);
@@ -94,8 +79,8 @@ class EventController extends MasterController
 		$post = array();
 		$errors = array();
 		$success = false;
-		$date_start = '';
-		$date_end = '';
+		$date_debut = '';
+		$date_fin = '';
 		$newEvent = '';
 		$newId = NULL;
 
@@ -156,20 +141,14 @@ class EventController extends MasterController
 	  			$eventModel = new EventModel();
 	  			$EventUsersModel = new EventUsersModel();
 
-	  			//  createFromFormat = Retourne un nouvel objet DateTime formaté
-
-	  			$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']); // Date fr
-
-	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
-
 	  			$data = [
 	  				'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
-	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'), // On la transforme pour l insérer dans notre bdd
-	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
+	  				'date_start'	=> $post['date_start'],
+	  				'date_end'	    => $post['date_end'],
 	  			];
 
 	  			$newEvent = $eventModel->insert($data);

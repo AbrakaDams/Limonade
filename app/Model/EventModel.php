@@ -28,4 +28,18 @@ class EventModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}
+	public function find5UsersInEvent(array $ids, $limit){
+
+		if (!is_numeric($id)){
+			return false;
+		}
+
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = :id LIMIT 5';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id', $id);
+		$sth->execute();
+
+		return $sth->fetch();
+
+	}
 }

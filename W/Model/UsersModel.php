@@ -1,6 +1,7 @@
 <?php
 
 namespace W\Model;
+use \PDO;
 
 /**
  * Classe requise par l'AuthentificationModel, éventuellement à étendre par le UsersModel de l'appli
@@ -113,17 +114,6 @@ class UsersModel extends Model
 		return $sth->fetch();
 	}
 
-	public function find5($id)
-	{
-		if (!is_numeric($id)){
-			return false;
-		}
+	
 
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->primaryKey .'  = :id LIMIT 5';
-		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':id', $id);
-		$sth->execute();
-		
-		return $sth->fetch();
-	}
 }
