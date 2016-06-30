@@ -717,7 +717,7 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
-$comments = array(
+//$comments = array(
 
 
 /**************************************END TABLE COMMENT**********************************/
