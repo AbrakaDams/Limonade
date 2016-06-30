@@ -57,11 +57,11 @@
 	<hr>
 	<div class="row">
       <div class='col-xs-6 col-md-4'>
-          <div class="form-group">
+          <div class="form-group" id="date_start">
             <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début de votre événement</i><br><br>
             <label for="date_start" name="date_start" class="masterTooltip" title="Début de votre évènement">Date et heure : <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-              <div class='input-group date' id='datetimepickerstart' name="date_start" value="<?php echo $eventData['date_start']; ?>">
-                  <input type='text' class="form-control" id="datetimepicker">
+              <div class="input-group">
+                  <input type="text" name="date_start" class="form-control" id='datetimepickerstart' value="<?php echo $eventData['date_start']; ?>">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -69,18 +69,20 @@
           </div>
       </div>
       <div class='col-xs-6 col-md-4'>
-          <div class="form-group">
+          <div class="form-group" id="date_end">
             <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin de votre événement</i><br><br>
             <label for="date_end" name="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-              <div class='input-group date' id='datetimepickerend' name="date_end">
-                  <input type='text' class="form-control" id="datetimepicker" value="<?php echo $eventData['date_end']; ?>">
+              <div class="input-group">
+                  <input type="text" name="date_end" class="form-control" id='datetimepickerend' value="<?php echo $eventData['date_end']; ?>">
                     <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>
               </div>
           </div>
       </div>
   </div>
+
+	
 	<hr>  
 	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier</button>
 </form>

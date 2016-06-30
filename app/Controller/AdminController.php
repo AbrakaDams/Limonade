@@ -48,13 +48,10 @@ class AdminController extends Controller
 			//echo $category;
 
 		}
-		/*if(!empty($_POST)){
+		if(!empty($_POST)){
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
-			}
-			if(strtotime($post['date_start']) > strtotime($post['date_end'])){
-				$errors[] = 'La date de début ne peut être supérieure à la date de fin';
-			}
+			}			
 			if(empty($post['role'])){
 				$errors[] = 'Vous devez cocher un bouton !';
 			}
@@ -70,14 +67,12 @@ class AdminController extends Controller
 			if(empty($post['address'])){
 				$errors[] = 'Veuillez indiquer une adresse correcte';
 			}
-			$date_start = $post['date_start']. ' '.$post['time_start'].':00';
-			if($this->validateDate($date_start) === false){
-				$errors[] = 'La date de début n\'est pas au bon format';
-			}
-			
-			$date_end = $post['date_end'].' '.$post['time_end'].':00';
-			if($this->validateDate($date_end) === false){
-				$errors[] = 'La date de fin n\'est pas au bon format';
+			if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_start'])){
+    			$errors[] = 'La date n\'est pas au bon format';
+			}			
+
+			if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_end'])){
+    			$errors[] = 'La date n\'est pas au bon format';
 			}
 			if(count($errors) === 0){
 
@@ -91,8 +86,8 @@ class AdminController extends Controller
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
-	  				'date_start' 	=> $date_start,
-	  				'date_end' 		=> $date_end,
+	  				'date_start' 	=> $post['date_start'],
+	  				'date_end' 		=> $post['date_start'],
 				];
 
 				$newEvent = $eventModel->find($data['id']);
@@ -104,7 +99,7 @@ class AdminController extends Controller
 					echo $errors[] = 'Il y a eu une erreur dans la création de l\'évènement !';
 				}				
 			}
-		}*/
+		}
 		$params = [
 			'errors'    => $errors,
 			'success' 	=> $success,

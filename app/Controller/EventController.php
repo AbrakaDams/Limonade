@@ -163,7 +163,7 @@ class EventController extends MasterController
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
 	  				'date_start'	=> $post['date_start'], 
-	  				'date_end'	    => $post['date_end'],	  				
+	  				'date_end'	    => $post['date_start'],	  				
 	  			];
 
 	  			$newEvent = $eventModel->insert($data);
