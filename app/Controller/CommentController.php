@@ -2,8 +2,12 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Model\UsersModel as UsersModel;
 use \Model\CommentsModel as CommentModel;
 use \Model\NewsFeedModel as NewsFeedModel;
+use \Model\EventModel as EventModel;
+use \Model\EventUsersModel as EventUsersModel;
+use \Model\NotificationsModel;
 
 class CommentController extends Controller
 {
@@ -51,7 +55,7 @@ class CommentController extends Controller
         $post[$key] = trim(strip_tags($value));
       }
       if(empty($post['comment'])){
-        $error[] = 'Le commentaire ne peut pas etre vide';
+        $error[] = 'Le commentaire ne peut pas être vide';
       }
       if(count($error) === 0){
         $commentaire = new CommentModel();
@@ -67,7 +71,31 @@ class CommentController extends Controller
           'date_add' => $date,
         ];
         if($commentaire->insert($data)){
-            $this->showJson(['answer' => 'success']);
+          // On prépare l'insertion de la notification
+          $notificationModel = new NotificationsModel();
+          $eventUsersModel = new EventUsersModel();
+          // On récupère tous les utilisateurs dans l'évènement.
+          $usersInEvent = $eventUsersModel->findAllBut1Users($id, $user['id']);
+
+          $eventModel = new EventModel();
+          // On récupère les données de l'évènement (donc le titre)
+          $dataEvent = $eventModel->find($id);
+
+          $phraseType = 'Il y a eut un ou plusieurs commendaires dans l\'évènement : ';
+          $phraseType .= $dataEvent['title'];
+
+          foreach ($usersInEvent as $userInEvent) {
+            $dataNotification = [
+              'id_user'     => $userInEvent['id'],
+              'id_event'    => $id,
+              'content'     => $phraseType,
+              'date_create' => $date,
+            ];
+
+            $NotificationsModel->insert($dataNotification);
+          }
+
+          $this->showJson(['answer' => 'success']);
         }
       }
     }

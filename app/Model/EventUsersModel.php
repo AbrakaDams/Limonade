@@ -56,4 +56,28 @@ class EventUsersModel extends \W\Model\Model
 
 	    return $sth->fetchAll();
 	}
+
+	public function findAllBut1Users($idEvent, $idUser, $limit = null) {
+
+		if($limit == null) {
+			$sql = 'SELECT users.id, users.username, users.firstname, users.lastname
+		    FROM event_users
+		    INNER JOIN users ON event_users.id_user = users.id
+		    WHERE event_users.id_event=:idEvent AND users.id != :idUser ORDER BY users.username DESC';
+		}
+		else {
+			$sql = 'SELECT users.id, users.username, users.firstname, users.lastname
+		    FROM event_users
+		    INNER JOIN users ON event_users.id_user = users.id
+		    WHERE event_users.id_event=:idEvent AND users.id != :idUser ORDER BY users.username DESC LIMIT '.$limit.'';
+		}
+
+	    $sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
+		$sth->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+
+	    $sth->execute();
+
+	    return $sth->fetchAll();
+	}
 }

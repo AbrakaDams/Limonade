@@ -34,10 +34,7 @@ class EventController extends MasterController
 
 			$EventParticipants = $EventUsersModel->getEventUsers($id);
 
-			
-
 			$participants = $EventUsersModel->findAllUsers($id);
-			var_dump($participants);
 			
 			$eventData = $EventModel->find($id);
 
@@ -307,7 +304,7 @@ class EventController extends MasterController
 						$date_create = date('Y-m-d h:i:s');
 						$dataNotification = [
 							'id_user' 		=> $idUser,
-							'id_Event' 		=> $idEvent,
+							'id_event' 		=> $idEvent,
 							'content'		=> $phraseType,
 							'date_create'	=> $date_create,
 						];

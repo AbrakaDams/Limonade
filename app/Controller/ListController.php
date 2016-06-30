@@ -33,7 +33,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-				  'list_title' 		=> $listName,
+				  'list_title' 	=> $listName,
 				  'id_event' 	=> $idEvent,
 				  'date_add'	=> $timestamp,
 				];
@@ -46,10 +46,10 @@ class ListController extends Controller
 					$newsfeed = new NewsfeedModel();
 
 					$newsfeedData = [
-						'id_event' => $idEvent,
-						'id_user' => $user['id'],
-						'action' => 'add',
-						'id_list' => $listInsertion['id'],
+						'id_event'  => $idEvent,
+						'id_user'   => $user['id'],
+						'action'    => 'add',
+						'id_list'   => $listInsertion['id'],
 						'date_news' => $timestamp,
 					];
 
@@ -81,16 +81,16 @@ class ListController extends Controller
 			}
 			// if our name input exists in correst state
 			if(!isset($post['card_title']) || empty($post['card_title'])) {
-				$errors[] = 'Titre de la tache est incorrect';
+				$errors[] = 'Le titre de la tâche est incorrect';
 			}
 			if(!isset($post['card_desc']) || empty($post['card_desc'])) {
-				$errors[] = 'Description de la tache est incorrect';
+				$errors[] = 'La description de la tâche est incorrecte';
 			}
 			if(!isset($post['card_quantity']) || empty($post['card_quantity']) && $post['card_quantity'] < 0) {
-				$errors[] = 'Quantite de la tache est incorrect';
+				$errors[] = 'La quantité de la tache est incorrecte';
 			}
 			if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] < 0) {
-				$errors[] = 'Prix de la tache est incorrect';
+				$errors[] = 'Le prix de la tache est incorrecte';
 			}
 			// create variable to prevent empty insertions
 			if(isset($post['card_person']) && !empty($post['card_person'])) {
@@ -105,14 +105,14 @@ class ListController extends Controller
 				$idEvent = intval($post['eventId']);
 			}
 			else {
-				$errors[] = 'Impossible inserer cette tache dans event';
+				$errors[] = 'Impossible d\'inserer cette tache dans l\'évènement';
 			}
 			// check id of the list
 			if(isset($post['listId']) && !empty($post['listId'])) {
 				$idList = intval($post['listId']);
 			}
 			else {
-				$errors[] = 'Impossible inserer cette tache dans la liste';
+				$errors[] = 'Impossible d\'inserer cette tâche dans la liste';
 			}
 			// if input data is valid
 			if(count($errors) == 0) {
@@ -120,7 +120,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$cardData = [
-				  'card_title' 			=> $post['card_title'],
+				  'card_title' 		=> $post['card_title'],
 				  'description' 	=> $post['card_desc'],
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],
@@ -138,10 +138,10 @@ class ListController extends Controller
 					$newsfeed = new NewsfeedModel();
 
 					$newsfeedData = [
-						'id_event' => $idEvent,
-						'id_user' => $user['id'],
-						'action' => 'add',
-						'id_card' => $insertCard['id'],
+						'id_event' 	=> $idEvent,
+						'id_user' 	=> $user['id'],
+						'action' 	=> 'add',
+						'id_card' 	=> $insertCard['id'],
 						'date_news' => $timestamp,
 					];
 
@@ -208,7 +208,10 @@ class ListController extends Controller
 		$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate]);
 
 	}
-
+	/**
+	 * Supprime une liste
+	 *
+	 */
 
 	public function deleteList() {
 		// just 0 so he can find nothing
@@ -231,10 +234,10 @@ class ListController extends Controller
 			$timestamp = date('Y-m-d H:i:s');
 
 			$newsfeedData = [
-				'id_event' => $idEvent,
-				'id_user' => $user['id'],
-				'action' => 'remove',
-				'id_list' => $idList,
+				'id_event' 	=> $idEvent,
+				'id_user' 	=> $user['id'],
+				'action' 	=> 'remove',
+				'id_list' 	=> $idList,
 				'date_news' => $timestamp,
 			];
 
@@ -264,10 +267,10 @@ class ListController extends Controller
 			$timestamp = date('Y-m-d H:i:s');
 
 			$newsfeedData = [
-				'id_event' => $idEvent,
-				'id_user' => $user['id'],
-				'action' => 'remove',
-				'id_card' => $idCard,
+				'id_event'	=> $idEvent,
+				'id_user' 	=> $user['id'],
+				'action'	=> 'remove',
+				'id_card' 	=> $idCard,
 				'date_news' => $timestamp,
 			];
 
