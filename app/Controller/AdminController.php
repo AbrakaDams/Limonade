@@ -109,7 +109,9 @@ class AdminController extends Controller
 		];
 		$this->show('admin/checkEvent', $params);
 	}
-
+	/***
+	* Fonction pour modifier un user
+	*/
 	public function checkUser()
 	{
 		$post = array();
@@ -146,48 +148,45 @@ class AdminController extends Controller
 				}
 			}
 			if(!empty($_POST)){
-					foreach($_POST as $key => $value){
-						$post[$key] = trim(strip_tags($value));
-					}
-					if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
-						$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
-					}
-					if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
-						$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
-					}
-					if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
-						$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
-					}				
-					if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
-						$errors[] = 'Vous devez choisir un avatar pour continuer';
-					}
+				foreach($_POST as $key => $value){
+					$post[$key] = trim(strip_tags($value));
+				}
+				if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
+					$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
+				}
+				if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+					$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
+				}
+				if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+					$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
+				}				
+				if(!isset($_FILES['avatar']) && !filter_var($post['url'], FILTER_VALIDATE_URL)){
+					$errors[] = 'Vous devez choisir un avatar pour continuer';
+				}
 
-					if(count($errors) === 0){
+				if(count($errors) === 0){
 
-						$usersModel = new UsersModel();
-						$authModel = new AuthModel();
+					$usersModel = new UsersModel();
+					$authModel = new AuthModel();
 
-						$data = [
-							'username' 	=> $post['username'],
-							'firstname' => $post['firstname'],
-							'lastname' 	=> $post['lastname'],
-							'email' 	=> $post['email'],
-							'role' 		=> 'user',
-							'avatar' 	=> $post['url'],						
-						];
-						if($usersModel->insert($dataUser) && $tokenRegisterModel->insert($dataToken)){					
-						}else {
-							$errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';
-						}
-					}
-					$params = [
-						'errors' => $errors,
-						'success' => $success,
+					$data = [
+						'username' 	=> $post['username'],
+						'firstname' => $post['firstname'],
+						'lastname' 	=> $post['lastname'],
+						'email' 	=> $post['email'],
+						'role' 		=> 'user',
+						'avatar' 	=> $post['url'],						
 					];
-					$this->show('admin/checkUser', $params);	
+					if($usersModel->insert($dataUser) && $tokenRegisterModel->insert($dataToken)){					
+					}else {
+						$errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';
+					}
+				}
+				$params = [
+					'errors' => $errors,
+					'success' => $success,
+				];
+				$this->show('admin/checkUser', $params);	
 			}
-
-
-	
-
-}
+	}
+}	
