@@ -281,42 +281,42 @@ $notifications = array(
 		'id_user' 		=> '1',
 		'id_event' 		=> '1',
 		'content' 		=> 'Vous avez été invité à l\'évènement : La soirée du siècle !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '4',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '3',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread'
 	],
 	[
 		'id_user' 		=> '2',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
-		'date_create' 	=> '2016-07-01 08:00:00',
+		'date_create' 	=> '2016-06-28 08:00:00',
 		'read' 			=> 'unread',
 	],
 );
@@ -539,32 +539,32 @@ $lists = array(
 	[
 		'title' 	=> 'Alcool !!',
 		'id_event' 	=> '1',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
 		'title' 	=> 'Gateaux',
 		'id_event' 	=> '1',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
 		'title' 	=> 'Hébergement',
 		'id_event' 	=> '2',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
 		'title' 	=> 'Transport',
 		'id_event' 	=> '2',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
 		'title' 	=> 'Viandes',
 		'id_event' 	=> '3',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
 		'title' 	=> 'Boissons',
 		'id_event' 	=> '3',
-		'date_add'	=> '2017-10-01 01:12:06',
+		'date_add'	=> '2016-06-28 08:00:00',
 	],
 );
 
@@ -619,7 +619,7 @@ $cards = array(
 	  'id_user'  => '6',
 	  'id_list'  => '1',
 	  'id_event'  => '1',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
 	  'title'  => 'Tarte au citron',
@@ -629,7 +629,7 @@ $cards = array(
 	  'id_user'  => '2',
 	  'id_list'  => '2',
 	  'id_event'  => '1',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
 	  'title'  => 'Camping',
@@ -639,7 +639,7 @@ $cards = array(
 	  'id_user'  => '5',
 	  'id_list'  => '3',
 	  'id_event'  => '2',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
 	  'title'  => 'Ma petite fiat Panda',
@@ -649,7 +649,7 @@ $cards = array(
 	  'id_user'  => '1',
 	  'id_list'  => '4',
 	  'id_event'  => '2',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
 	  'title'  => 'Saucisses',
@@ -659,7 +659,7 @@ $cards = array(
 	  'id_user'  => '4',
 	  'id_list'  => '5',
 	  'id_event'  => '3',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
 	  'title'  => 'Bières',
@@ -669,7 +669,7 @@ $cards = array(
 	  'id_user'  => '3',
 	  'id_list'  => '6',
 	  'id_event'  => '3',
-	  'date_add'  => '2016-06-30 10:11:55',
+	  'date_add'  => '2016-06-28 09:00:00',
 	],
 );
 
@@ -716,6 +716,9 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
 if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
+
+$comments = array(
+
 
 /**************************************END TABLE COMMENT**********************************/
 
