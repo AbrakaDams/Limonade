@@ -67,26 +67,6 @@
 		font-size: 12px;
 		border-top: 1px solid #dddddd;
 		}
-		.notification-link
-		{
-			display: inline-block;
-			width: 100%;
-			height: 100%;
-		}
-		.unread
-		{
-			background-color: green;
-			color: white;
-		}
-		.read
-		{
-			background-color: grey;
-			color: white; 
-		}
-		.sep-notification
-		{
-			margin: 0;
-		}
 		</style>
 </head>
 <body>
@@ -121,13 +101,11 @@
 							<div id="notificationTitle">Notifications</div>
 							<div id="notificationsBody" class="notifications">
 								<?php foreach ($w_notifications as $notification):?>
+									<a class="<?= $notification['read']?>" href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>">
 										<span class="notification">
-											<span class="idnotif"></span>
-											<a class="notification-link <?= $notification['is_read']?>" href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>" data-id-notif="<?= $notification['id'];?>">
-												<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>
-											</a>
+											<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>
 										</span>
-									<hr class="sep-notification">
+									</a><hr>
 								<?php endforeach; ?>
 							</div>
 							<div id="notificationFooter"><a href="#">See All</a></div>
@@ -170,7 +148,7 @@
 	</header>
 
 
-		<section style="background-color: #d8ddd7">
+		<section>
 			<?= $this->section('main_content') ?>
 		</section>
 
