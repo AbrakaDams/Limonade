@@ -4,6 +4,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
 use \Model\CardsModel as CardsModel;
+use \Model\NewsFeedModel as NewsFeedModel;
 use \Controller\EventController;
 
 class ListController extends Controller
@@ -118,15 +119,13 @@ class ListController extends Controller
 				// insert
 				if($insertCard = $insertList->insert($cardData)) {
 
-
-					$user = getUser();
-
+					$user = $this->getUser();
 					$newsfeed = new NewsFeedModel();
 
 					$newsfeedData = [
 						'id_event' => $idEvent,
 						'id_user' => $user['id'],
-						'action' => 'added',
+						'action' => 'add',
 						'id_card' => $insertCard['id'],
 						'date_news' => $timestamp,
 					];

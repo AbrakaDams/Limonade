@@ -134,6 +134,9 @@ $('body').on('submit', '.add-card-form', function(e) {
                 $('.add-card-btn').removeClass('hidden');
                 $('.add-card-form').addClass('hidden');
             }
+        },
+        error: function(e) {
+            console.log(e);
         }
     });
 });

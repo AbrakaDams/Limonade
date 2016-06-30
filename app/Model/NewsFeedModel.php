@@ -4,7 +4,7 @@ namespace Model;
 
 class NewsFeedModel extends \W\Model\Model
 {
-  public function joinNewsFeed($id){
+    public function joinNewsFeed($id){
 
       $sql = 'SELECT newsfeed.id_event, newsfeed.id_user, newsfeed.action, newsfeed.id_card, list.title, list.id_event, list.date_add, users.username, users.avatar, users.id
       FROM newsfeed
