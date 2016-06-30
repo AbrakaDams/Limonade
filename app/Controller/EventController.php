@@ -87,7 +87,7 @@ class EventController extends MasterController
 		}
 	}
 	/**
-	 * Création d'évènement
+	 * Création d'évènements
 	 */
 	public function createEvent()
 		{
@@ -163,7 +163,7 @@ class EventController extends MasterController
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
 	  				'date_start'	=> $post['date_start'],
-	  				'date_end'	    => $post['date_start'],
+	  				'date_end'	    => $post['date_end'],
 	  			];
 
 	  			$newEvent = $eventModel->insert($data);
@@ -179,7 +179,7 @@ class EventController extends MasterController
 	  					$success = true;
 	  				}
 	  				else{
-	  					echo $errors[] = 'erreur lors de la création de l\'évènement';
+	  					echo $errors[] = 'Il y a une erreur lors de la création de l\'évènement';
 	  				}
 	  			}
 			}

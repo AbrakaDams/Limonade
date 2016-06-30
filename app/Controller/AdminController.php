@@ -87,7 +87,7 @@ class AdminController extends Controller
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
 	  				'date_start' 	=> $post['date_start'],
-	  				'date_end' 		=> $post['date_start'],
+	  				'date_end' 		=> $post['date_end'],
 				];
 
 				$newEvent = $eventModel->find($data['id']);
