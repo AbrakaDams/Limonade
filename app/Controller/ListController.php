@@ -33,7 +33,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$entryData = [
-				  'title' 		=> $listName,
+				  'list_title' 		=> $listName,
 				  'id_event' 	=> $idEvent,
 				  'date_add'	=> $timestamp,
 				];
@@ -120,7 +120,7 @@ class ListController extends Controller
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
 				$cardData = [
-				  'title' 			=> $post['card_title'],
+				  'card_title' 			=> $post['card_title'],
 				  'description' 	=> $post['card_desc'],
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],

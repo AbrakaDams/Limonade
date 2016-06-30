@@ -524,7 +524,7 @@ foreach ($event_users as $event_user) {
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `title` VARCHAR(255) NOT NULL ,
+  `list_title` VARCHAR(255) NOT NULL ,
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`) ,
@@ -537,32 +537,32 @@ if($sql === false){
 
 $lists = array(
 	[
-		'title' 	=> 'Alcool !!',
+		'list_title' 	=> 'Alcool !!',
 		'id_event' 	=> '1',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Gateaux',
+		'list_title' 	=> 'Gateaux',
 		'id_event' 	=> '1',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Hébergement',
+		'list_title' 	=> 'Hébergement',
 		'id_event' 	=> '2',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Transport',
+		'list_title' 	=> 'Transport',
 		'id_event' 	=> '2',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Viandes',
+		'list_title' 	=> 'Viandes',
 		'id_event' 	=> '3',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Boissons',
+		'list_title' 	=> 'Boissons',
 		'id_event' 	=> '3',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
@@ -594,7 +594,7 @@ foreach ($lists as $list) {
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `title` VARCHAR(255) NOT NULL ,
+  `card_title` VARCHAR(255) NOT NULL ,
   `description` VARCHAR(255) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` INT NOT NULL ,
@@ -612,7 +612,7 @@ if($sql === false){
 
 $cards = array(
 	[
-	  'title'  => 'Bières',
+	  'card_title'  => 'Bières',
 	  'description'  => 'Des bière à boire avec modération bien sur.',
 	  'quantity'  => '30',
 	  'price'  => '30',
@@ -622,7 +622,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Tarte au citron',
+	  'card_title'  => 'Tarte au citron',
 	  'description'  => 'Parce que c\'est les tiennes les meilleurs',
 	  'quantity'  => '2',
 	  'price'  => '10',
@@ -632,7 +632,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Camping',
+	  'card_title'  => 'Camping',
 	  'description'  => 'Faire la réservation du camping, on ne dort pas sous un pont à Arcachon.',
 	  'quantity'  => '1',
 	  'price'  => '200',
@@ -642,7 +642,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Ma petite fiat Panda',
+	  'card_title'  => 'Ma petite fiat Panda',
 	  'description'  => 'J\'ai 2 places dans ma modeste voiture :)',
 	  'quantity'  => '2',
 	  'price'  => '5',
@@ -652,7 +652,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Saucisses',
+	  'card_title'  => 'Saucisses',
 	  'description'  => 'De bonnes saucisses pour bien manger',
 	  'quantity'  => '50',
 	  'price'  => '30',
@@ -662,7 +662,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Bières',
+	  'card_title'  => 'Bières',
 	  'description'  => 'Pas de bon barbeuk sans de bonnes bières.',
 	  'quantity'  => '100',
 	  'price'  => '40',
@@ -710,7 +710,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
   `content` VARCHAR(255) NOT NULL ,
   `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (id_event) REFERENCES event (id))
+  FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE)
   ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -798,7 +798,9 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `action` ENUM('add','remove') NOT NULL ,
   `id_card` INT NOT NULL ,
   `id_list` INT NOT NULL ,
-  PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+  `date_news` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE) ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));

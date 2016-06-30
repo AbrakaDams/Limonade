@@ -163,7 +163,7 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2><a href="#" data-delete-list="'+value.id+'" class="delete-list">Delete</a></div><div class="cards"></div>' + newCard + '</div>')
+                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.list_title + '</h2><a href="#" data-delete-list="'+value.id+'" class="delete-list">Delete</a></div><div class="cards"></div>' + newCard + '</div>')
                 });
             }
             if(response.newCards.length != 0){
@@ -174,7 +174,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><a href="#" class="delete-card" data-delete-card="'+value.id+'">Supprimer cette tache</a><h3 class="card-title">'+ value.title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><a href="#" class="delete-card" data-delete-card="'+value.id+'">Supprimer cette tache</a><h3 class="card-title">'+ value.card_title+'</h2><p class="card-desc">'+value.description+'</p><span class="card-quantity">Combien : '+value.quantity+'</span><span class="card-price">Prix : '+value.price+'</span><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
                     }
                 });
             }
