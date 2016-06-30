@@ -50,4 +50,19 @@ class NotificationsModel extends \W\Model\Model
 
 		return $this->find($id);
 	}
+	public function exist(array $data)
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_user = :id_user AND id_event = :id_event AND content = :content AND is_read = :is_read LIMIT 1';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id_user', $data['id_user']);
+		$sth->bindValue(':id_event', $data['id_event']);
+		$sth->bindValue(':content', $data['content']);
+		$sth->bindValue(':is_read', $data['is_read']);
+		if($sth->execute()){
+			return $sth->fetch();
+		}
+		else{
+			return false;
+		}
+	}
 }

@@ -7,7 +7,7 @@ $('#form-comment').on('submit', function(e) {
     var formData = $(this).serialize(); // L'objet jQuery du formulaire
     var comment = $(this).parent().parent().find('#comment').val(); 
 
-    console.log(formData);
+
     // Je vérifie une première fois pour ne pas lancer la requête HTTP
     // si je sais que mon PHP renverra une erreur
     if(comment == '') {
@@ -20,6 +20,7 @@ $('#form-comment').on('submit', function(e) {
             dataType: 'json', // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             data: formData + '&id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             success: function(html) { // Je récupère la réponse du fichier PHP
+                console.log(html);
                 if(html.answer == 'success'){
                     showComment();
                     $('#form-comment').each(function(){

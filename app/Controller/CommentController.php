@@ -43,12 +43,13 @@ class CommentController extends Controller
   }
 
   /**
-	 *  Ajoute un commentaire
+   *  Ajoute un commentaire
    * @param $id relie l'id users avec l'id commentaire
-	 */
+   */
   public function insertComment(){
     $post = [];
     $error = [];
+    $json = $json = ['answer' => 'raté'];
 
     if(!empty($_POST)){
       foreach($_POST as $key => $value){
@@ -72,7 +73,7 @@ class CommentController extends Controller
         ];
         if($commentaire->insert($data)){
           // On prépare l'insertion de la notification
-          $notificationModel = new NotificationsModel();
+          $notificationsModel = new NotificationsModel();
           $eventUsersModel = new EventUsersModel();
           // On récupère tous les utilisateurs dans l'évènement.
           $usersInEvent = $eventUsersModel->findAllBut1Users($id, $user['id']);
@@ -83,21 +84,42 @@ class CommentController extends Controller
 
           $phraseType = 'Il y a eut un ou plusieurs commendaires dans l\'évènement : ';
           $phraseType .= $dataEvent['title'];
+            $json = $json = ['answer' => ''];
 
           foreach ($usersInEvent as $userInEvent) {
-            $dataNotification = [
+            $dataVerif = [
               'id_user'     => $userInEvent['id'],
               'id_event'    => $id,
               'content'     => $phraseType,
+              'is_read'     => 'unread',
+            ];
+
+            $dataUpdate = [
               'date_create' => $date,
             ];
 
-            $NotificationsModel->insert($dataNotification);
+            if($exist = $notificationsModel->exist($dataVerif)){
+              $notificationsModel->update($dataUpdate, $exist['id']);
+                $json = ['answer' => 'success'];
+            }
+            else{
+              $dataNotification = [
+                'id_user'     => $userInEvent['id'],
+                'id_event'    => $id,
+                'content'     => $phraseType,
+                'is_read'     => 'unread',
+                'date_create' => $date,
+              ];  
+              $notificationsModel->insert($dataNotification);
+              $json = ['answer' => 'success'];
+            }
           }
-
-          $this->showJson(['answer' => 'success']);
         }
       }
+      else{
+        $json = ['answer' => 'err'];
+      }
+    $this->showJson($json);
     }
   }
     public function deleteComment(){
