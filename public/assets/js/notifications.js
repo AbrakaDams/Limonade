@@ -14,15 +14,18 @@ $(document).ready(function(){
 	$("a.notification-link").click(function(e){
 		e.preventDefault();
 		var idNotif = $(this).attr('data-id-notif');
-		
+		lien = $(this).attr('href');
+
 		$.ajax({
 			type: 'post',
-			url: 'ajax/update-notif',
+			url: '../ajax/update-notif',
 			dataType: 'json',
 			data : {'idNotif': idNotif},
 			success: function(data){
 				console.log(data);
 				if(data.update == 'ok'){
+					//var link = $(this).attr(href);
+					document.location.href=lien;
 					/*$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
 					$('#invite-message').text("");
 					$('#delete-message').text("");
@@ -30,7 +33,7 @@ $(document).ready(function(){
 				}
 			},
 			error: function(e){
-				console.log(e);
+
 			}
 		});
 	});

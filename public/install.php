@@ -269,7 +269,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `notifications` (
   `id_event` INT NOT NULL ,
   `content` VARCHAR(255) NOT NULL ,
   `date_create` DATETIME NOT NULL,
-  `read` ENUM('unread','read') NOT NULL ,
+  `is_read` ENUM('unread','read') NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -282,42 +282,42 @@ $notifications = array(
 		'id_event' 		=> '1',
 		'content' 		=> 'Vous avez été invité à l\'évènement : La soirée du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '4',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '3',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread'
+		'is_read' 			=> 'unread'
 	],
 	[
 		'id_user' 		=> '2',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 		=> 'unread',
 	],
 );
 foreach ($notifications as $notification) {
@@ -329,12 +329,12 @@ foreach ($notifications as $notification) {
 
 	if($reqExist->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, read) VALUES (:id_user, :id_event, :content, :date_create, :read)');
+		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, is_read) VALUES (:id_user, :id_event, :content, :date_create, :is_read)');
 		$sql->bindValue(':id_user', 		$notification['id_user'], PDO::PARAM_INT);
 		$sql->bindValue(':id_event',		$notification['id_event'], PDO::PARAM_INT);
 		$sql->bindValue(':content', 		$notification['content']);
 		$sql->bindValue(':date_create', 	$notification['date_create']);
-		$sql->bindValue(':read', 			$notification['read']);
+		$sql->bindValue(':is_read', 		$notification['is_read']);
 
 		$sql->execute();
 	}else{
