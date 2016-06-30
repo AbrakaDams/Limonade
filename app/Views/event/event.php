@@ -95,7 +95,7 @@
 
 				<h2>Commentaires</h2>
 				<form method="post" id="form-comment">
-					<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
+					<textarea name="comment" id="comment"></textarea>
 					<input type="submit" name="submit" value="Commentez">
 				</form>
 

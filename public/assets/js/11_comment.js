@@ -5,7 +5,7 @@ var thisCommentId = parseInt($('#comment-info').data('commentId'));
 $('#form-comment').on('submit', function(e) {
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
     var formData = $(this).serialize(); // L'objet jQuery du formulaire
-    var comment = $(this).parent().parent().find('#comment').val(); 
+    var comment = $(this).parent().parent().find('#comment').val();
 
 
     // Je vérifie une première fois pour ne pas lancer la requête HTTP
@@ -50,9 +50,9 @@ function showComment(){
                     console.log(value.id_user == html.idUser);
                     if(value.id_user == html.idUser){
                         console.log(html);
-                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'<img class="comment-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">' + value.date_add + '<br>' + value.content + '<a href="#"  class="delete" data-delete-comment="' + value.id + '">Supprimer</a>' + '<hr>' + '</div>');
+                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span>/div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span><a href="#" class="delete" data-delete-comment="' + value.id + '"><i class="fa fa-times" aria-hidden="true"></i></a></div></div>');
                     }else{
-                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'">'+ value.username +'<img class="comment-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'+ value.avatar + '">' + value.date_add + '<br>' + value.content + '<hr>' + '</div>');
+                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span></div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span></div></div>');
                     }
 
                 });
