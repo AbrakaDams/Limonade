@@ -21,7 +21,7 @@
 
 <form method="post" class="form-inline">
 	<div class="form-group" id="form-login">
-		<h2 class="centerNoConnect">Se connecter?</h2>
+		<h2 class="centerNoConnect">Se connecter ?</h2>
 		<label for="email" id="formContact">Votre email :</label><br>
 		<input class="form-control" type="email" id="email" name="email" placeholder="Votre email">
 		<br><br>

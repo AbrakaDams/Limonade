@@ -14,7 +14,7 @@
 
     <?php if($showConnectButton == true) :?> <!-- Ici le mot de passe a bien été modifié -->
         <div class="alert alert-success">
-            Votre mot de passe a été bien changé.
+            Votre mot de passe a bien été changé.
             <br>
             Ne l'oubliez plus :)
             <a href="<?= $this->url('user_login'); ?>" class="btn btn-default btn-lg active" role="button">Connexion</a>
