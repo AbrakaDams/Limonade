@@ -31,21 +31,21 @@
 
 	<!-- bla transparent line at the bottom of slider  -->
 	<div class="connect-sub">
-		<a href="<?= $this->url('user_login'); ?>">Connectez-vous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
+		<a href="<?= $this->url('user_login'); ?>">Connectez-nous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
 	</div>
 
 </section>
 
 <section id="index-guide">
 	<div class="container">
-		<h2 class="index-guide-title">C'est vraiment simple</h2>
+		<h2 class="index-guide-title">C'est vraiment simple !</h2>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
 					<i class="fa fa-4x fa-plus-square index-guide-icon" aria-hidden="true"></i>
-					<h3 class="index-guide-box-title">1. Creez l'event</h3>
+					<h3 class="index-guide-box-title">1. Créez l'event</h3>
 					<p class="index-guide-desc">
-						Text lorem ipsum
+						Créez votre évènement le plus simplement du monde.<br>En 6 étapes, votre évènement sera crée.
 					</p>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 					<i class="fa fa-4x fa-users index-guide-icon" aria-hidden="true"></i>
 					<h3 class="index-guide-box-title">2. Invitez les amis</h3>
 					<p class="index-guide-desc">
-						Text lorem ipsum
+						Invitez vos amis à rejoindre votre évènement par l'intermédiaire de Facebook ou avec leurs adresses mails.
 					</p>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 					<i class="fa fa-4x fa-sitemap index-guide-icon" aria-hidden="true"></i>
 					<h3 class="index-guide-box-title">3. Partagez les taches</h3>
 					<p class="index-guide-desc">
-						Text lorem ipsum
+						Répartition des tâches de votre évènement avec des listes afin de faciliter la communication et la réussite de votre évènement.
 					</p>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 					<i class="fa fa-4x fa-beer index-guide-icon" aria-hidden="true"></i>
 					<h3 class="index-guide-box-title">4. Profitez bien</h3>
 					<p class="index-guide-desc">
-						Text lorem ipsum
+						Reposez-vous, buvez un verre en attendant patiemment le début de votre évènement et l'arrivée de vos amis.
 					</p>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 
 <section id="index-events">
 	<div class="container">
-		<h2>Venez découvrir les prochains événements</h2>
+		<h2>Venez découvrir les prochains événements.</h2>
 
 		<div class="row">
 			<?php foreach ($thisEvent as $value): ?>
