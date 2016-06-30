@@ -34,7 +34,7 @@
 
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
 <h1 class="center">Votre événement</h1>
-<progress max="100" value="0" form="form-id">0%</progress>
+<!--<progress max="100" value="0" form="form-id">0%</progress>-->
 <hr>
   <div class="row">
     <div class="col-xs-6 .col-md-4">
@@ -51,10 +51,10 @@
     <div class="col-xs-6 .col-md-4">
       <label for="cat-event" class="masterTooltip" title="Ceci est le style de votre évènement">Catégorie de votre événement <i class="fa fa-info-circle" aria-hidden="true"></i></label>
       <br>
-        <input type="radio" name="category" value="repas" id="repas"><label for="repas">Repas</label><br>
-        <input type="radio" name="category" value="soiree" id="soiree"><label for="soiree">Soirées</label><br>
-        <input type="radio" name="category" value="vacances" id="vacances"><label for="vacances">Vacances</label><br>
-        <input type="radio" name="category" value="journee" id="journee"><label for="journee">Journées</label><br>
+        <input type="radio" name="category" value="repas" id="repas"> <label for="repas" class="masterTooltip" title="Repas de famille, Anniversaire, etc">Repas</label><br>
+        <input type="radio" name="category" value="soiree" id="soiree"> <label for="soiree" class="masterTooltip" title="Soirée de départ de Jean au Japon, soirée à thème, etc">Soirées</label><br>
+        <input type="radio" name="category" value="vacances" id="vacances"> <label for="vacances" class="masterTooltip" title="Séjour en Espagne, camping etc">Vacances</label><br>
+        <input type="radio" name="category" value="journee" id="journee"> <label for="journee" class="masterTooltip" title="Journée plage, après-midi jeux de sociétés, etc">Journées</label><br>
     </div>
   </div>
   <hr>  
@@ -71,28 +71,36 @@
   </div>
   <hr>
   <div class="form-group">        
-      <label for="lieu-event" class="masterTooltip" title="Si vous voulez avoir du monde à votre évènement, nous conseillons vivement de remplir l'adresse">Adresse de votre événement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>        
+      <label for="lieu-event" class="masterTooltip" title="Si vous voulez avoir du monde à votre évènement, nous vous conseillons vivement d'indiquer une adresse.Vous aurez la possibilité de la changer ulterieurement">Adresse de votre événement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>        
       <textarea name="address" rows="5" cols="70" placeholder="L'adresse de votre événement" required></textarea>
   </div>
   <hr>
 
   <div class="row">
-    <div class="col-xs-6 .col-md-4">
-      <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début</i><br>
-      <label for="date_begin" class="masterTooltip" title="Début de votre évènement">Date du début de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-      <input type="date" name="date_begin">
-      <br>
-      <label for="time_begin" class="masterTooltip" title="Début de votre évènement">Heure du début de votre évènemet:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-      <input type="time" name="time_begin">
-    </div>    
-    <div class="col-xs-6 .col-md-4">
-      <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin</i><br>
-      <label for="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date de la fin de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-      <input type="date" name="date_end">
-      <br>
-      <label for="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Heure de la fin de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-      <input type="time" name="time_end">
-    </div>
+      <div class='col-xs-6 col-md-4'>
+          <div class="form-group">
+            <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début de votre événement</i><br><br>
+            <label for="date_start" name="date_start" class="masterTooltip" title="Début de votre évènement">Date et heure : <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+              <div class='input-group date' id='datetimepicker6' name="date_start">
+                  <input type='text' class="form-control">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class='col-xs-6 col-md-4'>
+          <div class="form-group">
+            <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin de votre événement</i><br><br>
+            <label for="date_end" name="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+              <div class='input-group date' id='datetimepicker7' name="date_end">
+                  <input type='text' class="form-control">
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
   </div>
   <hr>  
   <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
@@ -102,3 +110,9 @@
 <?php endif; ?>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+  <script src="<?= $this->assetUrl('js/moment.js') ?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="<?= $this->assetUrl('js/tooltip.js') ?>"></script>
+<?php $this->stop('js') ?>
