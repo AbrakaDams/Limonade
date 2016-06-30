@@ -4,7 +4,7 @@ namespace Controller;
 
 use \Controller\MasterController;
 use \Controller\ListController;
-use \Controller\NewsFeedController as NewsFeedController;
+use \Controller\NewsFeedController;
 use \Model\NewsFeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
@@ -55,14 +55,14 @@ class EventController extends MasterController
 			//make a query to the database to get this event data
 			$eventData = $EventModel->find($id);
 
-			$news = new NewsModel();
-			$showNews = $news->joinNewsFeed($id);
+			$news = new NewsFeedController();
+			$newsFeed = $news->newsFeed($id);
 
 
 			// send received data to the event.php
 			$showEvent = [
 				'thisEvent'			=> $eventData,
-				'newsFeed'			=> $showNews,
+				'showNewsFeed'		=> $newsFeed,
 				'participants'		=> $participants,
 				'allparticipants'	=> $allparticipants,
 			 ];

@@ -31,8 +31,19 @@
 
 	<aside class="">
 		<h3>Fil activités</h3>
-		<?php var_dump($newsFeed); ?>
+
+		<?php var_dump($showNewsFeed); if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
+			<?php foreach ($showNewsFeed as $newsFeed) {
+				if($newsFeed['action'] === 'add'){
+				echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté :<strong> '.$newsFeed['title'].'</strong> ,crée le :' .$newsFeed['date_add'].'<hr>';
+			}else{
+				echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer : <strong>'.$newsFeed['title'].' </strong>,crée  le :' .$newsFeed['date_add'].'<hr>';
+			}
+			} ?>
+		<?php endif; ?>
 	</aside>
+
+
 
 	<section id="event-info" data-event-id="<?=$thisEvent['id'];?>">
 
@@ -81,7 +92,7 @@
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
 	<section>
-			
+
 		<h3>Commentaires</h3>
 		<form method="post" id="form-comment">
 			<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
