@@ -29,17 +29,33 @@
 		?>
 	</div>
 
+
+
+si list est vide et que card est rempli on affiche card
+si card est vide et que list est rempli on affcihe list
+si list et cards sont vide on affiche no actualiter
+si list et card sont remplie on affiche les 2
+
+
+
+
 	<aside class="">
 		<h3>Fil activités</h3>
-
 		<?php var_dump($showNewsFeed); if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
 			<?php foreach ($showNewsFeed as $newsFeed) {
 				if($newsFeed['action'] === 'add'){
-				echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté :<strong> '.$newsFeed['title'].'</strong> ,crée le :' .$newsFeed['date_add'].'<hr>';
-			}else{
-				echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer : <strong>'.$newsFeed['title'].' </strong>,crée  le :' .$newsFeed['date_add'].'<hr>';
-			}
+					echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté :<strong> '.$newsFeed['card_title'].'</strong> ,crée le :' .$newsFeed['date_add'].'<hr>';
+				}else{
+					echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer : <strong>'.$newsFeed['list_title'].' </strong>,crée  le :' .$newsFeed['date_add'].'<hr>';
+				}
+				if(!isset($newsFeed['id_list']) && empty($newsFeed['id_list']) && isset($newsFeed['id_card']) && !empty($newsFeed['id_card'])) {
+
+				}
 			} ?>
+		<?php else: ?>
+			<p>
+				Pas d'actualité ...
+			</p>
 		<?php endif; ?>
 	</aside>
 

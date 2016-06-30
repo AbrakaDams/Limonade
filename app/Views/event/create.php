@@ -33,7 +33,7 @@
   <hr>
 
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
-<h1 class="center">Votre événement</h1>
+<h1 class="center">Créer votre événement</h1>
 <!--<progress max="100" value="0" form="form-id">0%</progress>-->
 <hr>
   <div class="row">
@@ -104,7 +104,6 @@
   </div>
   <hr>  
   <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
-  <button type="submit" id="modifEvent" class="btn btn-primary">Modifier le formulaire</button>
 </form>
 
 <?php endif; ?>

@@ -269,7 +269,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `notifications` (
   `id_event` INT NOT NULL ,
   `content` VARCHAR(255) NOT NULL ,
   `date_create` DATETIME NOT NULL,
-  `read` ENUM('unread','read') NOT NULL ,
+  `is_read` ENUM('unread','read') NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -282,42 +282,42 @@ $notifications = array(
 		'id_event' 		=> '1',
 		'content' 		=> 'Vous avez été invité à l\'évènement : La soirée du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '1',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '4',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 			=> 'unread',
 	],
 	[
 		'id_user' 		=> '3',
 		'id_event' 		=> '3',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Le barbeuk de DamDam !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread'
+		'is_read' 			=> 'unread'
 	],
 	[
 		'id_user' 		=> '2',
 		'id_event' 		=> '2',
 		'content' 		=> 'Vous avez été invité à l\'évènement : Les vacances du siècle !',
 		'date_create' 	=> '2016-06-28 08:00:00',
-		'read' 			=> 'unread',
+		'is_read' 		=> 'unread',
 	],
 );
 foreach ($notifications as $notification) {
@@ -329,12 +329,12 @@ foreach ($notifications as $notification) {
 
 	if($reqExist->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, read) VALUES (:id_user, :id_event, :content, :date_create, :read)');
+		$sql = $db->prepare('INSERT INTO notifications (id_user, id_event, content, date_create, is_read) VALUES (:id_user, :id_event, :content, :date_create, :is_read)');
 		$sql->bindValue(':id_user', 		$notification['id_user'], PDO::PARAM_INT);
 		$sql->bindValue(':id_event',		$notification['id_event'], PDO::PARAM_INT);
 		$sql->bindValue(':content', 		$notification['content']);
 		$sql->bindValue(':date_create', 	$notification['date_create']);
-		$sql->bindValue(':read', 			$notification['read']);
+		$sql->bindValue(':is_read', 		$notification['is_read']);
 
 		$sql->execute();
 	}else{
@@ -524,7 +524,7 @@ foreach ($event_users as $event_user) {
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `title` VARCHAR(255) NOT NULL ,
+  `list_title` VARCHAR(255) NOT NULL ,
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`) ,
@@ -537,32 +537,32 @@ if($sql === false){
 
 $lists = array(
 	[
-		'title' 	=> 'Alcool !!',
+		'list_title' 	=> 'Alcool !!',
 		'id_event' 	=> '1',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Gateaux',
+		'list_title' 	=> 'Gateaux',
 		'id_event' 	=> '1',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Hébergement',
+		'list_title' 	=> 'Hébergement',
 		'id_event' 	=> '2',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Transport',
+		'list_title' 	=> 'Transport',
 		'id_event' 	=> '2',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Viandes',
+		'list_title' 	=> 'Viandes',
 		'id_event' 	=> '3',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
 	[
-		'title' 	=> 'Boissons',
+		'list_title' 	=> 'Boissons',
 		'id_event' 	=> '3',
 		'date_add'	=> '2016-06-28 08:00:00',
 	],
@@ -570,15 +570,15 @@ $lists = array(
 
 foreach ($lists as $list) {
 
-	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND title = :title');
+	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND list_title = :title');
 	$reqEmail->bindValue(':id_event', $list['id_event']);
-	$reqEmail->bindValue(':title', $list['title']);
+	$reqEmail->bindValue(':title', $list['list_title']);
 	$reqEmail->execute();
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO list (title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
-		$sql->bindValue(':title', 		$list['title']);
+		$sql = $db->prepare('INSERT INTO list (list_title, id_event, date_add) VALUES (:title, :id_event, :date_add)');
+		$sql->bindValue(':title', 		$list['list_title']);
 		$sql->bindValue(':id_event',	$list['id_event']);
 		$sql->bindValue(':date_add', 	$list['date_add']);
 
@@ -594,7 +594,7 @@ foreach ($lists as $list) {
 
 $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `title` VARCHAR(255) NOT NULL ,
+  `card_title` VARCHAR(255) NOT NULL ,
   `description` VARCHAR(255) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` INT NOT NULL ,
@@ -612,7 +612,7 @@ if($sql === false){
 
 $cards = array(
 	[
-	  'title'  => 'Bières',
+	  'card_title'  => 'Bières',
 	  'description'  => 'Des bière à boire avec modération bien sur.',
 	  'quantity'  => '30',
 	  'price'  => '30',
@@ -622,7 +622,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Tarte au citron',
+	  'card_title'  => 'Tarte au citron',
 	  'description'  => 'Parce que c\'est les tiennes les meilleurs',
 	  'quantity'  => '2',
 	  'price'  => '10',
@@ -632,7 +632,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Camping',
+	  'card_title'  => 'Camping',
 	  'description'  => 'Faire la réservation du camping, on ne dort pas sous un pont à Arcachon.',
 	  'quantity'  => '1',
 	  'price'  => '200',
@@ -642,7 +642,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Ma petite fiat Panda',
+	  'card_title'  => 'Ma petite fiat Panda',
 	  'description'  => 'J\'ai 2 places dans ma modeste voiture :)',
 	  'quantity'  => '2',
 	  'price'  => '5',
@@ -652,7 +652,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Saucisses',
+	  'card_title'  => 'Saucisses',
 	  'description'  => 'De bonnes saucisses pour bien manger',
 	  'quantity'  => '50',
 	  'price'  => '30',
@@ -662,7 +662,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
-	  'title'  => 'Bières',
+	  'card_title'  => 'Bières',
 	  'description'  => 'Pas de bon barbeuk sans de bonnes bières.',
 	  'quantity'  => '100',
 	  'price'  => '40',
@@ -675,16 +675,16 @@ $cards = array(
 
 foreach ($cards as $card) {
 
-	$reqEmail = $db->prepare('SELECT * FROM cards WHERE title = :title AND id_list = :id_list AND id_event = :id_event ');
-	$reqEmail->bindValue(':title', $card['title']);
+	$reqEmail = $db->prepare('SELECT * FROM cards WHERE card_title = :title AND id_list = :id_list AND id_event = :id_event ');
+	$reqEmail->bindValue(':title', $card['card_title']);
 	$reqEmail->bindValue(':id_list', $card['id_list']);
 	$reqEmail->bindValue(':id_event', $card['id_event']);
 	$reqEmail->execute();
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO cards (title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
-		$sql->bindValue(':title', 		$card['title']);
+		$sql = $db->prepare('INSERT INTO cards (card_title, description, quantity, price, id_user, id_list, id_event, date_add) VALUES (:title, :description, :quantity, :price, :id_user, :id_list, :id_event, :date_add)');
+		$sql->bindValue(':title', 		$card['card_title']);
 		$sql->bindValue(':description',	$card['description']);
 		$sql->bindValue(':quantity', 	$card['quantity']);
 		$sql->bindValue(':price', 		$card['price']);
@@ -710,7 +710,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `comments` (
   `content` VARCHAR(255) NOT NULL ,
   `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (id_event) REFERENCES event (id))
+  FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE)
   ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -798,7 +798,9 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `action` ENUM('add','remove') NOT NULL ,
   `id_card` INT NOT NULL ,
   `id_list` INT NOT NULL ,
-  PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+  `date_news` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE) ENGINE = InnoDB;"
 );
 if($sql === false){
 	die(var_dump($db->errorInfo()));
