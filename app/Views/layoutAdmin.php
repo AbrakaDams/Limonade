@@ -30,7 +30,7 @@
 	      			</a>
 	    		</div>
 					<ul class="nav navbar-nav navbar-right">
-			<?php if(isset($w_user) && !empty($w_user)): ?>
+			<?php if(isset($w_user) && !empty($w_user) && $w_user['role'] == 'admin'): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
 					<!-- add list -->

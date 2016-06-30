@@ -3,7 +3,6 @@
 
 <?php $this->start('main_content') ?>
 
-
 <!-- Section slider -->
 <section class="slider">
 	<div class="owl-carousel">
@@ -33,7 +32,6 @@
 	<div class="connect-sub">
 		<a href="<?= $this->url('user_login'); ?>">Connectez-nous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
 	</div>
-
 </section>
 
 <section id="index-guide">

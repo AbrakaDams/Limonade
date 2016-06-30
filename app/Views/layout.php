@@ -122,11 +122,12 @@
 	 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
+								<li><a href="<?= $this->url('admin_admin'); ?>"></i> Back Office Admin </a></li>
+							<?php endif; ?>
 							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
-
 							<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
-
 							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
@@ -138,11 +139,9 @@
 				<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
 			<?php endif;  ?>
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
-	  </div><!-- /.container-fluid -->
-	</nav>
-
+  			</div><!-- /.container-fluid -->
+		</nav>
 	</header>
-
 
 		<section>
 			<?= $this->section('main_content') ?>

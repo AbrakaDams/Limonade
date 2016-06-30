@@ -3,8 +3,8 @@
 <?php $this->start('main_content') ?>
 
 	<form method="post" class="form-inline" id="createUser" enctype="multipart/form-data">
-		<h1 class="center"> CRÉATION D'UN COMPTE EN UN SEUL CLIC ! </h1>
-		<p class="subttle"> Un compte sur Limonade vous donnera accès à tous nos services de gestion d'évènements </p>
+		<h2	 class="center"> <strong> CRÉATION D'UN COMPTE EN UN SEUL CLIC ! <strong> </h2>
+		<p class="subttle"> Un compte sur Limonade vous donnera accès à tous nos services de gestion d'évènements. </p>
 
 	<?php if(!empty($errors)): ?>
 		<div class="alert alert-danger">
@@ -14,19 +14,18 @@
 
 	<?php if(isset($success) && $success === true): ?>
 		<div class="alert alert-success">
-		<p> Votre inscription a bien été prise en compte. Bienvenue chez nous! <br> Veuillez consulter vos emails pour confirmer votre mot de passe ! </p>
+		<p> Votre inscription a bien été prise en compte.<br> Veuillez consulter vos emails pour confirmer votre mot de passe ! </p>
 		</div>
 	<?php endif; ?>
 
 	<?php  if(isset($w_user) && !empty($w_user)): ?>
-
 		<p><strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>"> Retour Accueil </a></strong></p>
-
 	<?php  else: ?>
+
 		<div class="form-group">
 		<hr>
 			<a href="<?=$this->url('user_loginFacebook');?>" class="btn btn-primary" style="border-radius:0;">
-				<i class="fa fa-facebook square"></i>Connexion Facebook 
+				<i class="fa fa-facebook square"></i> 	Connexion Facebook
 			</a>
 			<hr>
 			<label class="register-label" for="username">Pseudo*:</label>
@@ -47,15 +46,15 @@
 			<label class="register-label" for="password_confirm">Mot de passe* :</label>
 			<input class="form-control" type="password" placeholder="Confirmation Mot de passe" name="password_confirm" required>
 			<hr>
-			<label class="register-label" for="avatar">Lien photo de profil :</label>
-			<input class="form-control" type="text" placeholder="www.mon_image.com" name="url"/>
-			<br><br> 
-			<label class="register-label" for="avatar">Choisisez une photo de profil :</label>
+			<label class="register-label" for="avatar">Choissiez une Photo de profil :</label><br>
+			<input class="form-control" type="text" placeholder="www.lien-mon-image.com" name="url"/>
+			<br><br>
 			<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
 	  		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
 			<input class="file" id="input-1" type="file" name="avatar">
+			<hr>
 			<input class="form-control"  type="submit" value="Envoyer" />
-			<hr>	
+			<hr>
 		</div>
 		<br><strong> Vous avez déjà un compte? <a href="<?= $this->url('user_login') ?>"> Connectez-vous</a></strong>
 	</form>

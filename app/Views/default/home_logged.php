@@ -8,44 +8,48 @@
             <div class="col-xs-4">
                 <div class="column-home">
                   <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
-                  <p>Type d'évènement :<i><?php echo $value['category']; ?></i> et <strong><i><?php echo $value['role']; ?></i></strong></p>
+                  <!--  Petit switch pour afficher publique et non pubic et privé et non private!!! ? -->
+                  <p>Type d'évènement :<strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
                   <br>
                   <p><?php echo $value['description']; ?></p>
+                  <!-- Si l'user participe a cette evenement on montre l'adresse -->
                   <p>A cette adresse : <?php echo $value['address']; ?></p>
                   <p>Date de début : <?php echo $value['date_start']; ?></p>
                   <p>Fin de fin : <?php echo $value['date_end']; ?></p>
+                  <!-- Si l'user participe a cette evenement on montre  un bouton je participe déja -->
                   <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe</a>
                 </div>
             </div>
 <?php endforeach; ?>
             <div class="col-xs-4">
                 <div class="column-home">
-                    <h2> Pour créer un autre événement veuillez 
-                    <a href="<?= $this->url('event_createEvent'); ?>">cliquer ici </a></h2>
+                    <h2><a href="<?= $this->url('event_createEvent'); ?>"> <i class="glyphicon glyphicon-plus"></i> </a></h2>
                 </div>
             </div>
         </div>
-    </div><hr>
-    
+    </div>
+    <hr>
+
 <?php foreach ($thisEventPrivate as $value): ?>
     <div class="container">
         <div class="row" id="row">
             <div class="col-xs-4">
                 <div class="column-home">
                     <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
-                    <p>Type d'évènement :<i><?php echo $value['category']; ?></i> et <strong><i><?php echo $value['role']; ?></i></strong></p>
+                    <!--  Petit switch pour afficher publique et non pubic et privé et non private!!! ? -->
+                    <p>Type d'évènement :<strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
                     <br>
                     <p><?php echo $value['description']; ?></p>
+                    <!-- Si l'user participe a cette evenement on montre l'adresse -->
                     <p>A cette adresse : <?php echo $value['address']; ?></p>
                     <p>Date de début : <?php echo $value['date_start']; ?></p>
                     <p>Fin de fin : <?php echo $value['date_end']; ?></p>
-                    <br>                    
+                    <!-- Dire pourquoi ou comment participé a un event private -->
+                    <br>
                 </div>
-            </div> 
+            </div>
 <?php endforeach; ?>
         </div>
     </div>
-
-
 
 <?php $this->stop('main_content') ?>

@@ -11,7 +11,7 @@
             </ul>
         </div>
     <?php endif; ?>
-    
+
     <?php if($success == true): ?>
         <div class="alert alert-success">
             Un lien vous a été envoyé par mail, veuillez cliquer sur ce lien pour modifier votre mot de passe.
@@ -21,7 +21,7 @@
     <?php if($showForm == true): ?>
         <form class="form-horizontal well-well-sm" method="post">
             <div class="form-group">
-                <label class="col-md-4 control-label" for="email">Email : </label>
+                <label class="col-md-4 control-label" for="email">Email :</label>
                 <div class="col-md-4">
                     <input id="email" type="email" name="email" placeholder="votre_email@gmail.com" class="form-control input-md" required>
                 </div>
