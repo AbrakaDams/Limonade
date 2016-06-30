@@ -26,7 +26,7 @@ class ListController extends Controller
 			// if our name input exists in correst state
 			if(isset($post['newList']) && !empty($post['newList']) && isset($post['eventId']) && !empty($post['eventId'])) {
 				//$user = $this->getUser();
-				$id = intval($post['eventId']);
+				$idEvent = intval($post['eventId']);
 
 				// create variable to prevent empty insertions
 				$listName = $post['newList'];
@@ -34,15 +34,30 @@ class ListController extends Controller
 				//form data to insert to the database
 				$entryData = [
 				  'title' 		=> $listName,
-				  'id_event' 	=> $id,
+				  'id_event' 	=> $idEvent,
 				  'date_add'	=> $timestamp,
 				];
 				// call model
 				$insertList = new ListModel();
-				// insert
-				if($insertList->insert($entryData)) {
-					$this->showJson(['answer' => 'success']);
+				$listInsertion = $insertList->insert($entryData);
+				if($listInsertion) {
+
+					$user = $this->getUser();
+					$newsfeed = new NewsfeedModel();
+
+					$newsfeedData = [
+						'id_event' => $idEvent,
+						'id_user' => $user['id'],
+						'action' => 'add',
+						'id_list' => $listInsertion['id'],
+						'date_news' => $timestamp,
+					];
+
+					if($newsfeed->insert($newsfeedData)) {
+						$this->showJson(['answer' => 'success']);
+					}
 				}
+
 			}
 		}
 	}
@@ -120,7 +135,7 @@ class ListController extends Controller
 				if($insertCard = $insertList->insert($cardData)) {
 
 					$user = $this->getUser();
-					$newsfeed = new NewsFeedModel();
+					$newsfeed = new NewsfeedModel();
 
 					$newsfeedData = [
 						'id_event' => $idEvent,
@@ -202,9 +217,30 @@ class ListController extends Controller
 			$idList = intval($_POST['idList']);
 		}
 
+		$idEvent = 0;
+		if(isset($_POST['idEvent']) && !empty($_POST['idEvent'])) {
+			$idEvent = intval($_POST['idEvent']);
+		}
+
 		$deleteList = new ListModel();
+
 		if($deleteList->delete($idList)) {
-			$this->showJson(['deleteList' => 'done', 'idList' => $idList]);
+
+			$user = $this->getUser();
+			$newsfeed = new NewsfeedModel();
+			$timestamp = date('Y-m-d H:i:s');
+
+			$newsfeedData = [
+				'id_event' => $idEvent,
+				'id_user' => $user['id'],
+				'action' => 'remove',
+				'id_list' => $idList,
+				'date_news' => $timestamp,
+			];
+
+			if($newsfeed->insert($newsfeedData)) {
+				$this->showJson(['deleteList' => 'done', 'idList' => $idList]);
+			}
 		}
 	}
 
@@ -215,9 +251,29 @@ class ListController extends Controller
 			$idCard = intval($_POST['idCard']);
 		}
 
+		$idEvent = 0;
+		if(isset($_POST['idEvent']) && !empty($_POST['idEvent'])) {
+			$idEvent = intval($_POST['idEvent']);
+		}
+
 		$deleteCard = new ListModel();
+
 		if($deleteCard->deleteCard($idCard)) {
-			$this->showJson(['deleteCard' => 'done']);
+			$user = $this->getUser();
+			$newsfeed = new NewsfeedModel();
+			$timestamp = date('Y-m-d H:i:s');
+
+			$newsfeedData = [
+				'id_event' => $idEvent,
+				'id_user' => $user['id'],
+				'action' => 'remove',
+				'id_card' => $idCard,
+				'date_news' => $timestamp,
+			];
+
+			if($newsfeed->insert($newsfeedData)) {
+				$this->showJson(['deleteCard' => 'done']);
+			}
 		}
 	}
 }
