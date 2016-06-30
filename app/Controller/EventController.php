@@ -170,8 +170,7 @@ class EventController extends MasterController
 	  				'address' 		=> $post['address'],
 	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'), // On la transforme pour l insérer dans notre bdd
 	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
-	  			];
-	  			var_dump($post);
+	  			];	  			
 
 	  			$newEvent = $eventModel->insert($data);
 	  			if(!empty($newEvent)){
