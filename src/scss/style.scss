@@ -170,13 +170,24 @@ footer {
 
 
 
-
 /****************************
 **** Form REGISTER
 ***********************************/
 #createUser{
 	color: black;
+
+	.register-label{
+		min-width: 10em;
+		text-align: left;
+	}
+
+	.subttle{
+		color: #1f919b;
+		font-size: 1.3em;
+	}
 }
+
+
 
 
 /*************************

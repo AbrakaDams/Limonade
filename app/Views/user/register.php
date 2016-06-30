@@ -2,9 +2,9 @@
 
 <?php $this->start('main_content') ?>
 
-	<h1 class="center"> CREATION D'UN COMPTE EN UN SEUL CLIC ! </h1>
-	<br>
-	<p class="center"> Un compte sur Limonade vous donnera accès à tous nos services de gestion d'évènements </p>
+	<form method="post" class="form-inline" id="createUser" enctype="multipart/form-data">
+		<h1 class="center"> CRÉATION D'UN COMPTE EN UN SEUL CLIC ! </h1>
+		<p class="subttle"> Un compte sur Limonade vous donnera accès à tous nos services de gestion d'évènements </p>
 
 	<?php if(!empty($errors)): ?>
 		<div class="alert alert-danger">
@@ -20,51 +20,45 @@
 
 	<?php  if(isset($w_user) && !empty($w_user)): ?>
 
-	  <br>
-	  <p>
-	    <strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>">Retour Accueil</a></strong>
-	  </p>
+		<p><strong>Vous êtes déjà connecté(e). <br><a href="<?= $this->url('default_home') ?>"> Retour Accueil </a></strong></p>
 
 	<?php  else: ?>
-
-		<a href="<?=$this->url('user_loginFacebook');?>" class="btn btn-primary" style="border-radius:0;">
-			<i class="fa fa-facebook square"></i>
-			Connexion Facebook
-		</a>
-
-<form method="post" class="form-inline" id="createUser" enctype="multipart/form-data">
-	<div class="form-group">
-		<label for="username">Pseudo* :</label>
-		<input class="form-control" type="text" placeholder="JohnnyBravo" type="text" name="username" required>
-		<br><br>
-		<label for="firstname">Prénom* :</label>
-		<input class="form-control" type="text" placeholder="John" type="text" name="firstname" required>
-		<br><br>
-		<label for="lastname">Nom* :</label>
-		<input class="form-control" type="text" placeholder="Doe" type="text" name="lastname" required>
-		<br><br>
-		<label for="email">Email* :</label>
-		<input class="form-control" type="email" placeholder="JohnDoe@email.com" type="text" name="email" required>
-		<br><br>
-		<label for="password">Mot de passe* :</label>
-		<input class="form-control" type="password" placeholder="Mot de passe" type="text" name="password" required>
-		<br><br>
-		<label for="password_confirm">Confirmation Mot de passe* :</label>
-		<input class="form-control" type="password" placeholder="Confirmation Mot de passe " type="text" name="password_confirm" required>
-		<br><br>
-		<label for="avatar">Choisisez une photo de profil :</label>
-		<input class="form-control" type="text" placeholder="www.mon_image.com" type="text" name="url"/>
-		<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
-	  <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
-		<input type="file" name="avatar">
-		<br>
-		<input type="submit" value="Envoyer" />
-	</div>
-</form>
-
-<br><br><strong>Vous avez déjà un compte ? <a href="<?= $this->url('user_login') ?>">Connectez-vous</a></strong>
-
+		<div class="form-group">
+		<hr>
+			<a href="<?=$this->url('user_loginFacebook');?>" class="btn btn-primary" style="border-radius:0;">
+				<i class="fa fa-facebook square"></i>Connexion Facebook 
+			</a>
+			<hr>
+			<label class="register-label" for="username">Pseudo*:</label>
+			<input class="form-control" type="text" placeholder="JohnnyBravo" name="username" value="<?php if(isset($_POST['username'])){ echo $_POST['username'];} ?>" required>
+			<br><br>
+			<label class="register-label"  for="email">Email*:</label>
+			<input class="form-control" type="email" placeholder="JohnDoe@email.com" name="email" value="<?php if(isset($_POST['email'])){ echo $_POST['email'];} ?>" required>
+			<br><br>
+			<label class="register-label"  for="firstname">Prénom*:</label>
+			<input class="form-control" type="text" placeholder="John" name="firstname" value="<?php if(isset($_POST['firstname'])){ echo $_POST['firstname'];} ?>" required>
+			<br><br>
+			<label class="register-label"  for="lastname">Nom*:</label>
+			<input class="form-control" type="text" placeholder="Doe" type="text" name="lastname" value="<?php if(isset($_POST['lastname'])){ echo $_POST['lastname'];} ?>" required>
+			<br><br>
+			<label class="register-label" for="password">Mot de passe* :</label>
+			<input class="form-control" type="password" placeholder="Mot de passe" name="password" required>
+			<br><br>
+			<label class="register-label" for="password_confirm">Mot de passe* :</label>
+			<input class="form-control" type="password" placeholder="Confirmation Mot de passe" name="password_confirm" required>
+			<hr>
+			<label class="register-label" for="avatar">Lien photo de profil :</label>
+			<input class="form-control" type="text" placeholder="www.mon_image.com" name="url"/>
+			<br><br> 
+			<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
+			<label class="register-label"  for="avatar">Ou chargez votre photo : <br><br>
+	    	<input id="input-1" type="file" class="file"></label>
+			<input class="form-control"  type="submit" value="Envoyer" />
+			<hr>	
+		</div>
+		<br><strong> Vous avez déjà un compte? <a href="<?= $this->url('user_login') ?>"> Connectez-vous</a></strong>
+	</form>
 
 <?php endif; ?>
-<br><br><br><br>
+<br>
 <?php $this->stop('main_content') ?>
