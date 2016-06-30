@@ -781,7 +781,7 @@ foreach ($comments as $comment) {
 		$sql->bindValue(':id_user',		$comment['id_user']);
 		$sql->bindValue(':content', 	$comment['content']);
 		$sql->bindValue(':date_add', 	$comment['date_add']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -795,9 +795,9 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `id_event` INT NOT NULL ,
   `id_user` INT NOT NULL ,
-  `action` ENUM('add','remove','comment','assigne','create') NOT NULL ,
+  `action` ENUM('add','remove') NOT NULL ,
   `id_card` INT NOT NULL ,
-  `id_comment` INT NOT NULL ,
+  `id_list` INT NOT NULL ,
   PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){
