@@ -6,7 +6,7 @@
     .slider {
         display: none !important;
     }
-}
+} 
 
 .slider {
     position: relative;
@@ -170,4 +170,8 @@ section#index-events {
         }
 
     }
+}
+
+#noConnect{
+    min-height: 80vh;
 }

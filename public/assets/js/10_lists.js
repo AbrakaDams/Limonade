@@ -193,19 +193,22 @@ $('#event-lists').on('click', '.delete-list', function(e) {
 
     var idList = $(this).attr('data-delete-list');
     var list = $(this).closest('div.event-list');
-    console.log(list);
+    // console.log(list);
     $.ajax({
         type: 'POST',
         url: '../ajax/delete-list',
         dataType: 'json',
-        data: 'idList=' + idList,
+        data: 'idList=' + idList + '&idEvent=' + thisEvent,
         success: function(data) {
             if(data.deleteList == 'done') {
                 $(list).fadeOut();
                 //console.log(data.deleteList);
             }
+        },
+        error: function(e) {
+            console.log(e);
         }
-    })
+    });
 });
 
 $('#event-lists').on('click', '.delete-card', function(e) {
@@ -217,7 +220,7 @@ $('#event-lists').on('click', '.delete-card', function(e) {
         type: 'POST',
         url: '../ajax/delete-card',
         dataType: 'json',
-        data: 'idCard=' + idCard,
+        data: 'idCard=' + idCard + '&idEvent=' + thisEvent,
         success: function(data) {
             console.log(data);
             if(data.deleteCard == 'done') {
