@@ -80,8 +80,8 @@
 
 
 <?php  if(isset($w_user) && !empty($w_user)):?>
-	<section id="comment-info" data-comment-id="<?=$comment;?>">
-			<?php var_dump($comment); ?>
+	<section>
+			
 		<h3>Commentaires</h3>
 		<form method="post" id="form-comment">
 			<textarea name="comment" id="comment" rows="2" cols="50"></textarea>

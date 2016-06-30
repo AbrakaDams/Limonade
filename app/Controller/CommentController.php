@@ -27,13 +27,15 @@ class CommentController extends Controller
   public function joinComment(){
     $comment = new CommentModel();
     $id = 0;
+    $loggedUser = $this->getUser();
+
     if(isset($_POST['id']) && !empty($_POST['id'])){
         $id = intval($_POST['id']);
     }
 
     $showComment = $comment->findAllComments($id);
     $join = $comment->joinComment($id);
-    $this->showJson(['allComments' => $join]);
+    $this->showJson(['allComments' => $join, 'idUser' => $loggedUser['id']]);
   }
 
   /**
