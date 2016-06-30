@@ -4,8 +4,8 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\CommentsModel as CommentModel;
 use \Model\EventModel;
-use \Model\NewsFeedModel as NewsFeedModel;
-use \Model\AdminModel as AdminModel; 
+use \Model\NewsfeedModel as NewsFeedModel;
+use \Model\AdminModel; 
 
 use \W\Model\UsersModel as UsersModel; 
 
@@ -28,9 +28,11 @@ class AdminController extends Controller
 			$this->show('admin/index');}
 	}
 
-	/**
+	/******
+	*
 	* Function pour modifier un event
-	*/
+	*
+	***/
 	public function checkEvent()
 	{
 		$post = array();
@@ -107,11 +109,14 @@ class AdminController extends Controller
 			'eventData' => $eventData,		
 			
 		];
+		var_dump($eventData);
 		$this->show('admin/checkEvent', $params);
 	}
-	/***
+	/*****
+	*
 	* Fonction pour modifier un user
-	*/
+	*
+	***/
 	public function checkUser()
 	{
 		$post = array();
