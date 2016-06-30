@@ -55,7 +55,7 @@ class EventController extends MasterController
 			//make a query to the database to get this event data
 			$eventData = $EventModel->find($id);
 
-			$news = new NewsFeedController();
+			$news = new NewsfeedController();
 			$newsFeed = $news->newsFeed($id);
 
 
@@ -160,7 +160,7 @@ class EventController extends MasterController
 
 	  			$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']); // Date fr
 
-	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);	  			
+	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
 
 	  			$data = [
 	  				'category' 		=> $post['category'],
@@ -170,7 +170,7 @@ class EventController extends MasterController
 	  				'address' 		=> $post['address'],
 	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'), // On la transforme pour l insérer dans notre bdd
 	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
-	  			];	  			
+	  			];
 
 	  			$newEvent = $eventModel->insert($data);
 	  			if(!empty($newEvent)){
