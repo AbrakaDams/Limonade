@@ -15,5 +15,6 @@ class AdminModel extends \W\Model\Model
 		$sth->execute();
 
 		return $sth->fetch();
+
 	}
 }

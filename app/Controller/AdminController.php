@@ -3,6 +3,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\CommentsModel as CommentModel;
+use \Model\EventModel;
 use \Model\NewsFeedModel as NewsFeedModel;
 use \Model\AdminModel as AdminModel;  
 
@@ -28,7 +29,7 @@ class AdminController extends Controller
 	/**
 	* Function pour modifier un event
 	*/
-	public function checkEvent($id)
+	public function checkEvent()
 	{
 		$post = array();
 		$errors = array();
@@ -40,23 +41,18 @@ class AdminController extends Controller
 		if(isset($id) && is_numeric($id)){
 
 			$adminModel = new AdminModel;
-			$eventData = $adminModel->findEvent($id);
-
+			$eventData = $adminModel->findEvent($id);		
 			
-			//echo $role;
-			
-			//echo $category;
-
 		}
 		if(!empty($_POST)){
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
 			}			
 			if(empty($post['role'])){
-				$errors[] = 'Vous devez cocher un bouton !';
+				$errors[] = 'Vous devez cocher un bouton role !';
 			}
 			if(empty($post['category'])){
-				$errors[] = 'Vous devez cocher un bouton !';
+				$errors[] = 'Vous devez cocher un bouton cat !';
 			}
 			if(strlen($post['title']) < 3 || strlen($post['title']) > 20){
 				$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 20 caractères';				
@@ -76,8 +72,11 @@ class AdminController extends Controller
 			}
 			if(count($errors) === 0){
 
-				$eventModel = new EventModel();
-				$EventUsersModel = new EventUsersModel();
+				$eventModel = new AdminModel();
+				$EventUsersModel = new EventModel();
+
+				$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
+	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
 
 				$data = [
 					'id'            => $id,
@@ -86,17 +85,17 @@ class AdminController extends Controller
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
-	  				'date_start' 	=> $post['date_start'],
-	  				'date_end' 		=> $post['date_end'],
+	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
+	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),	  				
 				];
 
-				$newEvent = $eventModel->find($data['id']);
-				//var_dump($newEvent);
-				if($EventUsersModel->update($dataEvent)){
-					$success = true;
+				$newEvent = $eventModel->findEvent($data['id']);
+
+				if($EventUsersModel->update($data,$data['id'])){
+					$success = true;				
 				}
 				else{
-					echo $errors[] = 'Il y a eu une erreur dans la création de l\'évènement !';
+					echo $errors[] = 'Il y a eu une erreur dans la modification de votre évènement !';
 				}				
 			}
 		}
@@ -108,6 +107,7 @@ class AdminController extends Controller
 		];
 		$this->show('admin/checkEvent', $params);
 	}
+
 	
 
 }

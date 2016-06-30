@@ -22,7 +22,7 @@
 	<hr>
 	<div class="row">	
 	    <div class="col-xs-6 .col-md-4">
-	      	<label for="type-event">Etendue de votre l'événement</label><br>
+	      	<label for="type-event">Etendue de votre événement</label><br>
 	      		<input type="radio" name="role" id="private" value="private"<?php if($eventData['role'] == 'private'){ echo 'checked';}?>>Privée
 	      		<input type="radio" name="role" id="public" value="public"<?php if($eventData['role'] == 'public'){ echo 'checked';}?>>Publique
 	    	<br>
@@ -30,11 +30,11 @@
 	    <div class="col-xs-6 .col-md-4">
 	      <label for="cat-event" class="masterTooltip" title="Ceci est le style de votre évènement">Catégorie de votre événement <i class="fa fa-info-circle" aria-hidden="true"></i></label>
 	      	<br>	        
-	      	<select>
-	      		<option value="vacances"<?php if($eventData['category'] == 'vacances'){ echo 'selected';}?>>Vacances</option>	      		
-	      		<option value="soiree"<?php if($eventData['category'] == 'soiree'){ echo 'selected';}?>>Soirées</option>
-	      		<option value="repas"<?php if($eventData['category'] == 'repas'){ echo 'selected';}?>>Repas</option>	      		
-	      		<option value="journee"<?php if($eventData['category'] == 'journee'){ echo 'selected';}?>>Journées</option>
+	      	<select name="category">
+	      		<option name="category" value="vacances"<?php if($eventData['category'] == 'vacances'){ echo 'selected';}?>>Vacances</option>	      		
+	      		<option name="category" value="soiree"<?php if($eventData['category'] == 'soiree'){ echo 'selected';}?>>Soirées</option>
+	      		<option name="category" value="repas"<?php if($eventData['category'] == 'repas'){ echo 'selected';}?>>Repas</option>	      		
+	      		<option name="category" value="journee"<?php if($eventData['category'] == 'journee'){ echo 'selected';}?>>Journées</option>
 	      	</select>
     	</div>	    
 	</div>
@@ -80,11 +80,9 @@
               </div>
           </div>
       </div>
-  </div>
-
-	
+  </div>	
 	<hr>  
-	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier</button>
+	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier votre évènement</button>
 </form>
 
 <div id="eventUpdate"></div>
