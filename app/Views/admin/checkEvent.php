@@ -56,23 +56,31 @@
 	</div>
 	<hr>
 	<div class="row">
-	    <div class="col-xs-6 .col-md-4">
-		    <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début</i><br>
-		    <label for="date_begin" class="masterTooltip" title="Début de votre évènement">Date du début de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-		    <input type="date" name="date_start" value="<?php echo $eventData['date_start']; ?>">
-		    <br>
-		    <label for="time_begin" class="masterTooltip" title="Début de votre évènement">Heure du début de votre évènement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-		    <input type="time" name="time_start" value="<?php echo $eventData['date_start']; ?>">
-	    </div>    
-	    <div class="col-xs-6 .col-md-4">
-	      	<i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin</i><br>
-	      	<label for="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date de la fin de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-	      	<input type="date" name="date_end" value="<?php echo $eventData['date_end']; ?>">
-	      	<br>
-	      	<label for="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Heure de la fin de votre événement:<i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-	      	<input type="time" name="time_end" value="<?php echo $eventData['date_end']; ?>">
-	    </div>	
-	</div>
+      <div class='col-xs-6 col-md-4'>
+          <div class="form-group">
+            <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début de votre événement</i><br><br>
+            <label for="date_start" name="date_start" class="masterTooltip" title="Début de votre évènement">Date et heure : <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+              <div class='input-group date' id='datetimepickerstart' name="date_start" value="<?php echo $eventData['date_start']; ?>">
+                  <input type='text' class="form-control" id="datetimepicker">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class='col-xs-6 col-md-4'>
+          <div class="form-group">
+            <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin de votre événement</i><br><br>
+            <label for="date_end" name="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+              <div class='input-group date' id='datetimepickerend' name="date_end">
+                  <input type='text' class="form-control" id="datetimepicker" value="<?php echo $eventData['date_end']; ?>">
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
 	<hr>  
 	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier</button>
 </form>
@@ -80,4 +88,10 @@
 <div id="eventUpdate"></div>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+  <script src="<?= $this->assetUrl('js/moment.js') ?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="<?= $this->assetUrl('js/tooltip.js') ?>"></script>
+<?php $this->stop('js') ?>
 
