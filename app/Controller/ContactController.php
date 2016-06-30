@@ -31,7 +31,7 @@ class ContactController extends Controller
 					$errors[] = 'Votre objet doit comporter entre 6 et 30 caractères';
 				}
 				if (strlen($post['content']) < 10){
-					$errors[] = 'Votre objet doit comporter entre 6 et 30 caractères';
+					$errors[] = 'Votre contenu doit comporter entre 6 et 30 caractères';
 				}
 				if(count($errors) === 0){
 		  			// Il n'y a pas d'erreurs on fait l'insertion SQL

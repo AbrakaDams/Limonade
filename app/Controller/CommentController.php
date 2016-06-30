@@ -55,7 +55,7 @@ class CommentController extends Controller
         $post[$key] = trim(strip_tags($value));
       }
       if(empty($post['comment'])){
-        $error[] = 'Le commentaire ne peut pas etre vide';
+        $error[] = 'Le commentaire ne peut pas être vide';
       }
       if(count($error) === 0){
         $commentaire = new CommentModel();

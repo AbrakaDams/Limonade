@@ -41,9 +41,9 @@ class CountController extends Controller
 				//on utilise la méthode insert() qui permet d'insérer des données en bases
 				$data = [
 					//la clé du tableau correspond au nom de la colone SQL
-					'personn' 		=> $post['personn'],
+					'personn' 	=> $post['personn'],
 					'purchase' 	=> $post['purchase'],
-					'quantity' => $post['quantity'],
+					'quantity' 	=> $post['quantity'],
 					'price' 	=> $post['price'],
 				];
 				$countModel->insert($data);
