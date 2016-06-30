@@ -1,0 +1,21 @@
+.navbar {
+    margin-bottom: 0;
+    padding: .3em;
+    background-color: $greenBlue;
+    background-color: $sherpaBlue;
+    background-color: $green;
+    border: 0;
+    border-radius: 0;
+    a {
+        color: #fff !important;
+    }
+
+    .navbar-avatar {
+        position: absolute;
+        height:2em;
+        width: 2em;
+        border-radius:2em;
+        object-fit: cover;
+    }
+
+}
