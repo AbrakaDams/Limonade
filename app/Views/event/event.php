@@ -31,25 +31,48 @@
 
 
 
-si list est vide et que card est rempli on affiche card
-si card est vide et que list est rempli on affcihe list
-si list et cards sont vide on affiche no actualiter
-si list et card sont remplie on affiche les 2
+
 
 
 
 
 	<aside class="">
 		<h3>Fil activités</h3>
-		<?php var_dump($showNewsFeed); if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
+		<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
 			<?php foreach ($showNewsFeed as $newsFeed) {
-				if($newsFeed['action'] === 'add'){
-					echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté :<strong> '.$newsFeed['card_title'].'</strong> ,crée le :' .$newsFeed['date_add'].'<hr>';
-				}else{
-					echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer : <strong>'.$newsFeed['list_title'].' </strong>,crée  le :' .$newsFeed['date_add'].'<hr>';
-				}
-				if(!isset($newsFeed['id_list']) && empty($newsFeed['id_list']) && isset($newsFeed['id_card']) && !empty($newsFeed['id_card'])) {
+				// si list est vide et que card est rempli on affiche card
+				// si card est vide et que list est rempli on affcihe list
+				// si list et cards sont vide on affiche no actualiter
+				// si list et card sont remplie on affiche les 2
 
+				// Si il ne trouve rien dans id_list et qu'il trouve quelquechos dans id_card
+				if($newsFeed['id_list'] == 0  && $newsFeed['id_card'] != 0) {
+					// si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression
+					if($newsFeed['action'] === 'add'){
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté la tache :<strong> '.$newsFeed['card_title'].'</strong> ,crée le :' .$newsFeed['date_news'].'<hr>';
+					}else{
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer la tache : <strong>'.$newsFeed['card_title'].' </strong>,crée  le :' .$newsFeed['date_news'].'<hr>';
+					}
+				}
+				// Si il ne trouve rien dans id_card et qu'il trouve quelquechos dans id_list
+				if($newsFeed['id_list'] != 0 && $newsFeed['id_card'] == 0) {
+					// si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression
+					if($newsFeed['action'] === 'add'){
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté la liste :<strong> '.$newsFeed['list_title'].'</strong> ,crée le :' .$newsFeed['date_news'].'<hr>';
+					}else{
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer la list : <strong>'.$newsFeed['list_title'].' </strong>,crée  le :' .$newsFeed['date_news'].'<hr>';
+					}
+				}
+				// Si il  trouve quelque chos dans les 2 id si desous
+				if($newsFeed['id_list'] != 0 && $newsFeed['id_card'] != 0) {
+					// si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression
+					if($newsFeed['action'] === 'add'){
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à ajouté la liste :<strong> '.$newsFeed['list_title'].'</strong> ,crée le :' .$newsFeed['date_news'].'<hr>';
+						echo '<br> à ajouté la tache :<strong> '.$newsFeed['card_title'].'</strong> ,crée le :' .$newsFeed['date_news'].'<hr>';
+					}else{
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer la list : <strong>'.$newsFeed['list_title'].' </strong>,crée  le :' .$newsFeed['date_news'].'<hr>';
+						echo $newsFeed['username'].'<img class="newsfeed-avatar" style="height:2em; width: 2em; border-radius:2em;" src="'.$newsFeed['avatar'].'"><br> à supprimer la tache : <strong>'.$newsFeed['card_title'].' </strong>,crée  le :' .$newsFeed['date_news'].'<hr>';
+					}
 				}
 			} ?>
 		<?php else: ?>
