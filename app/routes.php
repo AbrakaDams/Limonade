@@ -17,19 +17,28 @@
 		['GET|POST', '/ourAccounts', 'Count#ourAccounts', 'count_ourAccounts'],
 
 		/**************************** ajax ****************************/
+				 /******************* list ******************/
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
 		['GET|POST', '/ajax/delete-list', 'List#deleteList', 'list_deleteList'],
+
+				/******************* Cards ******************/
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
 		['GET|POST', '/ajax/delete-card', 'List#deleteCard', 'list_deleteCard'],
+
+				/******************* Comment******************/
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],
 		['GET|POST', '/ajax/join-comment', 'Comment#joinComment', 'comment_joinComment'],
 		['GET|POST', '/ajax/delete-comment', 'Comment#deleteComment', 'commment_deleteComment'],
+
+					/******************* Pärticipant ******************/
 		['GET|POST', '/ajax/list-users', 'Event#listUsers', 'event_listUsers'],
 		['GET|POST', '/ajax/add-participant', 'Event#addParticipant', 'event_addParticipant'],
 		['GET|POST', '/ajax/delete-participant', 'Event#deleteParticipant', 'event_deleteParticipant'],
 		['GET|POST', '/ajax/get-all-participants', 'Event#getAllParticipants', 'event_getAllParticipants'],
+
+					/******************* Notif ******************/
 		['GET|POST', '/ajax/update-notif', 'Notifications#updateNotif', 'event_updateNotif'],
 
 		/***************************** users *************************/
