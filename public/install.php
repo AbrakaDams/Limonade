@@ -572,7 +572,7 @@ foreach ($lists as $list) {
 
 	$reqEmail = $db->prepare('SELECT * FROM list WHERE id_event = :id_event AND title = :title');
 	$reqEmail->bindValue(':id_event', $list['id_event']);
-	$reqEmail->bindValue(':title', $list['title']);
+	$reqEmail->bindValue(':title', $list['list_title']);
 	$reqEmail->execute();
 
 	if($reqEmail->rowCount() == 0){
@@ -676,7 +676,7 @@ $cards = array(
 foreach ($cards as $card) {
 
 	$reqEmail = $db->prepare('SELECT * FROM cards WHERE title = :title AND id_list = :id_list AND id_event = :id_event ');
-	$reqEmail->bindValue(':title', $card['title']);
+	$reqEmail->bindValue(':title', $card['card_title']);
 	$reqEmail->bindValue(':id_list', $card['id_list']);
 	$reqEmail->bindValue(':id_event', $card['id_event']);
 	$reqEmail->execute();
