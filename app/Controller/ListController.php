@@ -4,7 +4,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
 use \Model\CardsModel as CardsModel;
-use \Model\NewsFeedModel as NewsFeedModel;
+use \Model\NewsfeedModel as NewsfeedModel;
 use \Controller\EventController;
 
 class ListController extends Controller
