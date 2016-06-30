@@ -5,7 +5,9 @@ var thisCommentId = parseInt($('#comment-info').data('commentId'));
 $('#form-comment').on('submit', function(e) {
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
     var formData = $(this).serialize(); // L'objet jQuery du formulaire
+    var comment = $(this).parent().parent().find('#comment').val(); 
 
+    console.log(formData);
     // Je vérifie une première fois pour ne pas lancer la requête HTTP
     // si je sais que mon PHP renverra une erreur
     if(comment == '') {
@@ -25,6 +27,9 @@ $('#form-comment').on('submit', function(e) {
                     });
                 } // J'affiche cette réponse
             },
+            error: function(e){
+                console.log(e);
+            }
         });
     }
 });
