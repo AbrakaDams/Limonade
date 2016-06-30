@@ -94,8 +94,8 @@ class EventController extends MasterController
 		$post = array();
 		$errors = array();
 		$success = false;
-		$date_debut = '';
-		$date_fin = '';
+		$date_start = '';
+		$date_end = '';
 		$newEvent = '';
 		$newId = NULL;
 
@@ -156,15 +156,22 @@ class EventController extends MasterController
 	  			$eventModel = new EventModel();
 	  			$EventUsersModel = new EventUsersModel();
 
+	  			//  createFromFormat = Retourne un nouvel objet DateTime formaté
+
+	  			$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']); // Date fr
+
+	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);	  			
+
 	  			$data = [
 	  				'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
-	  				'date_start'	=> $post['date_start'],
-	  				'date_end'	    => $post['date_end'],
+	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'), // On la transforme pour l insérer dans notre bdd
+	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
 	  			];
+	  			var_dump($post);
 
 	  			$newEvent = $eventModel->insert($data);
 	  			if(!empty($newEvent)){
