@@ -50,9 +50,10 @@
 			<label class="register-label" for="avatar">Lien photo de profil :</label>
 			<input class="form-control" type="text" placeholder="www.mon_image.com" name="url"/>
 			<br><br> 
+			<label class="register-label" for="avatar">Choisisez une photo de profil :</label>
 			<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
-			<label class="register-label"  for="avatar">Ou chargez votre photo : <br><br>
-	    	<input id="input-1" type="file" class="file"></label>
+	  		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
+			<input class="file" id="input-1" type="file" name="avatar">
 			<input class="form-control"  type="submit" value="Envoyer" />
 			<hr>	
 		</div>
