@@ -14,7 +14,7 @@
 
 	<?php if(isset($success) && $success === true): ?>
 		<div class="alert alert-success">
-		<p> Votre inscription a bien été prise en compte. Bienvenue chez nous ! </p>
+		<p> Votre inscription a bien été prise en compte. Bienvenue chez nous! <br> Veuillez consulter vos emails pour confirmer votre mot de passe ! </p>
 		</div>
 	<?php endif; ?>
 
