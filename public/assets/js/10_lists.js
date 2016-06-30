@@ -170,7 +170,7 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2></div><div class="cards"></div>' + newCard + '</div>')
+                    $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h2 class="list-title">'+ value.title + '</h2><a href="#"></div><div class="cards"></div>' + newCard + '</div>')
                 });
             }
             if(response.newCards.length != 0){
@@ -209,6 +209,26 @@ $('#event-lists').on('click', '.delete-card', function(e) {
             console.log(data);
             if(data.delete == 'done') {
                 $(card).fadeOut();
+            }
+        }
+    })
+});
+
+$('#event-lists').on('click', '.delete-list', function(e) {
+    e.preventDefault();
+
+    var idList = $(this).data('deleteList');
+    //var card = $(this).parent();
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/delete-list',
+        dataType: 'json',
+        data: 'idList=' + idList,
+        success: function(data) {
+            console.log(data);
+            if(data.deleteList == 'done') {
+                //$(card).fadeOut();
+                console.log(data.deleteList);
             }
         }
     })

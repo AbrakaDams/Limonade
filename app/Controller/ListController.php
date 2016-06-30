@@ -180,6 +180,20 @@ class ListController extends Controller
 
 	}
 
+
+	public function deleteList() {
+		// just 0 so he can find nothing
+		$idList = 0;
+		if(isset($_POST['idList']) && !empty($_POST['idList'])) {
+			$idCard = intval($_POST['idList']);
+		}
+
+		$deleteList = new ListModel();
+		if($deleteList->delete($idList)) {
+			$this->showJson(['deleteList' => 'done']);
+		}
+	}
+
 	public function deleteCard() {
 		// just 0 so he can find nothing
 		$idCard = 0;
