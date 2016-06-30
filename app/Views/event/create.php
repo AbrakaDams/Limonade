@@ -34,7 +34,7 @@
         <h1 class="center">Pour créer votre événement</h1>
         <!--<progress max="100" value="0" form="form-id">0%</progress>-->
         <div class="row">
-            <div class="col-xs-6 .col-md-4">
+            <div class="col-xs-4 .col-md-4">
                 <label for="type-event">Visibilité d'événement</label><br>
                 <input type="radio" name="role" id="private" value="private">
                 <label for="private" class="masterTooltip" title="Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.">Privé 
