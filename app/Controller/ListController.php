@@ -103,7 +103,7 @@ class ListController extends Controller
 				// current time for date_add
 				$timestamp = date('Y-m-d H:i:s');
 				//form data to insert to the database
-				$entryData = [
+				$cardData = [
 				  'title' 			=> $post['card_title'],
 				  'description' 	=> $post['card_desc'],
 				  'quantity' 		=> $post['card_quantity'],
@@ -116,8 +116,24 @@ class ListController extends Controller
 				// call model
 				$insertList = new CardsModel();
 				// insert
-				if($insertList->insert($entryData)) {
-					$this->showJson(['answer' => 'success']);
+				if($insertCard = $insertList->insert($cardData)) {
+
+
+					$user = getUser();
+
+					$newsfeed = new NewsFeedModel();
+
+					$newsfeedData = [
+						'id_event' => $idEvent,
+						'id_user' => $user['id'],
+						'action' => 'added',
+						'id_card' => $insertCard['id'],
+						'date_news' => $timestamp,
+					];
+
+					if($newsfeed->insert($newsfeedData)) {
+						$this->showJson(['answer' => 'success']);
+					}
 				}
 			}
 			else {
@@ -160,7 +176,6 @@ class ListController extends Controller
 				$lastDateCards = $value['date_add'];
 			}
 		}
-
 		if( $lastDateLists != null && $lastDateCards != null) {
 			if($lastDateLists > $lastDateCards) {
 				$lastDate = $lastDateLists;

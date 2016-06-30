@@ -32,19 +32,18 @@ $(document).mouseup(function (e) {
 });
 
 //hide our add card form if we click anywhere else and if our form is empty
-// $(document).mouseup(function (e) {
-//     // if we click anywhere else but not our form
-//     var cardDiv = $('.add-card-btn:active');
-//     console.log(cardDiv);
-//
-//     if (!cardDiv.is(e.target) && cardDiv.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
-//         //if all the fields are empty
-//
-//         $('.add-card-btn:hidden').removeClass('hidden');
-//         $('.add-card-form:visible').addClass('hidden');
-//
-//     }
-// });
+$(document).mouseup(function (e) {
+    // if we click anywhere else but not our form
+    var cardForm = $('.add-card-form');
+    // console.log(cardDiv);
+
+    if (!cardForm.is(e.target) && cardForm.has(e.target).length === 0) { // if the target of the click isn't the container ... nor a descendant of the container
+        //if all the fields are empty
+        $('.add-card-btn').removeClass('hidden');
+        $(cardForm).addClass('hidden');
+
+    }
+});
 
 
 // html to insert a new card
@@ -71,7 +70,6 @@ $(document).ready(function() {
     });
 });
 
-
 function createCardOptions(users) {
     // console.log(users);
     var allOptions = '';
@@ -80,10 +78,6 @@ function createCardOptions(users) {
         });
     return allOptions;
 }
-
-
-
-
 
 /***************************
     ADD LIST FORM AJAX
@@ -130,19 +124,15 @@ $('body').on('submit', '.add-card-form', function(e) {
         url: '../ajax/add-card',
         data: formData + '&eventId=' + thisEvent + '&listId=' + listId,
         dataType: 'json',
-        // error: function(e){
-        //     console.table(e);
-        // },
         success: function(output) {
-            // console.log(output);
             if(output.answer == 'success') {
                 $('.add-card-form').each(function(){
                     $(this)[0].reset();
                 });
                 // refresh lists right away, prevent to wait 7 seconds
                 getContent(lastDate);
-                $(this).addClass('hidden');
-                $(this).siblings('.add-card-btn').addClass('hidden');
+                $('.add-card-btn').removeClass('hidden');
+                $('.add-card-form').addClass('hidden');
             }
         }
     });

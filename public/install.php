@@ -201,7 +201,7 @@ foreach ($tokens_password as $token_password) {
 		$sql->bindValue(':token',		$token_password['token']);
 		$sql->bindValue(':date_create', $token_password['date_create']);
 		$sql->bindValue(':date_exp', 	$token_password['date_exp']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -253,7 +253,7 @@ foreach ($tokens_register as $token_register) {
 		$sql->bindValue(':token',		$token_register['token']);
 		$sql->bindValue(':date_create', $token_register['date_create']);
 		$sql->bindValue(':date_exp', 	$token_register['date_exp']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -335,7 +335,7 @@ foreach ($notifications as $notification) {
 		$sql->bindValue(':content', 		$notification['content']);
 		$sql->bindValue(':date_create', 	$notification['date_create']);
 		$sql->bindValue(':read', 			$notification['read']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -509,7 +509,7 @@ foreach ($event_users as $event_user) {
 		$sql->bindValue(':id_user', 		$event_user['id_user']);
 		$sql->bindValue(':id_event',		$event_user['id_event']);
 		$sql->bindValue(':role', 		$event_user['role']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -528,7 +528,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `list` (
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL,
   PRIMARY KEY (`id`) ,
-  FOREIGN KEY (id_event) REFERENCES event (id))
+  FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE)
   ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -581,7 +581,7 @@ foreach ($lists as $list) {
 		$sql->bindValue(':title', 		$list['title']);
 		$sql->bindValue(':id_event',	$list['id_event']);
 		$sql->bindValue(':date_add', 	$list['date_add']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;
@@ -603,7 +603,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `cards` (
   `id_event` INT NOT NULL ,
   `date_add` DATETIME NOT NULL ,
   PRIMARY KEY (`id`) ,
-  FOREIGN KEY (id_list) REFERENCES list (id))
+  FOREIGN KEY (id_list) REFERENCES list (id) ON DELETE CASCADE)
   ENGINE = InnoDB;"
 );
 if($sql === false){
@@ -692,7 +692,7 @@ foreach ($cards as $card) {
 		$sql->bindValue(':id_list', 	$card['id_list']);
 		$sql->bindValue(':id_event', 	$card['id_event']);
 		$sql->bindValue(':date_add', 	$card['date_add']);
-		
+
 		$sql->execute();
 	}else{
 		$upValid = false;

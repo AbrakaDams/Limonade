@@ -21,7 +21,7 @@ class ListModel extends \W\Model\Model
         $sql = 'SELECT cards.id, cards.title, cards.id_list, cards.description, cards.quantity, cards.price, cards.id_user, cards.date_add, users.username, users.firstname, users.lastname
         FROM cards
         LEFT JOIN users ON cards.id_user = users.id
-        WHERE cards.id_event='.$id.' AND date_add > "' .  $lastDate .'"';
+        WHERE cards.id_event='.$id.' AND cards.date_add > "' .  $lastDate .'"';
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
