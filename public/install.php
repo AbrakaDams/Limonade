@@ -717,9 +717,76 @@ if($sql === false){
 	die(var_dump($db->errorInfo()));
 }
 
-//$comments = array(
+$comments = array(
+	[
+	  'id_event' 	=> '1',
+	  'id_user'  	=> '6',
+	  'content'  	=> 'C\'est bon j\'ai les bières',
+	  'date_add'  	=> '2016-06-28 14:00:00',
+	],
+	[
+	  'id_event' 	=> '1',
+	  'id_user'  	=> '2',
+	  'content'  	=> 'Ok c\'est bon pour les gateaux mais qui s\'occupe de la musique ?',
+	  'date_add'  	=> '2016-06-28 15:00:00',
+	],
+	[
+	  'id_event' 	=> '2',
+	  'id_user'  	=> '5',
+	  'content'  	=> 'Ok sa tombe bien je vais à Arcachon ce weekend, je pourrais aller comparer les prix',
+	  'date_add'  	=> '2016-06-28 14:00:00',
+	],
+	[
+	  'id_event' 	=> '2',
+	  'id_user'  	=> '4',
+	  'content'  	=> 'Wesh c nul une Fiat Panda meskin',
+	  'date_add'  	=> '2016-06-28 23:58:00',
+	],
+	[
+	  'id_event' 	=> '3',
+	  'id_user'  	=> '5',
+	  'content'  	=> 'C\'est bon j\'ai les bières',
+	  'date_add'  	=> '2016-06-28 14:00:00',
+	],
+	[
+	  'id_event' 	=> '3',
+	  'id_user'  	=> '6',
+	  'content'  	=> 'Moi aussi !',
+	  'date_add'  	=> '2016-06-28 14:10:00',
+	],
+	[
+	  'id_event' 	=> '3',
+	  'id_user'  	=> '7',
+	  'content'  	=> 'J\'ai des bieres et du rhum',
+	  'date_add'  	=> '2016-06-28 15:13:12',
+	],[
+	  'id_event' 	=> '3',
+	  'id_user'  	=> '7',
+	  'content'  	=> 'Et il doit me rester un fond de wisky aussi',
+	  'date_add'  	=> '2016-06-28 15:13:25',
+	],
+);
+foreach ($comments as $comment) {
 
+	$reqEmail = $db->prepare('SELECT * FROM comments WHERE content = :content AND id_user = :id_user AND id_event = :id_event ');
+	$reqEmail->bindValue(':content', 	$comment['content']);
+	$reqEmail->bindValue(':id_user', 	$comment['id_user']);
+	$reqEmail->bindValue(':id_event', 	$comment['id_event']);
+	$reqEmail->execute();
 
+	if($reqEmail->rowCount() == 0){
+
+		$sql = $db->prepare('INSERT INTO comments (id_event, id_user, content, date_add) VALUES (:id_event, :id_user, :content, :date_add)');
+		$sql->bindValue(':id_event', 	$comment['id_event']);
+		$sql->bindValue(':id_user',		$comment['id_user']);
+		$sql->bindValue(':content', 	$comment['content']);
+		$sql->bindValue(':date_add', 	$comment['date_add']);
+		
+		$sql->execute();
+	}else{
+		$upValid = false;
+	}
+}
 /**************************************END TABLE COMMENT**********************************/
 
 /**************************************TABLE NEWSFEED**********************************/
