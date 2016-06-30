@@ -11,68 +11,11 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 
-	<style>
-		#notification_li
-		{
-		position:relative
-		}
-		#notificationContainer
-		{
-		background-color: #fff;
-		border: 1px solid rgba(100, 100, 100, .4);
-		-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
-		overflow: visible;
-		position: absolute;
-		top: 4.2em;
-		margin-left: -170px;
-		width: 400px;
-		z-index: 10;
-		display: none; // Enable this after jquery implementation
-		}
-		// Popup Arrow
-		#notificationContainer:before {
-		content: '';
-		display: block;
-		position: absolute;
-		width: 0;
-		height: 0;
-		color: transparent;
-		border: 10px solid black;
-		border-color: transparent transparent white;
-		margin-top: -20px;
-		margin-left: 188px;
-		}
-		#notificationTitle
-		{
-		font-weight: bold;
-		padding: 8px;
-		font-size: 13px;
-		background-color: #ffffff;
-		position: fixed;
-		z-index: 1000;
-		width: 384px;
-		border-bottom: 1px solid #dddddd;
-		}
-		#notificationsBody
-		{
-		padding: 33px 0px 0px 0px !important;
-		min-height:300px;
-		}
-		#notificationFooter
-		{
-		background-color: #e9eaed;
-		text-align: center;
-		font-weight: bold;
-		padding: 8px;
-		font-size: 12px;
-		border-top: 1px solid #dddddd;
-		}
-		</style>
 </head>
 <body>
 	<header>
 		<!-- ma navbar -->
-		<nav class="navbar navbar-default">
+		<nav class="navbar">
 	  	<div class="container-fluid">
 	   		<!-- Brand and toggle get grouped for better mobile display -->
 	    	<div class="navbar-header">
@@ -87,12 +30,15 @@
 					Lemonade
 	      		</a>
 	    	</div>
-				<ul id="userAvatar" class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 			<?php if(isset($w_user) && !empty($w_user)): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
 					<!-- add list -->
-					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
+					<li>
+						<a href="<?= $this->url('event_createEvent');?>">
+						<i class="glyphicon glyphicon-plus"></i></a>
+					</li>
 					<!-- notifications -->
 					<li id="notification_li">
 						<a href="#notification" id="notificationLink">
@@ -115,12 +61,16 @@
 
 
 					<li class="dropdown show-account">
-						 <a href="#" class="dropdown-toggle show-account-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $w_user['username']; ?> <img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
-	 						echo $w_user['avatar'];
-	 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
-	 						echo $w_user['url']; } else{
-	 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
-						<span class="caret"></span></a>
+						 <a href="#" class="dropdown-toggle show-account-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $w_user['username']; ?>
+
+							<img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+		 						echo $w_user['avatar'];
+		 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
+		 						echo $w_user['url']; } else{
+		 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+							<span class="caret"></span>
+						</a>
+
 						<ul class="dropdown-menu">
 							<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
 								<li><a href="<?= $this->url('admin_admin'); ?>"></i> Back Office Admin </a></li>
@@ -128,7 +78,12 @@
 							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 							<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
+<<<<<<< dd43b8fbd1e4a643f83574e4a13d7a985ae079a3
 							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
+=======
+
+							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous</a></li>
+>>>>>>> some style for events
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
 					</li>

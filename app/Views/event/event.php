@@ -22,55 +22,63 @@
 			}
 			?>
 		</div>
-		<div>
-			<h3>Tous les participants de cet évènement :</h3>
-			<?php
-			foreach ($allparticipants as $infos) {
-				echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
-			}
-			?>
-		</div>
 	</aside>
-
-
-
-
-
-
-
 
 	<section id="event-main">
 
 		<div id="event-info" data-event-id="<?=$thisEvent['id'];?>">
 
-			<!-- SHOW EVENT NAME -->
-			<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
-				<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
-			<?php else: ?>
-				<h2 class="event-title">Event sans nom</h2>
-			<?php endif; ?>
+			<div class="event-data" style="background-image: url(
+			<?php
+			switch ($thisEvent['category']) {
+				case 'soiree' :
+					echo $this->assetUrl('img/slider/img_slider7.jpg');
+					break;
+				case 'vacances' :
+					echo $this->assetUrl('img/slider/img_slider9.jpg');
+					break;
+				case 'repas' :
+					echo $this->assetUrl('img/slider/img_slider11.jpg');
+					break;
+				case 'journee' :
+					echo $this->assetUrl('img/slider/img_slider5.jpg');
+					break;
+			}
+			?>);">
 
-			<!-- SHOW EVENT DESCRIPTION -->
-			<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
-				<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
-			<?php endif; ?>
+				<div class="event-data-container">
+					<!-- SHOW EVENT NAME -->
+					<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
+						<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
+					<?php else: ?>
+						<h2 class="event-title">Event sans nom</h2>
+					<?php endif; ?>
 
-			<!-- SHOW EVENT DATE -->
-			<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
-				<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
-			<?php else: ?>
-				<p class="event-date">Date n'est pas encore precisée</p>
-			<?php endif; ?>
+					<!-- SHOW EVENT DESCRIPTION -->
+					<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
+						<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
+					<?php endif; ?>
 
-			<!-- SHOW EVENT ADDRESS -->
-			<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
-				<p class="event-address"><?php echo $thisEvent['address']; ?></p>
-			<?php else: ?>
-				<p class="event-address">Adresse n'est pas encore preciséE</p>
-			<?php endif; ?>
+					<!-- SHOW EVENT DATE -->
+					<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
+						<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
+					<?php else: ?>
+						<p class="event-date">Date n'est pas encore precisée</p>
+					<?php endif; ?>
+
+					<!-- SHOW EVENT ADDRESS -->
+					<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
+						<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $thisEvent['address']; ?></p>
+					<?php else: ?>
+						<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> Adresse n'est pas encore precisé</p>
+					<?php endif; ?>
+				</div>
+			</div>
 		</div>
 
-		<div id="event-lists"></div>
+		<div id="event-lists">
+
+		</div>
 
 		<div id="add-new-list">
 			<button type="button" id="add-list-btn">+</button>
@@ -80,6 +88,27 @@
 				<input type="submit" value="Go">
 			</form>
 		</div>
+
+
+		<?php  if(isset($w_user) && !empty($w_user)):?>
+			<div id="event-comments">
+
+				<h2>Commentaires</h2>
+				<form method="post" id="form-comment">
+					<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
+					<input type="submit" name="submit" value="Commentez">
+				</form>
+
+				<div id="comments"></div>
+
+			</div>
+		<?php else: ?>
+
+		<div class="alert alert-danger">
+			<p>Connectez vous pour voir les commentaires</p>
+		</div>
+
+		<?php endif; ?>
 	</section>
 
 	<aside id="event-newsfeed">
@@ -129,28 +158,8 @@
 	</aside>
 
 </div> <!-- end of div.event-wrapper -->
-	<?php  if(isset($w_user) && !empty($w_user)):?>
-		<section id="event-comments">
-
-			<h3>Commentaires</h3>
-			<form method="post" id="form-comment">
-				<textarea name="comment" id="comment" rows="2" cols="50"></textarea>
-				<input type="submit" name="submit" value="Commentez">
-			</form>
-
-			<div id="comments">
 
 
-			</div>
-
-		</section>
-	<?php else: ?>
-
-	<div class="alert alert-danger">
-		<p>Connectez vous pour voir les commentaires</p>
-	</div>
-
-	<?php endif; ?>
 
 
 

@@ -16,14 +16,12 @@ body {
 .visible {
 	display: inline-block !important;
 }
-#add-list {
-	padding: 2em;
-	background-color: yellow;
-}
+
 
 @import '_notConnected.scss';
 @import '_navbarConnected.scss';
 @import '_indexConnected.scss';
+@import '_create.scss';
 @import '_event.scss';
 
 
@@ -69,6 +67,10 @@ footer {
 			height: 2.3em;
 			width: 2.3em;
 			border-radius: 50%;
+		}
+		a:hover,
+		a:focus {
+			text-decoration: none;
 		}
 	}
 
