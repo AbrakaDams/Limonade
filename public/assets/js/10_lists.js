@@ -226,7 +226,8 @@ $('#event-lists').on('click', '.delete-card', function(e) {
     e.preventDefault();
 
     var idCard = $(this).attr('data-delete-card');
-    var card = $(this).parent();
+    var card = $(this).closest('.card');
+    console.log(card);
     $.ajax({
         type: 'POST',
         url: '../ajax/delete-card',
@@ -241,6 +242,7 @@ $('#event-lists').on('click', '.delete-card', function(e) {
     })
 });
 
+var modifCard;
 var modifForm;
 var idCard;
 
@@ -264,7 +266,7 @@ $(document).ready(function() {
 
     });
 
-    $('#event-lists').delegate('form input[type=submit]', "click", function(e) {
+    $('#event-lists').delegate('form.modify-card-form input[type=submit]', "click", function(e) {
         console.log('modif function is called');
         modifyCard(modifForm, e);
     });
@@ -301,3 +303,19 @@ $(document).ready(function() {
     }
 
 });
+
+
+function refreshCard(id) {
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/refreshCard',
+        data: 'id=' + id,
+        dataType: 'json',
+        success: function(result) {
+            console.log(result);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    })
+}

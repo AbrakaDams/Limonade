@@ -360,7 +360,7 @@ class ListController extends Controller
 			}
 			// check id of the list
 			if(isset($post['cardId']) && !empty($post['cardId'])) {
-				$idList = intval($post['cardId']);
+				$idCard = intval($post['cardId']);
 			}
 			else {
 				$errors[] = 'Impossible d\'inserer cette tâche dans la liste';
@@ -379,9 +379,10 @@ class ListController extends Controller
 				  'date_add'		=> $timestamp,
 				];
 				// call model
-				$modifyList = new CardsModel();
+				$modify = new CardsModel();
 				// insert
-				if($modifyCard = $insertList->update($cardData, $idCard)) {
+
+				if($modifyCard = $modify->update($cardData, $idCard)) {
 
 					$user = $this->getUser();
 					$newsfeed = new NewsfeedModel();
@@ -400,11 +401,12 @@ class ListController extends Controller
 				}
 			}
 			else {
-				$this->showJson(['errors' => $errors, 'list' => $idList, 'event' => $idEvent]);
+				$this->showJson(['errors' => $errors, 'list' => $idCard, 'event' => $idEvent]);
 			}
 		}
+	}
 
-
-
+	public function refreshCard() {
+		
 	}
 }
