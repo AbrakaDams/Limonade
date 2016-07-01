@@ -4,22 +4,14 @@
 <h2>Bonjour</h2>
 
 
-
-
-
-
-<div class="listActions">
-	<ul>
-		<li>
-			<a href="<?= $this->url('admin_checkEvent'); ?>">Modifier un évènement</a>
-		</li>
-		<li>
-			<a href="<?= $this->url('admin_checkUser'); ?>">Modifier un utilisateur</a>
-		</li>
-		<li></li>
-	</ul>
+<div class="row">
+	<div class="checkEvent">
+		
+	</div>
+	<div class="checkUser">
+		
+	</div>
 </div>
-
 
 
 
