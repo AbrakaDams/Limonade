@@ -10,14 +10,13 @@
 <?php endif; ?>
 
 <?php if(!empty($errors)): ?>
-	<div class="alert alert-danger">
-		<p>Il ya des erreurs</p>
+	<div class="alert alert-danger">		
 		<?= implode('<br>', $errors); ?>
 	</div>
 <?php endif; ?>
 
 
-<form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
+<form method="post" class="form-create-event" id="createEvent">
 	<h1 class="center">Modifier un évènement</h1>	
 	<hr>
 	<div class="row">	

@@ -82,7 +82,8 @@ class AdminController extends Controller
 				$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
 	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
 
-				$data = [					
+				$data = [
+					'id'            => $id,					
 					'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
 	  				'title'     	=> $post['title'],
