@@ -174,7 +174,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden">Modifier cette tache <form></form</span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
                     }
                 });
             }
@@ -229,3 +229,37 @@ $('#event-lists').on('click', '.delete-card', function(e) {
         }
     })
 });
+
+
+$('#event-lists').on('click', '.modify-card', function(e) {
+    e.preventDefault();
+
+    var idCard = $(this).attr('data-modify-card');
+
+    $('.modify-card-container').removeClass('hidden');
+
+    $('modify-card-form:visible').on('submit', function() {
+        var formData = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: '../ajax/modify-card',
+            data: formData + '&eventId=' + thisEvent + '&cardId=' + idCard,
+            dataType: 'json',
+            success: function(output) {
+                if(output.answer == 'success') {
+                    $('.modify-card-form').each(function(){
+                        $(this)[0].reset();
+                    });
+                    // refresh lists right away, prevent to wait 7 seconds
+                    //getContent(lastDate);
+                    $('.add-card-btn').removeClass('hidden');
+                    $('.add-card-form').addClass('hidden');
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    })
+})
