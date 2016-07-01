@@ -20,6 +20,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `users` (
 		`avatar` VARCHAR(255) NOT NULL,
 		`url` VARCHAR(255) NOT NULL,
 		`activation` ENUM('true','false') NOT NULL,
+		`status` ENUM('default','banned') NOT NULL,
 		`id_facebook` BIGINT(11) NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`email`, `username`)) ENGINE = InnoDB;"
@@ -42,6 +43,7 @@ $users = array(
 		'avatar' 		=>  'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url'			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -54,6 +56,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -66,6 +69,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -78,6 +82,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -90,6 +95,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -102,6 +108,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'true',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -114,6 +121,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'false',
+		'status'	=> 'default',
 		'id_facebook'	=> '',
 	],
 	[
@@ -126,6 +134,7 @@ $users = array(
 		'avatar' 		=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'url' 			=> 'https://www.vidbooster.com/wp-content/uploads/2016/04/avatar.jpg',
 		'activation'	=> 'false',
+		'status'		=> 'default',
 		'id_facebook'	=> '',
 	],
 );
@@ -139,7 +148,7 @@ foreach ($users as $user) {
 
 	if($reqEmail->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url, activation) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url, :activation)');
+		$sql = $db->prepare('INSERT INTO users (username ,firstname, lastname, role, email, password, avatar, url, activation, status) VALUES (:username ,:firstname, :lastname, :role, :email, :password, :avatar, :url, :activation, :status)');
 		$sql->bindValue(':username', 	$user['username']);
 		$sql->bindValue(':firstname', 	$user['firstname']);
 		$sql->bindValue(':lastname', 	$user['lastname']);
@@ -149,6 +158,7 @@ foreach ($users as $user) {
 		$sql->bindValue(':avatar', 		$user['avatar']);
 		$sql->bindValue(':url', 		$user['url']);
 		$sql->bindValue(':activation', 	$user['activation']);
+		$sql->bindValue(':status', 		$user['status']);
 
 
 		$sql->execute();
