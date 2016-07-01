@@ -11,14 +11,10 @@ sinon -->
 <?php if($roleEvent['role'] == 'event_admin'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
-			<div>
+			<div class="in-aside">
 				<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
-			</div>
-
-			<div>
-				<h3> Liste des participants :</h3>
-
-				<?php
+				<h3 class="title-aside"> Liste des participants :</h3>
+				<p class="lien-event"><?php
 				if($participants == null){
 					echo 'aucun participant';
 				}
@@ -27,12 +23,11 @@ sinon -->
 						echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
 					}
 				}
-				?>
-
-				<h3>Mes évènements :</h3>
+				?></p>
+				<h3 class="title-aside">Mes évènements :</h3>
 				<?php foreach ($userEvents as $userEvent) : ?>
 					<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
-						<?php echo $userEvent['title'] ?>
+						<p class="lien-event"><?php echo $userEvent ['title'] ?></p>
 							<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 								(Evènement terminé)
 							<?php endif ?>

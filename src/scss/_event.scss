@@ -11,10 +11,6 @@ div.event-wrapper {
         word-break: break-all;
     }
 
-    #event-particip {
-        width: 20%;
-        background-color: $lightGray;
-    }
     #event-main {
         width: 80%;
         // background-color: red;
@@ -198,3 +194,27 @@ div#event-comments {
         }
     }
 }
+
+/*************************************
+                 ASIDE
+*************************************/
+
+#event-particip{
+    vertical-align: top;
+    background-color: $white;
+    width: 20%;
+
+        .in-aside{  
+            margin: 0 auto;
+            width: 18em;
+            margin-top: 1.5em;
+        }
+            .title-aside{
+                font-size: 1.2em;
+                margin: 1em 0; 
+                font-weight: bold;
+            }
+            .lien-event{
+                margin: 0.3em 0;
+            }
+    }
