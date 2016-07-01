@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-<?php foreach ($thisEventPublic as $value): ?>
+<?php foreach ($myEvents as $value): ?>
     <div class="container">
         <div class="row" id="row">
             <div class="col-xs-4">
@@ -17,7 +17,6 @@
                   <p>Date de début : <?php echo $value['date_start']; ?></p>
                   <p>Fin de fin : <?php echo $value['date_end']; ?></p>
                   <!-- Si l'user participe a cette evenement on montre  un bouton je participe déja -->
-                  <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe</a>
                 </div>
             </div>
 <?php endforeach; ?>
@@ -45,6 +44,7 @@
                     <p>Date de début : <?php echo $value['date_start']; ?></p>
                     <p>Fin de fin : <?php echo $value['date_end']; ?></p>
                     <!-- Dire pourquoi ou comment participé a un event private -->
+                    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe déja a cette évenement</a>
                     <br>
                 </div>
             </div>

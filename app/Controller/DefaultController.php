@@ -4,6 +4,7 @@ namespace Controller;
 
 use \Controller\MasterController;
 use \Model\EventModel as EventModel;
+use \Model\EventUsersModel;
 use \Model\ContactModel as Contact;
 
 class DefaultController extends MasterController
@@ -28,14 +29,18 @@ class DefaultController extends MasterController
 
 			$this->show('default/home', $showEventPublic);
 		}else{
+
+			$EventUsersModel = new EventUsersModel();
+			$userEvents = $EventUsersModel->findAllUserEvents($loggedUser['id']);
 			// Connecté
 			$event = new EventModel();
 			$role = 'public';
 			$eventPublic = $event->getEventPublic($role);
 
 			$showEvent = [
-				'thisEventPublic' => $eventPublic,
-				
+				'thisEventPublic' 	=> $eventPublic,
+				'myEvents'			=> $userEvents,
+
 			];
 			$this->showWithNotif('default/home_logged', $showEvent);
 		}

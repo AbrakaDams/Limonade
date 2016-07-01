@@ -21,7 +21,7 @@ class EventModel extends \W\Model\Model
 	// Montre les events publics sur la page d'accueil non connecté
 	public function getEventPublic($role)
 	{
-		$sql = 'SELECT * FROM ' . $this->table .' WHERE role = :role ORDER BY date_start ASC limit 3' ;
+		$sql = 'SELECT * FROM ' . $this->table .' WHERE role = :role ORDER BY date_start ASC limit 6' ;
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':role', $role);
 		$sth->execute();
