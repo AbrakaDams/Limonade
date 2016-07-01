@@ -102,7 +102,7 @@
 
 					    <p class="index-event-address">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
-							<?php echo $value['address']; ?>
+							L'adresse n'est pas communiqué pour les personnes n'ont connecté.
 						</p>
 
 					    <p class="index-event-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Du :
