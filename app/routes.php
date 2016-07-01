@@ -63,6 +63,7 @@
 		['GET|POST', '/admin', 'Admin#admin', 'admin_admin'],
 		['GET|POST', '/admin/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
 		['GET|POST', '/admin/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
+		['GET|POST', '/admin/banUser/[i:id]', 'Admin#banUser', 'admin_banUser'],
 		['GET|POST', '/admin/users', 'Admin#users', 'admin_users'],
 		['GET|POST', '/admin/events', 'Admin#events', 'admin_events'],
 		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],

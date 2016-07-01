@@ -248,6 +248,34 @@ class AdminController extends Controller
 		}
 	}
 
+	public function banUser($id){
+		$loggedUser = $this->getUser();
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+			$this->allowTo('admin');
+			$usersModel = new UsersModel;
+			$users = $usersModel->findAll();
+			foreach ($users as $user) {
+				if($user['status'] == 'default'){
+					$data = [
+						'status' => 'banned',
+					];
+					$usersUpateModel = new UsersModel();
+					$usersUpateModel->update($data, $id);
+				}elseif ($user['status'] == 'banned') {
+					$data = [
+						'status' => 'default',
+					];
+					$usersUpateModel = new UsersModel();
+					$usersUpateModel->update($data, $id);
+				}
+			}
+			$this->redirectToRoute('admin_users');
+		}
+	}
+
 	/*****
 	*
 	* Fonction pour modifier un utilisateur
