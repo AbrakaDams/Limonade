@@ -17,7 +17,7 @@
 <?php endif; ?>
 
 
-<form method="post" action="#" class="form-create-event" id="createEvent">
+<form method="post" action="#" enctype="multipart/form-data" class="form-create-event" id="createEvent">
 	<h1 class="center">Modifier un évènement</h1>
 	<hr>
 	<div class="row">
@@ -44,6 +44,16 @@
 	      	<label for="title-event" class="masterTooltip" title="Indiquer un titre à votre évènement.Ne vous inquiétez pas, vous aurez la possibilité de la changer ulterieurement">Intitulé de votre événement: <i class="fa fa-info-circle" aria-hidden="true"></i></label> <br>
 	        <input type="text" name="title" id="title-event" value="<?php echo $eventData['title']; ?>"><br><br>
 	    </div>
+
+		<div class="row">
+			<div class="col-xs-6 col-md-4">
+			<label for="avatar-event" class="masterTooltip" title="Choissisez une image a l'éfigie de votre évènement">Avatar évènement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+			<input class="form-control" type="text" value="<?php echo $eventData['event_avatar']; ?>" name="eventAvatar"/><br>
+			<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
+			<input class="file" id="input-1" type="file" name="avatar">
+			</div>
+		</div>
+
 	    <div class="col-xs-6 .col-md-4">
 	      	<label for="description" class="masterTooltip" title="Entre une brève description de votre évènement">Description de votre évenement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
 	      	<textarea name="description" id="description" rows="3" cols="70"><?php echo $eventData['description']; ?></textarea>

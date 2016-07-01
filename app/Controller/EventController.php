@@ -174,6 +174,38 @@ class EventController extends MasterController
 				$date_fin = '';
 				$newEvent = '';
 				$newId = NULL;
+				$successimg = false;
+				$adress = ''; //adress est visible pour toute la fonction
+
+				//A l'insertion de l'image dans le formulaire, il est placé dans le fichier assets
+				$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/img/event/';
+				$dbLink = '/limonade/public/assets/img/event';
+				$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
+
+				if(!empty($_FILES) && isset($_FILES['avatar'])){
+
+					// Récupère le nom de mon fichier
+					$nomFichier = $_FILES['avatar']['name'];
+					// Stockage temporaire du fichier
+					$tmpFichier = $_FILES['avatar']['tmp_name'];
+					// Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+					$newFichier = $folder.$nomFichier;
+					// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
+					if($_FILES['avatar']['size'] <= $maxSize){
+						/*
+						 * move_uploaded_file() retourne un booleen :
+						 *	- true si le fichier a bien été déplacé/envoyé
+						 *  - false si il y a une erreur
+						 */
+						if(move_uploaded_file($tmpFichier, $newFichier)){
+							$successimg = true;
+							$adress = $dbLink.'/'.$nomFichier;
+						}
+						else {
+							$error = 'Erreur lors de l\'envoi du fichier';
+						}
+					}
+				}
 
 				if(!empty($_POST)){
 			  		foreach ($_POST as $key => $value) {
@@ -215,6 +247,9 @@ class EventController extends MasterController
 					if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_end'])){
 		    			$errors[] = 'La date n\'est pas au bon format';
 					}
+					if(!isset($_FILES['avatar']) && !filter_var($post['eventAvatar'], FILTER_VALIDATE_URL)){
+						$errors[] = 'Vous devez choisir une image de couverture pour continuer';
+					}
 					/* On concatène la date et l'heure de début pour avoir un format valable
 					$date_debut = $post['date_begin'].' '.$post['time_begin'].':00';
 					if($this->validateDate($date_debut) == false){
@@ -241,6 +276,8 @@ class EventController extends MasterController
 			  				'title'     	=> $post['title'],
 			  				'description'   => $post['description'],
 			  				'address' 		=> $post['address'],
+							'event_avatar'	=> $post['eventAvatar'],
+							'event_cover'	=> $adress,
 			  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
 		  					'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
 			  			];

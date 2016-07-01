@@ -380,6 +380,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `event` (
 	`date_start` DATETIME NOT NULL ,
 	`date_end` DATETIME NOT NULL ,
 	`event_avatar` VARCHAR(255) NOT NULL ,
+	`event_cover` VARCHAR(255) NOT NULL ,
 	`role` ENUM('public','private') NOT NULL ,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
