@@ -125,7 +125,7 @@ class AdminController extends Controller
 		$usersData = array();
 
 		$adminModel = new AdminModel;
-		$userData = $adminModel->findUser($id);
+		$usersData = $adminModel->findUser($id);
 
 		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
 		$dbLink = '/limonade/public/assets/image';
@@ -151,7 +151,6 @@ class AdminController extends Controller
 				}
 			}
 		}
-
 		if(!empty($_POST)){
 			foreach($_POST as $key => $value){
 				$post[$key] = trim(strip_tags($value));
@@ -183,19 +182,19 @@ class AdminController extends Controller
 					'avatar' 	=> $post['url'],						
 				];
 
-				$newUsers = $usesrModel->findUser($data['id']);
+				$newUsers = $usersModel->findUser($data['id']);
 
-				if($UsersModel->update($data,$data['id'])){
+				if($UsersModel->update($data, $data['id'])){
 					$success = true;
 
 					$params = [
 						'errors' 	=> $errors,
 						'success' 	=> $success,
-						'usersData' => $userData,
+						'usersData' => $usersData,
 					];
 
 				$this->show('admin/checkUser');
-				
+
 				}
 				else{
 					echo $errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';
