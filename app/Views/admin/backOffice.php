@@ -1,11 +1,6 @@
 <?php $this->layout('layoutAdmin', ['title' => 'Back Office']) ?>
 
 <?php $this->start('main_content') ?>
-<h2>Bonjour</h2>
-
-
-
-
 
 
 <div class="listActions">
@@ -19,7 +14,6 @@
 		<li></li>
 	</ul>
 </div>
-
 
 
 
