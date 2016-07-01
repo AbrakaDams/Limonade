@@ -12,8 +12,19 @@ class NewsFeedController extends Controller
    * @param  int $id l'id de la bdd
    */
   public function newsFeed($id){
-    $news = new NewsFeedModel();
-    $showNews = $news->joinNewsFeed($id);
-    return $showNews;
+        $loggedUser = $this->getUser();
+        if(!isset($loggedUser)){
+          $this->redirectToRoute('default_home');
+        }
+        else{
+          if($loggedUser['status'] == 'banned'){
+              $this->show('default/home_banned');
+          }
+          else{
+                $news = new NewsFeedModel();
+                $showNews = $news->joinNewsFeed($id);
+                return $showNews;
+            }
+      }
   }
 }

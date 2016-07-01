@@ -28,20 +28,24 @@ class DefaultController extends MasterController
 
 			$this->show('default/home', $showEventPublic);
 		}else{
+			if($loggedUser['status'] == 'banned'){
+				$this->show('default/home_banned');
+			}
+			else{
+				$EventUsersModel = new EventUsersModel();
+				$userEvents = $EventUsersModel->findAllUserEvents($loggedUser['id']);
+				// Connecté
+				$event = new EventModel();
+				$role = 'public';
+				$eventPublic = $event->getEventPublic($role);
 
-			$EventUsersModel = new EventUsersModel();
-			$userEvents = $EventUsersModel->findAllUserEvents($loggedUser['id']);
-			// Connecté
-			$event = new EventModel();
-			$role = 'public';
-			$eventPublic = $event->getEventPublic($role);
+				$showEvent = [
+					'thisEventPublic' 	=> $eventPublic,
+					'myEvents'			=> $userEvents,
 
-			$showEvent = [
-				'thisEventPublic' 	=> $eventPublic,
-				'myEvents'			=> $userEvents,
-
-			];
-			$this->showWithNotif('default/home_logged', $showEvent);
+				];
+				$this->showWithNotif('default/home_logged', $showEvent);
+			}
 		}
 	}
 

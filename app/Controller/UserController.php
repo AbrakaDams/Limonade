@@ -467,18 +467,23 @@ class UserController extends MasterController
 					$idUser = $authModel->isValidLoginInfo($post['email'], $post['password']);
 
 					if($idUser){
-						// On appelle la méthode find() qui permet de retourner les résultats en fonction d'un ID
-						$user = $usersModel->find($idUser);
-						// On vérifie que le compte est activé
-						if($user['activation'] == 'true'){
-							// La méthode logUserIn() permet de connecter un utilisateur
-							$authModel->logUserIn($user);
-							// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
-							// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
-							$this->redirectToRoute('default_home');
+						if($loggedUser['status'] == 'banned'){
+							$this->show('default/home_banned');
 						}
 						else{
-							$errors[] = 'Votre compte n\'est pas activé.';
+							// On appelle la méthode find() qui permet de retourner les résultats en fonction d'un ID
+							$user = $usersModel->find($idUser);
+							// On vérifie que le compte est activé
+							if($user['activation'] == 'true'){
+								// La méthode logUserIn() permet de connecter un utilisateur
+								$authModel->logUserIn($user);
+								// $myUser = $authModel->getLoggedUser(); // Permet de récupérer les infos de sessions
+								// $myUser = $this->getUser(); // Permet de récupérer les infos de sessions
+								$this->redirectToRoute('default_home');
+							}
+							else{
+								$errors[] = 'Votre compte n\'est pas activé.';
+							}
 						}
 					}
 					else{
@@ -699,97 +704,102 @@ class UserController extends MasterController
 			//connecté
 			$this->redirectToRoute('default_home');
 		}else{
-			$post = [];
-			$errors = [];
-			$success = false;
-			$successimg = false;
-			$adress = ''; //adresse est visible pour toute la fonction
-
-			//définit si l'utilisateur est connecté
-			$user = $this->getUser();
-			$id = $user['id'];
-
-
-			//qd j'insère le fichier depuis mon formulaire ça le place dan assets
-			$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
-			$dbLink = '/limonade/public/assets/image';
-			$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
-
-			if(!empty($_FILES) && isset($_FILES['avatar'])){
-
-				$nomFichier = $_FILES['avatar']['name']; // Récupère le nom de mon fichier
-				$tmpFichier = $_FILES['avatar']['tmp_name']; // Stockage temporaire du fichier
-				$newFichier = $folder.$nomFichier; // Créer une chaîne de caractère contenant le nom du dossier de destination et le nom du fichier final
-				// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
-				if($_FILES['avatar']['size'] <= $maxSize){
-					/*
-					 * move_uploaded_file() retourne un booleen :
-					 *	- true si le fichier a bien été déplacé/envoyé
-					 *  - false si il y a une erreur
-					 */
-					if(move_uploaded_file($tmpFichier, $newFichier)){
-						$successimg = true;
-						$adress = $dbLink.'/'.$nomFichier;
-					}
-					else {
-						$error = 'Erreur lors de l\'envoi du fichier';
-					}
-				}
+			if($loggedUser['status'] == 'banned'){
+				$this->show('default/home_banned');
 			}
+			else{
+				$post = [];
+				$errors = [];
+				$success = false;
+				$successimg = false;
+				$adress = ''; //adresse est visible pour toute la fonction
 
-			if(!empty($_POST)){
-				foreach($_POST as $key => $value){
-					$post[$key] = trim(strip_tags($value));
-				}
-				if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
-					$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
-				}
-				if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
-					$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
-				}
-				if ($post['password'] != $post['password_confirm']){
-					$errors[] = 'Votre mot de passe n\'est pas identique';
-				}
-				if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
-					$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
-				}
-				if(count($errors) === 0){
-					// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
-					$usersModel = new UsersModel();
-					$authModel = new AuthModel();
+				//définit si l'utilisateur est connecté
+				$user = $this->getUser();
+				$id = $user['id'];
 
-					//on utilise la méthode insert() qui permet d'insérer des données en bases
-					$dataUser = [
-						//la clé du tableau correspond au nom de la colone SQL
-						'id' 		=> $id,
-						'username' 	=> $post['username'],
-						'firstname' => $post['firstname'],
-						'lastname' 	=> $post['lastname'],
-						'password' 	=> $authModel->hashPassword($post['password']),
-					];
-					if(!empty($post['url'])){
+
+				//qd j'insère le fichier depuis mon formulaire ça le place dan assets
+				$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
+				$dbLink = '/limonade/public/assets/image';
+				$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
+
+				if(!empty($_FILES) && isset($_FILES['avatar'])){
+
+					$nomFichier = $_FILES['avatar']['name']; // Récupère le nom de mon fichier
+					$tmpFichier = $_FILES['avatar']['tmp_name']; // Stockage temporaire du fichier
+					$newFichier = $folder.$nomFichier; // Créer une chaîne de caractère contenant le nom du dossier de destination et le nom du fichier final
+					// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
+					if($_FILES['avatar']['size'] <= $maxSize){
+						/*
+						 * move_uploaded_file() retourne un booleen :
+						 *	- true si le fichier a bien été déplacé/envoyé
+						 *  - false si il y a une erreur
+						 */
+						if(move_uploaded_file($tmpFichier, $newFichier)){
+							$successimg = true;
+							$adress = $dbLink.'/'.$nomFichier;
+						}
+						else {
+							$error = 'Erreur lors de l\'envoi du fichier';
+						}
+					}
+				}
+
+				if(!empty($_POST)){
+					foreach($_POST as $key => $value){
+						$post[$key] = trim(strip_tags($value));
+					}
+					if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+						$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
+					}
+					if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+						$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
+					}
+					if ($post['password'] != $post['password_confirm']){
+						$errors[] = 'Votre mot de passe n\'est pas identique';
+					}
+					if (strlen($post['username']) < 3 || strlen($post['username']) > 18){
+						$errors[] = 'Votre pseudo doit contenir entre 3 et 18 caractères';
+					}
+					if(count($errors) === 0){
+						// Ici il n'y a pas d'erreurs, on peut donc enregistrer en base de données
+						$usersModel = new UsersModel();
+						$authModel = new AuthModel();
+
+						//on utilise la méthode insert() qui permet d'insérer des données en bases
 						$dataUser = [
-							'url' 		=> $post['url'],
+							//la clé du tableau correspond au nom de la colone SQL
+							'id' 		=> $id,
+							'username' 	=> $post['username'],
+							'firstname' => $post['firstname'],
+							'lastname' 	=> $post['lastname'],
+							'password' 	=> $authModel->hashPassword($post['password']),
 						];
-					}
-					if(!empty($_FILES['avatar'])){
-						$dataUser = [
-							'avatar' 	=> $adress,
-						];
-					}
-					// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
-					// Et on ajoute le token dans la table token_register
-					if($usersModel->update($dataUser, $id)){
-						$success = true;
-						$authModel->refreshUser();
-					}
+						if(!empty($post['url'])){
+							$dataUser = [
+								'url' 		=> $post['url'],
+							];
+						}
+						if(!empty($_FILES['avatar'])){
+							$dataUser = [
+								'avatar' 	=> $adress,
+							];
+						}
+						// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
+						// Et on ajoute le token dans la table token_register
+						if($usersModel->update($dataUser, $id)){
+							$success = true;
+							$authModel->refreshUser();
+						}
 
-				}
-			}//if empty post
-			//mettre en dehors des verif
-			# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
-			$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
-			$this->showWithNotif('user/updateUser', $params);
-		}//fin else !isset
+					}
+				}//if empty post
+				//mettre en dehors des verif
+				# On envoi les erreurs en paramètre à l'aide d'un tableau (array)
+				$params = ['errors' => $errors, 'success' => $success, 'successimg' => $successimg, 'adress' => $adress];
+				$this->showWithNotif('user/updateUser', $params);
+			}//fin else !isset
+		}
 	}
 }
