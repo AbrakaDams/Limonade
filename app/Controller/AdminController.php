@@ -5,9 +5,9 @@ use \W\Controller\Controller;
 use \Model\CommentsModel as CommentModel;
 use \Model\EventModel;
 use \Model\NewsfeedModel as NewsFeedModel;
-use \Model\AdminModel as AdminModel; 
-
+use \Model\AdminModel as AdminModel;
 use \W\Model\UsersModel as UsersModel; 
+
 
 class AdminController extends Controller
 {
@@ -111,6 +111,7 @@ class AdminController extends Controller
 		];		
 		$this->show('admin/checkEvent', $params);
 	}
+
 	/*****
 	*
 	* Fonction pour modifier un utilisateur
@@ -122,10 +123,10 @@ class AdminController extends Controller
 		$errors = array();
 		$success = false;
 		$successimg = false;
-		$usersData = array();
+		$userData = array();
 
 		$adminModel = new AdminModel;
-		$usersData = $adminModel->findUser($id);
+		$userData = $adminModel->findUser($id);
 
 		$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
 		$dbLink = '/limonade/public/assets/image';
@@ -170,8 +171,7 @@ class AdminController extends Controller
 
 			if(count($errors) === 0){
 
-				$usersModel = new UsersModel();
-				$authModel = new AuthModel();
+				$usersModel = new UsersModel();				
 
 				$data = [
 					'id' 		=> $id,
@@ -181,25 +181,22 @@ class AdminController extends Controller
 					'role' 		=> 'user',
 					'avatar' 	=> $post['url'],						
 				];
+				
 
-				$newUsers = $usersModel->findUser($data['id']);
-
-				if($UsersModel->update($data, $data['id'])){
+				if($usersModel->update($data,$data['id'])){
 					$success = true;
-
-					$params = [
-						'errors' 	=> $errors,
-						'success' 	=> $success,
-						'usersData' => $usersData,
-					];
-
-				$this->show('admin/checkUser');
-
 				}
 				else{
 					echo $errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';
 				}					
 			}				
 		}
+		$params = [
+			'errors' 	=> $errors,
+			'success' 	=> $success,
+			'userData' 	=> $userData,
+		];
+		$this->show('admin/checkUser', $params);
 	}
+
 }	
