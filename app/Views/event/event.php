@@ -11,30 +11,36 @@ sinon -->
 <?php if($roleEvent['role'] == 'event_admin'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
-			<div class="in-aside">
-				<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Inviter des amis</a>
-				<h3 class="title-aside"> Liste des participants :</h3>
-				<p class="lien-event"><?php
-				if($participants == null){
-					echo 'aucun participant';
+
+			<h3 class="particip-title"> Liste des participants :</h3>
+			<ul class="particip-friends-list">
+			<?php
+			if($participants == null){
+				echo 'aucun participant';
+			}
+			else{
+				foreach ($participants as $infos) {
+					echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname'].'</li>';
+
 				}
-				else{
-					foreach ($participants as $infos) {
-						echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
-					}
-				}
-				?></p>
-				<h3 class="title-aside">Mes évènements :</h3>
-				<?php foreach ($userEvents as $userEvent) : ?>
-					<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
-						<p class="lien-event"><?php echo $userEvent ['title'] ?></p>
-							<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
-								(Evènement terminé)
-							<?php endif ?>
-					</a>
-					<br>
-				<?php endforeach ?>
-			</div>
+			}
+			?>
+			</ul>
+
+			<hr>
+
+			<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+
+			<h3 class="particip-title">Mes évènements :</h3>
+			<?php foreach ($userEvents as $userEvent) : ?>
+				<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
+					<p class="lien-event"><?php echo $userEvent ['title'] ?></p>
+						<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
+							(Evènement terminé)
+						<?php endif; ?>
+				</a>
+				<br>
+			<?php endforeach; ?>
 		</aside>
 
 		<section id="event-main">
