@@ -19,7 +19,7 @@ $(document).ready(function(){
 		var pageCourante = window.location.pathname;
 		console.log(pageCourante);
 
-		if(pageCourante == '/limonade/public/' || pageCourante == '/limonade/public/updateUser'){
+		if(pageCourante == '/limonade/public/' || pageCourante == '/limonade/public/updateUser' || 'limonade/public/create'){
 			url = "	ajax/update-notif";
 		}else{
 			url = "../ajax/update-notif";
