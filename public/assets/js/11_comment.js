@@ -20,7 +20,7 @@ $('#form-comment').on('submit', function(e) {
             dataType: 'json', // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             data: formData + '&id=' + thisEventId, // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
             success: function(html) { // Je récupère la réponse du fichier PHP
-                console.log(html);
+                // console.log(html);
                 if(html.answer == 'success'){
                     showComment();
                     $('#form-comment').each(function(){
@@ -47,7 +47,7 @@ function showComment(){
                     $('#comments').text('');
                     // console.log(html);
                 $.each(html.allComments, function(key, value) {
-                    console.log(value.id_user == html.idUser);
+                    // console.log(value.id_user == html.idUser);
                     if(value.id_user == html.idUser){
                         console.log(html);
                         $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span></div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span><a href="#" class="delete" data-delete-comment="' + value.id + '"><i class="fa fa-times" aria-hidden="true"></i></a></div></div>');

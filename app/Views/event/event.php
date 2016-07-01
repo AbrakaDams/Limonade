@@ -100,18 +100,15 @@ sinon -->
 			</div>
 
 			<div id="event-lists">
-
+				<div id="add-new-list">
+					<button type="button" id="add-list-btn">+</button>
+					<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
+						<label for="add-list-input">Titre de cette liste</label>
+						<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
+						<input type="submit" value="Go">
+					</form>
+				</div>
 			</div>
-
-			<div id="add-new-list">
-				<button type="button" id="add-list-btn">+</button>
-				<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-					<label for="add-list-input">Titre de cette liste</label>
-					<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
-					<input type="submit" value="Go">
-				</form>
-			</div>
-
 
 			<?php  if(isset($w_user) && !empty($w_user)):?>
 				<div id="event-comments">

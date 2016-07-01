@@ -315,6 +315,49 @@ class ListController extends Controller
 		}
 	}
 
+	public function modifyList() {
+		if(!empty($_POST)) {
+			// clean received data
+			foreach ($_POST as $key => $value) {
+				$post[$key] = trim(strip_tags($value));
+			}
+			// if our name input exists in correst state
+			if(isset($post['list_title']) && !empty($post['list_title']) && isset($post['idEvent']) && !empty($post['idEvent']) && isset($post['idList']) && !empty($post['idList'])) {
+				//$user = $this->getUser();
+				$idEvent = intval($post['idEvent']);
+				$idList = intval($post['idList']);
+				// create variable to prevent empty insertions
+				$listName = $post['list_title'];
+				$timestamp = date('Y-m-d H:i:s');
+				//form data to insert to the database
+				$entryData = [
+				  'list_title' 	=> $listName,
+				];
+				// call model
+				$insertList = new ListModel();
+				$listInsertion = $insertList->update($entryData, $idList);
+				if($listInsertion) {
+
+					$user = $this->getUser();
+					$newsfeed = new NewsfeedModel();
+
+					$newsfeedData = [
+						'id_event'  => $idEvent,
+						'id_user'   => $user['id'],
+						'action'    => 'modify',
+						'id_list'   => $listInsertion['id'],
+						'date_news' => $timestamp,
+					];
+
+					if($newsfeed->insert($newsfeedData)) {
+						$this->showJson(['answer' => 'success']);
+					}
+				}
+
+			}
+		}
+	}
+
 	public function modifyCard() {
 
 		$post = [];
@@ -402,6 +445,22 @@ class ListController extends Controller
 			else {
 				$this->showJson(['errors' => $errors, 'list' => $idCard, 'event' => $idEvent]);
 			}
+		}
+	}
+
+	public function refreshList() {
+		if(!empty($_POST)) {
+
+			$idList = 0;
+			if(isset($_POST['idList']) && !empty($_POST['idList'])) {
+				$idList = intval($_POST['idList']);
+			}
+
+			$lists = new ListModel();
+			$thisList = $lists->find($idList);
+
+			$this->showJson(['card' => $thisList]);
+
 		}
 	}
 

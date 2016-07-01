@@ -10,7 +10,7 @@
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
-		
+
 		/**************************** Search ********************/
 		['GET|POST', '/search-result', 'Search#searchResult', 'event_searchResult'],
 
@@ -24,6 +24,7 @@
 		['GET|POST', '/ajax/add-list', 'List#addList', 'list_addList'],
 		['GET|POST', '/ajax/delete-list', 'List#deleteList', 'list_deleteList'],
 		['GET|POST', '/ajax/modify-list', 'List#modifyList', 'list_modifyList'],
+		['GET|POST', '/ajax/refresh-list', 'List#refreshList', 'list_refreshList'],
 
 				/******************* Cards ******************/
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
