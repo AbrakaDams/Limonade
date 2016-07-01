@@ -40,10 +40,9 @@
 						<a href="<?= $this->url('event_createEvent');?>">
 						<i class="glyphicon glyphicon-plus"></i></a>
 					</li>
-					<!-- notifications -->
-					<li id="notification_li">
-						<?php $this->insert('partials/notif') ?>
-					</li>
+					
+					<?php $this->insert('partials/notif') ?>
+					
 
 
 					<li class="dropdown show-account">

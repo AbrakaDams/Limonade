@@ -11,23 +11,22 @@ class SearchController extends Controller
 	 * Méthode pour searchbar
 	 */
 
-	public function searchBar(keyword)
-	{
-
+	public function searchResult()
+	{		
 		if(!empty($_GET) && isset($_GET['search'])){
 
 			$keyword = trim(strip_tags($_GET['search']));
 			$searchBar = new EventModel();
 
+
 			$data =[
-			'title' => $keyword,
+				'title' => $keyword,
 			];
-
 			var_dump($data);
+			
 
-			$searchBar->search($data);
+			$param = ['search' => $searchBar->search($data)];
 		}
-		$this->show('event/search', $data); 
-
+		$this->showWithNotif('event/search-result', $param);
 	}
 }
