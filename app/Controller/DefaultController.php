@@ -16,8 +16,7 @@ class DefaultController extends MasterController
 	public function home()
 	{
 		$loggedUser = $this->getUser();
-		var_dump($loggedUser);
-		if(!isset($loggedUser) && $loggedUser['etat'] != 'banned'){
+		if(!isset($loggedUser)){
 			// non connecté
 			$event = new EventModel();
 			$role = 'public';
