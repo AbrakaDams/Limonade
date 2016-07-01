@@ -29,12 +29,12 @@
     </p>
 <?php endif; ?>
 </div> 
-<div class="container">
+<div class="container" id="form-crea">
     <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
         <h1 class="center">Créez votre événement</h1><br><br>
         <div class="row">
-            <div class="column-create">
-                <div class="col-xs-3" id="fond-event">
+            <div class="part1">
+                <div class="col-xs-3">
                     <label for="type-event">Visibilité d'événement</label><br>
                     <input type="radio" name="role" id="private" value="private">
                     <label for="private" class="masterTooltip" title="Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.">Privé 
@@ -59,9 +59,9 @@
         </div>    
         <hr>  
         <br>
-        <div class="column-create">
+        <div class="">
             <div class="row">
-                <div class="col-xs-6">    
+                <div class="col-xs-6 col-md-4">    
                     <label for="description" class="masterTooltip" title="Entrez une brève description de votre évènement">Description d'évenement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
                     <textarea name="description" rows="3" cols="70" placeholder="Une brève description de votre événement "></textarea>
                 </div>  
@@ -88,20 +88,22 @@
               </div>
             </div>
             <div class='col-xs-6 col-md-4'>
-              <div class="form-group" id="date_end">
-                <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin d'événement</i><br><br>
-                <label for="date_end" name="date_end" class="masterTooltip" title="Fin de votre événement">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
-                  <div class="input-group">
-                      <input type="text" name="date_end" class="form-control" id='datetimepickerend'>
+                <div class="form-group" id="date_end">
+                    <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin d'événement</i><br><br>
+                    <label for="date_end" name="date_end" class="masterTooltip" title="Fin de votre événement">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+                    <div class="input-group">
+                        <input type="text" name="date_end" class="form-control" id='datetimepickerend'>
                         <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="validcreate-event">
+                <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button> 
             </div>
         </div>
         <hr>  
-        <button type="submit" id="validCreaEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button> 
     </form>
 </div><!-- fin du container -->
 
