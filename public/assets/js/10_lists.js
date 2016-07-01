@@ -312,7 +312,10 @@ function refreshCard(id) {
         data: 'id=' + id,
         dataType: 'json',
         success: function(result) {
-            console.log(result);
+            if(result.length > 0) {
+                $('.card data-id-card=' + id).text('');
+                $('.card data-id-card=' + id).append('<h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden">Modifier cette tache '+ modifyCard +'</span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsable">'+value.username+' s\'en occupe</span>');
+            }
         },
         error: function(e) {
             console.log(e);
