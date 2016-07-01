@@ -2,10 +2,10 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Model\CommentsModel as CommentModel;
-use \Model\EventModel;
 use \Model\NewsfeedModel as NewsFeedModel;
 use \Model\AdminModel as AdminModel;
+use \Model\EventModel as EventsModel;
+use \Model\CommentsModel;
 use \W\Model\UsersModel as UsersModel; 
 
 
@@ -58,8 +58,8 @@ class AdminController extends Controller
 			if(empty($post['category'])){
 				$errors[] = 'Vous devez cocher un bouton catégorie !';
 			}
-			if(strlen($post['title']) < 3 || strlen($post['title']) > 20){
-				$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 20 caractères';				
+			if(strlen($post['title']) < 3 || strlen($post['title']) > 30){
+				$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 30 caractères';				
 			}
 			if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 				$errors[] = 'La description doit contenir minimum 5 caractères';
@@ -76,8 +76,8 @@ class AdminController extends Controller
 			}
 			if(count($errors) === 0){
 
-				$eventModel = new AdminModel();
-				$EventUsersModel = new EventModel();
+				$adminModel = new AdminModel();
+				$EventUsersModel = new EventsModel();
 
 				$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
 	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
@@ -93,7 +93,7 @@ class AdminController extends Controller
  	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),			
 				];
 
-				$newEvent = $eventModel->findEvent($data['id']);
+				$newEvent = $adminModel->findEvent($data['id']);
 
 				if($EventUsersModel->update($data,$data['id'])){
 					$success = true;				
@@ -205,16 +205,31 @@ class AdminController extends Controller
 	***/
 	public function users()
 	{
+		$usersModel = new UsersModel;
+		$users = $usersModel->findAll();
+
+		$params = ['users' => $users];
+
 		$this->show('admin/users', $params);
 	}
 
 	public function events()
 	{
-		$this->show('admin/users', $params);
+		$eventsModel = new EventsModel;
+		$events = $eventsModel->findAll();
+
+		$params = ['events' => $events];
+
+		$this->show('admin/events', $params);
 	}
 	
 	public function comments()
 	{
-		$this->show('admin/checkUser', $params);
+		$commentsModel = new CommentsModel;
+		$comments = $commentsModel->findAll();
+
+		$params = ['users' => $comments];
+
+		$this->show('admin/comments', $params);
 	}
 }	

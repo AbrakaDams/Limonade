@@ -6,6 +6,7 @@
 <?php if(isset($success) && $success == true): ?>
 	<div class="alert alert-success">
 		<p>Tout est bon, votre évènement a bien été modifié.</p>
+		<a href="<?= $this->url('admin_events'); ?>">Retour à la liste des évènements.</a>
 	</div>
 <?php endif; ?>
 

@@ -64,7 +64,7 @@
 		['GET|POST', '/admin/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
 		['GET|POST', '/admin/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
 		['GET|POST', '/admin/users', 'Admin#users', 'admin_users'],
-		['GET|POST', '/admin/events', 'Admin#event', 'admin_events'],
+		['GET|POST', '/admin/events', 'Admin#events', 'admin_events'],
 		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],
 
 

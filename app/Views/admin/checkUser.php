@@ -1,8 +1,6 @@
 <?php $this->layout('layoutAdmin', ['title' => 'Modifier les informations d\'un utilisateur']) ?>
 
 <?php $this->start('main_content') ?>
-
-
 <!-- Formulaire de modification user ADMIN -->
 <?php if(isset($success) && $success == true): ?>
 	<div class="alert alert-success">
@@ -16,7 +14,7 @@
 	</div>
 <?php endif; ?>
 
-<form method="POST" class="pure-form" enctype="multipart/form-data">
+<form id="update" method="POST" class="pure-form" enctype="multipart/form-data">
 	<h1 class="center">Modifier un utilisateur</h1>
 	<div class="form-group">
 		<label for="ident">Pseudo </label>
@@ -43,3 +41,13 @@
 
 
 <?php $this->stop('main_content') ?>
+<?php $this->start('js'); ?>
+
+<script>
+$('form#update button').on('click', function(e){
+	console.log(e);
+});
+
+
+</script>
+<?php $this->stop('js'); ?>
