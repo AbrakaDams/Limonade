@@ -1,4 +1,4 @@
-<?php $this->layout('layoutContact', ['title' => 'Contact']) ?>
+<?php $this->layout('layout', ['title' => 'Contact']) ?>
 
 <?php $this->start('main_content') ?>
  <a href="<?= $this->url('default_home') ?>">
