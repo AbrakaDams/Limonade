@@ -12,7 +12,7 @@
 </head>
 <body>
 
-		<section style="background-color: #d8ddd7">
+		<section id="contactSection">
 			<?= $this->section('main_content') ?>
 		</section>
 
