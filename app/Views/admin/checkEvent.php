@@ -32,10 +32,10 @@
 	      <label for="cat-event" class="masterTooltip" title="Ceci est le style de votre évènement">Catégorie de votre événement <i class="fa fa-info-circle" aria-hidden="true"></i></label>
 	      	<br>	        
 	      	<select name="category">
-	      		<option name="category" value="vacances"<?php if($eventData['category'] == 'vacances'){ echo 'selected';}?>>Vacances</option>	      		
-	      		<option name="category" value="soiree"<?php if($eventData['category'] == 'soiree'){ echo 'selected';}?>>Soirées</option>
-	      		<option name="category" value="repas"<?php if($eventData['category'] == 'repas'){ echo 'selected';}?>>Repas</option>	      		
-	      		<option name="category" value="journee"<?php if($eventData['category'] == 'journee'){ echo 'selected';}?>>Journées</option>
+	      		<option name="category" value="<?php if($eventData['category'] == 'vacances'){ echo 'selected';}?>">Vacances</option>	      		
+	      		<option name="category" value="<?php if($eventData['category'] == 'soiree'){ echo 'selected';}?>">Soirées</option>
+	      		<option name="category" value="<?php if($eventData['category'] == 'repas'){ echo 'selected';}?>">Repas</option>	      		
+	      		<option name="category" value="<?php if($eventData['category'] == 'journee'){ echo 'selected';}?>">Journées</option>
 	      	</select>
     	</div>	    
 	</div>

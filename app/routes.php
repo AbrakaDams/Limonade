@@ -58,6 +58,7 @@
 		/***************************** admin *************************/
 		['GET|POST', '/back_office', 'Admin#admin', 'admin_admin'],
 		['GET|POST', '/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
+		['GET|POST', '/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
 
 
 	);

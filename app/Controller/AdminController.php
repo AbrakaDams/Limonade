@@ -82,15 +82,14 @@ class AdminController extends Controller
 				$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
 	  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
 
-				$data = [
-					'id'            => $id,
+				$data = [					
 					'category' 		=> $post['category'],
 	  				'role'     		=> $post['role'],
 	  				'title'     	=> $post['title'],
 	  				'description'   => $post['description'],
 	  				'address' 		=> $post['address'],
 	  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
-	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),	  				
+ 	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),			
 				];
 
 				$newEvent = $eventModel->findEvent($data['id']);
