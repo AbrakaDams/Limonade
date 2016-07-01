@@ -56,11 +56,6 @@
 					break;
 			}
 			?>);">
-				<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
-					<div id="event-expired">
-					Attention cet évènement est maintenant terminé!
-					</div>
-				<?php endif; ?>
 				<div class="event-data-container">
 					<!-- SHOW EVENT NAME -->
 					<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
@@ -89,6 +84,11 @@
 					<?php endif; ?>
 				</div>
 			</div>
+			<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
+				<div id="event-expired">
+				Attention cet évènement est maintenant terminé!
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<div id="event-lists">
