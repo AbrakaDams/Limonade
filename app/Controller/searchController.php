@@ -20,6 +20,7 @@ class SearchController extends MasterController
 
 			$data =[
 				'title' 	=> $keyword,
+				'category'	=> $keyword,
 			];
 			
 
