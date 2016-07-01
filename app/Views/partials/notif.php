@@ -1,6 +1,6 @@
 <a href="#notification" id="notificationLink">
 	<?php if($w_unread_notif['haveUnreadNotif']) : ?>
-		<i class="glyphicon glyphicon-bell bell-active" style="color: orange;"></i>
+		<i class="glyphicon glyphicon-bell bell-active"></i>
 	<?php else : ?>
 		<i class="glyphicon glyphicon-bell"></i>
 	<?php endif ; ?>
