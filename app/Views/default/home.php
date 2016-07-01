@@ -30,7 +30,7 @@
 
 	<!-- bla transparent line at the bottom of slider  -->
 	<div class="connect-sub">
-		<a href="<?= $this->url('user_login'); ?>">Connectez-nous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
+		<a href="<?= $this->url('user_login'); ?>">Connectez-vous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
 	</div>
 </section>
 
