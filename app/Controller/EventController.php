@@ -156,14 +156,17 @@ class EventController extends MasterController
 		  			$eventModel = new EventModel();
 		  			$EventUsersModel = new EventUsersModel();
 
+		  			$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
+	  				$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
+
 		  			$data = [
 		  				'category' 		=> $post['category'],
 		  				'role'     		=> $post['role'],
 		  				'title'     	=> $post['title'],
 		  				'description'   => $post['description'],
 		  				'address' 		=> $post['address'],
-		  				'date_start'	=> $post['date_start'],
-		  				'date_end'	    => $post['date_end'],
+		  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
+	  					'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),	  
 		  			];
 
 		  			$newEvent = $eventModel->insert($data);

@@ -53,10 +53,10 @@ class AdminController extends Controller
 				$post[$key] = trim(strip_tags($value));
 			}			
 			if(empty($post['role'])){
-				$errors[] = 'Vous devez cocher un bouton role !';
+				$errors[] = 'Vous devez cocher un bouton rôle !';
 			}
 			if(empty($post['category'])){
-				$errors[] = 'Vous devez cocher un bouton cat !';
+				$errors[] = 'Vous devez cocher un bouton catégorie !';
 			}
 			if(strlen($post['title']) < 3 || strlen($post['title']) > 20){
 				$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 20 caractères';				
@@ -108,8 +108,7 @@ class AdminController extends Controller
 			'success' 	=> $success,
 			'eventData' => $eventData,		
 			
-		];
-		var_dump($eventData);
+		];		
 		$this->show('admin/checkEvent', $params);
 	}
 	/*****

@@ -2,6 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
+
 <!-- Formulaire pour modifier l'évènement -->
 <?php if(isset($success) && $success == true): ?>
 	<div class="alert alert-success">
@@ -16,14 +17,14 @@
 	</div>
 <?php endif; ?>
 
-<?php var_dump($eventData); ?>
+
 <form method="post" class="form-create-event" id="createEvent" onsubmit="return validateForm()">
 	<h1 class="center">Modifier un évènement</h1>	
 	<hr>
 	<div class="row">	
 	    <div class="col-xs-6 .col-md-4">
 	      	<label for="type-event">Etendue de votre événement</label><br>
-	      		<input type="radio" name="role" id="private" value="private"<?php  if($eventData['role'] == 'private'){ echo 'checked';}?>>Privée
+	      		<input type="radio" name="role" id="private" value="private"<?php if($eventData['role'] == 'private'){ echo 'checked';}?>>Privée
 	      		<input type="radio" name="role" id="public" value="public"<?php if($eventData['role'] == 'public'){ echo 'checked';}?>>Publique
 	    	<br>
 	    </div>     
