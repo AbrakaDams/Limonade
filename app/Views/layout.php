@@ -15,6 +15,7 @@
 </head>
 <body>
 	<header>
+		<?php if(isset($w_user) && !empty($w_user)): ?>
 		<!-- ma navbar -->
 		<nav class="navbar">
 	  	<div class="container-fluid">
@@ -79,6 +80,7 @@
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
 		</nav>
+	<?php endif; ?>
 	</header>
 
 		<section>
@@ -121,7 +123,7 @@
 							<p><address><i class="fa fa-map-marker" aria-hidden="true"></i> 66 rue de l’Abbé de l’Epée<br> 33 000 Bordeaux, France</address>
 							</p>
 							<p><i class="fa fa-phone" aria-hidden="true"></i> (+33)05 05 28 25 46</p>
-							<p><i class="fa fa-envelope" aria-hidden="true"></i> 
+							<p><i class="fa fa-envelope" aria-hidden="true"></i>
 							team_power-ranger@best.com</p>
 						</div>
 					</div>
