@@ -27,46 +27,51 @@ class EventController extends MasterController
             $this->redirectToRoute('user_login');
         }
         else{
-			/*
-			* Liste des participants (5 derniers)
-			*/
-			$participants = array();
-			$allparticipants = array();
-			$idUsers = array();
-
-			// On récupère les users participant à l'évènement
 			$EventModel = new EventModel();
 			$UsersModel = new UsersModel();
 			$EventUsersModel = new EventUsersModel();
+			if(!$EventModel->find($id)){
+				$this->showNotFound();
+			}
+			else{
+				/*
+				* Liste des participants (5 derniers)
+				*/
+				$participants = array();
+				$allparticipants = array();
+				$idUsers = array();
 
-			$EventParticipants = $EventUsersModel->getEventUsers($id);
+				// On récupère les users participant à l'évènement
 
-			$participants = $EventUsersModel->findAllUsers($id);
+				$EventParticipants = $EventUsersModel->getEventUsers($id);
 
-			$eventData = $EventModel->find($id);
+				$participants = $EventUsersModel->findAllUsers($id);
 
-			$news = new NewsFeedController();
-			$newsFeed = $news->newsFeed($id);
+				$eventData = $EventModel->find($id);
 
-			// On récupère les infos du user connecté
-			$authModel = new AuthModel();
-			$user = $authModel->getLoggedUser();
+				$news = new NewsFeedController();
+				$newsFeed = $news->newsFeed($id);
 
-			$bla = $EventUsersModel->findUserInEvent($id,$user['id']);
+				// On récupère les infos du user connecté
+				$authModel = new AuthModel();
+				$user = $authModel->getLoggedUser();
 
-			// On récupère les évènements auquel l'utilisateur participe
-			$userEvents = $EventUsersModel->findAllUserEvents($user['id']);
+				$bla = $EventUsersModel->findUserInEvent($id,$user['id']);
 
-			// send received data to the event.php
-			$showEvent = [
-				'thisEvent'			=> $eventData,
-				'showNewsFeed'		=> $newsFeed,
-				'participants'		=> $participants,
-				'userEvents'		=> $userEvents,
-				'ok'				=> $bla,
-			 ];
+				// On récupère les évènements auquel l'utilisateur participe
+				$userEvents = $EventUsersModel->findAllUserEvents($user['id']);
 
-			$this->showWithNotif('event/event', $showEvent);
+				// send received data to the event.php
+				$showEvent = [
+					'thisEvent'			=> $eventData,
+					'showNewsFeed'		=> $newsFeed,
+					'participants'		=> $participants,
+					'userEvents'		=> $userEvents,
+					'ok'				=> $bla,
+				 ];
+
+				$this->showWithNotif('event/event', $showEvent);
+			}
 		}
 	}
 
