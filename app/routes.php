@@ -57,9 +57,10 @@
 		['GET|POST', '/facebook/logged', 'User#fbCallBack', 'user_fbCallBack'],
 
 		/***************************** admin *************************/
-		['GET|POST', '/back_office', 'Admin#admin', 'admin_admin'],
-		['GET|POST', '/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
-		['GET|POST', '/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
+		/***************************** admin *************************/
+		['GET|POST', '/admin', 'Admin#admin', 'admin_admin'],
+		['GET|POST', '/admin/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
+		['GET|POST', '/admin/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
 
 
 	);
