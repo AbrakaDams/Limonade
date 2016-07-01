@@ -33,7 +33,7 @@ class AdminController extends Controller
 	* Function pour modifier un event
 	*
 	***/
-	public function checkEvent()
+	public function checkEvent($id)
 	{
 		$post = array();
 		$errors = array();
