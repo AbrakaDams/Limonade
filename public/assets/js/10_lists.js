@@ -15,6 +15,11 @@ $(function() {
         $(this).addClass('hidden');
         $(this).next().removeClass('hidden');
     });
+
+    $('body').on('click', '.close-modify-card', function(e){
+        var hideModif = $(this).parent()
+        $(hideModif).addClass('hidden');
+    });
 });
 
 // hide our add list input if we click anywhere else and if our input is empty
@@ -56,7 +61,7 @@ var newCardEnd = '</select><br><input type="submit" value="Go"><input type="rese
 // newCard = newCardStart + createCardOptions(data.users) + newCardEnd
 var newCard;
 
-var modifyCardStart = '<form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option>';
+var modifyCardStart = '<span class="close-modify-card">Close</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option>';
 
 var modifyCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form>';
 
@@ -236,36 +241,63 @@ $('#event-lists').on('click', '.delete-card', function(e) {
     })
 });
 
+var modifForm;
+var idCard;
 
-$('#event-lists').on('click', '.modify-card', function(e) {
-    e.preventDefault();
+$(document).ready(function() {
+    $('#event-lists').on('click', '.modify-card', function(e) {
+        e.preventDefault();
 
-    var idCard = $(this).attr('data-modify-card');
+        idCard = $(this).attr('data-modify-card');
 
-    $('.modify-card-container').removeClass('hidden');
+        var modifCard = $(this).find('.modify-card-container');
 
-    $('modify-card-form:visible').on('submit', function() {
-        var formData = $(this).serialize();
+        $(modifCard).removeClass('hidden');
 
-        $.ajax({
-            type: 'POST',
-            url: '../ajax/modify-card',
-            data: formData + '&eventId=' + thisEvent + '&cardId=' + idCard,
-            dataType: 'json',
-            success: function(output) {
-                if(output.answer == 'modified') {
-                    $('.modify-card-form').each(function(){
-                        $(this)[0].reset();
-                    });
-                    // refresh lists right away, prevent to wait 7 seconds
-                    //getContent(lastDate);
-                    $('.add-card-btn').removeClass('hidden');
-                    $('.add-card-form').addClass('hidden');
+        modifForm = $(this).find('.modify-card-form');
+
+        $(modifForm).submit(function() { console.log('Hehe');});
+
+        // modifyCard(modifForm);
+
+        //console.log(modifForm);
+
+    });
+
+    $('#event-lists').delegate('form input[type=submit]', "click", function(e) {
+        console.log('modif function is called');
+        modifyCard(modifForm, e);
+    });
+
+    function modifyCard(form, e) {
+
+        // $(form).on('submit', function(e) {
+            console.log('inside function');
+            e.preventDefault();
+            //console.log('3:'+modifForm);
+            var formData = $(form).serialize();
+            console.log(formData);
+            $.ajax({
+                type: 'POST',
+                url: '../ajax/modify-card',
+                data: formData + '&eventId=' + thisEvent + '&cardId=' + idCard,
+                dataType: 'json',
+                success: function(output) {
+                    console.log(output);
+                    if(output.answer == 'modified') {
+                        $('.modify-card-form').each(function(){
+                            $(this)[0].reset();
+                        });
+                        // refresh lists right away, prevent to wait 7 seconds
+                        //getContent(lastDate);
+                        $(modifCard).addClass('hidden');
+                    }
+                },
+                error: function(e) {
+                    console.log(e);
                 }
-            },
-            error: function(e) {
-                console.log(e);
-            }
-        });
-    })
-})
+            });
+        // });
+    }
+
+});

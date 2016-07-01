@@ -379,9 +379,9 @@ class ListController extends Controller
 				  'date_add'		=> $timestamp,
 				];
 				// call model
-				$insertList = new CardsModel();
+				$modifyList = new CardsModel();
 				// insert
-				if($insertCard = $insertList->update($cardData, $idCard)) {
+				if($modifyCard = $insertList->update($cardData, $idCard)) {
 
 					$user = $this->getUser();
 					$newsfeed = new NewsfeedModel();
@@ -390,7 +390,7 @@ class ListController extends Controller
 						'id_event' 	=> $idEvent,
 						'id_user' 	=> $user['id'],
 						'action' 	=> 'modify',
-						'id_card' 	=> $insertCard['id'],
+						'id_card' 	=> $modifyCard['id'],
 						'date_news' => $timestamp,
 					];
 
