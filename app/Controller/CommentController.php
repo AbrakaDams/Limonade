@@ -101,9 +101,9 @@ class CommentController extends Controller
 
               $phraseType = 'Il y a eut un ou plusieurs commendaires dans l\'évènement : ';
               $phraseType .= $dataEvent['title'];
-                $json = $json = ['answer' => ''];
 
-              foreach ($usersInEvent as $userInEvent) {
+              $json = $json = ['answer' => 'success'];
+              foreach($usersInEvent as $userInEvent){
                 $dataVerif = [
                   'id_user'     => $userInEvent['id'],
                   'id_event'    => $id,

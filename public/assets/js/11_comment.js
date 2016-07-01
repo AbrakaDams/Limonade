@@ -11,7 +11,7 @@ $('#form-comment').on('submit', function(e) {
     // Je vérifie une première fois pour ne pas lancer la requête HTTP
     // si je sais que mon PHP renverra une erreur
     if(comment == '') {
-        alert('Les champs doivent êtres remplis');
+        alert('Le champ commentaire dois êtres remplis');
     } else {
         // Envoi de la requête HTTP en mode asynchrone
         $.ajax({
