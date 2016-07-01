@@ -379,6 +379,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `event` (
 	`address` VARCHAR(255) NOT NULL ,
 	`date_start` DATETIME NOT NULL ,
 	`date_end` DATETIME NOT NULL ,
+	`event_avatar` VARCHAR(255) NOT NULL ,
 	`role` ENUM('public','private') NOT NULL ,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
@@ -395,6 +396,7 @@ $events = array(
 	  'address'  => 'Pas loin de chez moi... au bout à droite',
 	  'date_start'  => '2017-11-11 23:25:06',
 	  'date_end'  => '2017-11-12 01:25:06',
+	  'event_avatar'  => '',
 	  'role'  => 'public',
 	],
   [
@@ -404,6 +406,7 @@ $events = array(
     'address'  => 'Pas loin de chez moi... au bout a gauche, au fond du couloir',
     'date_start'  => '2017-09-21 08:45:06',
     'date_end'  => '2017-09-21 10:45:06',
+    'event_avatar'  => '',
     'role'  => 'private',
   ],
   [
@@ -413,6 +416,7 @@ $events = array(
     'address'  => 'Chez moi, sur la terrasse',
     'date_start'  => '2018-05-01 21:12:06',
     'date_end'  => '2018-05-01 22:12:06',
+    'event_avatar'  => '',
     'role'  => 'public',
   ],
   [
@@ -422,6 +426,7 @@ $events = array(
     'address'  => 'tu vois la route de l\'enfer bin tu la prend c\'est juste au bout',
     'date_start'  => '2017-12-01 12:12:06',
     'date_end'  => '2017-12-01 15:00:06',
+    'event_avatar'  => '',
     'role'  => 'private',
   ],
   [
@@ -431,6 +436,7 @@ $events = array(
     'address'  => 'Lacanau Bitch',
     'date_start'  => '2017-10-06 01:12:06',
     'date_end'  => '2017-10-06 08:12:06',
+    'event_avatar'  => '',
     'role'  => 'private',
   ],
 );
@@ -444,13 +450,14 @@ foreach ($events as $event) {
 
 	if($reqTitle->rowCount() == 0){
 
-		$sql = $db->prepare('INSERT INTO event (category, title, description, address, date_start, date_end, role) VALUES (:category, :title, :description, :address, :date_start, :date_end, :role)');
+		$sql = $db->prepare('INSERT INTO event (category, title, description, address, date_start, date_end, event_avatar, role) VALUES (:category, :title, :description, :address, :date_start, :date_end, :event_avatar, :role)');
     $sql->bindValue(':category', $event['category']);
     $sql->bindValue(':title', $event['title']);
     $sql->bindValue(':description', $event['description']);
     $sql->bindValue(':address', $event['address']);
     $sql->bindValue(':date_start', $event['date_start'], PDO::PARAM_INT);
     $sql->bindValue(':date_end', $event['date_end'], PDO::PARAM_INT);
+	$sql->bindValue(':event_avatar', $event['event_avatar']);
     $sql->bindValue(':role', $event['role']);
 		$sql->execute();
 	}else{
