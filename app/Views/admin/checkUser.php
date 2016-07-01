@@ -19,21 +19,21 @@
 <form method="POST" class="pure-form" enctype="multipart/form-data">
 	<h1 class="center">Modifier un utilisateur</h1>
 	<div class="form-group">
-		<label for="ident">Pseudo</label>
-		<input type="text" id="ident" name="username" value="<?php echo $usersData['username']; ?>">
+		<label for="ident">Pseudo </label>
+		<input type="text" name="username" id="ident" value="<?php echo $userData['username']; ?>">
 	</div>
 	<div class="form-group">
-		<label for="ident">Prénom</label>
-		<input type="text" id="ident" name="firstname" value="<?php echo $usersData['firstname']; ?>">
+		<label for="ident">Prénom </label>
+		<input type="text" name="firstname" id="ident" value="<?php echo $userData['firstname']; ?>">
 	</div>
 	<div class="form-group">
-		<label for="ident">Nom de famille</label>
-		<input type="text" id="ident" name="lastname" value="<?php echo $usersData['lastname']; ?>">
+		<label for="ident">Nom de famille </label>
+		<input type="text" name="lastname" id="ident" value="<?php echo $userData['lastname']; ?>">
 	</div>
 	<div class="form-group">
 		<label for="exampleInputFile"> Charger mon image </label>
 		<input name="avatar" type="file" id="img1">
-		<p class="help-block"> mon avatar <br></p>
+		<p class="help-block"> Mon avatar <br></p>
 		<input type="text" placeholder="www.mon_image.com" type="text" name="url"/>
 	</div>
 	<button type="submit" class="btn btn-default">Modifier l'utilisateur</button>	

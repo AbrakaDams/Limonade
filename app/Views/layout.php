@@ -11,10 +11,10 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-
 </head>
 <body>
 	<header>
+		<?php if(isset($w_user) && !empty($w_user)): ?>
 		<!-- ma navbar -->
 		<nav class="navbar">
 	  	<div class="container-fluid">
@@ -64,7 +64,7 @@
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 							<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
 
-							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez nous </a></li>
+							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-vous </a></li>
 
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
@@ -72,12 +72,13 @@
 			<?php else:  ?>
 				<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
 				<!-- identité -->
-				<li><a href="<?= $this->url('user_login'); ?>">Connectez vous</a></li>
+				<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
 				<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
 			<?php endif;  ?>
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
 		</nav>
+	<?php endif; ?>
 	</header>
 
 		<section>
@@ -120,7 +121,7 @@
 							<p><address><i class="fa fa-map-marker" aria-hidden="true"></i> 66 rue de l’Abbé de l’Epée<br> 33 000 Bordeaux, France</address>
 							</p>
 							<p><i class="fa fa-phone" aria-hidden="true"></i> (+33)05 05 28 25 46</p>
-							<p><i class="fa fa-envelope" aria-hidden="true"></i> 
+							<p><i class="fa fa-envelope" aria-hidden="true"></i>
 							team_power-ranger@best.com</p>
 						</div>
 					</div>
@@ -171,6 +172,8 @@
 
 	<!-- CDN pour le datetimePicker -->
 	<script src="<?= $this->assetUrl('js/bootstrap-datetimepicker.min.js');?>"></script>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/carous.js') ?>"></script>
 	<?= $this->section('js'); ?>
 
 </body>

@@ -34,7 +34,7 @@
         <h1 class="center">Créez votre événement</h1><br><br>
         <div class="row">
             <div class="column-create">
-                <div class="col-xs-3">
+                <div class="col-xs-3" id="fond-event">
                     <label for="type-event">Visibilité d'événement</label><br>
                     <input type="radio" name="role" id="private" value="private">
                     <label for="private" class="masterTooltip" title="Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.">Privé 
@@ -56,6 +56,7 @@
                     <input type="text" name="title" placeholder="Le titre" required><br><br>
                 </div>
             </div>
+        </div>    
         <hr>  
         <br>
         <div class="column-create">

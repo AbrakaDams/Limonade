@@ -376,14 +376,13 @@ class ListController extends Controller
 				  'quantity' 		=> $post['card_quantity'],
 				  'price' 			=> $post['card_price'],
 				  'id_user' 		=> $responsible,
-				  'date_add'		=> $timestamp,
 				];
 				// call model
-				$modify = new ListModel();
+				$modify = new CardsModel();
 				// insert
-				if($modifyCard = $modify->updateOneCard($cardData, $idCard)) {
 
-					$this->showJson(['modif' => 'not ok']);
+				if($modifyCard = $modify->update($cardData, $idCard)) {
+
 					$user = $this->getUser();
 					$newsfeed = new NewsfeedModel();
 
@@ -411,11 +410,11 @@ class ListController extends Controller
 
 			$idCard = 0;
 			if(isset($_POST['idCard']) && !empty($_POST['idCard'])) {
-				$idCard = intval($_POST['empty']);
+				$idCard = intval($_POST['idCard']);
 			}
 
-			$cards = new ListModel();
-			$thisCard = $cards->getOneCard($idCard);
+			$cards = new CardsModel();
+			$thisCard = $cards->find($idCard);
 
 			$this->showJson(['card' => $thisCard]);
 
