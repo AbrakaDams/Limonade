@@ -5,6 +5,7 @@ use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
 use \Model\CardsModel as CardsModel;
 use \Model\NewsfeedModel as NewsfeedModel;
+use \W\Security\AuthentificationModel;
 use \Controller\EventController;
 
 class ListController extends Controller
@@ -15,6 +16,8 @@ class ListController extends Controller
 	 */
 	public function addList()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -79,6 +82,8 @@ class ListController extends Controller
 	 */
 	public function addCard()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -185,6 +190,8 @@ class ListController extends Controller
 	 */
 	public function getList()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -251,6 +258,8 @@ class ListController extends Controller
 	 */
 	public function deleteList()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -297,6 +306,8 @@ class ListController extends Controller
 
 	public function deleteCard()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -342,6 +353,8 @@ class ListController extends Controller
 
 	public function modifyList()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -397,6 +410,8 @@ class ListController extends Controller
 
 	public function modifyCard()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -498,6 +513,8 @@ class ListController extends Controller
 
 	public function refreshList()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -526,6 +543,8 @@ class ListController extends Controller
 
 	public function refreshCard()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');

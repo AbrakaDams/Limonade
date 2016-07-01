@@ -6,6 +6,7 @@ use \Controller\MasterController;
 use \Model\EventModel as EventModel;
 use \Model\EventUsersModel;
 use \Model\ContactModel as Contact;
+use \W\Security\AuthentificationModel;
 
 class DefaultController extends MasterController
 {
@@ -15,6 +16,8 @@ class DefaultController extends MasterController
 	 */
 	public function home()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			// non connecté

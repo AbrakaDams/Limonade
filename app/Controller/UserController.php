@@ -17,6 +17,8 @@ class UserController extends MasterController
 	 */
 	public function register()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		// On va chercher l'utilisateur pour le connecter
 		$loggedUser = $this->getUser();
 		//Si loggedUser est définie
@@ -245,8 +247,10 @@ class UserController extends MasterController
 	/**
 	 * Fonction Permettant de se connecter via facebook
 	 */
-	public function loginFacebook(){
-
+	public function loginFacebook()
+	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		// On va chercher l'utilisateur pour le connecter
 		$loggedUser = $this->getUser();
 		//Si loggedUser est définie
@@ -436,6 +440,8 @@ class UserController extends MasterController
 		 */
 	public function login()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		// Si il est conecter on le redirige
 		$loggedUser = $this->getUser();
 
@@ -499,7 +505,10 @@ class UserController extends MasterController
 	/**
 	 * Function permettant de se déconnecter
 	 */
-	public function logout(){
+	public function logout()
+	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		// Si il n'est pas connecté on le redirige
 		$loggedUser = $this->getUser();
 
@@ -696,7 +705,10 @@ class UserController extends MasterController
 	/**
 	 * Fonction permettant de mettre a jour les données de l'utilisateur connecté
 	 */
-	public function updateUser(){
+	public function updateUser()
+	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		// Si il n'est pas connecté on le redirige
 		$loggedUser = $this->getUser();
 

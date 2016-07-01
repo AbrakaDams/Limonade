@@ -8,6 +8,7 @@ use \Model\NewsFeedModel as NewsFeedModel;
 use \Model\EventModel as EventModel;
 use \Model\EventUsersModel as EventUsersModel;
 use \Model\NotificationsModel;
+use \W\Security\AuthentificationModel;
 
 class CommentController extends Controller
 {
@@ -18,6 +19,8 @@ class CommentController extends Controller
    */
   public function showComments(){
         $loggedUser = $this->getUser();
+        $authModel = new AuthentificationModel();
+        $authModel->refreshUser();
         if(!isset($loggedUser)){
             $this->redirectToRoute('default_home');
         }
@@ -40,6 +43,8 @@ class CommentController extends Controller
     }
 
   public function joinComment(){
+      $authModel = new AuthentificationModel();
+      $authModel->refreshUser();
     $loggedUser = $this->getUser();
     if(!isset($loggedUser)){
       $this->redirectToRoute('default_home');
@@ -69,6 +74,8 @@ class CommentController extends Controller
    * @param $id relie l'id users avec l'id commentaire
    */
   public function insertComment(){
+      $authModel = new AuthentificationModel();
+      $authModel->refreshUser();
     $loggedUser = $this->getUser();
     if(!isset($loggedUser)){
         $this->redirectToRoute('default_home');
@@ -156,6 +163,8 @@ class CommentController extends Controller
     }
   }
     public function deleteComment(){
+        $authModel = new AuthentificationModel();
+        $authModel->refreshUser();
         $loggedUser = $this->getUser();
         if(!isset($loggedUser)){
           $this->redirectToRoute('default_home');

@@ -10,6 +10,8 @@ class NotificationsController extends MasterController
 {
 	public function updateNotif()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -47,6 +49,8 @@ class NotificationsController extends MasterController
 
 	public function haveUnreadNotif()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');

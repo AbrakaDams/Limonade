@@ -23,6 +23,8 @@ class EventController extends MasterController
 	 */
 	public function showEvent($id)
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
         if(!isset($loggedUser)){
             $this->redirectToRoute('user_login');
@@ -87,6 +89,8 @@ class EventController extends MasterController
 	 */
 	public function calcul($idEvent)
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -118,6 +122,8 @@ class EventController extends MasterController
 
 
 	public function getAllParticipants() {
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
         if(!isset($loggedUser)){
             $this->redirectToRoute('default_home');
@@ -150,6 +156,8 @@ class EventController extends MasterController
 	 */
 	public function createEvent()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('user_login');
@@ -270,6 +278,8 @@ class EventController extends MasterController
 	*/
 	public function invite($id)
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 
 		if(!isset($loggedUser)){
@@ -323,6 +333,8 @@ class EventController extends MasterController
 	 * Permet de trouver les utilisateurs
 	 */
 	public function listUsers(){
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -357,6 +369,8 @@ class EventController extends MasterController
 
 	public function addParticipant()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -437,6 +451,8 @@ class EventController extends MasterController
 
 	public function deleteParticipant()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
@@ -469,6 +485,8 @@ class EventController extends MasterController
 
 	public function searchResult()
 	{
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');

@@ -4,6 +4,7 @@ namespace Controller;
 
 use \Controller\MasterController;
 use \Model\EventModel as EventModel;
+use \W\Security\AuthentificationModel;
 
 class SearchController extends MasterController
 {
@@ -13,6 +14,8 @@ class SearchController extends MasterController
 
 	public function searchResult()
 	{
+		$authModel = new AuthentificationModel();
+		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
