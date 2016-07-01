@@ -27,6 +27,7 @@
 		['GET|POST', '/ajax/add-card', 'List#addCard', 'list_addCard'],
 		['GET|POST', '/ajax/delete-card', 'List#deleteCard', 'list_deleteCard'],
 		['GET|POST', '/ajax/modify-card', 'List#modifyCard', 'list_modifyCard'],
+		['GET|POST', '/ajax/refresh-card', 'List#refreshCard', 'list_refreshCard'],
 
 		/*********************************** Comment**********************************/
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
