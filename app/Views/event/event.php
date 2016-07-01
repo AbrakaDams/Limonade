@@ -8,8 +8,7 @@ si $participants['role'] == event_admin et qu'il est dans l'évent
 si $participants['role'] == event_user et qu'il est dans l'évent
 only comment
 sinon -->
-
-<?php if($ok['role'] == 'event_admin'): ?>
+<?php if($roleEvent['role'] == 'event_admin'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
 			<div>
@@ -179,7 +178,7 @@ sinon -->
 
 	</div> <!-- end of div.event-wrapper -->
 
-<?php elseif($ok['role'] == 'event_user'): ?>
+<?php elseif($roleEvent['role'] == 'event_user'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
 			<div>
@@ -339,7 +338,7 @@ sinon -->
 	</div> <!-- end of div.event-wrapper -->
 
 <?php elseif($thisEvent['role'] == 'private'): ?>
-	<?php if($ok['role'] == 'event_admin' && $ok['role'] == 'event_user' ): ?>
+	<?php if($roleEvent['role'] == 'event_admin' && $roleEvent['role'] == 'event_user' ): ?>
 		<div class="event-wrapper">
 			<aside id="event-particip">
 				<div>

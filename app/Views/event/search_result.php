@@ -4,7 +4,7 @@
 
 <?php if(empty($search)): ?>
 	<div class="event-title">
-	   <h1>Aucun résultat trouvé fdp... </h1>
+	   <h1>Aucun résultat trouvé... </h1>
 	   <p>
 		   <strong>
 			   <br><a href="<?= $this->url('default_home') ?>"> Retour Accueil </a>

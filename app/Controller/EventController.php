@@ -8,6 +8,7 @@ use \Controller\NewsFeedController;
 use \Model\NewsfeedModel as NewsModel;
 use \Model\EventModel as EventModel;
 use \Model\CommentsModel as CommentsModel;
+use \Model\ListModel;
 use \Model\EventUsersModel as EventUsersModel;
 use \Model\NotificationsModel;
 use \W\Model\UsersModel as UsersModel;
@@ -56,7 +57,7 @@ class EventController extends MasterController
 				$authModel = new AuthModel();
 				$user = $authModel->getLoggedUser();
 
-				$bla = $EventUsersModel->findUserInEvent($id,$user['id']);
+				$eventRole = $EventUsersModel->findUserInEvent($id,$user['id']);
 
 				// On récupère les évènements auquel l'utilisateur participe
 				$userEvents = $EventUsersModel->findAllUserEvents($user['id']);
@@ -67,12 +68,28 @@ class EventController extends MasterController
 					'showNewsFeed'		=> $newsFeed,
 					'participants'		=> $participants,
 					'userEvents'		=> $userEvents,
-					'ok'				=> $bla,
+					'roleEvent'			=> $eventRole,
 				 ];
 
 				$this->showWithNotif('event/event', $showEvent);
 			}
 		}
+	}
+
+	public function calcul($idEvent)
+	{
+			$eventUsersModel = new EventUsersModel();
+			$user =	$eventUsersModel->findAllUsers($idEvent);
+			$numberUsers = count($user);
+			$card = new ListModel();
+			$cardPrice = $card->findCards($idEvent, 0);
+			$total = 0;
+			foreach ($cardPrice as $key => $value) {
+				$total += $value['price'] * $value['quantity'];
+			}
+			$perPerson = ceil($total / $numberUsers);
+			return $perPerson;
+
 	}
 
 
