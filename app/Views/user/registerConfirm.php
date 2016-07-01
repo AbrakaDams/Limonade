@@ -1,4 +1,4 @@
-<?php $this->layout('layoutNoConnect', ['title' => 'Confirmation d\'email']) ?>
+<?php $this->layout('layout', ['title' => 'Confirmation d\'email']) ?>
 
 <?php $this->start('main_content') ?>
 

@@ -1,4 +1,4 @@
-<?php $this->layout('layoutNoConnect', ['title' => 'Nothing to see here']) ?>
+<?php $this->layout('layout', ['title' => 'Nothing to see here']) ?>
 
 <?php $this->start('main_content'); ?>
 <h1 style="text-align: center;">403. Nothing to see here.</h1>

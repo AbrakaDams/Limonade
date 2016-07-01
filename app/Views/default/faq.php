@@ -1,5 +1,5 @@
 
-<?php $this->layout('layoutNoConnect', ['title' => 'FAQ']) ?>
+<?php $this->layout('layout', ['title' => 'FAQ']) ?>
 
 <?php $this->start('main_content') ?>
  <a href="<?= $this->url('default_home') ?>">
@@ -10,7 +10,7 @@
 <h1 class="center" id="top">Foire aux questions,</h1>
 <h2 class="center">les questions les plus fréquentes</h2>
 <hr>
-	
+
 <div class="faq">
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a href="#account">Pourquoi et comment créer mon compte?</a></li>
@@ -56,4 +56,3 @@ $('a[href^="#"]').click(function(){
 });
 </script>
 <?php $this->stop('js') ?>
-

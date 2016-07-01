@@ -1,4 +1,4 @@
-<?php $this->layout('layoutNoConnect', ['title' => 'Inscription']) ?>
+<?php $this->layout('layout', ['title' => 'Inscription']) ?>
 
 <?php $this->start('main_content') ?>
 

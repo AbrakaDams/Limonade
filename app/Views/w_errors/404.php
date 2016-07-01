@@ -1,4 +1,4 @@
-<?php $this->layout('layoutNoConnect', ['title' => 'Perdu ?']) ?>
+<?php $this->layout('layout', ['title' => 'Perdu ?']) ?>
 
 <?php $this->start('main_content'); ?>
 <h1 style="text-align: center;">404. Perdu ?</h1>
