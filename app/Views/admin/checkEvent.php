@@ -61,7 +61,7 @@
             <i class="fa fa-hourglass-start fa-2x" aria-hidden="true"> Début de votre événement</i><br><br>
             <label for="date_start" name="date_start" class="masterTooltip" title="Début de votre évènement">Date et heure : <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
               <div class="input-group">
-                  <input type="text" name="date_start" class="form-control" id='datetimepickerstart' value="<?php echo $eventData['date_start']; ?>">
+                  <input type="text" name="date_start" class="form-control" id='datetimepickerstart' value="<?php echo date('d/m/Y H:i', strtotime($eventData['date_start'])); ?>">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -73,10 +73,10 @@
             <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin de votre événement</i><br><br>
             <label for="date_end" name="date_end" class="masterTooltip" title="Toutes les bonnes choses ont une fin...">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
               <div class="input-group">
-                  <input type="text" name="date_end" class="form-control" id='datetimepickerend' value="<?php echo $eventData['date_end']; ?>">
+                  <input type="text" name="date_end" class="form-control" id='datetimepickerend' value="<?php echo date('d/m/Y H:i', strtotime($eventData['date_end'])); ?>">
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
+                  </span>                
               </div>
           </div>
       </div>
