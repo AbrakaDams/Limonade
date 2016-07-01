@@ -194,6 +194,19 @@ div#event-comments {
         }
     }
 }
+/*************************************
+     redirection evnmt privé erreur
+*************************************/
+
+.get-out {
+      margin-top: 6em;
+        .private-zone{
+            height: 70vh;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+        }
+}
 
 /*************************************
                  ASIDE

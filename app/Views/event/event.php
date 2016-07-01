@@ -180,30 +180,32 @@ sinon -->
 <?php elseif($roleEvent['role'] == 'event_user'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
-			<div>
-				<h3> Liste des participants :</h3>
+			<div class="in-aside">
+				<div>
+					<h3> Liste des participants :</h3>
 
-				<?php
-				if($participants == null){
-					echo 'aucun participant';
-				}
-				else{
-					foreach ($participants as $infos) {
-						echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+					<?php
+					if($participants == null){
+						echo 'aucun participant';
 					}
-				}
-				?>
+					else{
+						foreach ($participants as $infos) {
+							echo $infos['firstname'].' '.$infos['lastname'].'<br>' ;
+						}
+					}
+					?>
 
-				<h3>Mes évènements :</h3>
-				<?php foreach ($userEvents as $userEvent) : ?>
-					<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
-						<?php echo $userEvent['title'] ?>
-							<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
-								(Evènement terminé)
-							<?php endif ?>
-						<br>
-					</a>
-				<?php endforeach ?>
+					<h3>Mes évènements :</h3>
+					<?php foreach ($userEvents as $userEvent) : ?>
+						<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
+							<?php echo $userEvent['title'] ?>
+								<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
+									(Evènement terminé)
+								<?php endif ?>
+							<br>
+						</a>
+					<?php endforeach ?>
+				</div>
 			</div>
 		</aside>
 
@@ -344,7 +346,7 @@ sinon -->
 	<?php if($roleEvent['role'] == 'event_admin' && $roleEvent['role'] == 'event_user' ): ?>
 		<div class="event-wrapper">
 			<aside id="event-particip">
-				<div>
+				<div class="in-aside">
 					<div>
 						<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">inviter des amis</a>
 					</div>
@@ -517,15 +519,18 @@ sinon -->
 
 		</div> <!-- end of div.event-wrapper -->
 	<?php else: ?>
-		<p>
-			Cette évènement est privé, vous devez etre invité par le créateur de l'évènement pour pouvoir le rejoindre.
-		</p>
+		<div class="get-out">
+			<p class="private-zone">
+			<i class="fa fa-angellist" aria-hidden="true"></i>
+				Cette évènement est privé, vous devez etre invité par le créateur de l'évènement pour pouvoir le rejoindre.
+			</p>
+		</div>
 	<?php endif; ?>
 
 <?php else: ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
-			<div>
+			<div class="in-aside">
 				<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">Rejoindre l'évent</a>
 			</div>
 			<div>
