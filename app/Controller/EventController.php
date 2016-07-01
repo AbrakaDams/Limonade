@@ -22,7 +22,6 @@ class EventController extends MasterController
 	 */
 	public function showEvent($id)
 	{
-		echo "test";
 		$loggedUser = $this->getUser();
         if(!isset($loggedUser)){
             $this->redirectToRoute('user_login');

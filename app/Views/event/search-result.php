@@ -1,10 +1,11 @@
 <?php $this->layout('layout', ['title' => 'Résultat de votre recherche']) ?>
 
 <?php $this->start('main_content') ?>
+	<?php var_dump($search); ?>
  <div class="event-title">
-	<br>;				
+	<br>			
 	<h2> <?php echo $search['title'] ?> </h2>
-	<br><br>;
+	<br><br>
 	<div class="event-desc">
 	<h2> <?php echo $search['desciprtion'] ?> </h2>
 	<br><br>
