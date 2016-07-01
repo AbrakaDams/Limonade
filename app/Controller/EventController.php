@@ -51,7 +51,9 @@ class EventController extends MasterController
 			// On récupère les infos du user connecté
 			$authModel = new AuthModel();
 			$user = $authModel->getLoggedUser();
-			
+
+			$bla = $EventUsersModel->findUserInEvent($id,$user['id']);
+
 			// On récupère les évènements auquel l'utilisateur participe
 			$userEvents = $EventUsersModel->findAllUserEvents($user['id']);
 
@@ -61,6 +63,7 @@ class EventController extends MasterController
 				'showNewsFeed'		=> $newsFeed,
 				'participants'		=> $participants,
 				'userEvents'		=> $userEvents,
+				'ok'				=> $bla,
 			 ];
 
 			$this->showWithNotif('event/event', $showEvent);
@@ -89,6 +92,8 @@ class EventController extends MasterController
 			}
 		}
 	}
+
+
 	/**
 	 * Création d'évènements
 	 */
@@ -174,7 +179,7 @@ class EventController extends MasterController
 		  				'description'   => $post['description'],
 		  				'address' 		=> $post['address'],
 		  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
-	  					'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),	  
+	  					'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
 		  			];
 
 		  			$newEvent = $eventModel->insert($data);

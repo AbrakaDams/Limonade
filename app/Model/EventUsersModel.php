@@ -32,7 +32,7 @@ class EventUsersModel extends \W\Model\Model
 		$sth->bindValue(':idUser', $idUser);
 		$sth->execute();
 
-		return $sth->fetchAll();
+		return $sth->fetch();
 	}
 
 	public function findAllUserEvents($idUser)
@@ -42,7 +42,7 @@ class EventUsersModel extends \W\Model\Model
 		    INNER JOIN event ON event_users.id_event = event.id
 		    INNER JOIN users ON event_users.id_user = users.id
 		    WHERE event_users.id_user=:idUser ORDER BY event.date_start DESC';
-		
+
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idUser', $idUser, PDO::PARAM_INT);
 		$sth->execute();
@@ -54,13 +54,13 @@ class EventUsersModel extends \W\Model\Model
 	public function findAllUsers($idEvent, $limit = null) {
 
 		if($limit == null) {
-			$sql = 'SELECT users.id, users.username, users.firstname, users.lastname
+			$sql = 'SELECT users.id, users.username, event_users.role, users.firstname, users.lastname
 		    FROM event_users
 		    INNER JOIN users ON event_users.id_user = users.id
 		    WHERE event_users.id_event=:idEvent ORDER BY users.username DESC';
 		}
 		else {
-			$sql = 'SELECT users.id, users.username, users.firstname, users.lastname
+			$sql = 'SELECT users.id, users.username, event_users.role, users.firstname, users.lastname
 		    FROM event_users
 		    INNER JOIN users ON event_users.id_user = users.id
 		    WHERE event_users.id_event=:idEvent ORDER BY users.username DESC LIMIT '.$limit.'';
