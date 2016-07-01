@@ -16,7 +16,6 @@ class DefaultController extends MasterController
 	{
 		$loggedUser = $this->getUser();
 
-
 		if(!isset($loggedUser)){
 			// non connecté
 			$event = new EventModel();
@@ -34,12 +33,9 @@ class DefaultController extends MasterController
 			$role = 'public';
 			$eventPublic = $event->getEventPublic($role);
 
-			$role = 'private';
-			$eventPrivate = $event->getEventPublic($role);
-
 			$showEvent = [
 				'thisEventPublic' => $eventPublic,
-				'thisEventPrivate' => $eventPrivate,
+				
 			];
 			$this->showWithNotif('default/home_logged', $showEvent);
 		}

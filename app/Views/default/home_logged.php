@@ -30,7 +30,7 @@
     </div>
     <hr>
 
-<?php foreach ($thisEventPrivate as $value): ?>
+<?php foreach ($thisEventPublic as $value): ?>
     <div class="container">
         <div class="row" id="row">
             <div class="col-xs-4">
