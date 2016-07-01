@@ -11,73 +11,78 @@ div.event-wrapper {
         word-break: break-all;
     }
 
-    #event-particip {
-        padding: 2%;
-        vertical-align: top;
-        background-color: $lightGray;
-        width: 20%;
 
-        ul.particip-friends-list {
-
-
-            max-width: 10em;
-            overflow: hidden;
-
-            li {
-                font-style: italic;
-                list-style-type: none;
-
-                .img-before-friend {
-                    position: relative;
-                    top: -.18em;
-                    width: 1em;
-                    vertical-align: middle;
-                }
-            }
-        }
-
-        .particip-title{
-            margin: 1em 0;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .event-invite-btn {
-            display: inline-block;
-            margin-left: 10%;
-            margin-bottom: 3em;
-            text-align: center;
-        }
-    }
     #event-main {
         width: 80%;
         // background-color: red;
     }
 
     #event-newsfeed {
+        //width: 20%;
         //background-color: black;
         display: none;
     }
 }
 
 /*************************************
-                 ASIDE
+        PARTICIP ASIDE
 *************************************/
+#event-particip {
+    padding: 2%;
+    vertical-align: top;
+    background-color: $lightGray;
+    width: 20%;
 
-#event-particip{
+    ul.particip-friends-list {
 
 
-        .in-aside{
-            margin: 0 auto;
-            width: 18em;
-            margin-top: 1.5em;
+        max-width: 10em;
+        overflow: hidden;
 
+        li {
+            font-style: italic;
+            list-style-type: none;
 
-            .lien-event{
-                margin: 0.3em 0;
+            .img-before-friend {
+                position: relative;
+                top: -.18em;
+                width: 1em;
+                vertical-align: middle;
             }
+        }
+    }
+
+    .particip-title{
+        margin: 1em 0;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .event-invite-btn {
+        display: inline-block;
+        margin-left: 10%;
+        margin-bottom: 3em;
+        padding: .5em 1em;
+        text-align: center;
+        background-color: $lightGreen;
+        border-radius: .4em;
+        color: #fff;
+        transition: all 500ms ease;
+
+        &:hover,
+        &:active {
+            text-decoration: none;
+            background-color: darken($lightGreen, 2);
+        }
+
+    }
+
+    .user-events {
+        display: block;
+        margin: 1em 0;
     }
 }
+
 
 section#event-main {
 
@@ -125,23 +130,36 @@ section#event-main {
         border-radius: .4em;
 
         .list {
+            position: relative;
 
-
-            h4 {
+            .modify-list-title {
                 display: inline-block;
+            }
+            .list-title {
                 margin: .5em;
                 margin-top: 0;
                 margin-left: .3em;
+                padding: .3em;
                 font-weight: bold;
                 text-transform: uppercase;
-            }
-            .delete-list {
+                background-color: $veryLightGreen;
+                border: 0 solid transparent;
+                transition: background 300ms ease;
 
+                &:active,
+                &:focus {
+                    background-color: $milky;
+                }
+            }
+            .delete-list-link {
+                position: absolute;
+                top: 8%;
+                right: 0;
             }
         }
         .card {
             margin-bottom: .5em;
-            padding: .8em;
+            // padding: .8em;
             background-color: $milky;
             border-radius: .4em;
             word-break: normal;
@@ -149,15 +167,85 @@ section#event-main {
             h5 {
                 position: relative;
                 margin-top: 0;
+                padding: .8em;
                 font-size: 1em;
                 font-weight: bold;
+                border-top-left-radius: .4em;
+                border-top-right-radius: .4em;
+                background-color: darken($milky, 10);
 
                 .card-links {
                     position: absolute;
-                    right: 0;
+                    right: .4em;
+
+                    a {
+                        margin-left: .5em;
+                        color: lighten(gray, 4);
+
+                        &:hover,
+                        &:active {
+                            color: darken(gray, 2);
+                        }
+                    }
                 }
             }
 
+            .card-desc,
+            .card-price,
+            .card-responsible {
+                padding: 0 .8em;
+            }
+
+
+        }
+
+        .add-new-card {
+            //background-color: violet;
+        }
+        .add-card-form {
+            padding: 1em;
+            border-radius: .4em;
+            background-color: #fff;
+
+            input[type=text],
+            input[type=number],
+            select,
+            textarea {
+                margin-bottom: .3em;
+                padding: .4em;
+                width: 100%;
+                border: 1px solid #f0f0f0;
+                border-radius: .4em;
+                background-color: #fff;
+            }
+
+            .add-new-nums {
+                display: inline-block;
+                width: 48%;
+
+                &:first-of-type {
+                    margin-right: 4%;
+                }
+            }
+
+            input[type=submit],
+            input[type=reset] {
+                display: inline-block;
+                margin-top: .5em;
+                padding: .3em;
+                width: 48%;
+                border: 0;
+                border-radius: .4em;
+            }
+
+            input[type=submit] {
+                margin-right: 4%;
+                background-color: green;
+            }
+
+            input[type=reset] {
+                background-color: red;
+            }
         }
 
         .add-card-btn {
@@ -167,6 +255,7 @@ section#event-main {
             border-radius: .4em;
             background-color: #fffbd3;
             border: 1px solid #fffbd3;
+            border-radius: .4em;
             transition: all 500ms ease;
             &:hover {
                 background-color: darken(#fffbd3, 3);
@@ -187,10 +276,91 @@ section#event-main {
 
     }
 
-    .modify-card-container {
-        display: inline-block;
-        background-color: $darkYellow;
+    .modify-card {
+        position: relative;
+        cursor: default;
+        font-weight: normal;
+
+        .modify-card-container {
+            position: absolute;
+            left: 1em;
+            display: inline-block;
+            padding: 1em;
+            width: 250px;
+            border-radius: .4em;
+            background-color: $darkYellow;
+            color: black;
+
+            transition: all 600ms ease;
+            z-index: 2;
+
+            &:before {
+                position: absolute;
+                left: -.4em;
+                content: '';
+                width: 2em;
+                height: 2em;
+                background-color: $darkYellow;
+                transform: skewX(30deg);
+                z-index: -1;
+            }
+
+            .close-modify-card {
+                position: absolute;
+                top: .3em;
+                right: .5em;
+                font-size: 1.8em;
+                font-weight: normal;
+                cursor: pointer;
+                transform: rotate(45deg);
+            }
+
+            .modify-card-title {
+                display: inline-block;
+                margin-bottom: .5em;
+                font-size: 1em;
+                font-weight: bold;
+            }
+
+            input[type=text],
+            input[type=number],
+            select,
+            textarea {
+                margin-bottom: .3em;
+                padding: .4em;
+                width: 100%;
+                border: 1px solid #f0f0f0;
+                border-radius: .4em;
+                background-color: #fff;
+            }
+
+            input[type=submit],
+            input[type=reset] {
+                display: inline-block;
+                margin-top: .5em;
+                padding: .3em;
+                width: 48%;
+                border: 0;
+                border-radius: .4em;
+
+                background-color: green;
+            }
+
+            .add-new-nums {
+                display: inline-block;
+                width: 48%;
+
+                &:first-of-type {
+                    margin-right: 4%;
+                }
+            }
+        }
+
+
+
+
     }
+
 }
 
 div#event-comments {
@@ -199,10 +369,29 @@ div#event-comments {
 
     #form-comment {
         margin-bottom: 1em;
+        margin-left: 8em;
+        width: 50%;
+        text-align: center;
+
+        textarea {
+            margin-bottom: 1em;
+            padding: 1em;
+            width: 100%;
+            border: 1px solid #f0f0f0;
+            border-radius: .4em;
+        }
+        input[type=submit] {
+            display: inline-block;
+            margin: 0 auto;
+            padding: .5em 1em;
+        }
+
     }
 
     .event-comment {
+        position: relative;
         margin-bottom: .5em;
+        max-width: 70%;
 
 
         .comment-user {
@@ -235,6 +424,8 @@ div#event-comments {
                 position: relative;
                 display: block;
                 padding: 2em;
+
+                word-break: normal;
                 background-color: #fff;
 
                 &:before {
@@ -247,8 +438,16 @@ div#event-comments {
                     background-color: #fff;
                     transform: rotate(45deg);
                 }
+
+                .comment-delete {
+                    position: absolute;
+                    top: .5em;
+                    right: .5em;
+                }
             }
+
         }
+
     }
 }
 /*************************************

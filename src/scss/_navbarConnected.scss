@@ -26,6 +26,11 @@
         // padding: 0;
     }
 
+    .dropdown-menu>li>a:focus,
+    .dropdown-menu>li>a:hover {
+        background-color: darken($green, 4);
+    }
+
     .icon-bar {
         background-color: #fff;
     }
