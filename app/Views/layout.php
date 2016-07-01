@@ -41,22 +41,7 @@
 					</li>
 					<!-- notifications -->
 					<li id="notification_li">
-						<a href="#notification" id="notificationLink">
-							<i class="glyphicon glyphicon-bell"></i>
-						</a>
-						<div id="notificationContainer">
-							<div id="notificationTitle">Notifications</div>
-							<div id="notificationsBody" class="notifications">
-								<?php foreach ($w_notifications as $notification):?>
-									<span class="idnotif"></span>
-											<a class="notification-link <?= $notification['is_read']?>" href="<?= $this->url('event_showEvent', ['id' => $notification['id_event']]);?>" data-id-notif="<?= $notification['id'];?>">
-												<?= $notification['content'].'<br>Le '.$notification['date_create']; ?>
-											</a>
-											<hr class="sep-notification">
-								<?php endforeach; ?>
-							</div>
-							<div id="notificationFooter"><a href="#">See All</a></div>
-						</div>
+						<?php $this->insert('partials/notif') ?>
 					</li>
 
 

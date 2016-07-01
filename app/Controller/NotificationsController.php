@@ -4,6 +4,7 @@ namespace Controller;
 
 use \Controller\MasterController;
 use \Model\NotificationsModel;
+use \W\Security\AuthentificationModel as AuthModel;
 
 class NotificationsController extends MasterController
 {
@@ -31,5 +32,23 @@ class NotificationsController extends MasterController
 			}
 		}
 		$this->showJson($json);
+	}
+
+	public function haveUnreadNotif()
+	{
+		$authModel = new AuthModel();
+		$user =  $authModel->getLoggedUser();
+
+		$notificationsModel = new NotificationsModel();
+		$haveUnreadNotif = $notificationsModel->haveUnreadNotif($user['id']);
+
+		$data = [
+			'haveUnreadNotif' => $haveUnreadNotif,
+		];
+
+		return $data;
+
+		//$this->showWithNotif('partials/notif', $data); 
+
 	}
 }

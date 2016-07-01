@@ -5,9 +5,9 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\EventModel as EventModel;
 
-class searchController extends Controller
+class SearchController extends Controller
 {
-/**
+	/**
 	 * Méthode pour searchbar
 	 */
 
@@ -29,4 +29,5 @@ class searchController extends Controller
 		}
 		$this->show('event/search', $data); 
 
-	} 
+	}
+}

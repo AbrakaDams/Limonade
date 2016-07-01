@@ -65,4 +65,17 @@ class NotificationsModel extends \W\Model\Model
 			return false;
 		}
 	}
+	public function haveUnreadNotif($id_user)
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_user = :id_user AND is_read = :is_read';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id_user', $id_user);
+		$sth->bindValue(':is_read', 'unread');
+		if($sth->execute()){
+			return $sth->fetch();
+		}
+		else{
+			return false;
+		}
+	}
 }

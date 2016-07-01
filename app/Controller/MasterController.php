@@ -8,6 +8,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \Controller\NotificationsController;
 use \Model\NotificationsModel;
 
 class MasterController extends Controller {
@@ -34,9 +35,13 @@ class MasterController extends Controller {
 		if(!empty($connectedUser)){
 			$idUser = $connectedUser[$app->getConfig('security_id_property')];
 			$notifications = $notificationsModel->findAllByUser($idUser);
+
+			$notificationsController = new NotificationsController;
+			$haveUnreadNotif = $notificationsController->haveUnreadNotif($idUser);
 		}
 		else {
 			$notifications = 0;
+			$haveUnreadNotif = false;
 		}
 
 		// Rend certaines données disponibles à tous les vues
@@ -47,6 +52,7 @@ class MasterController extends Controller {
 				'w_current_route' => $app->getCurrentRoute(),
 				'w_site_name'	  => $app->getConfig('site_name'),
 				'w_notifications' => $notifications,
+				'w_unread_notif'  => $haveUnreadNotif,
 			]
 		);
 
