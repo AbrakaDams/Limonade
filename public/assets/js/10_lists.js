@@ -17,8 +17,19 @@ $(function() {
     });
 
     $('body').on('click', '.close-modify-card', function(e){
-        var hideModif = $(this).parent()
+        var hideModif = $(this).parent();
         $(hideModif).addClass('hidden');
+    });
+
+    $('body').on('click', '.delete-list-link', function(e){
+        e.preventDefault();
+        var showDelContainer = $(this).closest('.delete-list-container');
+        $(showDelContainer).removeClass('hidden');
+    });
+
+    $('body').on('click', '.delete-list-no', function(e){
+        var showDelContainer = $(this).parent();
+        $(showDelContainer).addClass('hidden');
     });
 });
 
@@ -170,7 +181,7 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href="#" data-delete-list="'+value.id+'" class="delete-list"><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
+                    $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
                 });
             }
             if(response.newCards.length != 0){
