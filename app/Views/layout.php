@@ -32,7 +32,7 @@
 	      		</a>
 	    	</div>
 				<ul class="nav navbar-nav navbar-right">
-			<?php if(isset($w_user) && !empty($w_user)): ?>
+			<?php if(isset($w_user) && !empty($w_user) && $w_user['status'] != 'banned'): ?>
 					<!--  searchbar -->
 					<?php $this->insert('partials/searchBar') ?>
 					<!-- add list -->
@@ -70,10 +70,13 @@
 						</ul>
 					</li>
 			<?php else:  ?>
-				<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
-				<!-- identité -->
-				<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
-				<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
+				<?php if($w_user['status'] == 'banned'): ?>
+					<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+				<?php else: ?>
+					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
+					<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
+					<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
+				<?php endif; ?>
 			<?php endif;  ?>
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
