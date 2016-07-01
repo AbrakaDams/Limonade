@@ -40,9 +40,9 @@
 						<a href="<?= $this->url('event_createEvent');?>">
 						<i class="glyphicon glyphicon-plus"></i></a>
 					</li>
-					
+
 					<?php $this->insert('partials/notif') ?>
-					
+
 
 
 					<li class="dropdown show-account">
@@ -58,7 +58,7 @@
 
 						<ul class="dropdown-menu">
 							<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
-								<li><a href="<?= $this->url('admin_admin'); ?>"></i> Back Office Admin </a></li>
+								<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office Admin </a></li>
 							<?php endif; ?>
 							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>

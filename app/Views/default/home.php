@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
-					<i class="fa fa-4x fa-plus-square index-guide-icon" aria-hidden="true"></i>
+					<a href="<?= $this->url('event_createEvent');?>"><i class="fa fa-4x fa-plus-square index-guide-icon" aria-hidden="true"></i></a>
 					<h3 class="index-guide-box-title">1. Créez l'event</h3>
 					<p class="index-guide-desc">
 						Créez votre évènement le plus simplement du monde.<br>En 6 étapes, votre évènement sera crée.

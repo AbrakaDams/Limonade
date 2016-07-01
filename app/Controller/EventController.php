@@ -106,7 +106,7 @@ class EventController extends MasterController
 	{
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
-			$this->redirectToRoute('default_home');
+			$this->redirectToRoute('user_login');
 		}
 		else{
 			$post = array();
