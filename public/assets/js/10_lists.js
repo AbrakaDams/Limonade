@@ -56,6 +56,11 @@ var newCardEnd = '</select><br><input type="submit" value="Go"><input type="rese
 // newCard = newCardStart + createCardOptions(data.users) + newCardEnd
 var newCard;
 
+var modifyCardStart = '<form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><textarea name="card_desc"></textarea><br><label for="">Quantite</label><input type="number" name="card_quantity"><br><label for="">Prix</label><input type="number" name="card_price"><br><label for="">Responsable</label><select name="card_person"><option value="0">Choisir</option>';
+
+var modifyCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form>';
+
+var modifyCard;
 // get all event participants
 $(document).ready(function() {
     $.ajax({
@@ -65,6 +70,7 @@ $(document).ready(function() {
         data: 'idEvent=' + thisEvent,
         success: function(data) {
             newCard = newCardStart + createCardOptions(data.users) + newCardEnd;
+            modifyCard = modifyCardStart + createCardOptions(data.users) + modifyCardEnd;
             getContent(lastDate);
         },
     });
@@ -174,7 +180,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden">Modifier cette tache <form></form</span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden">Modifier cette tache '+ modifyCard +'</span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsable">'+value.username+' s\'en occupe</span></div>');
                     }
                 });
             }
@@ -247,7 +253,7 @@ $('#event-lists').on('click', '.modify-card', function(e) {
             data: formData + '&eventId=' + thisEvent + '&cardId=' + idCard,
             dataType: 'json',
             success: function(output) {
-                if(output.answer == 'success') {
+                if(output.answer == 'modified') {
                     $('.modify-card-form').each(function(){
                         $(this)[0].reset();
                     });

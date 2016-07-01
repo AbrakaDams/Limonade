@@ -315,5 +315,96 @@ class ListController extends Controller
 		}
 	}
 
-	public function modifyCard
+	public function modifyCard() {
+
+		$post = [];
+		$errors = [];
+		$inputMaxLength = 151; // restrict list name length
+		$responsible = 0;
+		$idCard = 0;
+		$idEvent = 0;
+
+		if(!empty($_POST)) {
+
+			// clean received data
+			foreach ($_POST as $key => $value) {
+				$post[$key] = trim(strip_tags($value));
+			}
+			// if our name input exists in correst state
+			if(!isset($post['card_title']) || empty($post['card_title'])) {
+				$errors[] = 'Le titre de la tâche est incorrect';
+			}
+			if(!isset($post['card_desc']) || empty($post['card_desc'])) {
+				$errors[] = 'La description de la tâche est incorrecte';
+			}
+			if(!isset($post['card_quantity']) || empty($post['card_quantity']) && $post['card_quantity'] < 0) {
+				$errors[] = 'La quantité de la tache est incorrecte';
+			}
+			if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] < 0) {
+				$errors[] = 'Le prix de la tache est incorrecte';
+			}
+			// create variable to prevent empty insertions
+			if(isset($post['card_person']) && !empty($post['card_person'])) {
+				$responsible = intval($post['card_person']);
+			}
+			else {
+				$responsible = 0;
+			}
+			// check id of the event
+
+			if(isset($post['eventId']) && !empty($post['eventId'])) {
+				$idEvent = intval($post['eventId']);
+			}
+			else {
+				$errors[] = 'Impossible d\'inserer cette tache dans l\'évènement';
+			}
+			// check id of the list
+			if(isset($post['cardId']) && !empty($post['cardId'])) {
+				$idList = intval($post['cardId']);
+			}
+			else {
+				$errors[] = 'Impossible d\'inserer cette tâche dans la liste';
+			}
+			// if input data is valid
+			if(count($errors) == 0) {
+				// current time for date_add
+				$timestamp = date('Y-m-d H:i:s');
+				//form data to insert to the database
+				$cardData = [
+				  'card_title' 		=> $post['card_title'],
+				  'description' 	=> $post['card_desc'],
+				  'quantity' 		=> $post['card_quantity'],
+				  'price' 			=> $post['card_price'],
+				  'id_user' 		=> $responsible,
+				  'date_add'		=> $timestamp,
+				];
+				// call model
+				$insertList = new CardsModel();
+				// insert
+				if($insertCard = $insertList->update($cardData, $idCard)) {
+
+					$user = $this->getUser();
+					$newsfeed = new NewsfeedModel();
+
+					$newsfeedData = [
+						'id_event' 	=> $idEvent,
+						'id_user' 	=> $user['id'],
+						'action' 	=> 'modify',
+						'id_card' 	=> $insertCard['id'],
+						'date_news' => $timestamp,
+					];
+
+					if($newsfeed->insert($newsfeedData)) {
+						$this->showJson(['answer' => 'modified']);
+					}
+				}
+			}
+			else {
+				$this->showJson(['errors' => $errors, 'list' => $idList, 'event' => $idEvent]);
+			}
+		}
+
+
+
+	}
 }
