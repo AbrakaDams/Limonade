@@ -10,11 +10,6 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-	<!-- <style>
-		.bell-active{
-			color: orange;
-		}
-	</style> -->
 
 
 </head>

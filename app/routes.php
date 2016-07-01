@@ -9,9 +9,8 @@
 		/**************************** event ********************/
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
-		['GET', '/search', 'Search#search', 'event_search'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
-		['GET|POST', '/searchResult?[a:search]', 'Event#searchResult', 'event_searchResult'],
+		['GET|POST', '/search-result?[a:search]', 'Event#searchResult', 'event_searchResult'],
 
 
 		/************************************ ourAccount ****************************/

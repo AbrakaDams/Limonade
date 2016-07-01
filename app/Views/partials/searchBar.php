@@ -1,5 +1,5 @@
 
-<form class="navbar-form navbar-left" role="search" method="GET" action="searchResult">
+<form class="navbar-form navbar-left" role="search" method="GET" action="search-result">
 	<div class="form-group">
 		<input type="text" name="search" class="form-control" placeholder="Entrez le titre d'un évènement">
 	</div>

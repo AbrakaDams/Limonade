@@ -404,4 +404,9 @@ class EventController extends MasterController
 			$this->showJson($json);
 		}
 	}
+	public function searchResult()
+	{
+
+		$this->showWithNotif('event/search-result');
+	}
 }
