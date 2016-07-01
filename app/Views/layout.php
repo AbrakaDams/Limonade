@@ -130,7 +130,7 @@
 					<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
 						<div class="nc-footer-contact">
 							<h3 class="nc-footer-title">
-								<a href="#"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Contact</a>
+								<a href="<?= $this->url('contact_contact');?>"<i class="fa fa-fort-awesome" aria-hidden="true"></i> Contact</a>
 							</h3>
 							<p><address><i class="fa fa-map-marker" aria-hidden="true"></i> 66 rue de l’Abbé de l’Epée<br> 33 000 Bordeaux, France</address>
 							</p>
