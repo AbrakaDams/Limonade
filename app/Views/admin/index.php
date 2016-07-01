@@ -4,14 +4,6 @@
 <h2>Bonjour</h2>
 
 
-<div class="row">
-	<div class="checkEvent">
-		
-	</div>
-	<div class="checkUser">
-		
-	</div>
-</div>
 
 
 

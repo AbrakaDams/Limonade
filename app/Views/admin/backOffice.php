@@ -1,7 +1,7 @@
-<?php $this->layout('layoutAdmin', ['title' => 'Back Office']) ?>
+<?php $this->layout('layoutAdmin', ['title' => 'Admin']) ?>
 
 <?php $this->start('main_content') ?>
-
+<h2>Bonjour</h2>
 
 <div class="listActions">
 	<ul>
@@ -10,10 +10,10 @@
 		</li>
 		<li>
 			<a href="<?= $this->url('admin_checkUser'); ?>">Modifier un utilisateur</a>
-		</li>
-		<li></li>
+		</li>		
 	</ul>
 </div>
+
 
 
 
