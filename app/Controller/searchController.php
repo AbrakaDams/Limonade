@@ -13,22 +13,19 @@ class SearchController extends MasterController
 
 	public function searchResult()
 	{		
-		$param = ['search' => 'no result'];
 		if(!empty($_GET) && isset($_GET['search'])){
 
 			$keyword = trim(strip_tags($_GET['search']));
-			$searchBar = new EventModel();
-
+			$eventModel = new EventModel();
 
 			$data =[
-				'title' => $keyword,
+				'title' 	=> $keyword,
 			];
 			
 
-			$param = ['search' => $searchBar->search($data)];
+			$param = ['search' => $eventModel->search($data)];
 		}
-			var_dump($data);
 
-		$this->showWithNotif('event/search-result', $param);
+		$this->showWithNotif('event/search_result', $param);
 	}
 }
