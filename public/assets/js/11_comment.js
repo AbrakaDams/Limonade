@@ -50,7 +50,7 @@ function showComment(){
                     console.log(value.id_user == html.idUser);
                     if(value.id_user == html.idUser){
                         console.log(html);
-                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span>/div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span><a href="#" class="delete" data-delete-comment="' + value.id + '"><i class="fa fa-times" aria-hidden="true"></i></a></div></div>');
+                        $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span></div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span><a href="#" class="delete" data-delete-comment="' + value.id + '"><i class="fa fa-times" aria-hidden="true"></i></a></div></div>');
                     }else{
                         $('#comments').append('<div class="event-comment" data-id-comment="'+value.id+'"><div class="comment-user"><img class="comment-avatar" src="'+ value.avatar + '"><span class="comment-user-name">'+ value.username +'</span></div><div class="comment-content"><span class="comment-msg">' + value.content + '</span><span class="comment-date">' + value.date_add + '</span></div></div>');
                     }
