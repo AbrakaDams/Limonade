@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-
 </head>
 <body>
 	<header>
@@ -174,6 +173,8 @@
 
 	<!-- CDN pour le datetimePicker -->
 	<script src="<?= $this->assetUrl('js/bootstrap-datetimepicker.min.js');?>"></script>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/carous.js') ?>"></script>
 	<?= $this->section('js'); ?>
 
 </body>
