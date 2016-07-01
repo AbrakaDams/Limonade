@@ -7,10 +7,13 @@
 <div class="listActions">
 	<ul>
 		<li>
-			<a href="<?= $this->url('admin_checkEvent'); ?>">Modifier un évènement ?</a>
+			<a href="<?= $this->url('admin_events'); ?>">Liste des évènements ?</a>
 		</li>
 		<li>
-			<a href="<?= $this->url('admin_checkUser'); ?>">Modifier un utilisateur ?</a>
+			<a href="<?= $this->url('admin_users'); ?>">Liste des utilisateurs ?</a>
+		</li>
+		<li>
+			<a href="<?= $this->url('admin_comments'); ?>">Liste des commentaires ?</a>
 		</li>		
 	</ul>
 </div>

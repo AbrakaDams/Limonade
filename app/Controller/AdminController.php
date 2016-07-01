@@ -198,5 +198,23 @@ class AdminController extends Controller
 		];
 		$this->show('admin/checkUser', $params);
 	}
+	/*****
+	*
+	* Fonction pour modifier un utilisateur
+	*
+	***/
+	public function users()
+	{
+		$this->show('admin/users', $params);
+	}
 
+	public function events()
+	{
+		$this->show('admin/users', $params);
+	}
+	
+	public function comments()
+	{
+		$this->show('admin/checkUser', $params);
+	}
 }	
