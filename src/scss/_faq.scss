@@ -1,0 +1,34 @@
+.center{
+	text-align: center;
+}
+
+.faq{
+	margin: 0 auto;
+	width: 30em;
+}
+
+.reponses{
+	margin: 0 auto;
+	width: 30em;
+
+	.faqList{
+		
+		display: block;
+		list-style-type: none;
+		left: 50%;
+
+			.faqsection{
+				padding: 2em;
+				margin: 1em;
+			}
+	}
+
+}
+#icone {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 35px;
+    color: black;
+    font-size: 40px;
+}
