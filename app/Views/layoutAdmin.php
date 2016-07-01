@@ -78,7 +78,7 @@
 		</nav>
 		<?php endif; ?>
 	</header>
-		<section style="background-color: #d8ddd7">
+		<section id="main-section">
 			<?= $this->section('main_content') ?>
 		</section>
 

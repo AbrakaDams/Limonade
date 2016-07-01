@@ -81,7 +81,7 @@
 	<?php endif; ?>
 	</header>
 
-		<section>
+		<section id="main-section">
 			<?= $this->section('main_content') ?>
 		</section>
 
