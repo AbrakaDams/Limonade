@@ -3,7 +3,7 @@
 <?php $this->start('main_content') ?>
 
 <!-- formulaire changement à remplir pour changer coordonées user -->
-<p class="updateInfoTitle"> Modifier mon compte. <p>
+<h1 class="updateInfoTitle"> Modifier mon compte. </h1>
 <?php if(isset($success) && $success == true): ?>
 	<div class="alert alert-success">
 		<p>Tout est ok</p>
@@ -16,41 +16,39 @@
 	</div>
 <?php endif; ?>
 
-<form method="POST" class="pure-form" enctype="multipart/form-data" id="updateInfos">
+<form method="POST" enctype="multipart/form-data" id="updateInfos">
 	<div class="form-group">
 		<label for="ident">Pseudo :</label>
-		<input type="text" id="ident" name="username" value="<?php echo $w_user['username']; ?>">
+		<input class="form-control" type="text" id="ident" name="username" value="<?php echo $w_user['username']; ?>">
 	</div>
-<hr>
+	<hr>
 	<div class="form-group">
 		<label for="ident">Prénom :</label>
-		<input type="text" id="ident" name="firstname" value="<?php echo $w_user['firstname']; ?>">
+		<input class="form-control" type="text" id="ident" name="firstname" value="<?php echo $w_user['firstname']; ?>">
 	</div>
-<hr>
 	<div class="form-group">
-		<label for="ident">Nom de famille :</label>
-		<input type="text" id="ident" name="lastname" value="<?php echo $w_user['lastname']; ?>">
+		<label for="ident">Nom :</label>
+		<input class="form-control" type="text" id="ident" name="lastname" value="<?php echo $w_user['lastname']; ?>">
 	</div>
-<hr>
+	<hr>
 	<div class="form-group">
 		<label for="exampleInputFile">Changer mon image :</label>
-		<input name="avatar" type="file" id="img1">
+		<input class="form-control" name="avatar" type="file" id="img1">
 		<br>
-		<input type="text" value="<?php echo $w_user['url']; ?>" type="text" name="url"/>
+		<label for="exampleInputFile">Ou changer le lien de mon image :</label><br>
+		<input class="form-control" type="text" value="<?php echo $w_user['url']; ?>" type="text" name="url"/>
 	</div>
-<hr>
-	<div class="form-goup">
+	<hr>
+	<div class="form-group">
 		<label for="passwd">Mot de passe :</label>
-		<input type="password" name="password" placeholder="votre mot de passe">
+		<input class="form-control" type="password" name="password" placeholder="votre mot de passe">
 	</div>
-<hr>
-	<div class="form-goup">
+	<div class="form-group">
 		<label for="password_confirm">Confirmez votre mot de passe :</label>
-		<input type="password" id="password" name="password_confirm" placeholder="Confirmer votre mot de passe">
+		<input class="form-control" type="password" id="password" name="password_confirm" placeholder="Confirmer votre mot de passe">
 	</div>
-<hr>
-
-	<button type="submit" class="btn btn-default">Submit</button>
+	<hr>
+	<button type="submit" class="btn btn-default">Modifier</button>
 </form>
 
 <!-- a quoi sert cette div infos id="infosUpdate" ??? -->
