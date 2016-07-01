@@ -11,6 +11,7 @@ use \Model\CommentsModel as CommentsModel;
 use \Model\EventUsersModel as EventUsersModel;
 use \Model\NotificationsModel;
 use \W\Model\UsersModel as UsersModel;
+use \W\Security\AuthentificationModel as AuthModel;
 use \PDO;
 
 class EventController extends MasterController
@@ -47,12 +48,19 @@ class EventController extends MasterController
 			$news = new NewsFeedController();
 			$newsFeed = $news->newsFeed($id);
 
+			// On récupère les infos du user connecté
+			$authModel = new AuthModel();
+			$user = $authModel->getLoggedUser();
+			
+			// On récupère les évènements auquel l'utilisateur participe
+			$userEvents = $EventUsersModel->findAllUserEvents($user['id']);
 
 			// send received data to the event.php
 			$showEvent = [
 				'thisEvent'			=> $eventData,
 				'showNewsFeed'		=> $newsFeed,
 				'participants'		=> $participants,
+				'userEvents'		=> $userEvents,
 			 ];
 
 			$this->showWithNotif('event/event', $showEvent);

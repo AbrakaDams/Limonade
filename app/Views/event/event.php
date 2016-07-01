@@ -21,6 +21,17 @@
 				}
 			}
 			?>
+
+			<h3>Mes évènements :</h3>
+			<?php foreach ($userEvents as $userEvent) : ?>
+				<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>">
+					<?php echo $userEvent['title'] ?>
+						<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
+							(Evènement terminé)
+						<?php endif ?>
+					<br>
+				</a>
+			<?php endforeach ?>
 		</div>
 	</aside>
 
@@ -45,7 +56,11 @@
 					break;
 			}
 			?>);">
-
+				<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
+					<div id="event-expired">
+					Attention cet évènement est maintenant terminé!
+					</div>
+				<?php endif; ?>
 				<div class="event-data-container">
 					<!-- SHOW EVENT NAME -->
 					<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
