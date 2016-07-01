@@ -347,7 +347,7 @@ sinon -->
 			<aside id="event-particip">
 				<div>
 					<div>
-						<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">inviter ami</a>
+						<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="btn btn-default btn-lg active" role="button">inviter des amis</a>
 					</div>
 					<h3> Liste des participants :</h3>
 
@@ -562,39 +562,35 @@ sinon -->
 						break;
 				}
 				?>);">
-					<div class="event-data-container">
-						<!-- SHOW EVENT NAME -->
-						<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
-							<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
-						<?php else: ?>
-							<h2 class="event-title">Event sans nom</h2>
-						<?php endif; ?>
+				</div>
+				<div class="event-data-container">
+					<!-- SHOW EVENT NAME -->
+					<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
+						<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
+					<?php else: ?>
+						<h2 class="event-title">Event sans nom</h2>
+					<?php endif; ?>
 
-						<!-- SHOW EVENT DESCRIPTION -->
-						<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
-							<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
-						<?php endif; ?>
+					<!-- SHOW EVENT DESCRIPTION -->
+					<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
+						<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
+					<?php endif; ?>
 
-						<!-- SHOW EVENT DATE -->
-						<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
-							<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
-						<?php else: ?>
-							<p class="event-date">Date n'est pas encore precisée</p>
-						<?php endif; ?>
+					<!-- SHOW EVENT DATE -->
+					<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
+						<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
+					<?php else: ?>
+						<p class="event-date">Date n'est pas encore precisée</p>
+					<?php endif; ?>
 
-						<!-- SHOW EVENT ADDRESS -->
-						<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a> ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a> Pour avoir accès a l'adresse de l'évènement.</p>
-					</div>
+					<!-- SHOW EVENT ADDRESS -->
+					<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i><a href="<?= $this->url('user_login'); ?>">Rejoignez l'évènement</a> pour avoir accès a l'adresse de l'évènement.</p>
 				</div>
 				<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 					<div id="event-expired">
 					Attention cet évènement est maintenant terminé!
 					</div>
 				<?php endif; ?>
-			</div>
-
-			<div id="event-lists">
-
 			</div>
 
 			<div class="alert alert-danger">
