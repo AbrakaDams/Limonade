@@ -10,13 +10,13 @@
                 <div class="column-home">
                   <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
                   <!--  Petit switch pour afficher publique et non pubic et privé et non private!!! ? -->
-                  <p>Type d'évènement :<strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
+                  <p>Type d'évènement : <strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
                   <br>
                   <p><?php echo $value['description']; ?></p>
                   <!-- Si l'user participe a cette evenement on montre l'adresse -->
                   <p>A cette adresse : <?php echo $value['address']; ?></p>
                   <p>Date de début : <?php echo $value['date_start']; ?></p>
-                  <p>Fin de fin : <?php echo $value['date_end']; ?></p>
+                  <p>Date de fin : <?php echo $value['date_end']; ?></p>
                   <!-- Si l'user participe a cette evenement on montre  un bouton je participe déja -->
                 </div>
             </div>
@@ -38,13 +38,13 @@
                 <div class="column-home">
                     <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
                     <!--  Petit switch pour afficher publique et non pubic et privé et non private!!! ? -->
-                    <p>Type d'évènement :<strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
+                    <p>Type d'évènement : <strong><i><?php echo $value['category']; ?></i></strong> et <strong><i><?php echo $value['role']; ?></i></strong></p>
                     <br>
                     <p><?php echo $value['description']; ?></p>
                     <!-- Si l'user participe a cette evenement on montre l'adresse -->
                     <p>A cette adresse : <?php echo $value['address']; ?></p>
                     <p>Date de début : <?php echo $value['date_start']; ?></p>
-                    <p>Fin de fin : <?php echo $value['date_end']; ?></p>
+                    <p>Date de fin : <?php echo $value['date_end']; ?></p>
                     <!-- Dire pourquoi ou comment participé a un event private -->
                     <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe déjà à cet évènement</a>
                     <br>

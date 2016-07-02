@@ -102,7 +102,7 @@
 					if(data.resultat == 'empty'){
 						$('#invite-message').text("");
 						$('#delete-message').text("");
-						$('#invite-message').text("Veuillez entrer le pseudo votre ami à inviter.");
+						$('#invite-message').text("Veuillez entrer le pseudo du participant.");
 					}
 				},
 				error: function(e){
