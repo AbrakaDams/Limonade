@@ -6,7 +6,7 @@
     .slider {
         display: none !important;
     }
-} 
+}
 
 .slider {
     position: relative;
@@ -108,6 +108,10 @@ section#index-guide {
         padding: 2em .3em;
         background-color: $lightGray;
 
+        &:hover {
+            transition: all 500ms ease;
+            transform: scale(1.03);
+        }
         .index-guide-box-title {
             color: $green;
             font-size: 1em;
@@ -129,52 +133,23 @@ section#index-events {
         text-align: center;
     }
 
-    .index-one-event {
-        margin: .4em .2em;
-        padding: 1.5em;
-        background-color: $milky;
-        border-radius: .5em;
-        height: 25em;
-        width: 18em;
+}
 
-        .index-event-title {
-            font-size: 1.5em;
-            text-decoration: underline;
+.index-event-btn {
+    display: inline-block;
+    margin: 0 auto;
+    width: 50%;
+    padding: .3em .5em;
+    background-color: $darkYellow;
+    border-radius: .5em;
+    color: #000;
+    text-align: center;
+    transition: all 500ms ease;
 
-            a {
-                position: relative;
-                color: #000;
-
-                .index-event-category {
-                    position: absolute;
-                    top: -1.8em;
-                    right: 4em;
-                    font-size: .7em;
-                    background-color: $darkYellow;
-                    border-radius: 7px 7px 7px 7px;
-                    -moz-border-radius: 7px 7px 7px 7px;
-                    -webkit-border-radius: 7px 7px 7px 7px;
-                    border: 0px solid #000000;
-                }
-            }
-        }
-        .index-event-btn {
-            display: inline-block;
-            width: auto;
-            margin: .5em auto;
-            padding: .3em .5em;
-            border: .2em solid $darkYellow;
-            border-radius: .5em;
-            color: #000;
-            transition: all 500ms ease;
-
-            &:hover {
-                text-decoration: none;
-                background-color: $darkYellow;
-                color: #fff;
-            }
-        }
-
+    &:hover {
+        text-decoration: none;
+        background-color: #fff;
+        color: $green;
     }
 }
 

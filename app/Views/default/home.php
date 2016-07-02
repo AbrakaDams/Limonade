@@ -89,30 +89,54 @@
 
 		<div class="row">
 			<?php foreach ($thisEvent as $value): ?>
-			  	<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4">
-					<div class="index-one-event ">
-						<h2 class="index-event-title">
-							<a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">
-								<?php echo $value['title']; ?>
-								<span class="index-event-category"><?php echo $value['category']; ?></span>
-							</a>
-						</h2>
+			  	<div class="col-xs-12 col-sm-4">
 
-					    <p class="index-event-description"><?php echo $value['description']; ?></p>
+					<div class="multiple-event" style="background-image:url('<?php if(!empty($value['event_avatar'])) {echo $value['event_avatar'];}else{echo 'http://www.salvagente.co.za/wp-content/uploads/2016/01/sparkling-bourbon-lemonade-ftr.jpg';} ?>');">
 
-					    <p class="index-event-address">
-							<i class="fa fa-map-marker" aria-hidden="true"></i>
-							Vous devez vous connecter pour voir l'adresse.
-						</p>
+	                    <span class="multiple-event-category">
+	                        <?php switch ($value['category']) {
+	                            case 'repas' :
+	                                echo 'répas';
+	                                break;
+	                            case 'vacances' :
+	                                echo 'vacances';
+	                                break;
+	                            case 'soiree' :
+	                                echo 'soirée';
+	                                break;
+	                            case 'journee' :
+	                                echo 'journée';
+	                                break;
+	                        }
+	                        ?>
+	                    </span>
 
-					    <p class="index-event-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Du :
-							<?php echo date('d/m/Y', strtotime($value['date_start'])); ?>
-							au :
-							<?php echo date('d/m/Y', strtotime($value['date_end'])); ?>
-						</p>
+	                    <div href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>" class="multiple-event-content">
 
-					    <a href="<?= $this->url('user_register'); ?>" class="index-event-btn">Je participe!</a>
-					</div>
+	                        <p class="multiple-event-role">
+	                            <?php switch($value['role']) {
+	                                case 'private':
+	                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ' . $value['role'];
+	                                    break;
+	                                case 'public';
+	                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ' . $value['role'];
+	                                    break;
+	                            } ?>
+	                        </p>
+
+	                        <p class="multiple-event-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span> du  <?php echo date('d/m/Y', strtotime($value['date_start'])).
+	                        '<br> au ' . date('d/m/Y', strtotime($value['date_end'])); ?></span></p>
+
+	                        <p class="multiple-event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> Vous devez vous connecter pour voir l'adresse.</p>
+
+	                        <p class="multiple-event-desc"><?php echo (strlen($value['description']) > 100) ?  substr($value['description'], 0, 100).'...' :  $value['description']; ?></p>
+
+							<a href="<?= $this->url('user_register'); ?>" class="index-event-btn">Je participe!</a>
+	                    </div>
+	                </div>
+
+	                <h3 class="multiple-event-title"><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h3>
+
 			  	</div>
 			<?php endforeach; ?>
 		</div>
