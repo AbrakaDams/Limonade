@@ -31,34 +31,28 @@
                     </span>
 
                     <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>" class="multiple-event-content">
-                        <!-- <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"> -->
 
-                            <p class="multiple-event-role">
-                                <?php switch($value['role']) {
-                                    case 'private':
-                                        echo '<i class="fa fa-lock" aria-hidden="true"></i> ' . $value['role'];
-                                        break;
-                                    case 'public';
-                                        echo '<i class="fa fa-unlock" aria-hidden="true"></i> ' . $value['role'];
-                                        break;
-                                } ?>
-                            </p>
+                        <p class="multiple-event-role">
+                            <?php switch($value['role']) {
+                                case 'private':
+                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ' . $value['role'];
+                                    break;
+                                case 'public';
+                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ' . $value['role'];
+                                    break;
+                            } ?>
+                        </p>
 
-                            <p class="multiple-event-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span> du  <?php echo date('d/m/Y', strtotime($value['date_start'])) . ' à ' . date('H:m', strtotime($value['date_start'])) .
-                            '<br> au ' . date('d/m/Y', strtotime($value['date_end'])) . ' à ' . date('H:m', strtotime($value['date_end'])); ?></span></p>
+                        <p class="multiple-event-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span> du  <?php echo date('d/m/Y', strtotime($value['date_start'])) . ' à ' . date('H:m', strtotime($value['date_start'])) .
+                        '<br> au ' . date('d/m/Y', strtotime($value['date_end'])) . ' à ' . date('H:m', strtotime($value['date_end'])); ?></span></p>
 
-                            <p class="multiple-event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $value['address']; ?></p>
+                        <p class="multiple-event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $value['address']; ?></p>
 
-                              <!-- Si l'user participe a cette evenement on montre  un bouton je participe déja -->
-
-                            <p class="multiple-event-desc"><?php echo $value['description']; ?></p>
-                        <!-- </a> -->
+                        <p class="multiple-event-desc"><?php echo $value['description']; ?></p>
                     </a>
                 </div>
 
                 <h3 class="multiple-event-title"><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h3>
-
-
 
             </div>
         <?php endforeach; ?>

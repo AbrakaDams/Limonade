@@ -226,3 +226,23 @@ footer {
 	 color:blue;
 	 font-size:12px Arial;
 }
+
+
+/*************************
+**** SEARCH
+*******************************/
+
+.search-title {
+	margin-left: 1em;
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+.search-title + p {
+	margin-top: 0;
+	margin-left: 2em;
+}
+
+.search-title ~ img {
+	max-width: 100%;
+}

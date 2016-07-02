@@ -128,7 +128,7 @@ section#event-main {
         #add-list-form {
             padding: 1em;
             background-color: $veryLightGreen;
-            
+
             input {
                 padding: .4em;
                 // width: 20em;
@@ -144,7 +144,7 @@ section#event-main {
         width: 300px;
         height: auto;
         vertical-align: top;
-        background-color: $veryLightGreen;
+        background-color: darken($veryLightGreen, 10);
         border-radius: .4em;
 
         .list {
@@ -160,7 +160,7 @@ section#event-main {
                 padding: .3em;
                 font-weight: bold;
                 text-transform: uppercase;
-                background-color: $veryLightGreen;
+                background-color: darken($veryLightGreen, 10);
                 border: 0 solid transparent;
                 transition: background 300ms ease;
 
@@ -177,11 +177,11 @@ section#event-main {
         }
         .card {
             margin-bottom: .5em;
-            // padding: .8em;
-            background-color: $milky;
+            border: 2px solid darken($milky, 6);
             border-radius: .4em;
-            white-space: normal;
-            word-break: normal;
+            background-color: $milky;
+            // white-space: normal;
+
 
             h5 {
                 position: relative;
@@ -191,7 +191,7 @@ section#event-main {
                 font-weight: bold;
                 border-top-left-radius: .4em;
                 border-top-right-radius: .4em;
-                background-color: darken($milky, 10);
+                background-color: darken($milky, 6);
 
                 .card-links {
                     position: absolute;
@@ -213,7 +213,8 @@ section#event-main {
             .card-price,
             .card-responsible {
                 padding: 0 .8em;
-                word-break: break-all;
+                word-break: keep-all;
+                word-wrap: break-word;
             }
 
 
