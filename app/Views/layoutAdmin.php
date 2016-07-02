@@ -106,8 +106,7 @@
 								<a href="https://github.com/" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
 
 								<a href="https://www.snapchat.com/l/fr-fr/" target="_blank"><i class="fa fa-snapchat-square fa-2x" aria-hidden="true"></i></a>
-
-								<a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+							</div>
 						</div>
 					</div>
 
