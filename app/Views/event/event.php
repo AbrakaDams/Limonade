@@ -66,7 +66,7 @@ sinon -->
 						<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
 							<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
 						<?php else: ?>
-							<h2 class="event-title">Event sans nom</h2>
+							<h2 class="event-title">L'évènement est sans nom</h2>
 						<?php endif; ?>
 
 						<!-- SHOW EVENT DESCRIPTION -->
@@ -78,14 +78,14 @@ sinon -->
 						<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
 							<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
 						<?php else: ?>
-							<p class="event-date">Date n'est pas encore preciséee</p>
+							<p class="event-date">La date n'est pas encore preciséee</p>
 						<?php endif; ?>
 
 						<!-- SHOW EVENT ADDRESS -->
 						<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
 							<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $thisEvent['address']; ?></p>
 						<?php else: ?>
-							<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> Adresse n'est pas encore precisée</p>
+							<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse n'est pas encore précisée</p>
 						<?php endif; ?>
 					</div>
 				</div>
