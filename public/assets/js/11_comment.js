@@ -61,7 +61,7 @@ function showComment(){
     });
 }
 
-$('body').on('click', '.delete', function(e){
+$('body').on('click', '.comment-delete', function(e){
     e.preventDefault();
     var idComment = $(this).attr('data-delete-comment');
     $.ajax({
