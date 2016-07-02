@@ -8,7 +8,7 @@ si $participants['role'] == event_admin et qu'il est dans l'évent
 si $participants['role'] == event_user et qu'il est dans l'évent
 only comment
 sinon -->
-<?php if($thisEvent['role'] == 'private' || $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user' || $thisEvent['role'] == 'public' && !isset($roleEvent['role'])): ?>
+<?php if(($thisEvent['role'] == 'private' && ($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user')) || $thisEvent['role'] == 'public' || ($thisEvent['role'] == 'public' && !isset($roleEvent['role']))): ?>
 		<div class="event-wrapper">
 			<aside id="event-particip">
 
