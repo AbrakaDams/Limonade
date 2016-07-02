@@ -173,6 +173,7 @@ class EventController extends MasterController
 				$date_debut = '';
 				$date_fin = '';
 				$newEvent = '';
+				$data = '';
 				$newId = NULL;
 				$successimg = false;
 				$adress = ''; //adress est visible pour toute la fonction
@@ -211,11 +212,12 @@ class EventController extends MasterController
 			  		foreach ($_POST as $key => $value) {
 			    		$post[$key] = trim(strip_tags($value));
 			  		}
+
 			  		/*$post['date_start'] => 'dd/mm/YYY H:i:s';
 			  		$post['date_end']   => 'dd/mm/YYY H:i:s';
 			  		*/
 
-
+			  		$data = $post;
 			  		/*if(strtotime($post['date_date'] => 'dd/mm/YYY H:i:s') > strtotime($post['date_end'])){  // On compare la date de début et la date de fin de l event
 			  			$errors[] = 'La date de début ne peut être supérieure à la date de fin';
 			  		}
@@ -305,8 +307,137 @@ class EventController extends MasterController
 				'errors' 	=> $errors,
 				'success' 	=> $success,
 				'newEvent'	=> $newEvent,
+				'data'		=> $data,
 			];
 			$this->showWithNotif('event/create', $params);
+		}
+	}
+	public function update($id)
+	{
+		$loggedUser = $this->getUser();
+		$eventUsersModel = new EventUsersModel;
+		$eventUserInfo = $eventUsersModel->findUserInEvent($id, $loggedUser['id']);
+		
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		elseif($eventUserInfo['role'] !== 'event_admin'){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+
+			$post = array();
+			$errors = array();
+			$success = false;
+			$date_start = '';
+			$date_end = '';
+			$eventData = array();
+			$successimg = false;
+			$adress = ''; //adress est visible pour toute la fonction
+
+			//A l'insertion de l'image dans le formulaire, il est placé dans le fichier assets
+			$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/img/event/';
+			$dbLink = '/limonade/public/assets/img/event';
+			$maxSize = 1000000 * 5; // 5 Mo => taille maximale de mon fichier
+
+			if(!empty($_FILES) && isset($_FILES['avatar'])){
+
+				// Récupère le nom de mon fichier
+				$nomFichier = $_FILES['avatar']['name'];
+				// Stockage temporaire du fichier
+				$tmpFichier = $_FILES['avatar']['tmp_name'];
+				// Créer une chaine de caractère contenant le nom du dossier de destination et le nom du fichier final
+				$newFichier = $folder.$nomFichier;
+				// Permet de vérifier que la taille du fichier est inférieure ou égale à $maxSize
+				if($_FILES['avatar']['size'] <= $maxSize){
+					/*
+					 * move_uploaded_file() retourne un booleen :
+					 *	- true si le fichier a bien été déplacé/envoyé
+					 *  - false si il y a une erreur
+					 */
+					if(move_uploaded_file($tmpFichier, $newFichier)){
+						$successimg = true;
+						$adress = $dbLink.'/'.$nomFichier;
+					}
+					else {
+						$error = 'Erreur lors de l\'envoi du fichier';
+					}
+				}
+			}
+
+			if(isset($id) && is_numeric($id)){
+
+				$eventModel = new EventModel;
+				$eventData = $eventModel->find($id);
+
+			}
+			if(!empty($_POST)){
+				foreach($_POST as $key => $value){
+					$post[$key] = trim(strip_tags($value));
+				}
+				if(empty($post['role'])){
+					$errors[] = 'Vous devez cocher un bouton rôle !';
+				}
+				if(empty($post['category'])){
+					$errors[] = 'Vous devez cocher un bouton catégorie !';
+				}
+				if(strlen($post['title']) < 3 || strlen($post['title']) > 30){
+					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 30 caractères';
+				}
+				if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
+					$errors[] = 'La description doit contenir minimum 5 caractères';
+				}
+				if(empty($post['address'])){
+					$errors[] = 'Veuillez indiquer une adresse correcte';
+				}
+				if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_start'])){
+	    			$errors[] = 'La date n\'est pas au bon format';
+				}
+				if(!isset($_FILES['avatar']) && !filter_var($post['eventAvatar'], FILTER_VALIDATE_URL)){
+					$errors[] = 'Vous devez choisir une image de couverture pour continuer';
+				}
+				if(!preg_match('#^\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}$#', $post['date_end'])){
+	    			$errors[] = 'La date n\'est pas au bon format';
+				}
+				if(count($errors) === 0){
+
+					$eventModel = new EventModel();
+					
+
+					$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
+		  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);
+
+					$data = [
+						'id'            => $id,
+						'category' 		=> $post['category'],
+		  				'role'     		=> $post['role'],
+		  				'title'     	=> $post['title'],
+		  				'description'   => $post['description'],
+		  				'address' 		=> $post['address'],
+						'event_avatar'	=> $post['eventAvatar'],
+						'event_cover'	=> $adress,
+		  				'date_start'	=> $newdateStart->format('Y-m-d H:m:s'),
+	 	  				'date_end'	    => $newdateEnd->format('Y-m-d H:m:s'),
+					];
+
+					$newEvent = $eventModel->find($data['id']);
+
+					if($eventModel->update($data,$data['id'])){
+						$success = true;
+						$eventData = $data;
+					}
+					else{
+						echo $errors[] = 'Il y a eu une erreur dans la modification de votre évènement !';
+					}
+				}
+			}
+			$params = [
+				'errors'    	=> $errors,
+				'success' 		=> $success,
+				'eventData' 	=> $eventData,
+				'eventUserInfo'	=> $eventUserInfo,
+			];
+			$this->show('event/update', $params);
 		}
 	}
 

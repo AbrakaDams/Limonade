@@ -36,7 +36,7 @@ class DefaultController extends MasterController
 			}
 			else{
 				$EventUsersModel = new EventUsersModel();
-				$userEvents = $EventUsersModel->findAllUserEvents($loggedUser['id']);
+				$userEvents = $EventUsersModel->find2UserEvents($loggedUser['id']);
 				// Connecté
 				$event = new EventModel();
 				$role = 'public';

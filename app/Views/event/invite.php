@@ -11,7 +11,7 @@
         	Ajouter un ami : <input type="text" id="username" class="typeahead"> 
         	<button type="submit" class="btn btn-success">Ajouter</button>
     </form>
-
+    <br>
     <div id="invite-message"></div>
     
     <div class="list-participants">

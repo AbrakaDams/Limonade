@@ -8,10 +8,26 @@ si $participants['role'] == event_admin et qu'il est dans l'évent
 si $participants['role'] == event_user et qu'il est dans l'évent
 only comment
 sinon -->
+
 <?php if(($thisEvent['role'] == 'private' && ($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user')) || $thisEvent['role'] == 'public' || ($thisEvent['role'] == 'public' && !isset($roleEvent['role']))): ?>
 		<div class="event-wrapper">
 			<aside id="event-particip">
 
+			<?php if(isset($roleEvent['role'])): ?>
+				<?php if($roleEvent['role'] == 'event_admin'): ?>
+					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Modifier l'évènement</a>
+				<?php endif ?>
+				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+				<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+				<?php endif ?>
+			<?php else: ?>
+				<?php if($thisEvent['role'] == 'public' && $roleEvent['role'] != 'event_admin' && $roleEvent['role'] != 'event_user'): ?>
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Rejoindre</a>
+				<?php endif; ?>
+			<?php endif; ?>
+			<hr>
 				<h3 class="particip-title"> Liste des participants :</h3>
 				<ul class="particip-friends-list">
 					<?php
@@ -21,6 +37,9 @@ sinon -->
 					else{
 						foreach ($participants as $infos) {
 							echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname'].'</li>';
+							if($infos['role'] =='event_admin'){ 
+								echo '(Admin)';
+							}
 						}
 					}
 					?>
@@ -32,17 +51,7 @@ sinon -->
 
 				<hr>
 
-			<?php if(isset($roleEvent['role'])): ?>
-				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
-				<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
-				<?php endif ?>
-			<?php else: ?>
-				<?php if($thisEvent['role'] == 'public' && $roleEvent['role'] != 'event_admin' && $roleEvent['role'] != 'event_user'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Rejoindre</a>
-				<?php endif; ?>
-			<?php endif; ?>
+			
 
 				<h3 class="particip-title">Mes évènements :</h3>
 				<?php foreach ($userEvents as $userEvent) : ?>

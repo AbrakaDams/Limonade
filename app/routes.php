@@ -10,6 +10,7 @@
 		['GET|POST', '/event/[i:id]', 'Event#showEvent', 'event_showEvent'],
 		['GET|POST', '/create', 'Event#createEvent', 'event_createEvent'],
 		['GET|POST', '/invite/[i:id]', 'Event#invite', 'event_invite'],
+		['GET|POST', '/update/[i:id]', 'Event#update', 'event_update'],
 
 		/**************************** Search ********************/
 		['GET|POST', '/search-result', 'Search#searchResult', 'event_searchResult'],
