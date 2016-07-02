@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
 
-        <?php debug($myEvents); foreach ($myEvents as $value): ?>
+        <?php foreach ($myEvents as $value): ?>
             <div class="col-xs-4">
                 <div class="column-home">
                   <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
