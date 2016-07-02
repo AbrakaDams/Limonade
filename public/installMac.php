@@ -432,6 +432,16 @@ $events = array(
   ],
   [
     'category'  => 'repas',
+    'title'  => 'Anniversaire!',
+    'description'  => 'Un anniversaire avec des bonbons, gros gâteau d\'anniversaire, des cadeaux et une grosse pinata ',
+    'address'  => 'Chez moi',
+    'date_start'  => '2016-12-01 15:30:06',
+    'date_end'  => '2016-12-01 22:12:06',
+    'event_avatar'  => 'http://trucsdemec.fr/wp-content/uploads/2015/05/un-barbecue-r%C3%A9susi-trucsdemec.fr-blog-lifestyle-masculin-blog-mode-homme-beaut%C3%A9-homme-2.jpg',
+    'role'  => 'public',
+  ],
+  [
+    'category'  => 'repas',
     'title'  => 'Repas de quartier',
     'description'  => 'Repas de quartier Caudéran, avec barbecue au parc du Bourran, groupe de musique, vide-grenier et activités de groupe prévu après le repas.',
     'address'  => 'Au Parc du Bourran',
