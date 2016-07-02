@@ -126,8 +126,14 @@ section#event-main {
         }
 
         #add-list-form {
+            padding: 1em;
+            background-color: $veryLightGreen;
+            
             input {
                 padding: .4em;
+                // width: 20em;
+                border-radius: .4em;
+                border: 1px solid #f0f0f0;
             }
         }
     }
