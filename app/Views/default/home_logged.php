@@ -2,9 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
-<?php foreach ($myEvents as $value): ?>
-    <div class="container">
-        <div class="row" id="row">
+<div class="container">
+    <div class="row">
+
+        <?php foreach ($myEvents as $value): ?>
             <div class="col-xs-4">
                 <div class="column-home">
                   <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
@@ -19,19 +20,20 @@
                   <!-- Si l'user participe a cette evenement on montre  un bouton je participe déja -->
                 </div>
             </div>
-<?php endforeach; ?>
-            <div class="col-xs-4">
-                <div class="column-home">
-                    <h2><a href="<?= $this->url('event_createEvent'); ?>"> <i class="glyphicon glyphicon-plus"></i> </a></h2>
-                </div>
+        <?php endforeach; ?>
+
+        <div class="col-xs-4">
+            <div class="column-home">
+                <h2><a href="<?= $this->url('event_createEvent'); ?>"> <i class="glyphicon glyphicon-plus"></i> </a></h2>
             </div>
         </div>
     </div>
+
     <hr>
 
-<?php foreach ($thisEventPublic as $value): ?>
-    <div class="container">
-        <div class="row" id="row">
+    <div class="row">
+        <?php foreach ($thisEventPublic as $value): ?>
+
             <div class="col-xs-4">
                 <div class="column-home">
                     <h2><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h2>
@@ -48,8 +50,10 @@
                     <br>
                 </div>
             </div>
-<?php endforeach; ?>
-        </div>
+        <?php endforeach; ?>
     </div>
+
+</div>
+
 
 <?php $this->stop('main_content') ?>
