@@ -7,7 +7,7 @@
 
         <?php foreach ($myEvents as $value): ?>
 
-            <div class="col-xs-12 col-sm-3 col-md-4">
+            <div class="col-xs-12 col-sm-3">
                 <div class="index-event" style="background-image:url('<?php if(!empty($value['event_avatar'])) {echo $value['event_avatar'];}else{echo '';} ?>');">
 
 
@@ -28,7 +28,7 @@
             </div>
         <?php endforeach; ?>
 
-        <div class="col-xs-12 col-sm-3 col-md-4">
+        <div class="col-xs-12 col-sm-3">
             <div class="column-home">
                 <h2><a href="<?= $this->url('event_createEvent'); ?>"> <i class="glyphicon glyphicon-plus"></i> </a></h2>
             </div>
@@ -41,7 +41,7 @@
         <?php foreach ($thisEventPublic as $value): ?>
 
 
-            <div class="col-xs-12 col-sm-3 col-md-4">
+            <div class="col-xs-12 col-sm-3">
                 <div class="index-event" style="background-image:url('<?php if(!empty($value['event_avatar'])) {echo $value['event_avatar'];}else{echo '';} ?>');">
 
                     <h3><a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>"><?php echo $value['title']; ?></a></h3>

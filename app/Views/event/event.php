@@ -37,7 +37,7 @@ sinon -->
 					else{
 						foreach ($participants as $infos) {
 							echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname'].'</li>';
-							if($infos['role'] =='event_admin'){ 
+							if($infos['role'] =='event_admin'){
 								echo '(Admin)';
 							}
 						}
@@ -51,7 +51,7 @@ sinon -->
 
 				<hr>
 
-			
+
 
 				<h3 class="particip-title">Mes évènements :</h3>
 				<?php foreach ($userEvents as $userEvent) : ?>
@@ -118,49 +118,23 @@ sinon -->
 					<?php endif; ?>
 				</div>
 
-<<<<<<< HEAD
-				<?php if(isset($roleEvent['role'])):?>
-					<?php if($thisEvent['role'] == 'private' && ($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user')): ?>
-						<div id="event-lists">
-							<div id="add-new-list">
-								<button type="button" id="add-list-btn">+</button>
-								<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-									<label for="add-list-input">Titre de cette liste</label>
-									<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
-									<input type="submit" value="Go">
-								</form>
-							</div>
-=======
-					<div id="event-lists">
+
+				<div id="event-lists">
+
+				 	<?php if($thisEvent['role'] == 'private' || ($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin')): ?>
 						<div id="add-new-list">
 							<button type="button" id="add-list-btn">+</button>
 							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
 								<label for="add-list-input">Titre de cette liste</label>
-								<br>
 								<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 								<input type="submit" value="Go">
 							</form>
->>>>>>> origin/master
 						</div>
-					<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
-						<div id="event-lists">
-							<div id="add-new-list">
-								<button type="button" id="add-list-btn">+</button>
-								<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-									<label for="add-list-input">Titre de cette liste</label>
-									<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
-									<input type="submit" value="Go">
-								</form>
-							</div>
-						</div>
-					<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_user'): ?>
-						<p>
-							salut
-						</p>
-							<div id="event-lists">
-							</div>
+
 					<?php endif; ?>
-				<?php endif; ?>
+				</div>
+
+
 
 				<?php if(isset($w_user) && !empty($w_user)):?>
 					<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>

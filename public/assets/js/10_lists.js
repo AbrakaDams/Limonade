@@ -74,7 +74,7 @@ $(document).mouseup(function (e) {
 
 // html to insert a new card
 // first part of the form
-var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><br><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><br><textarea name="card_desc"></textarea><br><div class="add-new-nums"><label for="">Quantite</label><br><input type="number" name="card_quantity"></div><div class="add-new-nums"><label for="">Prix par une</label><br><input type="number" name="card_price"></div><br><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>';
+var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><br><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><br><textarea name="card_desc"></textarea><br><div class="add-new-nums"><label for="">Quantite</label><br><input type="number" name="card_quantity"></div><div class="add-new-nums"><label for="">Prix unitaire</label><br><input type="number" name="card_price"></div><br><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>';
 // we suppose to append more options to selecs with js
 // the rest of the form
 var newCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';
@@ -198,7 +198,13 @@ function getContent(currentDate) {
             lastDate = response.newDate;
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
-                    $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
+                    if(response.eventRole == 'private' || (response.eventRole == 'public' && response.userRole == "event_admin")) {
+                        $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
+                    }
+                    else {
+                        $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h3 class="list-title-no-form">'+ value.list_title + '</h3></div><div class="cards"></div></div>');
+                    }
+
                 });
             }
             if(response.newCards.length != 0){
@@ -209,7 +215,13 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+value.card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+value.description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+value.quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+value.price+'"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? value.username : 'Personne')+' s\'en occupe</span></div>');
+
+                        if(response.eventRole == 'private' || (response.eventRole == 'public' && response.userRole == "event_admin")) {
+                            $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+value.card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+value.description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+value.quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+value.price+'"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? value.username : 'Personne')+' s\'en occupe</span></div>');
+                            }
+                        else {
+                            $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? value.username : 'Personne')+' s\'en occupe</span></div>');
+                        }
                     }
                 });
             }

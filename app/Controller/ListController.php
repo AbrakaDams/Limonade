@@ -4,6 +4,8 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\ListModel as ListModel;
 use \Model\CardsModel as CardsModel;
+use \Model\EventModel as EventModel;
+use \Model\EventUsersModel as EventUsersModel;
 use \Model\NewsfeedModel as NewsfeedModel;
 use \W\Security\AuthentificationModel;
 use \Controller\EventController;
@@ -215,6 +217,16 @@ class ListController extends Controller
 					$lastDate = 0;
 				}
 
+				$event = new EventModel();
+				$eventData = $event->find($id);
+				$eventRole = $eventData['role'];
+
+				$eventUser = $this->getUser();
+				$allEventUsers = new EventUsersModel();
+				$thisUserRole = $allEventUsers->findUserInEvent($id, $eventUser['id']);
+				$userRole = $thisUserRole['role'];
+
+
 				$listsData = new ListModel();
 				// get lists and cards
 				$newLists = $listsData->findLists($id, $lastDate);
@@ -245,7 +257,7 @@ class ListController extends Controller
 					$lastDate = $lastDateLists;
 				}
 
-				$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate]);
+				$this->showJson(['newLists' => $newLists, 'newCards' => $newCards, 'newDate' => $lastDate, 'eventRole' => $eventRole, 'userRole' => $userRole]);
 
 			}
 		}
