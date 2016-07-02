@@ -17,68 +17,70 @@
 		<?php if(isset($w_user) && !empty($w_user)): ?>
 		<!-- ma navbar -->
 		<nav class="navbar">
-	  	<div class="container-fluid">
-	   		<!-- Brand and toggle get grouped for better mobile display -->
-	    	<div class="navbar-header">
-	     		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				    <span class="sr-only">Toggle navigation</span>
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-				</button>
-	      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
-	      			<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
-					Lemonade
-	      		</a>
-	    	</div>
-				<ul class="nav navbar-nav navbar-right">
-			<?php if(isset($w_user) && !empty($w_user) && $w_user['status'] != 'banned'): ?>
-					<!--  searchbar -->
-					<?php $this->insert('partials/searchBar') ?>
-					<!-- add list -->
-					<li>
-						<a href="<?= $this->url('event_createEvent');?>">
-						<i class="glyphicon glyphicon-plus"></i></a>
-					</li>
+	  		<div class="container-fluid">
+		   		<!-- Brand and toggle get grouped for better mobile display -->
+		    	<div class="navbar-header">
+		     		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+					    <span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					</button>
+		      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
+		      			<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
+						Lemonade
+		      		</a>
+		    	</div>
+		    	<div id="navbar" class="navbar-collapse collapse navbar-right">
+					<ul class="nav navbar-nav navbar-right">
+						<?php if(isset($w_user) && !empty($w_user) && $w_user['status'] != 'banned'): ?>
+							<!--  searchbar -->
+							<?php $this->insert('partials/searchBar') ?>
+							<!-- add list -->
+							<li>
+								<a href="<?= $this->url('event_createEvent');?>">
+								<i class="glyphicon glyphicon-plus"></i></a>
+							</li>
 
-					<?php $this->insert('partials/notif') ?>
+							<?php $this->insert('partials/notif') ?>
 
 
 
-					<li class="dropdown show-account">
-						 <a href="#" class="dropdown-toggle show-account-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $w_user['username']; ?>
+							<li class="dropdown show-account">
+								 <a href="#" class="dropdown-toggle show-account-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $w_user['username']; ?>
 
-							<img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
-		 						echo $w_user['avatar'];
-		 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
-		 						echo $w_user['url']; } else{
-		 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
-							<span class="caret"></span>
-						</a>
+									<img class="navbar-avatar" src="<?php if(isset($w_user['avatar']) && !empty($w_user['avatar'])){
+				 						echo $w_user['avatar'];
+				 					}elseif(isset($w_user['url']) && !empty($w_user['url'])){
+				 						echo $w_user['url']; } else{
+				 							echo 'http://www.actionudaipur.com/static/img/no_img.jpg';}?>">
+									<span class="caret"></span>
+								</a>
 
-						<ul class="dropdown-menu">
-							<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
-								<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office Admin </a></li>
+								<ul class="dropdown-menu">
+									<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
+										<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office Admin </a></li>
+									<?php endif; ?>
+									<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
+									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
+									<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
+
+									<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-nous </a></li>
+
+									<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+								</ul>
+							</li>
+						<?php else:  ?>
+							<?php if($w_user['status'] == 'banned'): ?>
+								<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+							<?php else: ?>
+								<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
+								<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
+								<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
 							<?php endif; ?>
-							<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
-							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
-							<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
-
-							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-nous </a></li>
-
-							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-						</ul>
-					</li>
-			<?php else:  ?>
-				<?php if($w_user['status'] == 'banned'): ?>
-					<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-				<?php else: ?>
-					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
-					<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
-					<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
-				<?php endif; ?>
-			<?php endif;  ?>
-				</ul> <!-- class="nav navbar-nav navbar-right" -->
+						<?php endif;  ?>
+					</ul> <!-- class="nav navbar-nav navbar-right" -->
+				</div> <!-- id="navbar" class="navbar-collapse collapse navbar-right" -->
   			</div><!-- /.container-fluid -->
 		</nav>
 	<?php else: ?>
