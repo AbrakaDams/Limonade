@@ -8,7 +8,7 @@ si $participants['role'] == event_admin et qu'il est dans l'évent
 si $participants['role'] == event_user et qu'il est dans l'évent
 only comment
 sinon -->
-<?php //if($roleEvent['role'] == 'event_admin'): ?>
+<?php if($thisEvent['role'] == 'public'): ?>
 	<div class="event-wrapper">
 		<aside id="event-particip">
 
@@ -108,18 +108,24 @@ sinon -->
 			</div>
 
 			<?php if(isset($w_user) && !empty($w_user)):?>
-				<div id="event-comments">
+				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
+					<div id="event-comments">
 
-					<h2>Commentaires</h2>
-					<form method="post" id="form-comment">
-						<textarea name="comment" id="comment"></textarea>
-						<br>
-						<input type="submit" name="submit" value="Laisser un commentaire">
-					</form>
+						<h2>Commentaires</h2>
+						<form method="post" id="form-comment">
+							<textarea name="comment" id="comment"></textarea>
+							<br>
+							<input type="submit" name="submit" value="Laisser un commentaire">
+						</form>
 
-					<div id="comments"></div>
+						<div id="comments"></div>
 
-				</div>
+					</div>
+				<?php else: ?>
+					<div class="alert alert-danger">
+						<p>Pour voir les commentaires rejoingné l'évenement</p>
+					</div>
+				<?php endif; ?>
 			<?php else: ?>
 
 			<div class="alert alert-danger">
@@ -130,6 +136,7 @@ sinon -->
 		</section>
 
 		<aside id="event-newsfeed">
+		<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
 			<h3>Fil activités</h3>
 
 			<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
@@ -210,9 +217,19 @@ sinon -->
 					<?php endif; ?>
 				<?php endforeach; ?>
 			<?php endif; ?>
+		<?php else: ?>
+			<div class="alert alert-danger">
+				<p>Pour voir le fil d'actualité rejoingné l'évenement</p>
+			</div>
+		<?php endif; ?>
 		</aside>
 
 	</div> <!-- end of div.event-wrapper -->
+<?php else: ?>
+	<p>
+		evenement privé
+	</p>
+<?php endif; ?>
 
 
 
