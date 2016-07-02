@@ -109,16 +109,37 @@ sinon -->
 					<?php endif; ?>
 				</div>
 
-					<div id="event-lists">
-						<div id="add-new-list">
-							<button type="button" id="add-list-btn">+</button>
-							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
-								<label for="add-list-input">Titre de cette liste</label>
-								<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
-								<input type="submit" value="Go">
-							</form>
+				<?php if(isset($roleEvent['role'])):?>
+					<?php if($thisEvent['role'] == 'private' && ($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user')): ?>
+						<div id="event-lists">
+							<div id="add-new-list">
+								<button type="button" id="add-list-btn">+</button>
+								<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
+									<label for="add-list-input">Titre de cette liste</label>
+									<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
+									<input type="submit" value="Go">
+								</form>
+							</div>
 						</div>
-					</div>
+					<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
+						<div id="event-lists">
+							<div id="add-new-list">
+								<button type="button" id="add-list-btn">+</button>
+								<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
+									<label for="add-list-input">Titre de cette liste</label>
+									<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
+									<input type="submit" value="Go">
+								</form>
+							</div>
+						</div>
+					<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_user'): ?>
+						<p>
+							salut
+						</p>
+							<div id="event-lists">
+							</div>
+					<?php endif; ?>
+				<?php endif; ?>
 
 				<?php if(isset($w_user) && !empty($w_user)):?>
 					<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
