@@ -104,7 +104,7 @@ sinon -->
 					</div>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 						<div id="event-expired">
-						Attention cet évènement est maintenant terminé!
+							Attention cet évènement est maintenant terminé!
 						</div>
 					<?php endif; ?>
 				</div>
@@ -114,6 +114,7 @@ sinon -->
 							<button type="button" id="add-list-btn">+</button>
 							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
 								<label for="add-list-input">Titre de cette liste</label>
+								<br>
 								<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
 								<input type="submit" value="Go">
 							</form>

@@ -124,6 +124,12 @@ section#event-main {
         textarea:focus {
             color: black;
         }
+
+        #add-list-form {
+            input {
+                padding: .4em;
+            }
+        }
     }
     .event-list {
         display: inline-block;
