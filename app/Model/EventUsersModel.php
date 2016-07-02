@@ -37,7 +37,7 @@ class EventUsersModel extends \W\Model\Model
 
 	public function findAllUserEvents($idUser)
 	{
-		$sql = 'SELECT event.id, event.title, event.date_start, event.date_end, event.description, event.role ,event.address, event.category
+		$sql = 'SELECT event.id, event.title, event.date_start, event.date_end, event.description, event.role ,event.address, event.category, event.event_avatar
 		    FROM event_users
 		    INNER JOIN event ON event_users.id_event = event.id
 		    INNER JOIN users ON event_users.id_user = users.id

@@ -3,22 +3,41 @@
 ************************/
 .index-event{
 	position: relative;
-	height: 30em;
+	height: 20em;
 	vertical-align: top;
-	padding: 3em;
+	padding: 1em;
 	margin: 1em 0;
 	background-color: #ecf0f1;
 	background-size: cover;
-
-	border-radius: 80px 0px 80px 0px;
-	-moz-border-radius: 80px 0px 80px 0px;
-	-webkit-border-radius: 80px 0px 80px 0px;
-	border: 0px solid #00d6b8;
 	overflow: hidden;
 
+	h3 {
+		text-align: center;
 
+		a{
+			display: inline-block;
+			color: #fff;
+			font-size: 1em;
+			font-weight: bold;
+		}
+	}
 }
 
 .index-event-content {
 	position: absolute;
+	background-color: rgba(255,255,255,.4);
+	height: 50%;
+	width: 100%;
+    left: 0;
+	top: auto;
+	bottom: 0;
+	padding: 1em;
+	// height: 4.75em;
+	transition: transform 0.35s;
+	transform: translate3d(0,100%,0);
+
+}
+
+.index-event:hover .index-event-content{
+	transform: translate3d(0,-50%,0);
 }

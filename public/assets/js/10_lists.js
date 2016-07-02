@@ -193,7 +193,7 @@ function getContent(currentDate) {
         dataType: 'json',
         success: function(response){
 
-            // console.log(response);
+            console.log(response);
             //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){
