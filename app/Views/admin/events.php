@@ -1,7 +1,7 @@
 <?php $this->layout('layoutAdmin', ['title' => 'Admin']) ?>
 
 <?php $this->start('main_content') ?>
-<a href="<?= $this->url('admin_admin'); ?>">Retour à l'accueil Admin</a>
+<a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
 <h2>Liste des évènements :</h2>
 <?php foreach ($events as $event): ?>
 	<a href="<?= $this->url('event_showEvent', ['id' => $event['id']]); ?>">
