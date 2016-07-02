@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 		if(pageCourante == '/limonade/public/' 
 		|| pageCourante == '/limonade/public/updateUser' 
-		|| pageCourante == 'limonade/public/create')
+		|| pageCourante == '/limonade/public/create')
 		{
 			url = "	ajax/update-notif";
 		}else

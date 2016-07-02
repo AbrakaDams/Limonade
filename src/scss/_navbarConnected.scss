@@ -64,19 +64,12 @@
             background-color: lighten($green, 3);
         }
     }
-
-    .notification
-    {
-        .notifications-body{
-            background-color: lighten($green, 5);
-            
-            div#notification-title{
-                color: black !important;
-            }
-        }
+    .notification-body{
+        border: black 1px solid;
     }
     .unread{
-        background-color: orange !important;
+        background-color: #f8ffa3 !important;
+        color: black !important;
     }
     .read{
         background-color: white !important;
