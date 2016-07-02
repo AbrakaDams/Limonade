@@ -147,10 +147,11 @@ footer {
 
 
 @media only screen and (min-width: 760px) {
-	.alert {
-		margin: 0 auto;
-		width: 80%;
-	}
+	// .alert {
+	// 	margin: 0 auto;
+	// 	margin-bottom: 2em;
+	// 	width: 80%;
+	// }
 }
 
 /***********************
@@ -168,12 +169,23 @@ footer {
 /**************************
 *** Contact
 ********************************/
-#contact.contact-form {
-	padding: 2em 2.5em 2.5em 2em;
-	height: 70vh;
-	// font-size: $fontSize;
-}
 
+#contact {
+	.two-inputs-aside {
+		width: 100%;
+
+
+		@media only screen and (min-width: 760px) {
+			display:inline-block;
+			width: 48%;
+
+
+		}
+	}
+	.beckille {
+		margin-right: 3%;
+	}
+}
 
 /****************************
 **** Form REGISTER
