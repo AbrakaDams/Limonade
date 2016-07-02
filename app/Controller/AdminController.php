@@ -7,6 +7,7 @@ use \Model\AdminModel as AdminModel;
 use \Model\EventModel as EventsModel;
 use \Model\CommentsModel;
 use \W\Model\UsersModel as UsersModel;
+use \W\security\AuthentificationModel as AuthModel;
 
 
 class AdminController extends Controller
@@ -139,6 +140,7 @@ class AdminController extends Controller
 
 					if($EventUsersModel->update($data,$data['id'])){
 						$success = true;
+						$eventData = $data;
 					}
 					else{
 						echo $errors[] = 'Il y a eu une erreur dans la modification de votre évènement !';
@@ -166,6 +168,8 @@ class AdminController extends Controller
 			$this->redirectToRoute('default_home');
 		}
 		else{
+			$authModel = new AuthModel();
+			$authModel->refreshUser();
 			$this->allowTo('admin');
 			$post = array();
 			$errors = array();
@@ -220,6 +224,7 @@ class AdminController extends Controller
 				if(count($errors) === 0){
 
 					$usersModel = new UsersModel();
+					$status = $userData['status'];
 
 					$data = [
 						'id' 		=> $id,
@@ -228,11 +233,13 @@ class AdminController extends Controller
 						'lastname' 	=> $post['lastname'],
 						'role' 		=> 'user',
 						'avatar' 	=> $post['url'],
+						'status'	=> $status,
 					];
 
 
 					if($usersModel->update($data,$data['id'])){
 						$success = true;
+						$userData = $data;
 					}
 					else{
 						echo $errors[] = 'Il y a eu un problème lors de la modification de l\'utilisateur';

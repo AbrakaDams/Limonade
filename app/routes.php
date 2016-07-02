@@ -18,6 +18,28 @@
 		/************************************ ourAccount ****************************/
 		['GET|POST', '/ourAccounts', 'Count#ourAccounts', 'count_ourAccounts'],
 
+		/***************************** users *************************/
+		['GET|POST', '/register', 'User#register', 'user_register'],
+		['GET|POST', '/registerConfirm', 'User#registerConfirm', 'user_registerConfirm'],
+		['GET|POST', '/login', 'User#login', 'user_login'],
+		['GET|POST', '/logout', 'User#logout', 'user_logout'],
+		['GET|POST', '/lostpassword', 'User#lostPassword', 'user_lostPassword'],
+		['GET|POST', '/getnewpassword', 'User#getNewPassword', 'user_getNewPassword'],
+		['GET|POST', '/updateUser', 'User#updateUser', 'user_updateUser'],
+
+		['GET|POST', '/facebook/auth', 'User#loginFacebook', 'user_loginFacebook'],
+		['GET|POST', '/facebook/logged', 'User#fbCallBack', 'user_fbCallBack'],
+
+		/***************************** admin *************************/
+		['GET|POST', '/admin', 'Admin#admin', 'admin_admin'],
+		['GET|POST', '/admin/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
+		['GET|POST', '/admin/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
+		['GET|POST', '/admin/banUser/[i:id]', 'Admin#banUser', 'admin_banUser'],
+		['GET|POST', '/admin/users', 'Admin#users', 'admin_users'],
+		['GET|POST', '/admin/events', 'Admin#events', 'admin_events'],
+		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],
+
+
 		/************************************ ajax ************************************/
 		/*********************************** list ************************************/
 		['GET|POST', '/ajax/get-list', 'List#getList', 'list_getList'],
@@ -46,28 +68,4 @@
 
 		/******************************************* Notif **********************************/
 		['GET|POST', '/ajax/update-notif', 'Notifications#updateNotif', 'event_updateNotif'],
-
-		/***************************** users *************************/
-		['GET|POST', '/register', 'User#register', 'user_register'],
-		['GET|POST', '/registerConfirm', 'User#registerConfirm', 'user_registerConfirm'],
-		['GET|POST', '/login', 'User#login', 'user_login'],
-		['GET|POST', '/logout', 'User#logout', 'user_logout'],
-		['GET|POST', '/lostpassword', 'User#lostPassword', 'user_lostPassword'],
-		['GET|POST', '/getnewpassword', 'User#getNewPassword', 'user_getNewPassword'],
-		['GET|POST', '/updateUser', 'User#updateUser', 'user_updateUser'],
-
-		['GET|POST', '/facebook/auth', 'User#loginFacebook', 'user_loginFacebook'],
-		['GET|POST', '/facebook/logged', 'User#fbCallBack', 'user_fbCallBack'],
-
-		/***************************** admin *************************/
-		['GET|POST', '/admin', 'Admin#admin', 'admin_admin'],
-		['GET|POST', '/admin/checkEvent/[i:id]', 'Admin#checkEvent', 'admin_checkEvent'],
-		['GET|POST', '/admin/checkUser/[i:id]', 'Admin#checkUser', 'admin_checkUser'],
-		['GET|POST', '/admin/banUser/[i:id]', 'Admin#banUser', 'admin_banUser'],
-		['GET|POST', '/admin/users', 'Admin#users', 'admin_users'],
-		['GET|POST', '/admin/events', 'Admin#events', 'admin_events'],
-		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],
-
-
-
-	);
+);
