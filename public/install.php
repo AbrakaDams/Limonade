@@ -400,8 +400,16 @@ $events = array(
 	  'event_avatar'  => '',
 	  'role'  => 'public',
 	],
+	[
+    'category'  => 'journee',
+    'address'  => 'Au Jardin Public ',
+    'date_start'  => '2017-12-01 13:15:06',
+    'date_end'  => '2017-12-01 20:00:00',
+    'event_avatar'  => '',
+    'role'  => 'public',
+  ],
   [
-    'category'  => 'vacance',
+    'category'  => 'vacances',
     'title'  => 'Séjour Camping des flots bleus !',
     'description'  => 'Un super séjour au camping des Flots Bleus avec des activités sportives, des randonnées, une bonne ambiance de prévue, venez nombreux et nombreuses ;)...',
     'address'  => 'Camping des Flots Bleus',
@@ -419,6 +427,16 @@ $events = array(
     'date_end'  => '2018-05-01 22:12:06',
     'event_avatar'  => '',
     'role'  => 'private',
+  ],
+  [
+    'category'  => 'repas',
+    'title'  => 'Repas de quartier',
+    'description'  => 'Repas de quartier Caudéran, avec barbecue au parc du Bourran, groupe de musique, vide-grenier et activités de groupe prévu après le repas.',
+    'address'  => 'Au Parc du Bourran',
+    'date_start'  => '2018-10-06 11:30:00',
+    'date_end'  => '2018-10-06 21:30:06',
+    'event_avatar'  => '',
+    'role'  => 'public',
   ],
   [
     'category'  => 'journee',
@@ -440,6 +458,16 @@ $events = array(
     'event_avatar'  => '',
     'role'  => 'private',
   ], 
+  [
+	  'category'  => 'soiree',
+	  'title'  => 'Pot de départ de Paul au Japon',
+	  'description'  => 'A l\'occassion du départ de Jean au Japon, une soirée de départ est organisée.Ne lui dites rien, la suprise doit être totale !',
+	  'address'  => 'Chez le frère de Paul, Jean à Bordeaux',
+	  'date_start'  => '2017-11-11 19:30:00',
+	  'date_end'  => '2017-12-11 10:25:06',
+	  'event_avatar'  => '',
+	  'role'  => 'private',
+	],
 );
 
 
