@@ -31,11 +31,11 @@
 		Un événement privé n'est accessible que par vous et les amis que vous avez invités sur cet événement.</li><hr>
 		<li class="faqsection" id="task"><i class="fa fa-plus" aria-hidden="true"></i><br><br>
 		Pour ajouter un événement lorsque vous êtes en mode connecté(e) vous n'avez qu'a cocher la petite croix d'ajout d'évènement et remplir les informations demandées, et enfin au sein d'un événement vous pourrez ajouter autant de taches que vous le souhaitez, elles seront utiles pour vous organiser.
-		Par exemple, nous partons au camping; la liste 1 comprendra le nombre de tentes nécessaire et combien nous en avons, la liste 2 comprendra les sac de couchages, la liste 3 les litres d'eau, nourriture à emporter etc..</li><hr>
+		Par exemple, nous partons au camping; la liste 1 comprendra le nombre de tentes nécessaire et combien nous en avons, la liste 2 comprendra les sac de couchages, la liste 3 les litres d'eau, nourriture à emporter etc...</li><hr>
 		<li class="faqsection" id="comment"><i class="fa fa-comment-o" aria-hidden="true"></i><br><br>
 		Vous pouvez à tout moment laisser un commentaire à vos amis en dessous des listes de tâches.</li><hr>
 		<li class="faqsection" id="invite"><i class="fa fa-user-plus" aria-hidden="true"></i><br><br>
-		Vous pouvez inviter des amis déjà inscrits sur Lemonade avec leurs pseudos</li>
+		Vous pouvez inviter des amis déjà inscrits sur Lemonade avec leurs pseudos.</li>
 	</ul>
 <div>
 	<a href="#top" id="icone"><i id="top" class="fa fa-hand-o-up" aria-hidden="true"></i></a></li>

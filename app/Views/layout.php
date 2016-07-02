@@ -64,7 +64,7 @@
 							<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 							<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
 
-							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-vous </a></li>
+							<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-nous </a></li>
 
 							<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 						</ul>
