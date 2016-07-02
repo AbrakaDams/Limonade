@@ -5,7 +5,7 @@
 	<title><?= $this->e($title) ?></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> <!-- Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Philosopher' rel='stylesheet' type='text/css'>
 	<link rel="icon" type="image/png" href="<?= $this->assetUrl('img/avatar/lemonade_brand.jpg') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
