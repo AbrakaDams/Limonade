@@ -36,14 +36,14 @@
 
 <section id="index-guide">
 	<div class="container">
-		<h2 class="index-guide-title">C'est vraiment simple !</h2>
+		<h2 class="index-guide-title"> PRATIQUE !</h2>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
 					<a href="<?= $this->url('event_createEvent');?>"><i class="fa fa-4x fa-plus-square index-guide-icon" aria-hidden="true"></i></a>
-					<h3 class="index-guide-box-title">1. Créez l'event</h3>
+					<h3 class="index-guide-box-title">1. Créer</h3>
 					<p class="index-guide-desc">
-						Créez votre évènement le plus simplement du monde.<br>En 6 étapes, votre évènement sera crée.
+						Créez simplement votre événement.
 					</p>
 				</div>
 			</div>
@@ -51,9 +51,9 @@
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
 					<i class="fa fa-4x fa-users index-guide-icon" aria-hidden="true"></i>
-					<h3 class="index-guide-box-title">2. Invitez les amis</h3>
+					<h3 class="index-guide-box-title">2. Inviter </h3>
 					<p class="index-guide-desc">
-						Invitez vos amis à rejoindre votre évènement par l'intermédiaire de Facebook ou avec leurs adresses mails.
+						Invitez des amis à vous rejoindre pour plannifier.
 					</p>
 				</div>
 			</div>
@@ -61,9 +61,9 @@
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
 					<i class="fa fa-4x fa-sitemap index-guide-icon" aria-hidden="true"></i>
-					<h3 class="index-guide-box-title">3. Partagez les taches</h3>
+					<h3 class="index-guide-box-title">3. Communiquer </h3>
 					<p class="index-guide-desc">
-						Répartition des tâches de votre évènement avec des listes afin de faciliter la communication et la réussite de votre évènement.
+						Organisez tous ensemble votre projet.
 					</p>
 				</div>
 			</div>
@@ -71,9 +71,9 @@
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
 					<i class="fa fa-4x fa-beer index-guide-icon" aria-hidden="true"></i>
-					<h3 class="index-guide-box-title">4. Profitez bien</h3>
+					<h3 class="index-guide-box-title">4. Profiter </h3>
 					<p class="index-guide-desc">
-						Reposez-vous, buvez un verre en attendant patiemment le début de votre évènement et l'arrivée de vos amis.
+						Profitez d'un événement parfaitement organisé.
 					</p>
 				</div>
 			</div>
@@ -102,7 +102,7 @@
 
 					    <p class="index-event-address">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
-							L'adresse n'est pas communiqué aux personnes non connectés.
+							Vous devez vous connecter pour voir l'adresse.
 						</p>
 
 					    <p class="index-event-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Du :
