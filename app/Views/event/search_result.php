@@ -14,14 +14,17 @@
 		<h1>Résultat de votre recherche : </h1>
 		<?php foreach ($search as $result) :?>
 			<div class="col-xs-4">
-            	<div class="column-home">
-						<h2><a href="<?= $this->url('event_showEvent', ['id' => $result['id']]);?>">
-							<?php echo $result['title'] ?></a>
-						</h2>	
+				<div class="index-event" style="background-image:url('<? if(!empty($value['avatar'])) {echo $value['avatar'];}else{echo ''} ?>');">
+            	
+					<h2><a href="<?= $this->url('event_showEvent', ['id' => $result['id']]);?>">
+						<?php echo $result['title'] ?></a>
+					</h2>	
+					<div class="index-event-content">
 						<p><?php echo $result['description'] ?></p>
 						<p><?php echo $result['address'] ?></p>
 						<p><?php echo $result['date_start'] ?></p>
 						<p><?php echo $result['category'] ?></p>
+					</div>
 				</div>
 			</div>
 		<?php endforeach ?>
