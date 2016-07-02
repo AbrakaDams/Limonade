@@ -46,7 +46,7 @@
                     <p>Date de début : <?php echo $value['date_start']; ?></p>
                     <p>Fin de fin : <?php echo $value['date_end']; ?></p>
                     <!-- Dire pourquoi ou comment participé a un event private -->
-                    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe déjà a cette évenement</a>
+                    <a href="<?= $this->url('event_showEvent', ['id' => $value['id']]);?>">Je participe déjà à cet évènement</a>
                     <br>
                 </div>
             </div>
