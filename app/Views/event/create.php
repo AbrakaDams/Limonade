@@ -55,7 +55,7 @@
 
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
-                    <label for="avatar-event" class="masterTooltip" title="Choissisez une image a l'éfigie de votre évènement">Avatar évènement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+                    <label for="avatar-event" class="masterTooltip" title="Choissisez une image a l'effigie de votre évènement">Avatar de votre évènement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
                     <input class="form-control" type="text" placeholder="www.lien-mon-image.com" name="eventAvatar"/><br>
                     <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
                     <input class="file" id="input-1" type="file" name="avatar">
