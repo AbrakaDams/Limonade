@@ -2,30 +2,36 @@
 
 <?php $this->start('main_content') ?>
 	
-<div id="room_fileds">
-	<a href="<?= $this->url('event_showEvent', ['id' => $idEvent]);?>">Retour à votre évènement</a>
-
-	<h2>Inviter des amis à votre évènement</h2>
-
-    <form method="post" class="content" id="remote"> 
-        	Ajouter un ami : <input type="text" id="username" class="typeahead"> 
-        	<button type="submit" class="btn btn-success">Ajouter</button>
-    </form>
-    <br>
-    <div id="invite-message"></div>
-    
-    <div class="list-participants">
-    	<h2>Liste des amis participants :</h2>
-    	<?php foreach ($allParticipants as $user):?>
-    		<p class="item-participant">
-    			<span class="idUser" data-id-user="<?= $user['id'] ?>"></span>
-    			<span class="idEvent" data-id-event="<?= $idEvent ?>"></span>
-    			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
-    			<a class="delete">Supprimer</a>
-    		</p>
-    	<?php endforeach; ?>
-    </div>
-    <div id="delete-message"></div>
+<div class="container">
+	<div class="row">	
+		<div id="room_fileds" class="room_fileds">
+			<a href="<?= $this->url('event_showEvent', ['id' => $idEvent]);?>">Retour à votre événement
+			</a>
+			<br><hr>
+			<h2>Inviter des amis à votre événement</h2>
+			<br>
+		    <form method="post" class="content" id="remote"> 
+		   		Ajouter un ami : 
+		   		<input type="text" id="username" class="typeahead"> 
+		        <button type="submit" class="btn btn-primary">Ajouter</button>
+		    </form>
+		    <br><hr>
+		    
+		    <div id="invite-message"></div>
+		    <div class="list-participants">
+		    	<h2>Liste des amis participants :</h2><br>
+		    	<?php foreach ($allParticipants as $user):?>
+		    		<p class="item-participant">
+		    			<span class="idUser" data-id-user="<?= $user['id'] ?>"></span>
+		    			<span class="idEvent" data-id-event="<?= $idEvent ?>"></span>
+		    			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
+		    			<a class="delete">Supprimer</a>
+		    		</p>
+		    	<?php endforeach; ?>
+		    </div>
+		    <div id="delete-message"></div>
+		</div>
+	</div>	
 </div>
 
 <?php $this->stop('main_content') ?>
