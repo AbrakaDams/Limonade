@@ -34,7 +34,8 @@
 		<p class="help-block"> Mon avatar <br></p>
 		<input type="text" placeholder="www.mon_image.com" type="text" name="url"/>
 	</div>
-	<button type="submit" class="btn btn-default">Modifier l'utilisateur</button>	
+	<button type="submit" class="btn btn-default">Modifier l'utilisateur</button>
+	<a href="<?= $this->url('admin_banUser', ['id' => $userData['id']]); ?>" class="btn btn-danger" role="button">Ban</a>
 </form>
 
 <div id="userUpdate"></div>

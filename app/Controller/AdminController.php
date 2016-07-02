@@ -256,21 +256,20 @@ class AdminController extends Controller
 		else{
 			$this->allowTo('admin');
 			$usersModel = new UsersModel;
-			$users = $usersModel->findAll();
-			foreach ($users as $user) {
-				if($user['status'] == 'default'){
-					$data = [
-						'status' => 'banned',
-					];
-					$usersUpateModel = new UsersModel();
-					$usersUpateModel->update($data, $id);
-				}elseif ($user['status'] == 'banned') {
-					$data = [
-						'status' => 'default',
-					];
-					$usersUpateModel = new UsersModel();
-					$usersUpateModel->update($data, $id);
-				}
+			$user = $usersModel->find($id);
+			
+			if($user['status'] == 'default'){
+				$data = [
+					'status' => 'banned',
+				];
+				$usersUpateModel = new UsersModel();
+				$usersUpateModel->update($data, $id);
+			}elseif ($user['status'] == 'banned') {
+				$data = [
+					'status' => 'default',
+				];
+				$usersUpateModel = new UsersModel();
+				$usersUpateModel->update($data, $id);
 			}
 			$this->redirectToRoute('admin_users');
 		}
@@ -324,9 +323,10 @@ class AdminController extends Controller
 		else{
 			$this->allowTo('admin');
 			$commentsModel = new CommentsModel;
-			$comments = $commentsModel->findAll();
+			$comments = $commentsModel->findAllComments();
 
-			$params = ['users' => $comments];
+
+			$params = ['comments' => $comments];
 
 			$this->show('admin/comments', $params);
 		}
