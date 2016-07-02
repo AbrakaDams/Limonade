@@ -34,8 +34,8 @@ sinon -->
 			<hr>
 
 		<?php if($roleEvent['role'] == 'event_admin'): ?>
-				<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
-			<?php endif; ?>
+			<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+		<?php endif; ?>
 
 			<h3 class="particip-title">Mes évènements :</h3>
 			<?php foreach ($userEvents as $userEvent) : ?>

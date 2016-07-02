@@ -562,7 +562,7 @@ class ListController extends Controller
 					}
 
 					$cards = new CardsModel();
-					$thisCard = $cards->find($idCard);
+					$thisCard = $cards->findOneCard($idCard);
 
 					$this->showJson(['card' => $thisCard]);
 
