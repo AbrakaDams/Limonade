@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => '']) ?>
+<?php $this->layout('layout', ['title' => 'créer l\'événement']) ?>
 
 <?php $this->start('main_content') ?>
 
