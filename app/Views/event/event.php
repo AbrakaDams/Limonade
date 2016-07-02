@@ -104,11 +104,12 @@ sinon -->
 					</div>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 						<div id="event-expired">
-						Attention cet évènement est maintenant terminé!
+							Attention cet évènement est maintenant terminé!
 						</div>
 					<?php endif; ?>
 				</div>
 
+<<<<<<< HEAD
 				<?php if(isset($roleEvent['role'])):?>
 					<?php if($thisEvent['role'] == 'private' && ($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user')): ?>
 						<div id="event-lists">
@@ -120,6 +121,17 @@ sinon -->
 									<input type="submit" value="Go">
 								</form>
 							</div>
+=======
+					<div id="event-lists">
+						<div id="add-new-list">
+							<button type="button" id="add-list-btn">+</button>
+							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
+								<label for="add-list-input">Titre de cette liste</label>
+								<br>
+								<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
+								<input type="submit" value="Go">
+							</form>
+>>>>>>> origin/master
 						</div>
 					<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
 						<div id="event-lists">

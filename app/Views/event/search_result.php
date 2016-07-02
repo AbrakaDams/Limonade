@@ -2,40 +2,34 @@
 
 <?php $this->start('main_content') ?>
 
-<?php if(empty($search)): ?>
-	<div class="event-title">
-	   <h1>Aucun résultat trouvé... </h1>
-	   <p>
-		   <strong>
-			   <br><a href="<?= $this->url('default_home') ?>"> Retour Accueil </a>
-		   </strong>
-	   </p>
+
+<div class="container">
+	<div class="row">	
+	<?php if(empty($search)): ?>
+		<h1>Aucun résultat trouvé... </h1>
+		<p><strong><br>
+			<a href="<?= $this->url('default_home') ?>"> Retour Accueil </a></strong>
+		</p>	
+		<?php else: ?>
+		<h1>Résultat de votre recherche : </h1>
+		<?php foreach ($search as $result) :?>
+			<div class="col-xs-4">
+				<div class="index-event" style="background-image:url('<? if(!empty($value['avatar'])) {echo $value['avatar'];}else{echo ''} ?>');">
+            	
+					<h2><a href="<?= $this->url('event_showEvent', ['id' => $result['id']]);?>">
+						<?php echo $result['title'] ?></a>
+					</h2>	
+					<div class="index-event-content">
+						<p><?php echo $result['description'] ?></p>
+						<p><?php echo $result['address'] ?></p>
+						<p><?php echo $result['date_start'] ?></p>
+						<p><?php echo $result['category'] ?></p>
+					</div>
+				</div>
+			</div>
+		<?php endforeach ?>
 	</div>
-<?php else: ?>
-
- <div class="event-title">
- 	<h1>Résultat de votre recherche : </h1>
- </div>
- <?php foreach ($search as $result) :?>
-	<h2>
-		<a href="<?= $this->url('event_showEvent', ['id' => $result['id']]);?>">
-			<?php echo $result['title'] ?>
-		</a>
-	</h2>
-	<div class="event-desc">
-	<h2> <?php echo $result['description'] ?> </h2>
-
-	<div class="event-address">
-	<h2> <?php echo $result['address'] ?> </h2>
-
-	<div class="event-date">
-	<h2> <?php echo $result['date_start'] ?> </h2>
-
-	<div class="event-category">
-	<h2> <?php echo $result['category'] ?> </h2>
-	<br><br>
-<?php endforeach ?>
-
+</div>	
 <?php endif; ?>
 
 <?php $this->stop('main_content') ?>

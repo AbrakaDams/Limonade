@@ -397,7 +397,7 @@ $events = array(
 	  'address'  => 'Au manoir Wayne ',
 	  'date_start'  => '2017-11-11 23:25:06',
 	  'date_end'  => '2017-11-12 01:25:06',
-	  'event_avatar'  => '',
+	  'event_avatar'  => 'http://doomrocket.com/wp-content/uploads/2014/05/BatmanTASBlog-Pic-e1400090804599-636x310.jpg',
 	  'role'  => 'public',
 	],
 	[
@@ -407,7 +407,7 @@ $events = array(
     'address'  => 'Au Jardin Public ',
     'date_start'  => '2017-12-01 13:15:06',
     'date_end'  => '2017-12-01 20:00:00',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://www.bordeaux-tourisme.com/var/ezwebin_site/storage/images/media/images/regards-bordelais/anne-quimbre/jardin-public/12672-1-fre-FR/Jardin-Public_format_780x490.jpg',
     'role'  => 'public',
   ],
   [
@@ -417,7 +417,7 @@ $events = array(
     'address'  => 'Camping des Flots Bleus',
     'date_start'  => '2017-09-21 08:45:06',
     'date_end'  => '2017-09-21 10:45:06',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://images.sudouest.fr/images/2013/07/23/1121993_2049177_800x400.jpg',
     'role'  => 'public',
   ],
   [
@@ -427,8 +427,18 @@ $events = array(
     'address'  => 'Chez moi, sur la terrasse',
     'date_start'  => '2018-05-01 21:12:06',
     'date_end'  => '2018-05-01 22:12:06',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://trucsdemec.fr/wp-content/uploads/2015/05/un-barbecue-r%C3%A9susi-trucsdemec.fr-blog-lifestyle-masculin-blog-mode-homme-beaut%C3%A9-homme-2.jpg',
     'role'  => 'private',
+  ],
+  [
+    'category'  => 'repas',
+    'title'  => 'Anniversaire!',
+    'description'  => 'Un anniversaire avec des bonbons, gros gâteau d\'anniversaire, des cadeaux et une grosse pinata ',
+    'address'  => 'Chez moi',
+    'date_start'  => '2016-12-01 15:30:06',
+    'date_end'  => '2016-12-01 22:12:06',
+    'event_avatar'  => 'http://trucsdemec.fr/wp-content/uploads/2015/05/un-barbecue-r%C3%A9susi-trucsdemec.fr-blog-lifestyle-masculin-blog-mode-homme-beaut%C3%A9-homme-2.jpg',
+    'role'  => 'public',
   ],
   [
     'category'  => 'repas',
@@ -437,7 +447,7 @@ $events = array(
     'address'  => 'Au Parc du Bourran',
     'date_start'  => '2018-10-06 11:30:00',
     'date_end'  => '2018-10-06 21:30:06',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://bdmiam.fr/wp-content/uploads/2016/04/asterix-banquet-1.gif',
     'role'  => 'public',
   ],
   [
@@ -447,7 +457,7 @@ $events = array(
     'address'  => 'Au bureau ',
     'date_start'  => '2017-12-01 12:12:06',
     'date_end'  => '2017-12-01 15:00:06',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://images.atelier.net/sites/default/files/imagecache/scale_crop_587_310/blog/411121/atelier-espace-de-travail.jpg',
     'role'  => 'public',
   ],
   [
@@ -457,7 +467,7 @@ $events = array(
     'address'  => 'Lacanau Beach',
     'date_start'  => '2017-10-06 12:12:06',
     'date_end'  => '2017-10-06 20:12:06',
-    'event_avatar'  => '',
+    'event_avatar'  => 'http://p7.storage.canalblog.com/76/55/308109/49695360.jpg',
     'role'  => 'private',
   ], 
   [
@@ -467,7 +477,7 @@ $events = array(
 	  'address'  => 'Chez le frère de Paul, Jean à Bordeaux',
 	  'date_start'  => '2017-11-11 19:30:00',
 	  'date_end'  => '2017-12-11 10:25:06',
-	  'event_avatar'  => '',
+	  'event_avatar'  => 'http://fonctioncommerciale.fr/wp-content/uploads/2014/12/1Japon1.jpg',
 	  'role'  => 'private',
 	],
 );
