@@ -33,6 +33,14 @@ $(function() {
         var showDelContainer = $(this).parent();
         $(showDelContainer).addClass('hidden');
     });
+
+    $('#event-lists').bind('change paste keyup', '.modify-card-form input, textarea, select', function() {
+        console.log("lalalalal");
+
+        var inputValue = $(this).val();
+        // console.log(inputValue);
+        $(this).attr('value', inputValue);
+    });
 });
 
 // hide our add list input if we click anywhere else and if our input is empty
@@ -75,6 +83,8 @@ var newCardEnd = '</select><br><input type="submit" value="Go"><input type="rese
 var newCard;
 
 var modifyCardMiddle;
+// var modifyCard;
+
 // get all event participants
 $(document).ready(function() {
     $.ajax({
@@ -199,7 +209,7 @@ function getContent(currentDate) {
                     var divToFind = 'div[data-id-list="'+value.id_list+'"]';
 
                     if($(dataToFind).length == 1) {
-                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+value.card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+value.description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+value.quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+value.price+'"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+value.username+' s\'en occupe</span></div>');
+                        $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+value.id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+value.card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+value.description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+value.quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+value.price+'"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+value.id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? value.username : 'Personne')+' s\'en occupe</span></div>');
                     }
                 });
             }
@@ -360,7 +370,7 @@ $(document).ready(function() {
 
 
 function refreshCard(id) {
-    console.log(modifCard);
+    // console.log('modify card ' + modifyCard);
     $.ajax({
         type: 'POST',
         url: '../ajax/refresh-card',
@@ -373,7 +383,8 @@ function refreshCard(id) {
             console.log('object to insert' + cardToRefresh);
             console.log('card_title ' + result.card[0].card_title);
             $(cardToRefresh).text('');
-            $(cardToRefresh).append('<h5 class="card-title">'+ result.card[0].card_title+'<span class="card-quantity"> &#x2715; '+result.card[0].quantity+'</span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+result.card[0].id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden">Modifier cette tache '+ modifyCardMiddle +'</span></a><a href="#" class="delete-card" data-delete-card="'+result.card[0].id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+result.card[0].price+' &#8364;</span><p class="card-desc">'+result.card[0].description+'</p><span class="card-responsible">'+result.card[0].username+' s\'en occupe</span>');
+            $(cardToRefresh).append('<h5 class="card-title">'+ result.card[0].card_title+' &#x2715; <span class="card-quantity">'+result.card[0].quantity+' </span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+result.card[0].id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+result.card[0].card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+result.card[0].description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+result.card[0].quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+ result.card[0].price + '"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+result.card[0].id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+result.card[0].price+'</span><p class="card-desc">'+result.card[0].description+'</p><span class="card-responsible">' + (result.card[0].username != null ? result.card[0].username : 'Personne') + ' s\'en occupe</span>');
+
             console.log('inserted');
 
         },
