@@ -123,11 +123,17 @@ footer {
 	.lemonade-bg-container {
 		margin: auto;
 		padding: 2em;
-		width: 70%;
+		width: 90%;
 		border: 1px solid #fff;
 		border-radius: .4em;
 		background-color: rgba(250, 250, 250, .75);
+		@media only screen and (min-width: 760px) {
+			width: 70%;
+		}
 
+		@media only screen and (min-width: 960px) {
+			width: 60%;
+		}
 		h1 {
 			font-size: 1.7em;
 
@@ -139,46 +145,23 @@ footer {
 	}
 }
 
+
+@media only screen and (min-width: 760px) {
+	.alert {
+		margin: 0 auto;
+		width: 80%;
+	}
+}
+
 /***********************
 ** Login
 *******************************/
-.form-inline {
-	text-align: center;
-	// color: $white;
-	// font-family: $fontFam;
-	// // font-size: $fontSize;
-	// padding-top: 1.5em;
-	// padding-bottom: 1em;
-}
-// .centerNoConnect{
-// 	text-align: center;
-// 	color: black;
-// 	padding: 1.01em;
-// }
 #form-login {
 	margin: 0 auto;
-	padding: 0em 0em 6.4em 6em;
-	width: 70%;
-	text-align: center;
-
-	label{
-		color: black;
-		// font-size:;
+	width: 80%;
+	@media only screen and (min-width: 960px) {
+		width: 60%;
 	}
-	input{
-		color: black;
-		font-size: 1.2em;
-		// width: 20em;
-	}
-	input.submit{
-		// width: 20em;
-	}
-	a{
-		font-size: 1.2em;
-		text-align: center;
-	}
-
-
 }
 
 
@@ -192,29 +175,21 @@ footer {
 }
 
 
-
-
 /****************************
 **** Form REGISTER
 ***********************************/
+
 #createUser{
 	margin: 0 auto;
-	width: 70%;
+	width: 80%;
 	color: black;
+	@media only screen and (min-width: 960px) {
+		width: 60%;
+	}
 
 	.register-label{
 		min-width: 10em;
 		text-align: left;
-	}
-
-	.subttle{
-		color: #1f919b;
-		font-size: 1.3em;
-	}
-
-	#input-1 {
-		margin: 0 auto;
-		width: 70%;
 	}
 
 	input[type=submit] {
