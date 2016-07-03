@@ -53,13 +53,7 @@ sinon -->
 					?>
 				</ul>
 
-				<!-- <?php if(count($participants) > 10) : ?>
-					<span id="show-all-friends">Montrer tous</span>
-				<?php endif; ?> -->
-
 				<hr>
-
-
 
 				<h3 class="particip-title">Mes événements :</h3>
 				<?php foreach ($userEvents as $userEvent) : ?>
@@ -94,15 +88,7 @@ sinon -->
 								<!-- SHOW EVENT NAME -->
 								<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
 									<h2 class="event-title">
-										<?php switch($thisEvent['role']) {
-			                                case 'private':
-			                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ';
-			                                    break;
-			                                case 'public';
-			                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ';
-			                                    break;
-			                            }
-										echo $thisEvent['title']; ?>
+										<?= $thisEvent['title']; ?>
 									</h2>
 								<?php else: ?>
 									<h2 class="event-title">L'événement est sans nom</h2>
@@ -127,6 +113,30 @@ sinon -->
 										<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'événement est communiquée aux personnes ayant rejoint l'évènement.
 									</p>
 								<?php endif; ?>
+
+								<p>
+									<?php
+									switch($thisEvent['role']) {
+										case 'private':
+											echo '<i class="fa fa-lock" aria-hidden="true"></i> ';
+											break;
+										case 'public';
+											echo '<i class="fa fa-unlock" aria-hidden="true"></i> ';
+											break;
+									}
+									?>
+									Evénement
+									<?php
+									switch($thisEvent['role']) {
+										case 'private':
+											echo 'privé';
+											break;
+										case 'public';
+											echo 'public';
+											break;
+									}
+									?>
+								</p>
 							</div>
 
 
@@ -213,9 +223,11 @@ sinon -->
 
 			<aside id="event-newsfeed">
 
-				<button type="button" name="button" id="newsfeed-hide-btn">Hide actus >></button>
+				<span id="newsfeed-hide-btn">Cacher <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
 				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
 					<h3>Fil d'actualité</h3>
+
+					<hr>
 
 					<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
 						<?php foreach ($showNewsFeed as $newsFeed): ?>
@@ -230,18 +242,18 @@ sinon -->
 									<?= $newsFeed['username']  ?>
 									<?php switch($newsFeed['action']) {
 										case 'add' :
-											echo 'à ajouté';
+											echo ' à ajouté ';
 											break;
 										case 'remove' :
-											echo 'à supprimé';
+											echo ' à supprimé ';
 											break;
 										case 'modify' :
-											echo 'à modifié';
+											echo ' à modifié ';
 											break;
 									} ?>
-									la tache :
-									<strong> <?= $newsFeed['card_title']?> </strong>,
-									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									la tache
+									<strong> <?= $newsFeed['card_title']?> </strong>
+									le <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
 									<hr>
 								</div>
 
@@ -251,18 +263,18 @@ sinon -->
 									<?= $newsFeed['username']  ?>
 									<?php switch($newsFeed['action']) {
 										case 'add' :
-											echo 'à ajouté';
+											echo ' à ajouté ';
 											break;
 										case 'remove' :
-											echo 'à supprimé';
+											echo ' à supprimé ';
 											break;
 										case 'modify' :
-											echo 'à modifié';
+											echo ' à modifié ';
 											break;
 									} ?>
-									la liste :
-									<strong> <?= $newsFeed['list_title']?> </strong>,
-									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									la liste
+									<strong> <?= $newsFeed['list_title']?> </strong>
+									le <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
 									<hr>
 								</div>
 
@@ -272,19 +284,19 @@ sinon -->
 									<?= $newsFeed['username']  ?>
 									<?php switch($newsFeed['action']) {
 										case 'add' :
-											echo 'à ajouté';
+											echo ' à ajouté' ;
 											break;
 										case 'remove' :
-											echo 'à supprimé';
+											echo ' à supprimé ';
 											break;
 										case 'modify' :
-											echo 'à modifié';
+											echo ' à modifié ';
 											break;
 									} ?>
-									la tache :
-									<strong> <?= $newsFeed['card_title']?> </strong>,
-									Dans la liste : <strong><?=$newsFeed['list_title']?></strong>
-									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									la tache
+									<strong> <?= $newsFeed['card_title']?> </strong>
+									dans la liste  <strong><?=$newsFeed['list_title']?></strong>
+									le  <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
 									<hr>
 								</div>
 

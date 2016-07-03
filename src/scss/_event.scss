@@ -19,22 +19,31 @@ div.event-wrapper {
         right: 0;
         top: 0;
         padding: 2em;
-        width: 30em;
+        width: 80%;
         height: 100%;
         background-color: $lightGray;
         overflow: auto;
+        z-index: 100;
 
         @media only screen and (min-width: 660px) {
-    		width: 30em;
+    		width: 60%;
     	}
 
         @media only screen and (min-width: 860px) {
-    		width: 30em;
+    		width: 40%;
     	}
 
         @media only screen and (min-width: 1000px) {
-    		width: 30em;
+    		width: 20%;
     	}
+
+        #newsfeed-hide-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1em;
+            cursor: pointer;
+        }
     }
 }
 
@@ -115,9 +124,15 @@ section#event-main {
 
 
     #newsfeed-show-btn {
-            position: absolute;
-            top: 1em;
-            right: 0;
+        position: absolute;
+        top: 1em;
+        right: 0;
+        padding: .3em .5em;
+        border: 0;
+        border-top-left-radius: .2em;
+        border-bottom-left-radius: .2em;
+        background-color: $white;
+        color: $green;
     }
 
     .event-data {
@@ -141,6 +156,7 @@ section#event-main {
             position: absolute;
             display: flex;
             justify-content: space-between;
+            align-items: flex-end;
             bottom: 0;
             left: 0;
             right: 0;
@@ -154,6 +170,10 @@ section#event-main {
                 border: 2px solid #fff;
                 border-radius: .4em;
                 text-align: center;
+            }
+
+            .event-desc {
+                max-width: 80%;
             }
 
             #event-price {
@@ -512,9 +532,6 @@ section#event-main {
                 }
             }
         }
-
-
-
 
     }
 
