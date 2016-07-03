@@ -6,14 +6,14 @@ div.event-wrapper {
 
     #event-particip,
     #event-main,
-    #event-newsfeed {
+    .event-newsfeed {
         display: table-cell;
         height: 100%;
         word-break: break-all;
     }
 
 
-    #event-newsfeed {
+    .event-newsfeed {
         position: absolute;
         display: none;
         right: 0;

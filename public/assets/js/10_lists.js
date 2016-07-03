@@ -227,6 +227,7 @@ function getContent(currentDate) {
                             $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? '<i class="fa fa-check-circle" aria-hidden="true"></i> ' + value.username : ' <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Personne')+' s\'en occupe</span></div>');
                         }
                         getPrice(thisEvent);
+                        getNewsFeed();
                     }
                 });
             }
@@ -451,6 +452,43 @@ function getNewsFeed() {
         url: '../ajax/get-newsfeed',
         success: function(output) {
             console.log(output);
+            $('#event-newsfeed').text('');
+            if(output.news.length != 0) {
+                $.each(output.news, function(key, value) {
+
+                    if(value.id_list == 0 && value.id_card != 0) {
+                        var phraseToAppend =  '';
+                        phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
+                            if(value.action == 'add') {
+                                phraseToAppend += ' à ajouté ';
+                            }else if(value.action == 'modify') {
+                                phraseToAppend +=  ' à modifié ';
+                            }else if(value.action == 'remove') {
+                                phraseToAppend += ' à supprimé ';
+                            }
+                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
+                        $('#event-newsfeed').prepend(phraseToAppend);
+                    }
+
+                    if(value.id_list == 0 && value.id_card != 0) {
+                        var phraseToAppend =  '';
+                        phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
+                            if(value.action == 'add') {
+                                phraseToAppend += ' à ajouté ';
+                            }else if(value.action == 'modify') {
+                                phraseToAppend +=  ' à modifié ';
+                            }else if(value.action == 'remove') {
+                                phraseToAppend += ' à supprimé ';
+                            }
+                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
+                        $('#event-newsfeed').prepend(phraseToAppend);
+                    }
+                });
+            }
+            else {
+                $('#event-newsfeed').prepend('Pas d\'actualité ...');
+            }
+
         },
         error: function(e) {
             console.log(e);

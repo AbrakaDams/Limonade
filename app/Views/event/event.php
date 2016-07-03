@@ -217,7 +217,7 @@ sinon -->
 			</section>
 
 
-			<aside id="event-newsfeed">
+			<aside class="event-newsfeed">
 
 				<span id="newsfeed-hide-btn">Cacher <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
 
@@ -225,85 +225,10 @@ sinon -->
 
 				<hr>
 				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-				
-					<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
-						<?php foreach ($showNewsFeed as $newsFeed): ?>
-							<!-- // si list est vide et que card est rempli on affiche card
-							// si card est vide et que list est rempli on affcihe list
-							// si list et cards sont vide on affiche no actualiter
-							// si list et card sont remplie on affiche les 2
+					<div id="event-newsfeed">
 
-							// Si il ne trouve rien dans id_list et qu'il trouve quelquechos dans id_card -->
-							<?php if($newsFeed['id_list'] == 0  && $newsFeed['id_card'] != 0) :?>
-								<div class="news">
-									<?= $newsFeed['username']  ?>
-									<?php switch($newsFeed['action']) {
-										case 'add' :
-											echo ' à ajouté ';
-											break;
-										case 'remove' :
-											echo ' à supprimé ';
-											break;
-										case 'modify' :
-											echo ' à modifié ';
-											break;
-									} ?>
-									la tache
-									<strong> <?= $newsFeed['card_title']?> </strong>
-									le <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-									<hr>
-								</div>
+					</div>
 
-							<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] == 0) :?>
-								<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
-								<div class="news">
-									<?= $newsFeed['username']  ?>
-									<?php switch($newsFeed['action']) {
-										case 'add' :
-											echo ' à ajouté ';
-											break;
-										case 'remove' :
-											echo ' à supprimé ';
-											break;
-										case 'modify' :
-											echo ' à modifié ';
-											break;
-									} ?>
-									la liste
-									<strong> <?= $newsFeed['list_title']?> </strong>
-									le <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-									<hr>
-								</div>
-
-							<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] != 0) :?>
-								<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
-								<div class="news">
-									<?= $newsFeed['username']  ?>
-									<?php switch($newsFeed['action']) {
-										case 'add' :
-											echo ' à ajouté' ;
-											break;
-										case 'remove' :
-											echo ' à supprimé ';
-											break;
-										case 'modify' :
-											echo ' à modifié ';
-											break;
-									} ?>
-									la tache
-									<strong> <?= $newsFeed['card_title']?> </strong>
-									dans la liste  <strong><?=$newsFeed['list_title']?></strong>
-									le  <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . ' à ' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-									<hr>
-								</div>
-
-							<?php else: ?>
-								<p>
-									Pas d'actualité ...
-								</p>
-							<?php endif; ?>
-						<?php endforeach; ?>
-					<?php endif; ?>
 				<?php else: ?>
 					<div class="alert alert-danger">
 						<p>Pour voir le fil d'actualité rejoingnez l'évenement</p>
