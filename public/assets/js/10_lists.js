@@ -437,3 +437,19 @@ function getPrice(id) {
         }
     });
 }
+
+
+function getNewsFeed() {
+    $.ajax({
+        type: 'POST',
+        data: 'idEvent=' + thisEvent,
+        dataType: 'json',
+        url: '../ajax/get-newsfeed',
+        success: function(output) {
+            console.log(output);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    })
+}

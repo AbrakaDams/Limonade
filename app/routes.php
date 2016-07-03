@@ -15,7 +15,6 @@
 		/**************************** Search ********************/
 		['GET|POST', '/search-result', 'Search#searchResult', 'event_searchResult'],
 
-
 		/************************************ ourAccount ****************************/
 		['GET|POST', '/ourAccounts', 'Count#ourAccounts', 'count_ourAccounts'],
 
@@ -61,6 +60,9 @@
 
 		/*********************************** Price**********************************/
 		['GET|POST', '/ajax/get-price', 'Event#calcul', 'event_calcul'],
+
+		/*********************************** Price**********************************/
+		['GET|POST', '/ajax/get-newsfeed', 'NewsFeed#getNewsfeed', 'event_getNewsfeed'],
 		/*********************************** Comment**********************************/
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],

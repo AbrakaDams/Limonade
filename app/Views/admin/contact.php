@@ -44,6 +44,15 @@
 <!-- Ajoute un javascript pour cette page seulement -->
 <?php $this->start('js') ?>
 	<script>
-		$('.msg-read')
+		$('.msg-read').click(function() {
+
+			var thisMsg = $(this).attr('data-msg');
+			$.ajax({
+				type: 'POST',
+				data: 'idMsg=' + thisMsg,
+				dataType: 'json',
+				url:
+			})
+		})
 	</script>
 <?php $this->stop('js') ?>

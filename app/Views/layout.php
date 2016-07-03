@@ -28,7 +28,7 @@
 					    <span class="icon-bar"></span>
 					</button>
 		      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
-		      			<img alt="Brand" src="<?= $this->assetUrl('img/logo-lemonade.png') ?>" height="38px"> Lemonade
+		      			<img alt="Brand" src="<?= $this->assetUrl('img/logo-sans-bulle.png') ?>" height="26px"> Lemonade
 		      		</a>
 		    	</div>
 		    	<div id="navbar" class="navbar-collapse collapse navbar-right">

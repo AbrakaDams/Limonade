@@ -12,7 +12,7 @@ class NewsFeedController extends Controller
    * Function permettant de rechercher toute les news
    * @param  int $id l'id de la bdd
    */
-  public function newsFeed($id){
+  public function getNewsfeed($id){
         $authModel = new AuthentificationModel();
         $authModel->refreshUser();
         $loggedUser = $this->getUser();
@@ -26,7 +26,7 @@ class NewsFeedController extends Controller
           else{
                 $news = new NewsFeedModel();
                 $showNews = $news->joinNewsFeed($id);
-                return $showNews;
+                $this->showJson(['news' => $showNews]);
             }
       }
   }
