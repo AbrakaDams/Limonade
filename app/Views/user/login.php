@@ -18,7 +18,7 @@
   </p>
 <?php  else: ?>
 
-	<h1 class="center">SConnectez-vous par accéder au site</h1>
+	<h1 class="center">Connectez-vous par accéder au site</h1>
 
 
 	<form method="post" id="form-login">
