@@ -78,9 +78,20 @@ sinon -->
 
 					?>);">
 						<div class="event-data-container">
+
 							<!-- SHOW EVENT NAME -->
 							<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
-								<h2 class="event-title"><?php echo $thisEvent['title']; ?></h2>
+								<h2 class="event-title">
+									<?php switch($thisEvent['role']) {
+		                                case 'private':
+		                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ';
+		                                    break;
+		                                case 'public';
+		                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ';
+		                                    break;
+		                            }
+									echo $thisEvent['title']; ?>
+								</h2>
 							<?php else: ?>
 								<h2 class="event-title">L'évènement est sans nom</h2>
 							<?php endif; ?>
