@@ -113,7 +113,7 @@ section#event-main {
 
     .event-data {
         position: relative;
-        min-height: 30vh;
+        min-height: 25vh;
         background-position: 50% 30%;
         background-size: cover;
 
@@ -136,14 +136,13 @@ section#event-main {
     }
 
     #event-lists {
-        // display: flex;
-        // flex-wrap: nowrap;
         width: 80vw;
-        min-height: 60vh;
-        overflow-x: auto;
+        height: 70vh;
         white-space: nowrap;
         padding: 1em;
         padding-right: 0; // to show all lists
+        overflow-x: auto;
+        // overflow-y: hidden;
 
         input:focus,
         textarea:focus {
@@ -151,15 +150,20 @@ section#event-main {
         }
 
         #add-list-form {
+            margin-right: 3em;
             padding: 1em;
             background-color: $veryLightGreen;
 
             input {
                 padding: .4em;
-                // width: 20em;
+                width: 20em;
                 border-radius: .4em;
                 border: 1px solid #f0f0f0;
             }
+        }
+
+        #add-list-btn {
+            margin-right: 20em;
         }
     }
     .event-list {
@@ -167,10 +171,12 @@ section#event-main {
         margin-right: 1%;
         padding: 1em;
         width: 300px;
-        height: auto;
+        max-height: 100%;
         vertical-align: top;
         background-color: darken($veryLightGreen, 10);
         border-radius: .4em;
+        overflow-x: hidden;
+
 
         .list {
             position: relative;
@@ -200,6 +206,15 @@ section#event-main {
                 right: 0;
             }
         }
+
+        .cards {
+            height: 80%;
+            // overflow-y: visible;
+            // overflow-x: hidden;
+            overflow: hidden;
+            z-index: 0;
+        }
+
         .card {
             margin-bottom: .5em;
             border: 2px solid darken($milky, 6);
@@ -338,7 +353,7 @@ section#event-main {
             color: black;
 
             transition: all 600ms ease;
-            z-index: 2;
+            z-index: 10;
 
             &:before {
                 position: absolute;
