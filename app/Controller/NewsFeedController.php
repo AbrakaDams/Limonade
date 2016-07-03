@@ -27,7 +27,7 @@ class NewsFeedController extends Controller
                 $id = intval($_POST['idEvent']);
                 $news = new NewsFeedModel();
                 $showNews = $news->joinNewsFeed($id);
-                $this->showJson(['news' => $showNews]);
+                $this->showJson(['news' => $showNews, 'id' => $id]);
             }
       }
   }
