@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
@@ -25,9 +25,8 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="<?= $this->url('admin_admin'); ?>">
-						<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
-						Lemonade
-					</a>
+		      			<img alt="Brand" src="<?= $this->assetUrl('img/logo-sans-bulle.png') ?>" height="26px"> Lemonade
+		      		</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
