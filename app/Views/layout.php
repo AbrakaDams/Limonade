@@ -102,10 +102,10 @@
 	    	</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="<?= $this->url('default_home'); ?>">Accueil</a></li>
-					<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
+					<li><a href="#index-guide"> A propos</a></li>
+					<li><a href="#index-events"></i>Les événements</a></li>
 					<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
-					<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="glyphicon glyphicon-plus"></i>Les événements</a></li>
-					<li><a href="<?= $this->url('default_team'); ?>"> A propos</a></li>
+					<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
 
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
@@ -209,6 +209,36 @@
 	<script src="<?= $this->assetUrl('js/bootstrap-datetimepicker.min.js');?>"></script>
 	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/carous.js') ?>"></script>
+
+	<script type="text/javascript">
+	/****************************
+	Custom smooth scroll
+	****************************/
+	$(document).ready(function(){
+	// Add smooth scrolling to all links
+	$("a").on('click', function(event) {
+
+	// Make sure this.hash has a value before overriding default behavior
+	if (this.hash !== "") {
+	  // Prevent default anchor click behavior
+	  event.preventDefault();
+
+	  // Store hash
+	  var hash = this.hash;
+
+	  // Using jQuery's animate() method to add smooth page scroll
+	  // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+	  $('html, body').animate({
+		scrollTop: $(hash).offset().top
+	  }, 800, function(){
+
+		// Add hash (#) to URL when done scrolling (default click behavior)
+		window.location.hash = hash;
+	  });
+	} // End if
+	});
+	});
+	</script>
 	<?= $this->section('js'); ?>
 
 </body>

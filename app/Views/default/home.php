@@ -131,7 +131,7 @@
 
 	                        <p class="multiple-event-desc"><?php echo (strlen($value['description']) > 100) ?  substr($value['description'], 0, 100).'...' :  $value['description']; ?></p>
 
-							<a href="<?= $this->url('user_register'); ?>" class="index-event-btn">Je participe!</a>
+							<a href="<?= $this->url('user_login'); ?>" class="index-event-btn">Je participe!</a>
 	                    </div>
 	                </div>
 
