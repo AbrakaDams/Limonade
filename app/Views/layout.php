@@ -96,8 +96,8 @@
 				    <span class="icon-bar"></span>
 				</button>
 	      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
-	      			<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
-					Lemonade
+	      			<img alt="Brand" src="<?= $this->assetUrl('img/logo-sans-bulle.png') ?>" height="26px">
+					 Lemonade
 	      		</a>
 	    	</div>
 				<ul class="nav navbar-nav navbar-right">
