@@ -16,20 +16,36 @@ div.event-wrapper {
     #event-main {
         width: 80%;
         // background-color: red;
+
+        #newsfeed-show-btn {
+            position: absolute;
+            top: 1em;
+            right: 0;
+        }
     }
 
     #event-newsfeed {
         position: absolute;
+        display: none;
         right: 0;
         top: 0;
         padding: 2em;
-        width: 20%;
+        width: 70%;
         height: 100%;
         background-color: $lightGray;
         overflow: auto;
-    }
 
-    .event-newsfeed-visible {
+        @media only screen and (min-width: 660px) {
+    		width: 40%;
+    	}
+
+        @media only screen and (min-width: 860px) {
+    		width: 30%;
+    	}
+
+        @media only screen and (min-width: 1000px) {
+    		width: 20%;
+    	}
     }
 }
 

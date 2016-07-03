@@ -1,4 +1,13 @@
-$('#newsfeed-btn').click(function(
-    $('#event-newsfeed').hide("slide", {direction: "left" }, 1000);
-    $('#event-newsfeed').show("slide", { direction: "right" }, 1000);
-));
+$('#newsfeed-show-btn').click(function() {
+    // console.log('toggled');
+    // $('#event-newsfeed').toggleClass('event-newsfeed-visible');
+
+    $('#event-newsfeed').show('slide');
+});
+
+$('#newsfeed-hide-btn').click(function() {
+    // console.log('toggled');
+    // $('#event-newsfeed').toggleClass('event-newsfeed-visible');
+
+    $('#event-newsfeed').hide('slide');
+});

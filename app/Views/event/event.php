@@ -28,7 +28,7 @@ sinon -->
 				<?php endif; ?>
 			<?php endif; ?>
 			<hr>
-				<h3 class="particip-title"> Liste des participants :</h3>
+				<h3 class="particip-title"> Liste de participants (<?= count($participants); ?>):</h3>
 				<ul class="particip-friends-list">
 					<?php
 					if($participants == null){
@@ -42,6 +42,7 @@ sinon -->
 							}
 						}
 					}
+
 					?>
 				</ul>
 
@@ -70,8 +71,8 @@ sinon -->
 
 					<div class="event-data" style="background-image: url(
 					<?php
-						if(isset($thisEvent['avatar']) && !empty($thisEvent['avatar'])) {
-							echo $thisEvent['avatar'];
+						if(isset($thisEvent['event_avatar']) && !empty($thisEvent['event_avatar'])) {
+							echo $thisEvent['event_avatar'];
 						} else {
 							echo $this->assetUrl('img/slider/img_slider9.jpg');
 						}
@@ -122,13 +123,16 @@ sinon -->
 							<?php endif; ?>
 
 							<div id="event-price"></div>
+
 						</div>
 					</div>
+					<button type="button" name="button" id="newsfeed-show-btn"><< Show actus</button>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 						<div id="event-expired">
 							Attention cet évènement est maintenant terminé!
 						</div>
 					<?php endif; ?>
+
 				</div>
 
 
@@ -179,94 +183,96 @@ sinon -->
 				<?php endif; ?>
 			</section>
 
+
 			<aside id="event-newsfeed">
-				<button type="button" name="button" id="newsfeed-btn">Show newsfeed</button>
-			<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-				<h3>Fil activités</h3>
 
-				<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
-					<?php foreach ($showNewsFeed as $newsFeed): ?>
-						<!-- // si list est vide et que card est rempli on affiche card
-						// si card est vide et que list est rempli on affcihe list
-						// si list et cards sont vide on affiche no actualiter
-						// si list et card sont remplie on affiche les 2
+				<button type="button" name="button" id="newsfeed-hide-btn">Hide actus >></button>
+				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
+					<h3>Fil activités</h3>
 
-						// Si il ne trouve rien dans id_list et qu'il trouve quelquechos dans id_card -->
-						<?php if($newsFeed['id_list'] == 0  && $newsFeed['id_card'] != 0) :?>
-							<div class="news">
-								<?= $newsFeed['username']  ?>
-								<?php switch($newsFeed['action']) {
-									case 'add' :
-										echo 'à ajouté';
-										break;
-									case 'remove' :
-										echo 'à supprimé';
-										break;
-									case 'modify' :
-										echo 'à modifié';
-										break;
-								} ?>
-								la tache :
-								<strong> <?= $newsFeed['card_title']?> </strong>,
-								le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-								<hr>
-							</div>
+					<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
+						<?php foreach ($showNewsFeed as $newsFeed): ?>
+							<!-- // si list est vide et que card est rempli on affiche card
+							// si card est vide et que list est rempli on affcihe list
+							// si list et cards sont vide on affiche no actualiter
+							// si list et card sont remplie on affiche les 2
 
-						<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] == 0) :?>
-							<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
-							<div class="news">
-								<?= $newsFeed['username']  ?>
-								<?php switch($newsFeed['action']) {
-									case 'add' :
-										echo 'à ajouté';
-										break;
-									case 'remove' :
-										echo 'à supprimé';
-										break;
-									case 'modify' :
-										echo 'à modifié';
-										break;
-								} ?>
-								la liste :
-								<strong> <?= $newsFeed['list_title']?> </strong>,
-								le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-								<hr>
-							</div>
+							// Si il ne trouve rien dans id_list et qu'il trouve quelquechos dans id_card -->
+							<?php if($newsFeed['id_list'] == 0  && $newsFeed['id_card'] != 0) :?>
+								<div class="news">
+									<?= $newsFeed['username']  ?>
+									<?php switch($newsFeed['action']) {
+										case 'add' :
+											echo 'à ajouté';
+											break;
+										case 'remove' :
+											echo 'à supprimé';
+											break;
+										case 'modify' :
+											echo 'à modifié';
+											break;
+									} ?>
+									la tache :
+									<strong> <?= $newsFeed['card_title']?> </strong>,
+									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									<hr>
+								</div>
 
-						<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] != 0) :?>
-							<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
-							<div class="news">
-								<?= $newsFeed['username']  ?>
-								<?php switch($newsFeed['action']) {
-									case 'add' :
-										echo 'à ajouté';
-										break;
-									case 'remove' :
-										echo 'à supprimé';
-										break;
-									case 'modify' :
-										echo 'à modifié';
-										break;
-								} ?>
-								la tache :
-								<strong> <?= $newsFeed['card_title']?> </strong>,
-								dans la liste : <strong><?=$newsFeed['list_title']?></strong>
-								le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
-								<hr>
-							</div>
+							<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] == 0) :?>
+								<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
+								<div class="news">
+									<?= $newsFeed['username']  ?>
+									<?php switch($newsFeed['action']) {
+										case 'add' :
+											echo 'à ajouté';
+											break;
+										case 'remove' :
+											echo 'à supprimé';
+											break;
+										case 'modify' :
+											echo 'à modifié';
+											break;
+									} ?>
+									la liste :
+									<strong> <?= $newsFeed['list_title']?> </strong>,
+									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									<hr>
+								</div>
 
-						<?php else: ?>
-							<p>
-								Pas d'actualité ...
-							</p>
-						<?php endif; ?>
-					<?php endforeach; ?>
+							<?php elseif($newsFeed['id_list'] != 0  && $newsFeed['id_card'] != 0) :?>
+								<!-- // si l'action = add alors on repond pour ce cas sinon on repondra pour le cas d'un suppression -->
+								<div class="news">
+									<?= $newsFeed['username']  ?>
+									<?php switch($newsFeed['action']) {
+										case 'add' :
+											echo 'à ajouté';
+											break;
+										case 'remove' :
+											echo 'à supprimé';
+											break;
+										case 'modify' :
+											echo 'à modifié';
+											break;
+									} ?>
+									la tache :
+									<strong> <?= $newsFeed['card_title']?> </strong>,
+									dans la liste : <strong><?=$newsFeed['list_title']?></strong>
+									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
+									<hr>
+								</div>
+
+							<?php else: ?>
+								<p>
+									Pas d'actualité ...
+								</p>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				<?php else: ?>
+					<div class="alert alert-danger">
+						<p>Pour voir le fil d'actualité rejoingné l'évenement</p>
+					</div>
 				<?php endif; ?>
-			<?php else: ?>
-				<div class="alert alert-danger">
-					<p>Pour voir le fil d'actualité rejoingné l'évenement</p>
-				</div>
-			<?php endif; ?>
 			</aside>
 		</div>
 <?php else: ?>
@@ -284,4 +290,5 @@ sinon -->
 	<script src="<?= $this->assetUrl('js/10_lists.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/11_comment.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/event_verif.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/event.js') ?>"></script>
 <?php $this->stop('js') ?>
