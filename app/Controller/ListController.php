@@ -296,13 +296,19 @@ class ListController extends Controller
 
 				$deleteList = new ListModel();
 
+				$findList = new ListModel();
+				$idName = $findList->find($idList);
+
 				if($deleteList->delete($idList)) {
 
 					$user = $this->getUser();
 					$newsfeed = new NewsfeedModel();
 					$timestamp = date('Y-m-d H:i:s');
 
+					$listName = $idName['list_title'];
+
 					$newsfeedData = [
+						'list_name' => $listName,
 						'id_event' 	=> $idEvent,
 						'id_user' 	=> $user['id'],
 						'action' 	=> 'remove',
@@ -343,13 +349,19 @@ class ListController extends Controller
 				}
 
 				$deleteCard = new ListModel();
+				$findCard = new CardsModel();
+				$idName = $findCard->find($idCard);
 
 				if($deleteCard->deleteCard($idCard)) {
 					$user = $this->getUser();
 					$newsfeed = new NewsfeedModel();
 					$timestamp = date('Y-m-d H:i:s');
 
+
+					$cardName = $idName['card_title'];
+
 					$newsfeedData = [
+						'card_name' => $cardName,
 						'id_event'	=> $idEvent,
 						'id_user' 	=> $user['id'],
 						'action'	=> 'remove',
@@ -404,6 +416,7 @@ class ListController extends Controller
 							$newsfeed = new NewsfeedModel();
 
 							$newsfeedData = [
+								'list_name' => $listName,
 								'id_event'  => $idEvent,
 								'id_user'   => $user['id'],
 								'action'    => 'modify',
@@ -505,6 +518,7 @@ class ListController extends Controller
 							$newsfeed = new NewsfeedModel();
 
 							$newsfeedData = [
+								'card_name' 		=> $post['card_title'],
 								'id_event' 	=> $idEvent,
 								'id_user' 	=> $user['id'],
 								'action' 	=> 'modify',
