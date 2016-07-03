@@ -8,15 +8,15 @@
 	<div class="owl-carousel">
 		<div class="item carousel-item-1">
 			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider7.jpg') ?>" alt="food">
-			<h3 class="slider-phrase">La joie d'un évènement bien organisé.</h3>
+			<h3 class="slider-phrase">Pour des moments inoubliables.</h3>
 		</div>
 		<div class="item carousel-item-2">
 			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider9.jpg') ?>" alt="food">
-			<h3 class="slider-phrase">Une organisation d'événements.</h3>
+			<h3 class="slider-phrase">Le succès assuré pour tous vos événements.</h3>
 		</div>
 		<div class="item carousel-item-3">
 			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider11.jpg') ?>" alt="food">
-			<h3 class="slider-phrase">Un événement est un fait important, un fait marquant pour vous tout comme pour nous.</h3>
+			<h3 class="slider-phrase">Un événement est important pour vous, comme pour nous.</h3>
 		</div>
 		<div class="item carousel-item-4">
 			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider5.jpg') ?>" alt="food">
@@ -30,13 +30,13 @@
 
 	<!-- bla transparent line at the bottom of slider  -->
 	<div class="connect-sub">
-		<a href="<?= $this->url('user_login'); ?>">Connectez-vous</a>&nbsp;&nbsp; &nbsp;  ou <a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a>
+		<a href="<?= $this->url('user_login'); ?>">Se connecter</a>&nbsp;&nbsp; &nbsp;  <a href="<?= $this->url('user_register'); ?>">S'inscrire</a>
 	</div>
 </section>
 
 <section id="index-guide">
 	<div class="container">
-		<h2 class="index-guide-title"> PRATIQUE !</h2>
+		<h2 class="index-guide-title"> lemonade en quelques clics, c'est pratique.</h2>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-3">
 				<div class="index-guide-box">
@@ -53,7 +53,7 @@
 					<i class="fa fa-4x fa-users index-guide-icon" aria-hidden="true"></i>
 					<h3 class="index-guide-box-title">2. Inviter </h3>
 					<p class="index-guide-desc">
-						Invitez des amis à vous rejoindre pour plannifier.
+						Invitez des amis pour organiser tous ensemble.
 					</p>
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 					<i class="fa fa-4x fa-sitemap index-guide-icon" aria-hidden="true"></i>
 					<h3 class="index-guide-box-title">3. Communiquer </h3>
 					<p class="index-guide-desc">
-						Organisez tous ensemble votre projet.
+						Communiquez avec des outils simple et pratique.
 					</p>
 				</div>
 			</div>
