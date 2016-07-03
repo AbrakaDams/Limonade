@@ -103,10 +103,12 @@
 	      		</a>
 	    	</div>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
+					<li><a href="<?= $this->url('default_home'); ?>">Accueil</a></li>
 					<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
 					<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
-					<li><a href="<?= $this->url('default_home'); ?>">Retourner à l'accueil</a></li>
+					<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="glyphicon glyphicon-plus"></i>Les événements</a></li>
+					<li><a href="<?= $this->url('default_team'); ?>"> propos</a></li>
+					
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
 		</nav>
