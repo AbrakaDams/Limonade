@@ -110,9 +110,7 @@ sinon -->
 								</p>
 							<?php endif; ?>
 
-							<div id="event-price">
-
-							</div>
+							<div id="event-price"></div>
 						</div>
 					</div>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
@@ -271,4 +269,5 @@ sinon -->
 <?php $this->start('js') ?>
 	<script src="<?= $this->assetUrl('js/10_lists.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/11_comment.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/event_verif.js') ?>"></script>
 <?php $this->stop('js') ?>

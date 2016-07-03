@@ -200,7 +200,7 @@ function getContent(currentDate) {
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
                     if(response.eventRole == 'private' || (response.eventRole == 'public' && response.userRole == "event_admin")) {
-                        $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
+                        $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list" data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
                     }
                     else {
                         $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h3 class="list-title-no-form">'+ value.list_title + '</h3></div><div class="cards"></div></div>');
@@ -242,22 +242,23 @@ $('#event-lists').on('click', '.delete-list', function(e) {
 
     var idList = $(this).attr('data-delete-list');
     var list = $(this).closest('div.event-list');
-    // console.log(list);
+    console.log(this);
     $.ajax({
         type: 'POST',
         url: '../ajax/delete-list',
         dataType: 'json',
         data: 'idList=' + idList + '&idEvent=' + thisEvent,
         success: function(data) {
+            console.log(data);
             if(data.deleteList == 'done') {
                 $(list).fadeOut();
                 //console.log(data.deleteList);
             }
             getPrice(thisEvent);
         },
-        // error: function(e) {
-        //     console.log(e);
-        // }
+        error: function(e) {
+            console.log(e);
+        }
     });
 });
 
