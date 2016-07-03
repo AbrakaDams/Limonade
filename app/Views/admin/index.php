@@ -17,6 +17,9 @@
 		<li>
 			<a href="<?= $this->url('admin_comments'); ?>">Liste des commentaires ?</a>
 		</li>
+		<li>
+			<a href="<?= $this->url('admin_messageConctact'); ?>">Liste des messages(contact) ?</a>
+		</li>
 		<br><br>
 		<li>
 			<a href="<?= $this->url('default_home'); ?>">Retour sur le site</a>

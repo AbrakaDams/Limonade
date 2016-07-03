@@ -39,6 +39,7 @@
 		['GET|POST', '/admin/users', 'Admin#users', 'admin_users'],
 		['GET|POST', '/admin/events', 'Admin#events', 'admin_events'],
 		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],
+		['GET|POST', '/admin/contact', 'Admin#messageConctact', 'admin_messageConctact'],
 
 
 		/************************************ ajax ************************************/

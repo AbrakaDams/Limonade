@@ -6,6 +6,7 @@ use \Model\NewsfeedModel as NewsFeedModel;
 use \Model\AdminModel as AdminModel;
 use \Model\EventModel as EventsModel;
 use \Model\CommentsModel;
+use \Model\ContactModel;
 use \W\Model\UsersModel as UsersModel;
 use \W\security\AuthentificationModel as AuthModel;
 
@@ -264,7 +265,7 @@ class AdminController extends Controller
 			$this->allowTo('admin');
 			$usersModel = new UsersModel;
 			$user = $usersModel->find($id);
-			
+
 			if($user['status'] == 'default'){
 				$data = [
 					'status' => 'banned',
@@ -336,6 +337,23 @@ class AdminController extends Controller
 			$params = ['comments' => $comments];
 
 			$this->show('admin/comments', $params);
+		}
+	}
+
+	public function messageConctact()
+	{
+		$loggedUser = $this->getUser();
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+			$this->allowTo('admin');
+			$contactModel = new ContactModel;
+			$contact = $contactModel->findAll();
+
+			$params = ['contact' => $contact];
+
+			$this->show('admin/contact', $params);
 		}
 	}
 }

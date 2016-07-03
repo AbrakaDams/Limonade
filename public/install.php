@@ -877,6 +877,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `contact` (
 	`email` VARCHAR(255) NOT NULL ,
 	`object` VARCHAR(255) NOT NULL ,
 	`content` VARCHAR(255) NOT NULL ,
+	`date_add` DATETIME NOT NULL,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
 if($sql === false){

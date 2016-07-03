@@ -36,12 +36,14 @@ class ContactController extends Controller
 				if(count($errors) === 0){
 		  			// Il n'y a pas d'erreurs on fait l'insertion SQL
 		  			$contactModel = new Contact();
+					$timestamp = date('Y-m-d H:i:s');
 
 		  			$data = [
 		  				'name' 			=> $post['name'],
 		  				'email'     => $post['email'],
 	  					'object'    => $post['object'],
 		  				'content' 	=> $post['content'],
+						'date_add'	=> $timestamp,
 		  			];
 		  			if($contactModel->insert($data))
 						{
