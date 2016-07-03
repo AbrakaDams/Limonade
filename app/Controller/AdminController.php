@@ -256,7 +256,7 @@ class AdminController extends Controller
 		}
 	}
 
-	public function checkContact()
+	public function checkContact($id)
 	{
 		$loggedUser = $this->getUser();
 		if(!isset($loggedUser)){
@@ -267,14 +267,17 @@ class AdminController extends Controller
 			$authModel->refreshUser();
 			$this->allowTo('admin');
 
-			$idMessage = $_GET['id'];
+			$idMessage = $id;
 
 			$checkContact = new ContactModel();
 			$findContact = $checkContact->find($idMessage);
 
-			$msgRead = ['check' => 'check'];
+			$msgRead = ['is_read' => 'read'];
 
-			$updContact = $checkContact->update($msgRead,$idMessage);
+			$updContact = $checkContact->update($msgRead, $idMessage);
+			$updContact = $checkContact->update($msgRead, $idMessage);
+
+			$this->redirectToRoute('admin_messageConctact');
 
 		}
 	}

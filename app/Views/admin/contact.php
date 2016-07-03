@@ -14,8 +14,9 @@
 					<strong>  L'objet de la demande : </strong><?=$contacts['object'] ?> <strong><?=$contacts['is_read'] ?></strong><br>
 					<strong>  Contenus :</strong> <?=$contacts['content'] ?><br>
 					<strong>  Ajouté le :</strong> <?=$contacts['date_add'] ?> <br>
-					<a href="<?= $this->url('admin_checkContact', ['id' => $contacts['id']]); ?>">Ban</a>
-					<a href="#" data-msg="<?= $contacts['id']; ?>" class="mark-read">Marquer comme lu</a>
+					<a href="<?= $this->url('admin_checkContact', ['id' => $contacts['id']]); ?>">Marquer comme lu</a>
+					<!-- <a href="#" data-msg="<?= $contacts['id']; ?>" class="mark-read">Marquer comme lu</a> -->
+
 				</div>
 				<hr>
 
@@ -25,7 +26,7 @@
 					<strong>  L'objet de la demande : </strong><?=$contacts['object'] ?> <strong><?=$contacts['is_read'] ?></strong><br>
 					<strong>  Contenus :</strong> <?=$contacts['content'] ?><br>
 					<strong>  Ajouté le :</strong> <?=$contacts['date_add'] ?> <br>
-					<a href="<?= $this->url('admin_checkContact', ['id' => $contacts['id']]); ?>">Ban</a>
+
 				</div>
 				<hr>
 			<?php endif; ?>
