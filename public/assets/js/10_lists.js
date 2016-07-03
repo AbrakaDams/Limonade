@@ -467,7 +467,7 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
+                        phraseToAppend += 'la liste ' + value.card_title + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
 
@@ -481,7 +481,7 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la liste ' + value.card_title + '</p></div><hr>';
+                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
                 });
