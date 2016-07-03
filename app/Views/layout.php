@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
 </head>
@@ -29,8 +28,7 @@
 					    <span class="icon-bar"></span>
 					</button>
 		      		<a class="navbar-brand" href="<?= $this->url('default_home'); ?>">
-		      			<!-- <img alt="Brand" src="<?= $this->assetUrl('img/avatar/brand1.jpg') ?>" width="100px" height="38px"> -->
-						Lemonade
+		      			<img alt="Brand" src="<?= $this->assetUrl('img/logo-lemonade.png') ?>" height="38px"> Lemonade
 		      		</a>
 		    	</div>
 		    	<div id="navbar" class="navbar-collapse collapse navbar-right">
@@ -108,7 +106,7 @@
 					<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
 					<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="glyphicon glyphicon-plus"></i>Les événements</a></li>
 					<li><a href="<?= $this->url('default_team'); ?>"> A propos</a></li>
-					
+
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
 		</nav>

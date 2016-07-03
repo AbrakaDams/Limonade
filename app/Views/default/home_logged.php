@@ -15,7 +15,7 @@
                     <span class="multiple-event-category">
                         <?php switch ($value['category']) {
                             case 'repas' :
-                                echo 'répas';
+                                echo 'repas';
                                 break;
                             case 'vacances' :
                                 echo 'vacances';

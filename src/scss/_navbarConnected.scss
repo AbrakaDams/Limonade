@@ -34,6 +34,16 @@
     .icon-bar {
         background-color: #fff;
     }
+
+    .navbar-brand {
+        position: relative;
+        padding-left: 3em;
+        img {
+            position: absolute;
+            top: -.1em;
+            left: 1.5em;
+        }
+    }
     .show-account {
         background-color: lighten($green, 3);
 
@@ -54,7 +64,7 @@
         .navbar-avatar {
             position: relative;
             height: 2em;
-            width: 2em; 
+            width: 2em;
             border-radius:2em;
             object-fit: cover;
 
@@ -79,4 +89,3 @@
         margin: 0;
     }
 }
-
