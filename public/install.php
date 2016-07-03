@@ -392,7 +392,7 @@ if($sql === false){
 $events = array(
 	[
 	  'category'  => 'soiree',
-	  'title'  => 'Gotham Night!',
+	  'title'  => 'Gotham Night',
 	  'description'  => 'Une grande soirée déguisée sur le thème de l\'univers de Batman, venez nombreux !',
 	  'address'  => 'Au manoir Wayne ',
 	  'date_start'  => '2017-11-11 23:25:06',
@@ -412,7 +412,7 @@ $events = array(
   ],
   [
     'category'  => 'vacances',
-    'title'  => 'Séjour Camping des flots bleus !',
+    'title'  => 'Séjour Camping des flots bleus',
     'description'  => 'Un super séjour au camping des Flots Bleus avec des activités sportives, des randonnées, une bonne ambiance de prévue, venez nombreux et nombreuses ;)...',
     'address'  => 'Camping des Flots Bleus',
     'date_start'  => '2017-09-21 08:45:06',
@@ -422,7 +422,7 @@ $events = array(
   ],
   [
     'category'  => 'repas',
-    'title'  => 'Le barbeuk de DamDam !',
+    'title'  => 'Le barbeuk de DamDam',
     'description'  => 'Un délicieux repas de brochettes de tyrannosaure, de ventrêches, de côtes d\'agneaux et de l\'alcool avec Modération',
     'address'  => 'Chez moi, sur la terrasse',
     'date_start'  => '2018-05-01 21:12:06',
@@ -432,7 +432,7 @@ $events = array(
   ],
   [
     'category'  => 'repas',
-    'title'  => 'Anniversaire!',
+    'title'  => 'Anniversaire',
     'description'  => 'Un anniversaire avec des bonbons, gros gâteau d\'anniversaire, des cadeaux et une grosse pinata ',
     'address'  => 'Chez moi',
     'date_start'  => '2016-12-01 15:30:06',
