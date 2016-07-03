@@ -182,7 +182,6 @@ section#event-main {
         overflow-y: auto;
 
 
-
         .list {
             position: relative;
 
@@ -210,7 +209,45 @@ section#event-main {
                 top: 8%;
                 right: 0;
             }
+
+            .delete-list-phrase {
+                display: inline-block;
+                padding: 1em;
+                text-align: center;
+
+                .delete-list,
+                .delete-list-no {
+                    display: inline-block;
+                    margin-top: .5em;
+                    padding: .4em .6em;
+                    border-radius: .4em;
+                    color: $white;
+                    transition: all 400ms ease;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                .delete-list {
+                    margin-right: .7em;
+                    background-color: orange;
+
+                    &:hover {
+                        background-color: darken(orange, 2);
+                    }
+                }
+                .delete-list-no {
+                    background-color: $green;
+
+                    &:hover {
+                        background-color: darken($green, 2);
+                    }
+                }
+
+            }
+
         }
+
 
         .cards {
             height: 80%;
@@ -256,9 +293,18 @@ section#event-main {
             .card-desc,
             .card-price,
             .card-responsible {
+
                 padding: 0 .8em;
                 word-break: keep-all;
                 word-wrap: break-word;
+            }
+            .card-desc,
+            .card-price {
+                display: block;
+            }
+            .card-responsible {
+                display: inline-block;
+                margin-bottom: .4em;
             }
 
             i.fa-exclamation-triangle {
@@ -352,6 +398,7 @@ section#event-main {
     .modify-card {
         cursor: default;
         font-weight: normal;
+
 
 
         .modify-card-container {
@@ -482,7 +529,7 @@ div#event-comments {
     .event-comment {
         position: relative;
         margin-bottom: .5em;
-        max-width: 70%;
+        // max-width: 70%;
 
 
         .comment-user {
@@ -542,6 +589,16 @@ div#event-comments {
     }
 }
 
+.delete-list-link i,
+.delete-card i,
+.modify-card i {
+    color: $gray;
+    transition: all 400ms ease;
+
+    &:hover {
+        color: darken($gray, 2)
+    }
+}
 
 .ui-widget-content {
     border-color: #fff;

@@ -31,7 +31,7 @@ $(function() {
 
     $('body').on('click', '.delete-list-no', function(e){
         e.preventDefault();
-        var showDelContainer = $(this).parent();
+        var showDelContainer = $(this).closest('.delete-list-container');
         $(showDelContainer).addClass('hidden');
     });
 
@@ -201,7 +201,7 @@ function getContent(currentDate) {
             if(response.newLists.length != 0){
                 $.each(response.newLists, function(key, value) {
                     if(response.eventRole == 'private' || (response.eventRole == 'public' && response.userRole == "event_admin")) {
-                        $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list" data-delete-list="'+value.id+'">Oui</a></span><a class="delete-list-no" href="">Non</a></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
+                        $('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><form class="modify-list-form" method="post"><input type="text" class="list-title" name="list_title" value="'+ value.list_title + '"></form><a href class="delete-list-link"><i class="fa fa-times" aria-hidden="true"></i></a><span class="delete-list-container hidden"><span class="delete-list-phrase">Vous etes sur? En supprimant cette liste vous aller supprimer toutes ces taches <a href="#" class="delete-list" data-delete-list="'+value.id+'">Oui</a><a class="delete-list-no" href="">Non</a></span></span></div><div class="cards"></div>' + newCard + '</div>').insertBefore('#add-new-list');
                     }
                     else {
                         $('#event-lists').append('<div class="event-list"><div class="list" data-id-list="'+value.id+'"><h3 class="list-title-no-form">'+ value.list_title + '</h3></div><div class="cards"></div></div>');
