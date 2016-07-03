@@ -29,8 +29,8 @@
           echo $err.'<br>';
         }?>
     </p>
-<?php endif; ?>
 </div>
+<?php endif; ?>
 
 <div class="container" id="form-crea">
     <form method="post" class="form-create-event" id="createEvent" enctype="multipart/form-data" onsubmit="return validateForm()">
@@ -44,7 +44,8 @@
                     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></label>
                     <br>
                     <input type="radio" name="role" id="public" value="public" <?php if(!empty($data) && $success !== true && $data['role'] == 'public'){echo 'checked' ;}?>>
-                    <label for="public" class="masterTooltip" title="Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.">Public <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></label>
+                    <label for="public" class="masterTooltip" title="Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.">Public 
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></label>
                 </div>
                 <div class="col-xs-3">
                     <label for="cat-event" class="masterTooltip" title="Ceci est le style de votre évènement">Type d'événement <i class="fa fa-info-circle" aria-hidden="true"></i></label>
@@ -65,17 +66,15 @@
                     </div>
                 </div>
 
-
                  <div class="col-xs-3">
-                    <label for="title-event" class="masterTooltip" title="Indiquez un titre à votre évènement, vous aurez la possibilité de la changer ultérieurement">Nom d'événement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
+                    <label for="title-event" class="masterTooltip" title="Indiquez un titre à votre évènement">Nom d'événement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
                     <input type="text" name="title" placeholder="Le titre" <?php if(!empty($data) && $success !== true){echo 'value="'.$data['title'].'"';}?> required><br><br>
-
                 </div>
             </div>
         </div>
         <hr>
         <br>
-        <div class="">
+        <div>
             <div class="row">
                 <div class="col-xs-6 col-md-4">
                     <label for="description" class="masterTooltip" title="Entrez une brève description de votre évènement">Description d'évenement: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
@@ -105,7 +104,7 @@
             </div>
             <div class='col-xs-6 col-md-4'>
                 <div class="form-group" id="date_end">
-                    <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin d'événement</i><br><br>
+                    <i class="fa fa-hourglass-end fa-2x" aria-hidden="true"> Fin de votre événement</i><br><br>
                     <label for="date_end" name="date_end" class="masterTooltip" title="Fin de votre événement">Date et heure: <i class="fa fa-info-circle" aria-hidden="true"></i></label><br>
                     <div class="input-group">
                         <input type="text" name="date_end" class="form-control" id='datetimepickerend' value="<?php if(!empty($data) && $success !== true){echo $data['date_end'];}?>">
