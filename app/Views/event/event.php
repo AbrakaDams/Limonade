@@ -15,12 +15,12 @@ sinon -->
 
 			<?php if(isset($roleEvent['role'])): ?>
 				<?php if($roleEvent['role'] == 'event_admin'): ?>
-<<<<<<< HEAD
+
 					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Modifier l'événement</a>
-=======
+
 					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-wrench" aria-hidden="true"></i> Modifier l'évènement</a>
 					<br>
->>>>>>> origin/master
+
 				<?php endif ?>
 				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
 					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Inviter plus d'amis</a>
