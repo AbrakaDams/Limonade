@@ -234,8 +234,8 @@ class EventController extends MasterController
 				    	$errors[] = 'Vous devez cocher un bouton !';
 					}
 					// Titre
-					if(strlen($post['title']) < 3 || strlen($post['title']) > 20){
-					    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 20 caractères';
+					if(strlen($post['title']) < 3 || strlen($post['title']) > 40){
+					    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 40 caractères';
 					}
 					// Description
 					if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
@@ -384,8 +384,8 @@ class EventController extends MasterController
 				if(empty($post['category'])){
 					$errors[] = 'Vous devez cocher un bouton catégorie !';
 				}
-				if(strlen($post['title']) < 3 || strlen($post['title']) > 30){
-					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 30 caractères';
+				if(strlen($post['title']) < 3 || strlen($post['title']) > 40){
+					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 40 caractères';
 				}
 				if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 					$errors[] = 'La description doit contenir minimum 5 caractères';
