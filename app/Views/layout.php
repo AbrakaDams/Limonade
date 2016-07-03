@@ -59,13 +59,13 @@
 
 								<ul class="dropdown-menu">
 									<?php	if(isset($w_user['role']) && $w_user['role'] == 'admin'): ?>
-										<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office Admin </a></li>
+										<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office : Admin </a></li>
 									<?php endif; ?>
-									<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
+									<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un événement </a></li>
 									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
 									<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
 
-									<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-nous </a></li>
+									<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Nous contacter </a></li>
 
 									<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 								</ul>
@@ -75,8 +75,8 @@
 								<li><a href="<?= $this->url('user_logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
 							<?php else: ?>
 								<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
-								<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
-								<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
+								<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
+								<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
 							<?php endif; ?>
 						<?php endif;  ?>
 					</ul> <!-- class="nav navbar-nav navbar-right" -->
@@ -102,8 +102,8 @@
 	    	</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="<?= $this->url('event_createEvent');?>"><i class="glyphicon glyphicon-plus"></i></a></li>
-					<li><a href="<?= $this->url('user_login'); ?>">Connectez-vous</a></li>
-					<li><a href="<?= $this->url('user_register'); ?>">Inscrivez-vous</a></li>
+					<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
+					<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
 					<li><a href="<?= $this->url('default_home'); ?>">Retourner à l'accueil</a></li>
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
@@ -163,7 +163,7 @@
 					<!-- Dossier Img -->
 						<div class="nc-footer-team">
 							<h3 class="nc-footer-title">
-								<a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i> L'équipe</a>
+								<a href="<?= $this->url('default_team');?>"><i class="fa fa-users fa-1x" aria-hidden="true"></i>L'équipe</a>
 							</h3>
 
 							<a href="#">
