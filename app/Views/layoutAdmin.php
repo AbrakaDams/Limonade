@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
@@ -59,7 +59,7 @@
 										<li><a href="<?= $this->url('default_home'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Retour Accueil </a></li>
 									<?php endif; ?>
 									<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel événement </a></li>
-									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
+									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Mon compte</a></li>
 									<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
 
 									<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Contactez-vous </a></li>

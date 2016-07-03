@@ -62,7 +62,7 @@
 										<li><a href="<?= $this->url('admin_admin'); ?>"><i class="fa fa-globe" aria-hidden="true"></i> Back Office : Admin </a></li>
 									<?php endif; ?>
 									<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Créer un événement </a></li>
-									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Paramètres</a></li>
+									<li><a href="<?= $this->url('user_updateUser'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Mon compte</a></li>
 									<li><a href="<?= $this->url('default_faq'); ?>"><i class="fa fa-medkit" aria-hidden="true"></i> FAQ </a></li>
 
 									<li><a href="<?= $this->url('contact_contact'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> Nous contacter </a></li>

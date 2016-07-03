@@ -224,11 +224,21 @@ section#event-main {
             padding: 1em;
             background-color: $lightGray;
 
-            input {
+            input[type=text] {
                 padding: .4em;
                 width: 20em;
                 border-radius: .4em;
                 border: 1px solid #f0f0f0;
+            }
+
+            input[type=submit] {
+                display: inline-block;
+                margin-top: .5em;
+                padding: .3em .5em;
+                border: 0;
+                border-radius: .4em;
+                background-color: $green;
+                color: $white;
             }
         }
 
@@ -251,6 +261,13 @@ section#event-main {
 
         .list {
             position: relative;
+
+            .list-title-no-form {
+                padding-left: .4em;
+                text-transform: uppercase;
+                font-size: 1em;
+                font-weight: bold;
+            }
 
             .modify-list-title {
                 display: inline-block;
@@ -425,11 +442,11 @@ section#event-main {
 
             input[type=submit] {
                 margin-right: 4%;
-                background-color: green;
+                background-color: $green;
             }
 
             input[type=reset] {
-                background-color: red;
+                background-color: orange;
             }
         }
 

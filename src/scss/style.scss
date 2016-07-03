@@ -27,7 +27,14 @@ body {
 }
 
 
-
+.notif-event-private {
+	margin: 4em auto;
+	padding: 3em;
+	width: 70%;
+	text-align: center;
+	border: 1px solid red;
+	border-radius: .4em;
+}
 
 @import '_notConnected.scss';
 @import '_navbarConnected.scss';

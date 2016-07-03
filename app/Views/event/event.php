@@ -237,8 +237,9 @@ sinon -->
 			</aside>
 		</div>
 <?php else: ?>
-	<p>
-		Pour accéder à un événement privé, vous devez être invité par le créateur ou les participants de l'événement.
+	<p class="notif-event-private">
+		Pour accéder à un événement privé, vous devez être invité par le créateur ou les participants de l'événement.<br>
+		<a href="<?= $this->url('default_home'); ?>">Retourner à l'accueil</a>
 	</p>
 <?php endif; ?>
 
