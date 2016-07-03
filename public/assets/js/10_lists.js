@@ -342,6 +342,14 @@ $(document).ready(function() {
         var modifCard = $(this).find('.modify-card-container');
 
         $(modifCard).removeClass('hidden');
+        //$(modifCard).css('display', 'block');
+
+        // var modifBtnPosition = $(this).position();
+        // console.log(modifBtnPosition);
+        // $(modifCard).css({
+        //   top: modifBtnPosition.top,
+        //   left: modifBtnPosition.left + Math.round(modifCard.outerWidth() * 0.75)
+        // });
 
         modifForm = $(this).find('.modify-card-form');
 
