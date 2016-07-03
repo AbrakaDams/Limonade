@@ -220,11 +220,12 @@ sinon -->
 			<aside id="event-newsfeed">
 
 				<span id="newsfeed-hide-btn">Cacher <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+
+				<h3>Fil d'actualité</h3>
+
+				<hr>
 				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-					<h3>Fil d'actualité</h3>
-
-					<hr>
-
+				
 					<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
 						<?php foreach ($showNewsFeed as $newsFeed): ?>
 							<!-- // si list est vide et que card est rempli on affiche card

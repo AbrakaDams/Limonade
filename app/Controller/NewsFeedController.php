@@ -12,7 +12,7 @@ class NewsFeedController extends Controller
    * Function permettant de rechercher toute les news
    * @param  int $id l'id de la bdd
    */
-  public function getNewsfeed($id){
+  public function getNewsfeed(){
         $authModel = new AuthentificationModel();
         $authModel->refreshUser();
         $loggedUser = $this->getUser();
@@ -24,6 +24,7 @@ class NewsFeedController extends Controller
               $this->show('default/home_banned');
           }
           else{
+                $id = intval($_POST['idEvent']);
                 $news = new NewsFeedModel();
                 $showNews = $news->joinNewsFeed($id);
                 $this->showJson(['news' => $showNews]);

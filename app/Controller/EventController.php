@@ -56,8 +56,8 @@ class EventController extends MasterController
 
 					$eventData = $EventModel->find($id);
 
-					$news = new NewsFeedController();
-					$newsFeed = $news->newsFeed($id);
+					// $news = new NewsFeedController();
+					// $newsFeed = $news->newsFeed($id);
 
 					// On récupère les infos du user connecté
 					$authModel = new AuthModel();
@@ -71,7 +71,7 @@ class EventController extends MasterController
 					// send received data to the event.php
 					$showEvent = [
 						'thisEvent'			=> $eventData,
-						'showNewsFeed'		=> $newsFeed,
+						// 'showNewsFeed'		=> $newsFeed,
 						'participants'		=> $participants,
 						'userEvents'		=> $userEvents,
 						'roleEvent'			=> $eventRole,
