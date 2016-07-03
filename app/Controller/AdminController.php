@@ -178,7 +178,7 @@ class AdminController extends Controller
 			$successimg = false;
 			$userData = array();
 
-			$adminModel = new AdminModel;
+			$adminModel = new AdminModel();
 			$userData = $adminModel->findUser($id);
 
 			$folder = $_SERVER['DOCUMENT_ROOT'].'/limonade/public/assets/image/';
@@ -253,6 +253,29 @@ class AdminController extends Controller
 				'userData' 	=> $userData,
 			];
 			$this->show('admin/checkUser', $params);
+		}
+	}
+
+	public function checkContact()
+	{
+		$loggedUser = $this->getUser();
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+			$authModel = new AuthModel();
+			$authModel->refreshUser();
+			$this->allowTo('admin');
+
+			$idMessage = $_GET['id'];
+
+			$checkContact = new ContactModel();
+			$findContact = $checkContact->find($idMessage);
+
+			$msgRead = ['check' => 'check'];
+
+			$updContact = $checkContact->update($msgRead,$idMessage);
+
 		}
 	}
 

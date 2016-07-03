@@ -41,6 +41,7 @@
 		['GET|POST', '/admin/comments', 'Admin#comments', 'admin_comments'],
 		['GET|POST', '/admin/delete-comment/[i:id]', 'Admin#supprComment', 'admin_supprComment'],
 		['GET|POST', '/admin/contact', 'Admin#messageConctact', 'admin_messageConctact'],
+		['GET|POST', '/admin/check-contact/[i:id]', 'Admin#checkContact', 'admin_checkContact'],
 
 
 
