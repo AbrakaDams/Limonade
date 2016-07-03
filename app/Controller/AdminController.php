@@ -340,6 +340,23 @@ class AdminController extends Controller
 		}
 	}
 
+	public function supprComment($id)
+	{
+		$loggedUser = $this->getUser();
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+			$this->allowTo('admin');
+			$commentsModel = new CommentsModel;
+			if($deleteCom = $commentsModel->delete($id)){
+				$this->redirectToRoute('admin_comments');
+			};
+			$this->show('admin/comments');
+		}
+	}
+
+
 	public function messageConctact()
 	{
 		$loggedUser = $this->getUser();

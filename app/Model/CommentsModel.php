@@ -19,7 +19,7 @@ class CommentsModel extends \W\Model\Model
   public function findAllComments($orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null, $id = null)
   {
 
-      $sql = 'SELECT comments.id_event, comments.id_user, comments.content, comments.date_add, event.title, users.username
+      $sql = 'SELECT comments.id, comments.id_event, comments.id_user, comments.content, comments.date_add, event.title, users.username
       FROM comments
       INNER JOIN event ON event.id = comments.id_event
       INNER JOIN users ON users.id = comments.id_user';
