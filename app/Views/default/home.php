@@ -7,24 +7,24 @@
 <section class="slider">
 	<div class="owl-carousel">
 		<div class="item carousel-item-1">
-			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider7.jpg') ?>" alt="food">
+			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider7.jpg') ?>" alt="event_slider">
 			<h3 class="slider-phrase">Pour des moments inoubliables.</h3>
 		</div>
 		<div class="item carousel-item-2">
-			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider9.jpg') ?>" alt="food">
+			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider9.jpg') ?>" alt="event_slider">
 			<h3 class="slider-phrase">Le succès assuré pour tous vos événements.</h3>
 		</div>
 		<div class="item carousel-item-3">
-			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider11.jpg') ?>" alt="food">
+			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider11.jpg') ?>" alt="event_slider">
 			<h3 class="slider-phrase">Un événement est important pour vous, comme pour nous.</h3>
 		</div>
 		<div class="item carousel-item-4">
-			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider5.jpg') ?>" alt="food">
+			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider5.jpg') ?>" alt="event_slider">
 			<h3 class="slider-phrase">Jetez-vous à l'eau et rejoignez Limonade.</h3>
 			</div>
 		<div class="item carousel-item-5">
-			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider4.jpg') ?>" alt="food">
-			<h3 class="slider-phrase">Détendez vous, on s'occupe de tout.</h3>
+			<img class="slider-img" src="<?= $this->assetUrl('img/slider/img_slider4.jpg') ?>" alt="event_slider">
+			<h3 class="slider-phrase">Pour les petites comme pour les grandes occasion.</h3>
 		</div>
 	</div>
 
