@@ -130,7 +130,7 @@ $('#add-list-form').on('submit', function(e) {
         data: formData+'&eventId='+thisEvent,
         dataType: 'json',
         success: function(output) {
-            //console.log(output);
+            console.log(output);
             if(output.answer == 'success') {
                 $('#add-list-form').each(function(){
                     $(this)[0].reset();
@@ -445,6 +445,7 @@ function getPrice(id) {
 
 
 function getNewsFeed() {
+    console.log('newsfeed');
     $.ajax({
         type: 'POST',
         data: 'idEvent=' + thisEvent,
@@ -480,7 +481,7 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
+                        phraseToAppend += 'la liste ' + value.card_title + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
                 });
