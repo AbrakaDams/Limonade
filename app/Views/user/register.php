@@ -17,7 +17,7 @@
 
 			<?php if(isset($success) && $success === true): ?>
 				<div class="alert alert-success">
-				<p> Votre inscription a bien été prise en compte.<br> Veuillez consulter vos emails pour confirmer votre mot de passe ! </p>
+					<p> Votre inscription a bien été prise en compte.<br> Veuillez consulter vos emails pour confirmer votre compte ! </p>
 				</div>
 			<?php endif; ?>
 
@@ -80,7 +80,7 @@
 					<input type="submit" value="Envoyer" />
 					<hr>
 				<!-- </div> -->
-				<br><strong> Vous avez déjà un compte? <a href="<?= $this->url('user_login') ?>"> Connectez-vous</a></strong>
+				<br><strong> Vous avez déjà un compte ? <a href="<?= $this->url('user_login') ?>"> Connectez-vous</a></strong>
 			</form>
 			<?php endif; ?>
 		</div>
