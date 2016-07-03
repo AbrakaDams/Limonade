@@ -72,7 +72,7 @@
 		['GET|POST', '/ajax/add-participant', 'Event#addParticipant', 'event_addParticipant'],
 		['GET|POST', '/ajax/delete-participant', 'Event#deleteParticipant', 'event_deleteParticipant'],
 		['GET|POST', '/ajax/get-all-participants', 'Event#getAllParticipants', 'event_getAllParticipants'],
-		['GET|POST', '/ajax/join-event', 'Event#joinEvent', 'event_joinEvent'],
+		['GET|POST', '/join-event/[i:id]', 'Event#joinEvent', 'event_joinEvent'],
 
 		/******************************************* Notif **********************************/
 		['GET|POST', '/ajax/update-notif', 'Notifications#updateNotif', 'event_updateNotif'],

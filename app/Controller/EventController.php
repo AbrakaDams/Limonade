@@ -653,7 +653,7 @@ class EventController extends MasterController
 			}
 		}
 	}
-	public function joinEvent(){
+	public function joinEvent($id){
 		$authModel = new AuthModel();
 		$authModel->refreshUser();
 		$loggedUser = $this->getUser();
@@ -667,14 +667,12 @@ class EventController extends MasterController
 			else{
 				$UserModel = new UsersModel();
 				$userInfo = $UserModel->getUserByUsernameOrEmail($loggedUser['username']);
+				$idEvent = $id;
 				$idUser = $loggedUser['id'];
-				$idEvent = $_GET['id'];
 				$EventUsersModel = new EventUsersModel();
 				$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
-
 				// Si il y est déjà
 				if(!empty($exist)){
-					$json = ['resultat' => 'exist'];
 				}
 				// S'il n'y est pas on l'insère
 				else{
@@ -705,10 +703,7 @@ class EventController extends MasterController
 						// On créé la notification
 						$NotificationsModel->insert($dataNotification);
 
-						$json = ['resultat' => 'ok'];
-					}
-					else {
-						$json = ['resultat' => 'ko'];
+						$this->redirectToRoute('event_showEvent', ['id' => $idEvent]);
 					}
 				}
 			}

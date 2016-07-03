@@ -1,22 +1,22 @@
 <?php $this->layout('layout', ['title' => 'My event']) ?>
 
 <?php $this->start('main_content') ?>
-	
+
 <div class="container">
-	<div class="row">	
+	<div class="row">
 		<div id="room_fileds" class="room_fileds">
 			<a href="<?= $this->url('event_showEvent', ['id' => $idEvent]);?>">Retour à votre événement
 			</a>
 			<br><hr>
 			<h2>Inviter des amis à votre événement</h2>
 			<br>
-		    <form method="post" class="content" id="remote"> 
-		   		Ajouter un ami : 
-		   		<input type="text" id="username" class="typeahead"> 
+		    <form method="post" class="content" id="remote">
+		   		Ajouter un ami :
+		   		<input type="text" id="username" class="typeahead">
 		        <button type="submit" class="btn btn-primary">Ajouter</button>
 		    </form>
 		    <br><hr>
-		    
+
 		    <div id="invite-message"></div>
 		    <div class="list-participants">
 		    	<h2>Liste des amis participants :</h2><br>
@@ -25,13 +25,15 @@
 		    			<span class="idUser" data-id-user="<?= $user['id'] ?>"></span>
 		    			<span class="idEvent" data-id-event="<?= $idEvent ?>"></span>
 		    			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
+						<?php if($user['role'] == 'event_admin'): ?>
 		    			<a class="delete">Supprimer</a>
+					<?php endif; ?>
 		    		</p>
 		    	<?php endforeach; ?>
 		    </div>
 		    <div id="delete-message"></div>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <?php $this->stop('main_content') ?>
@@ -114,7 +116,7 @@
 				error: function(e){
 					console.log(e);
 				}
-				
+
 			});
 		});
 		/***************************
