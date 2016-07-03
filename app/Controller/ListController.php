@@ -115,10 +115,10 @@ class ListController extends Controller
 					if(!isset($post['card_desc']) || empty($post['card_desc'])) {
 						$errors[] = 'La description de la tâche est incorrecte';
 					}
-					if(!isset($post['card_quantity']) || empty($post['card_quantity']) && $post['card_quantity'] < 0) {
+					if(!isset($post['card_quantity']) || empty($post['card_quantity']) || $post['card_quantity'] < 0) {
 						$errors[] = 'La quantité de la tache est incorrecte';
 					}
-					if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] < 0) {
+					if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] <= 0) {
 						$errors[] = 'Le prix de la tache est incorrecte';
 					}
 					// create variable to prevent empty insertions
@@ -453,10 +453,10 @@ class ListController extends Controller
 					if(!isset($post['card_desc']) || empty($post['card_desc'])) {
 						$errors[] = 'La description de la tâche est incorrecte';
 					}
-					if(!isset($post['card_quantity']) || empty($post['card_quantity']) && $post['card_quantity'] < 0) {
+					if(!isset($post['card_quantity']) || empty($post['card_quantity']) || $post['card_quantity'] < 0) {
 						$errors[] = 'La quantité de la tache est incorrecte';
 					}
-					if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] < 0) {
+					if(!isset($post['card_price']) || empty($post['card_price']) || !is_numeric($post['card_price']) || $post['card_price'] <= 0) {
 						$errors[] = 'Le prix de la tache est incorrecte';
 					}
 					// create variable to prevent empty insertions
