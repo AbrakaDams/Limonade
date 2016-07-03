@@ -391,9 +391,8 @@ class AdminController extends Controller
 			$contactModel = new ContactModel;
 			$contact = $contactModel->findAll();
 
-			$params = ['contact' => $contact];
 
-			$this->show('admin/contact', $params);
+			$this->show('admin/contact', ['contact' => $contact]);
 		}
 	}
 }
