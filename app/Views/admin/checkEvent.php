@@ -92,7 +92,7 @@
       </div>
   </div>
 	<hr>
-	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier votre évènement</button>
+	<button type="submit" id="modifEvent" class="btn btn-primary">Modifier votre évènement</button> <a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
 </form>
 
 <div id="eventUpdate"></div>
