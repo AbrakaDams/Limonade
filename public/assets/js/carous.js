@@ -5,6 +5,9 @@ $('.owl-carousel').owlCarousel({
     autoplay: true,
     nav:true,
     navText: ["<span class='glyphicon glyphicon-menu-left'></span>","<span class='glyphicon glyphicon-menu-right'></span>"],
+    mouseDrag: true,
+    touchDrag: true,
+    smartSpeed: 1200,
     responsive:{
         0:{
             items:1

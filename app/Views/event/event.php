@@ -109,6 +109,10 @@ sinon -->
 									<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'évènement n'est communiqué que au personne ayant rejoin l'évènement.
 								</p>
 							<?php endif; ?>
+
+							<div id="event-price">
+
+							</div>
 						</div>
 					</div>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
