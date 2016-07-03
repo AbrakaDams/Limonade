@@ -13,6 +13,10 @@ sinon -->
 		<div class="event-wrapper">
 			<aside id="event-particip">
 
+				<div class="event-particip-content">
+
+
+
 			<?php if(isset($roleEvent['role'])): ?>
 				<?php if($roleEvent['role'] == 'event_admin'): ?>
 
@@ -43,18 +47,15 @@ sinon -->
 					else{
 						foreach ($participants as $infos) {
 							echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname']. ' ' . (($infos['role'] =='event_admin') ? '(admin)' : '') .'</li>';
-							// if($infos['role'] =='event_admin'){
-							// 	echo '(Admin)';
-							// }
 						}
 					}
 
 					?>
 				</ul>
 
-				<?php if(count($participants) > 10) : ?>
+				<!-- <?php if(count($participants) > 10) : ?>
 					<span id="show-all-friends">Montrer tous</span>
-				<?php endif; ?>
+				<?php endif; ?> -->
 
 				<hr>
 
@@ -69,6 +70,8 @@ sinon -->
 							<?php endif; ?>
 					</a>
 				<?php endforeach; ?>
+
+				</div>
 			</aside>
 
 			<section id="event-main">
@@ -84,55 +87,70 @@ sinon -->
 						}
 
 					?>);">
+						<div class="event-bg-transparent"></div>
 						<div class="event-data-container">
 
-							<!-- SHOW EVENT NAME -->
-							<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
-								<h2 class="event-title">
-									<?php switch($thisEvent['role']) {
-		                                case 'private':
-		                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ';
-		                                    break;
-		                                case 'public';
-		                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ';
-		                                    break;
-		                            }
-									echo $thisEvent['title']; ?>
-								</h2>
-							<?php else: ?>
-								<h2 class="event-title">L'événement est sans nom</h2>
-							<?php endif; ?>
-
-							<!-- SHOW EVENT DESCRIPTION -->
-							<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
-								<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
-							<?php endif; ?>
-
-							<!-- SHOW EVENT DATE -->
-							<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
-								<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
-							<?php else: ?>
-								<p class="event-date">La date n'est pas encore precisée</p>
-							<?php endif; ?>
-
-							<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user' ): ?>
-								<!-- SHOW EVENT ADDRESS -->
-								<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
-									<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $thisEvent['address']; ?></p>
+							<div class="">
+								<!-- SHOW EVENT NAME -->
+								<?php if(isset($thisEvent['title']) && !empty($thisEvent['title'])): ?>
+									<h2 class="event-title">
+										<?php switch($thisEvent['role']) {
+			                                case 'private':
+			                                    echo '<i class="fa fa-lock" aria-hidden="true"></i> ';
+			                                    break;
+			                                case 'public';
+			                                    echo '<i class="fa fa-unlock" aria-hidden="true"></i> ';
+			                                    break;
+			                            }
+										echo $thisEvent['title']; ?>
+									</h2>
 								<?php else: ?>
-									<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse n'est pas encore précisée</p>
+									<h2 class="event-title">L'événement est sans nom</h2>
 								<?php endif; ?>
-							<?php else: ?>
-								<p>
-									<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'événement est communiquée aux personnes ayant rejoint l'évènement.
-								</p>
-							<?php endif; ?>
 
-							<div id="event-price"></div>
+								<!-- SHOW EVENT DESCRIPTION -->
+								<?php if(isset($thisEvent['description']) && !empty($thisEvent['description'])): ?>
+									<p class="event-desc"><?php echo $thisEvent['description']; ?></p>
+								<?php endif; ?>
+
+
+
+								<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user' ): ?>
+									<!-- SHOW EVENT ADDRESS -->
+									<?php if(isset($thisEvent['address']) && !empty($thisEvent['address'])): ?>
+										<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $thisEvent['address']; ?></p>
+									<?php else: ?>
+										<p class="event-address"><i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse n'est pas encore précisée</p>
+									<?php endif; ?>
+								<?php else: ?>
+									<p>
+										<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'événement est communiquée aux personnes ayant rejoint l'évènement.
+									</p>
+								<?php endif; ?>
+							</div>
+
+
+							<div>
+								<!-- SHOW EVENT DATE -->
+								<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
+									<p class="event-date"><?php echo date('d/m/Y',  strtotime($thisEvent['date_start'])) .' à '. date('H:m',  strtotime($thisEvent['date_start'])); ?></p>
+								<?php else: ?>
+									<p class="event-date">La date n'est pas encore precisée</p>
+								<?php endif; ?>
+
+								<!-- SHOW EVENT PRICE -->
+								<div class="event-price-container">
+									<div><span id="event-price"></span> &#8364;</div>
+									par personne
+								</div>
+							</div>
+
+
 
 						</div>
 					</div>
 					<button type="button" name="button" id="newsfeed-show-btn"><< Show actus</button>
+
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 						<div id="event-expired">
 							Désolé cet évènement est déjà terminé!
