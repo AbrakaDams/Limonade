@@ -4,7 +4,7 @@
 <a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
 <h2>Liste des commentaires :</h2>
 
-<?php if(isset($comments)): ?>
+<?php if(isset($comments) && !empty($comments)): ?>
 	<?php foreach ($comments as $comment): ?>
 		<b><?= $comment['content']; ?></b>
 		<a href="<?= $this->url('admin_supprComment', ['id' => $comment['id']]); ?>">Supprimer ce commentaire</a>
@@ -21,6 +21,10 @@
 		</a>
 		<br><br>
 	<?php endforeach; ?>
+<?php else: ?>
+	<p>
+		<strong> Pas de commentaires ...&nbsp; :'( </strong>
+	</p>
 <?php endif; ?>
 
 
