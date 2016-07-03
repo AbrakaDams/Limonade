@@ -74,7 +74,7 @@ $(document).mouseup(function (e) {
 
 // html to insert a new card
 // first part of the form
-var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><br><input type="text" name="card_title" maxlength="150" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><br><textarea name="card_desc"></textarea><br><div class="add-new-nums"><label for="">Quantite</label><br><input type="number" name="card_quantity"></div><div class="add-new-nums"><label for="">Prix unitaire</label><br><input type="number" name="card_price"></div><br><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>';
+var newCardStart = '<div class="add-new-card"><button class="add-card-btn" type="button">Ajouter une tache</button><form class="add-card-form hidden" method="post"><label>Titre de cette tache</label><br><input type="text" name="card_title" maxlength="50" placeholder="Nom de votre nouvelle card"><br><label for="">Description</label><br><textarea name="card_desc"></textarea><br><div class="add-new-nums"><label for="">Quantite</label><br><input type="number" name="card_quantity"></div><div class="add-new-nums"><label for="">Prix unitaire</label><br><input type="number" name="card_price"></div><br><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>';
 // we suppose to append more options to selecs with js
 // the rest of the form
 var newCardEnd = '</select><br><input type="submit" value="Go"><input type="reset" value="reset"></form></div>';

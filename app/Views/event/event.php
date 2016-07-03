@@ -139,7 +139,7 @@ sinon -->
 							<button type="button" id="add-list-btn">+</button>
 							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
 								<label for="add-list-input">Titre de cette liste</label>
-								<input type="text" name="newList" id="add-list-input" maxlength="150" placeholder="Nom de votre nouvelle liste">
+								<input type="text" name="newList" id="add-list-input" maxlength="50" placeholder="Nom de votre nouvelle liste">
 								<input type="submit" value="Go">
 							</form>
 						</div>

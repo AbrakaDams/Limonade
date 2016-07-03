@@ -109,7 +109,7 @@ class ListController extends Controller
 						$post[$key] = trim(strip_tags($value));
 					}
 					// if our name input exists in correst state
-					if(!isset($post['card_title']) || empty($post['card_title'])) {
+					if(!isset($post['card_title']) || empty($post['card_title']) || strlen($post['card_title']) > 50) {
 						$errors[] = 'Le titre de la tâche est incorrect';
 					}
 					if(!isset($post['card_desc']) || empty($post['card_desc'])) {
