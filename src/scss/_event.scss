@@ -15,7 +15,6 @@ div.event-wrapper {
 
     #event-main {
         width: 80%;
-        // background-color: red;
 
         #newsfeed-show-btn {
             position: absolute;
@@ -30,21 +29,21 @@ div.event-wrapper {
         right: 0;
         top: 0;
         padding: 2em;
-        width: 70%;
+        width: 30em;
         height: 100%;
         background-color: $lightGray;
         overflow: auto;
 
         @media only screen and (min-width: 660px) {
-    		width: 40%;
+    		width: 30em;
     	}
 
         @media only screen and (min-width: 860px) {
-    		width: 30%;
+    		width: 30em;
     	}
 
         @media only screen and (min-width: 1000px) {
-    		width: 20%;
+    		width: 30em;
     	}
     }
 }
@@ -65,6 +64,7 @@ div.event-wrapper {
         overflow: hidden;
 
         li {
+            display: block;
             font-style: italic;
             list-style-type: none;
 
@@ -79,11 +79,11 @@ div.event-wrapper {
 
     .particip-title{
         margin: 1em 0;
-        font-size: 1.2em;
+        font-size: 1.1em;
         font-weight: bold;
     }
 
-    .event-invite-btn {
+    .event-join-btn {
         display: inline-block;
         margin-left: 10%;
         margin-bottom: 3em;
@@ -99,6 +99,13 @@ div.event-wrapper {
             text-decoration: none;
             background-color: darken($lightGreen, 2);
         }
+
+    }
+
+    .event-invite-btn {
+        display: inline-block;
+        // color: #fdfdfd;
+        margin-bottom: .5em;
 
     }
 
@@ -132,7 +139,7 @@ section#event-main {
     #event-lists {
         position: relative;
         width: 80vw;
-        height: 70vh;
+        height: 80vh;
         white-space: nowrap;
         padding: 1em;
         padding-right: 0; // to show all lists
@@ -148,7 +155,7 @@ section#event-main {
         #add-list-form {
             margin-right: 3em;
             padding: 1em;
-            background-color: $veryLightGreen;
+            background-color: $lightGray;
 
             input {
                 padding: .4em;
@@ -254,6 +261,13 @@ section#event-main {
                 word-wrap: break-word;
             }
 
+            i.fa-exclamation-triangle {
+                color: orange;
+            }
+            i.fa-check-circle {
+                color: $lightGreen;
+            }
+
 
         }
 
@@ -311,12 +325,13 @@ section#event-main {
             padding: .7em;
             width: 100%;
             border-radius: .4em;
-            background-color: #fffbd3;
-            border: 1px solid #fffbd3;
+            background-color: $green;
+            color: $white;
+            border: 1px solid $green;
             border-radius: .4em;
             transition: all 500ms ease;
             &:hover {
-                background-color: darken(#fffbd3, 3);
+                background-color: darken($green, 2);
             }
         }
     }
@@ -327,7 +342,7 @@ section#event-main {
         display: inline-block;
         #add-list-btn {
             padding: .8em;
-            background-color: $veryLightGreen;
+            background-color: $lightGray;
             border: 0;
             border-radius: .4em;
         }
@@ -347,7 +362,7 @@ section#event-main {
             padding: 1em;
             width: 300px;
             border-radius: .4em;
-            background-color: $darkYellow;
+            background-color: $greenBlue;
             color: black;
             transition: all 600ms ease;
             z-index: 9999 !important;
@@ -360,7 +375,7 @@ section#event-main {
                 content: '';
                 width: 2em;
                 height: 1.5em;
-                background-color: $darkYellow;
+                background-color: $greenBlue;
                 // transform: skewX(50deg);
                 transform: rotate(45deg);
                 z-index: -1;
@@ -409,7 +424,8 @@ section#event-main {
                 border: 0;
                 border-radius: .4em;
 
-                background-color: green;
+                background-color: $green;
+                color: $white;
             }
 
             .add-new-nums {
@@ -431,13 +447,18 @@ section#event-main {
 
 div#event-comments {
     padding: 3em;
-    background-color: $milky;
+
+    h2 {
+        margin-left: 4em;
+        font-size: 2em;
+        font-family: $crazyFont;
+    }
 
     #form-comment {
         margin-bottom: 1em;
         margin-left: 8em;
         width: 50%;
-        text-align: center;
+        // text-align: center;
 
         textarea {
             margin-bottom: 1em;
@@ -448,7 +469,11 @@ div#event-comments {
         }
         input[type=submit] {
             display: inline-block;
-            margin: 0 auto;
+            // margin: 0 auto;
+            background-color: $green;
+            color: $white;
+            border: 0;
+            border-radius: .4em;
             padding: .5em 1em;
         }
 
@@ -492,7 +517,7 @@ div#event-comments {
                 padding: 2em;
 
                 word-break: normal;
-                background-color: #fff;
+                background-color: $milky;
 
                 &:before {
                     position: absolute;
@@ -501,7 +526,7 @@ div#event-comments {
                     content: '';
                     width: 2.5em;
                     height: 2em;
-                    background-color: #fff;
+                    background-color: $milky;
                     transform: rotate(45deg);
                 }
 
@@ -517,8 +542,17 @@ div#event-comments {
     }
 }
 
-#event-newsfeed {
 
+.ui-widget-content {
+    border-color: #fff;
+    border-bottom-color: $lightGray;
+}
+
+.sign-drag-line {
+    margin: 0 auto;
+    padding: 1em;
+    text-align: center;
+    color: gray;
 }
 /*************************************
      redirection evnmt privé erreur

@@ -9,6 +9,8 @@
 	<link rel="icon" type="image/png" href="<?= $this->assetUrl('img/avatar/lemonade_brand.jpg') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
 </head>
