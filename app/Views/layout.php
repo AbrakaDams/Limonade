@@ -107,7 +107,7 @@
 					<li><a href="<?= $this->url('user_login'); ?>">Se connecter</a></li>
 					<li><a href="<?= $this->url('user_register'); ?>">S'inscrire</a></li>
 					<li><a href="<?= $this->url('event_createEvent'); ?>"><i class="glyphicon glyphicon-plus"></i>Les événements</a></li>
-					<li><a href="<?= $this->url('default_team'); ?>"> propos</a></li>
+					<li><a href="<?= $this->url('default_team'); ?>"> A propos</a></li>
 					
 				</ul> <!-- class="nav navbar-nav navbar-right" -->
   			</div><!-- /.container-fluid -->
