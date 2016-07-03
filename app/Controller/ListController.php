@@ -65,6 +65,7 @@ class ListController extends Controller
 								'id_user'   => $user['id'],
 								'action'    => 'add',
 								'id_list'   => $listInsertion['id'],
+								'list_name' => $listName,
 								'date_news' => $timestamp,
 							];
 
@@ -172,6 +173,7 @@ class ListController extends Controller
 								'action' 	=> 'add',
 								'id_card' 	=> $insertCard['id'],
 								'date_news' => $timestamp,
+								'card_name' => $post['card_title'],
 							];
 
 							if($newsfeed->insert($newsfeedData)) {

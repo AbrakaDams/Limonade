@@ -469,7 +469,7 @@ $events = array(
     'date_end'  => '2017-10-06 20:12:06',
     'event_avatar'  => 'http://p7.storage.canalblog.com/76/55/308109/49695360.jpg',
     'role'  => 'private',
-  ], 
+  ],
   [
 	  'category'  => 'soiree',
 	  'title'  => 'Pot de départ de Paul au Japon',
@@ -856,6 +856,8 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `action` ENUM('add','remove', 'modify') NOT NULL ,
   `id_card` INT NOT NULL ,
   `id_list` INT NOT NULL ,
+  `list_name` VARCHAR(255) NOT NULL ,
+  `card_name` VARCHAR(255) NOT NULL ,
   `date_news` DATETIME NOT NULL ,
   PRIMARY KEY (`id`),
   FOREIGN KEY (id_event) REFERENCES event (id) ON DELETE CASCADE) ENGINE = InnoDB;"
