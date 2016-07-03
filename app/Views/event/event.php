@@ -15,7 +15,7 @@ sinon -->
 
 			<?php if(isset($roleEvent['role'])): ?>
 				<?php if($roleEvent['role'] == 'event_admin'): ?>
-					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Modifier l'évènement</a>
+					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Modifier l'événement</a>
 				<?php endif ?>
 				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
 					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
@@ -54,12 +54,12 @@ sinon -->
 
 
 
-				<h3 class="particip-title">Mes évènements :</h3>
+				<h3 class="particip-title">Mes événements :</h3>
 				<?php foreach ($userEvents as $userEvent) : ?>
 					<a href="<?= $this->url('event_showEvent',  ['id' => $userEvent['id']]); ?>" class="user-events">
 							<?php echo $userEvent['title'] ?>
 							<?php if($userEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
-								(Evènement terminé)
+								(Événement terminé)
 							<?php endif; ?>
 					</a>
 				<?php endforeach; ?>
@@ -94,7 +94,7 @@ sinon -->
 									echo $thisEvent['title']; ?>
 								</h2>
 							<?php else: ?>
-								<h2 class="event-title">L'évènement est sans nom</h2>
+								<h2 class="event-title">L'événement est sans nom</h2>
 							<?php endif; ?>
 
 							<!-- SHOW EVENT DESCRIPTION -->
@@ -106,7 +106,7 @@ sinon -->
 							<?php if(isset($thisEvent['date_start']) && !empty($thisEvent['date_start'])): ?>
 								<p class="event-date"><?php echo $thisEvent['date_start']; ?></p>
 							<?php else: ?>
-								<p class="event-date">La date n'est pas encore preciséee</p>
+								<p class="event-date">La date n'est pas encore precisée</p>
 							<?php endif; ?>
 
 							<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user' ): ?>
@@ -118,7 +118,7 @@ sinon -->
 								<?php endif; ?>
 							<?php else: ?>
 								<p>
-									<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'évènement n'est communiqué que au personne ayant rejoin l'évènement.
+									<i class="fa fa-map-marker" aria-hidden="true"></i> L'adresse de l'événement est communiquée aux personnes ayant rejoint l'évènement.
 								</p>
 							<?php endif; ?>
 
@@ -129,7 +129,7 @@ sinon -->
 					<button type="button" name="button" id="newsfeed-show-btn"><< Show actus</button>
 					<?php if($thisEvent['date_end'] < date("Y-m-d H:i:s")) : ?>
 						<div id="event-expired">
-							Attention cet évènement est maintenant terminé!
+							Désolé cet évènement est déjà terminé!
 						</div>
 					<?php endif; ?>
 
@@ -171,7 +171,7 @@ sinon -->
 						</div>
 					<?php else: ?>
 						<div class="alert alert-danger">
-							<p>Pour voir les commentaires rejoingné l'évenement</p>
+							<p>Pour voir les commentaires rejoingez l'évenement</p>
 						</div>
 					<?php endif; ?>
 				<?php else: ?>
@@ -188,7 +188,7 @@ sinon -->
 
 				<button type="button" name="button" id="newsfeed-hide-btn">Hide actus >></button>
 				<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-					<h3>Fil activités</h3>
+					<h3>Fil d'actualité</h3>
 
 					<?php if(isset($showNewsFeed) && !empty($showNewsFeed)): ?>
 						<?php foreach ($showNewsFeed as $newsFeed): ?>
@@ -256,7 +256,7 @@ sinon -->
 									} ?>
 									la tache :
 									<strong> <?= $newsFeed['card_title']?> </strong>,
-									dans la liste : <strong><?=$newsFeed['list_title']?></strong>
+									Dans la liste : <strong><?=$newsFeed['list_title']?></strong>
 									le : <?php echo date('d/m/Y', strtotime($newsFeed['date_news'])) . 'à' . date('H:m', strtotime($newsFeed['date_news'])); ?>
 									<hr>
 								</div>
@@ -270,14 +270,14 @@ sinon -->
 					<?php endif; ?>
 				<?php else: ?>
 					<div class="alert alert-danger">
-						<p>Pour voir le fil d'actualité rejoingné l'évenement</p>
+						<p>Pour voir le fil d'actualité rejoingnez l'évenement</p>
 					</div>
 				<?php endif; ?>
 			</aside>
 		</div>
 <?php else: ?>
 	<p>
-		Pour accéder au évènement priver il faut etre inviter par le createur ou les participant de l'évènment ! !!
+		Pour accéder à un événement privé, vous devez être invité par le créateur ou les participants de l'événement.
 	</p>
 <?php endif; ?>
 
