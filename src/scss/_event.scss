@@ -1,4 +1,5 @@
 div.event-wrapper {
+    position: relative;
     display: table;
     width: 100%;
     height: 100%;
@@ -18,9 +19,17 @@ div.event-wrapper {
     }
 
     #event-newsfeed {
-        //width: 20%;
-        //background-color: black;
-        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 2em;
+        width: 20%;
+        height: 100%;
+        background-color: $lightGray;
+        overflow: auto;
+    }
+
+    .event-newsfeed-visible {
     }
 }
 
@@ -475,6 +484,10 @@ div#event-comments {
         }
 
     }
+}
+
+#event-newsfeed {
+
 }
 /*************************************
      redirection evnmt privé erreur

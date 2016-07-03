@@ -139,8 +139,10 @@ sinon -->
 							<button type="button" id="add-list-btn">+</button>
 							<form class="hidden" id="add-list-form" action="<?=$this->url('list_addList');?>" method="POST">
 								<label for="add-list-input">Titre de cette liste</label>
+								<br>
 								<input type="text" name="newList" id="add-list-input" maxlength="50" placeholder="Nom de votre nouvelle liste">
-								<input type="submit" value="Go">
+								<br>
+								<input type="submit" value="Créer une liste">
 							</form>
 						</div>
 
@@ -178,6 +180,7 @@ sinon -->
 			</section>
 
 			<aside id="event-newsfeed">
+				<button type="button" name="button" id="newsfeed-btn">Show newsfeed</button>
 			<?php if($roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
 				<h3>Fil activités</h3>
 
