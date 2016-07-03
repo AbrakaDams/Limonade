@@ -25,9 +25,7 @@
 		    			<span class="idUser" data-id-user="<?= $user['id'] ?>"></span>
 		    			<span class="idEvent" data-id-event="<?= $idEvent ?>"></span>
 		    			<?= $user['firstname'].' '.$user['lastname'].' ('.$user['username'].')' ?>
-						<?php if($user['role'] == 'event_admin'): ?>
 		    			<a class="delete">Supprimer</a>
-					<?php endif; ?>
 		    		</p>
 		    	<?php endforeach; ?>
 		    </div>
