@@ -463,7 +463,7 @@ $events = array(
   [
     'category'  => 'journee',
     'title'  => 'Journée plage',
-    'description'  => 'Une journée au soleil, à la plage, jeux de sociétés, activités sportives en plein air entre amis pour bien commencer l\'été',
+    'description'  => 'Une journée au soleil, à la plage, jeux de société, activités sportives en plein air entre amis pour bien commencer l\'été',
     'address'  => 'Lacanau Beach',
     'date_start'  => '2017-10-06 12:12:06',
     'date_end'  => '2017-10-06 20:12:06',
@@ -473,7 +473,7 @@ $events = array(
   [
 	  'category'  => 'soiree',
 	  'title'  => 'Pot de départ de Paul au Japon',
-	  'description'  => 'A l\'occassion du départ de Jean au Japon, une soirée de départ est organisée.Ne lui dites rien, la suprise doit être totale !',
+	  'description'  => 'A l\'occassion du départ de Jean au Japon, une soirée de départ est organisée. Ne lui dites rien, la suprise doit être totale!',
 	  'address'  => 'Chez le frère de Paul, Jean à Bordeaux',
 	  'date_start'  => '2017-11-11 19:30:00',
 	  'date_end'  => '2017-12-11 10:25:06',
@@ -671,7 +671,7 @@ if($sql === false){
 $cards = array(
 	[
 	  'card_title'  => 'Bières',
-	  'description'  => 'Des bière à boire avec modération bien sur.',
+	  'description'  => 'Des bières à boire avec modération bien sur.',
 	  'quantity'  => '30',
 	  'price'  => '30',
 	  'id_user'  => '6',
@@ -681,7 +681,7 @@ $cards = array(
 	],
 	[
 	  'card_title'  => 'Tarte au citron',
-	  'description'  => 'Parce que c\'est les tiennes les meilleurs',
+	  'description'  => 'Parce que c\'est les tiennes les meilleures',
 	  'quantity'  => '2',
 	  'price'  => '10',
 	  'id_user'  => '2',
