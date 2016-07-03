@@ -5,8 +5,8 @@
 	<div class="lemonade-bg" style="background-image: url(<?= $this->assetUrl('img/lemonade-1.jpg')?>)">
 
 		<div class="lemonade-bg-container">
-			<h1	class="center">Pour créer un événement vous devez créer votre compte</h1>
-			<p> Un compte sur Limonade vous donnera accès à tous nos services. </p>
+			<h1	class="center">Remplissez le formulaire pour créer votre compte</h1>
+			<p> Un compte sur Limonade vous donnera accès à tous nos services de création d'évènements. </p>
 
 
 			<?php if(!empty($errors)): ?>
