@@ -110,7 +110,7 @@
 			</div>
 	  	</div>
 		<div class="validcreate-event">
-			<button type="submit" id="modifEvent" class="btn btn-primary">Modifier votre événementènement<p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
+			<button type="submit" id="modifEvent" class="btn btn-primary"><p class="glyphicon glyphicon-ok" aria-hidden="true"></p></button>
 		</div>
 	</form>
 </div><!-- fin du container -->
