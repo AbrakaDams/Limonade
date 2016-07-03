@@ -34,7 +34,7 @@ sinon -->
 			<?php else: ?>
 				<?php if($thisEvent['role'] == 'public' && $roleEvent['role'] != 'event_admin' && $roleEvent['role'] != 'event_user'): ?>
 
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-join-btn" role="button">Rejoindre</a>
+					<a href="" class="join-event">Rejoindre</a>
 				<?php endif; ?>
 			<?php endif; ?>
 			<hr>
