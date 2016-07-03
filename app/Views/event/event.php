@@ -15,16 +15,18 @@ sinon -->
 
 			<?php if(isset($roleEvent['role'])): ?>
 				<?php if($roleEvent['role'] == 'event_admin'): ?>
-					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Modifier l'évènement</a>
+					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-wrench" aria-hidden="true"></i> Modifier l'évènement</a>
+					<br>
 				<?php endif ?>
 				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Inviter plus d'amis</a>
 				<?php elseif($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Inviter plus d'amis</a>
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> inviter plus d'amis</a>
 				<?php endif ?>
 			<?php else: ?>
 				<?php if($thisEvent['role'] == 'public' && $roleEvent['role'] != 'event_admin' && $roleEvent['role'] != 'event_user'): ?>
-					<a href="" class="join-event">Rejoindre</a>
+
+					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-join-btn" role="button">Rejoindre</a>
 				<?php endif; ?>
 			<?php endif; ?>
 			<hr>
@@ -36,10 +38,10 @@ sinon -->
 					}
 					else{
 						foreach ($participants as $infos) {
-							echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname'].'</li>';
-							if($infos['role'] =='event_admin'){
-								echo '(Admin)';
-							}
+							echo '<li><img src="'.$this->assetUrl('img/diabolo.svg').'" class="img-before-friend"> '.$infos['firstname'].' '.$infos['lastname']. ' ' . (($infos['role'] =='event_admin') ? '(admin)' : '') .'</li>';
+							// if($infos['role'] =='event_admin'){
+							// 	echo '(Admin)';
+							// }
 						}
 					}
 
@@ -136,7 +138,7 @@ sinon -->
 				</div>
 
 
-				<div id="event-lists">
+				<div id="event-lists" class="ui-widget-content">
 
 				 	<?php if($thisEvent['role'] == 'private' || ($thisEvent['role'] == 'public' && $roleEvent['role'] == 'event_admin')): ?>
 						<div id="add-new-list">
@@ -153,6 +155,9 @@ sinon -->
 					<?php endif; ?>
 				</div>
 
+				<div class="sign-drag-line">
+					Faite glissez ce panneau pour elagir votre espace de travail
+				</div>
 
 
 				<?php if(isset($w_user) && !empty($w_user)):?>
@@ -291,5 +296,6 @@ sinon -->
 	<script src="<?= $this->assetUrl('js/11_comment.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/join-event.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/event_verif.js') ?>"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="<?= $this->assetUrl('js/event.js') ?>"></script>
 <?php $this->stop('js') ?>
