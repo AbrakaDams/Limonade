@@ -156,7 +156,7 @@ sinon -->
 				</div>
 
 				<div class="sign-drag-line">
-					Faite glissez ce panneau pour elagir votre espace de travail
+					<i class="fa fa-angle-double-down" aria-hidden="true"></i> Faite glissez ce panneau pour elagir votre espace de travail
 				</div>
 
 
