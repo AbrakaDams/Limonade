@@ -314,7 +314,7 @@ class AdminController extends Controller
 		else{
 			$this->allowTo('admin');
 			$eventsModel = new EventsModel;
-			$events = $eventsModel->findAll();
+			$events = $eventsModel->findAll('date_start','ASC');
 
 			$params = ['events' => $events];
 

@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
-<h2>Liste des commentaires :</h2>
+<h2><i class="fa fa-commenting-o" aria-hidden="true"></i>Liste des commentaires :</h2>
 
 <?php if(isset($comments) && !empty($comments)): ?>
 	<?php foreach ($comments as $comment): ?>

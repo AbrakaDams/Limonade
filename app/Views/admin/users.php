@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
-<h2>Liste des utilisateurs :</h2>
+<h2><i class="fa fa-users" aria-hidden="true"></i>Liste des utilisateurs :</h2>
 
 <?php foreach ($users as $user): ?>
 	<?php if($user['status'] == 'default'): ?>

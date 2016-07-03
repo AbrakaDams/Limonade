@@ -4,27 +4,29 @@
 <h2>Bienvenue sur l'interface d'administration du site</h2>
 <br>
 
-<h5>Liste d'actions possibles</h5>
+<h4><strong>Liste d'actions possibles</strong></h4>
 
 <div class="listActions">
-	<ul>
-		<li>
-			<a href="<?= $this->url('admin_events'); ?>">Liste des évènements ?</a>
-		</li>
-		<li>
-			<a href="<?= $this->url('admin_users'); ?>">Liste des utilisateurs ?</a>
-		</li>
-		<li>
-			<a href="<?= $this->url('admin_comments'); ?>">Liste des commentaires ?</a>
-		</li>
-		<li>
-			<a href="<?= $this->url('admin_messageConctact'); ?>">Liste des messages(contact) ?</a>
-		</li>
-		<br><br>
-		<li>
-			<a href="<?= $this->url('default_home'); ?>">Retour sur le site</a>
-		</li>
-	</ul>
+	<strong>
+		<ul>
+			<li>
+				<a href="<?= $this->url('admin_events'); ?>">Liste des &nbsp; <i class="fa fa-calendar-o" aria-hidden="true"></i> évènements ?</a>
+			</li>
+			<li>
+				<a href="<?= $this->url('admin_users'); ?>">Liste des  &nbsp; <i class="fa fa-users" aria-hidden="true"></i> utilisateurs ?</a>
+			</li>
+			<li>
+				<a href="<?= $this->url('admin_comments'); ?>">Liste des  &nbsp; <i class="fa fa-commenting-o" aria-hidden="true"></i> commentaires ?</a>
+			</li>
+			<li>
+				<a href="<?= $this->url('admin_messageConctact'); ?>">Liste des   &nbsp;  <i class="fa fa-comments-o" aria-hidden="true"></i> messages(contact) ?</a>
+			</li>
+			<br><br>
+			<li>
+				<a href="<?= $this->url('default_home'); ?>">Retour sur le site</a>
+			</li>
+		</ul>
+	</strong>
 </div>
 
 

@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
-<h2>Liste des messages(contact) :</h2>
+<h2><i class="fa fa-comments-o" aria-hidden="true"></i> Liste des messages(contact) :</h2>
 <hr>
 <?php foreach ($contact as $contact): ?>
 	<p> <strong> Par </strong>: <?= $contact['name']; ?> (<?=$contact['email'] ?>)<br>
