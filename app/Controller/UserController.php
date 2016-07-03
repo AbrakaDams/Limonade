@@ -71,15 +71,15 @@ class UserController extends MasterController
 					$post[$key] = trim(strip_tags($value));
 				}
 
-				if (strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
+				if(strlen($post['firstname']) < 2 || strlen($post['firstname']) > 12){
 					$errors[] = 'Votre prénom doit contenir entre 2 et 12 caractères';
 				}
 
-				if (strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
+				if(strlen($post['lastname']) < 2 || strlen($post['lastname']) > 13){
 					$errors[] = 'Votre nom doit contenir entre 2 et 13 caractères';
 				}
 
-				if (empty($post['password']) || $post['password'] != $post['password_confirm']){
+				if(strlen($post['password']) < 8 || ($post['password'] != $post['password_confirm'])){
 					$errors[] = 'Votre mot de passe n\'est pas identique';
 				}
 
@@ -133,7 +133,6 @@ class UserController extends MasterController
 						// L'insertion en base est effectuée, bravo!
 
 						$userInserted = $usersModel->getUserByUsernameOrEmail($dataUser['email']);
-						echo $userInserted['id'];
 
 						// we compose a link to send
 						$magicLink = '<a href="http://localhost/limonade/public/registerConfirm?email='.$dataToken['email'].'&token='.$token.'">ici!</a>';
@@ -228,10 +227,9 @@ class UserController extends MasterController
 				// Le compte est enfin actif
 				if($usersModel->update($data, $infoUser['id'])){
 					// Comme le compte est activé, supression du token
-					if($tokensRegisterModel->delete($tokenExist['id'])){
+					$tokensRegisterModel->delete($tokenExist['id']);
 
-						 echo 'Tout est ok : Supression du token et activation du compte';
-					}
+
 				}
 			}
 

@@ -36,22 +36,22 @@
 
 				<div class="form-group">
 					<label class="register-label" for="username">Pseudo*:</label>
-					<input class="form-control" type="text" placeholder="JohnnyBravo" name="username" value="<?php if(isset($_POST['username'])){ echo $_POST['username'];} ?>" required>
+					<input class="form-control" type="text" placeholder="JohnnyBravo" name="username" value="<?php if(!isset($success) && $success === false){if(isset($_POST['username'])){ echo $_POST['username'];}} ?>" required>
 				</div>
 
 				<div class="form-group">
 					<label class="register-label"  for="email">Email*:</label>
-					<input class="form-control" type="email" placeholder="JohnDoe@email.com" name="email" value="<?php if(isset($_POST['email'])){ echo $_POST['email'];} ?>" required>
+					<input class="form-control" type="email" placeholder="JohnDoe@email.com" name="email" value="<?php if(!isset($success) && $success === false){if(isset($_POST['email'])){ echo $_POST['email'];}} ?>" required>
 				</div>
 
 				<div class="form-group">
 					<label class="register-label"  for="firstname">Prénom*:</label>
-					<input class="form-control" type="text" placeholder="John" name="firstname" value="<?php if(isset($_POST['firstname'])){ echo $_POST['firstname'];} ?>" required>
+					<input class="form-control" type="text" placeholder="John" name="firstname" value="<?php if(!isset($success) && $success === false){if(isset($_POST['firstname'])){ echo $_POST['firstname'];}} ?>" required>
 				</div>
 
 				<div class="form-group">
 					<label class="register-label"  for="lastname">Nom*:</label>
-					<input class="form-control" type="text" placeholder="Doe" type="text" name="lastname" value="<?php if(isset($_POST['lastname'])){ echo $_POST['lastname'];} ?>" required>
+					<input class="form-control" type="text" placeholder="Doe" type="text" name="lastname" value="<?php if(!isset($success) && $success === false){if(isset($_POST['lastname'])){ echo $_POST['lastname'];}} ?>" required>
 				</div>
 
 				<div class="form-group">
@@ -67,12 +67,12 @@
 
 				<div class="form-group">
 					<label class="register-label" for="avatar">Choissiez une Photo de profil :</label><br>
-					<input class="form-control" type="text" placeholder="www.lien-mon-image.com" name="url"/>
+					<input class="form-control" type="text" placeholder="www.lien-de-mon-image.com" name="url"/>
 				</div>
 
 				<div class="form-group">
 					<!-- Le champ MAX_FILE_SIZE permettra de limiter la taille du fichier envoyé (valeur en octets). Il doit précéder le champ de type "file" -->
-					<label>Ou ajoutez un image</label>
+					<label>Ou ajoutez un image :</label>
 					<br>
 			  		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $maxSize; ?>">
 					<input class="file" id="input-1" type="file" name="avatar">
