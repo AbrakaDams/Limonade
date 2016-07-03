@@ -87,7 +87,7 @@ class EventController extends MasterController
 	 * Calcul le dus d'argent par personne
 	 * @param  Récupere $id de l'event
 	 */
-	public function calcul($idEvent)
+	public function calcul()
 	{
 		$authModel = new AuthModel();
 		$authModel->refreshUser();
@@ -100,22 +100,25 @@ class EventController extends MasterController
 				$this->show('default/home_banned');
 			}
 			else{
-				$eventUsersModel = new EventUsersModel();
-				$user =	$eventUsersModel->findAllUsers($idEvent);
+				if(isset($_POST['idEvent']) && is_numeric($_POST['idEvent'])) {
 
-				$numberUsers = count($user);
+					$eventUsersModel = new EventUsersModel();
+					$user =	$eventUsersModel->findAllUsers($_POST['idEvent']);
 
-				$card = new ListModel();
-				$cardPrice = $card->findCards($idEvent, 0);
+					$numberUsers = count($user);
 
-				$total = 0;
+					$card = new ListModel();
+					$cardPrice = $card->findCards($_POST['idEvent'], 0);
 
-				foreach ($cardPrice as $key => $value) {
-					$total += $value['price'] * $value['quantity'];
+					$total = 0;
+
+					foreach ($cardPrice as $key => $value) {
+						$total += $value['price'] * $value['quantity'];
+					}
+					$perPerson = ceil($total / $numberUsers);
+
+					$this->showJson(['answer' => 'success', 'price' => $perPerson]);
 				}
-				$perPerson = ceil($total / $numberUsers);
-
-				return $perPerson;
 			}
 		}
 	}
@@ -317,7 +320,7 @@ class EventController extends MasterController
 		$loggedUser = $this->getUser();
 		$eventUsersModel = new EventUsersModel;
 		$eventUserInfo = $eventUsersModel->findUserInEvent($id, $loggedUser['id']);
-		
+
 		if(!isset($loggedUser)){
 			$this->redirectToRoute('default_home');
 		}
@@ -402,7 +405,7 @@ class EventController extends MasterController
 				if(count($errors) === 0){
 
 					$eventModel = new EventModel();
-					
+
 
 					$newdateStart = \DateTime::createFromFormat('d/m/Y H:i', $post['date_start']);
 		  			$newdateEnd = \DateTime::createFromFormat('d/m/Y H:i', $post['date_end']);

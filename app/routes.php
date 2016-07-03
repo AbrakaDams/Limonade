@@ -55,6 +55,8 @@
 		['GET|POST', '/ajax/modify-card', 'List#modifyCard', 'list_modifyCard'],
 		['GET|POST', '/ajax/refresh-card', 'List#refreshCard', 'list_refreshCard'],
 
+		/*********************************** Price**********************************/
+		['GET|POST', '/ajax/get-price', 'Event#calcul', 'event_calcul'],
 		/*********************************** Comment**********************************/
 		['GET|POST', '/ajax/add-comment', 'Comment#insertComment', 'comment_insertComment'],
 		['GET|POST', '/ajax/show-comment', 'Comment#showComments', 'comment_showComments'],

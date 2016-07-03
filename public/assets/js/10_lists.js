@@ -24,7 +24,7 @@ $(function() {
     $('body').on('click', '.delete-list-link', function(e){
         e.preventDefault();
         var showDelContainer = $(this).next('.delete-list-container');
-        console.log(showDelContainer);
+        // console.log(showDelContainer);
         $(showDelContainer).removeClass('hidden');
     });
 
@@ -35,7 +35,7 @@ $(function() {
     });
 
     $('#event-lists').bind('change paste keyup', '.modify-card-form input, textarea, select', function() {
-        console.log("lalalalal");
+        // console.log("lalalalal");
 
         var inputValue = $(this).val();
         // console.log(inputValue);
@@ -140,9 +140,9 @@ $('#add-list-form').on('submit', function(e) {
                 $('#add-list-form').addClass('hidden');
             }
         },
-        error: function(e){
-            console.log(e);
-        }
+        // error: function(e){
+        //     console.log(e);
+        // }
     });
 });
 
@@ -168,11 +168,12 @@ $('body').on('submit', '.add-card-form', function(e) {
                 getContent(lastDate);
                 $('.add-card-btn').removeClass('hidden');
                 $('.add-card-form').addClass('hidden');
+                getPrice(thisEvent);
             }
         },
-        error: function(e) {
-            console.log(e);
-        }
+        // error: function(e) {
+        //     console.log(e);
+        // }
     });
 });
 
@@ -193,7 +194,7 @@ function getContent(currentDate) {
         dataType: 'json',
         success: function(response){
 
-            console.log(response);
+            // console.log(response);
             //reassigning lastDate
             lastDate = response.newDate;
             if(response.newLists.length != 0){
@@ -222,13 +223,14 @@ function getContent(currentDate) {
                         else {
                             $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? value.username : 'Personne')+' s\'en occupe</span></div>');
                         }
+                        getPrice(thisEvent);
                     }
                 });
             }
         },
-        error: function(e) {
-            console.log(e);
-        },
+        // error: function(e) {
+        //     console.log(e);
+        // },
         complete: function(){
             setTimeout(function(){getContent(lastDate)}, 7000);
         }
@@ -251,10 +253,11 @@ $('#event-lists').on('click', '.delete-list', function(e) {
                 $(list).fadeOut();
                 //console.log(data.deleteList);
             }
+            getPrice(thisEvent);
         },
-        error: function(e) {
-            console.log(e);
-        }
+        // error: function(e) {
+        //     console.log(e);
+        // }
     });
 });
 
@@ -272,6 +275,7 @@ $('#event-lists').on('click', '.delete-card', function(e) {
             if(data.deleteCard == 'done') {
                 $(card).fadeOut();
             }
+            getPrice(thisEvent);
         }
     })
 });
@@ -297,15 +301,15 @@ function modifyList() {
                     refreshList(thisList);
                 }
             },
-            error: function(e) {
-                console.log(e);
-            }
+            // error: function(e) {
+            //     console.log(e);
+            // }
         });
     });
 }
 
 function refreshList(id) {
-    console.log('je suis');
+    // console.log('je suis');
     $.ajax({
         type: 'POST',
         url: '../ajax/refresh-list',
@@ -313,12 +317,12 @@ function refreshList(id) {
         dataType: 'json',
         success: function(result) {
             // console.log('almost');
-            console.log(result);
+            // console.log(result);
             var listToRefresh = $('div.list[data-id-list="' + id + '"] .list-title').val(result.card.list_title);
         },
-        error: function(e) {
-            console.log(e);
-        }
+        // error: function(e) {
+        //     console.log(e);
+        // }
     });
 }
 
@@ -369,11 +373,12 @@ $(document).ready(function() {
                         });
                         $(modifCard).addClass('hidden');
                         refreshCard(idCard);
+                        getPrice(thisEvent);
                     }
                 },
-                error: function(e) {
-                    console.log(e);
-                }
+                // error: function(e) {
+                //     console.log(e);
+                // }
             });
         // });
     }
@@ -389,16 +394,33 @@ function refreshCard(id) {
         data: 'idCard=' + id,
         dataType: 'json',
         success: function(result) {
-            console.log('id dans refresh ' + id);
-            console.log(result);
+            // console.log('id dans refresh ' + id);
+            // console.log(result);
             var cardToRefresh = $('div.card[data-id-card="' + id + '"]').text('');
-            console.log('object to insert' + cardToRefresh);
-            console.log('card_title ' + result.card[0].card_title);
+            // console.log('object to insert' + cardToRefresh);
+            // console.log('card_title ' + result.card[0].card_title);
             $(cardToRefresh).text('');
             $(cardToRefresh).append('<h5 class="card-title">'+ result.card[0].card_title+' &#x2715; <span class="card-quantity">'+result.card[0].quantity+' </span><span class="card-links"><a href="#" class="modify-card" data-modify-card="'+result.card[0].id+'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="modify-card-container hidden"><span class="modify-card-title">Modifier tache</span><span class="close-modify-card">+</span><form class="modify-card-form" method="post"><label>Titre de cette tache</label><input type="text" name="card_title" maxlength="150" value="'+result.card[0].card_title+'"><br><label for="">Description</label><textarea name="card_desc">'+result.card[0].description+'</textarea><div class="add-new-nums"><label for="">Quantite</label><input type="number" name="card_quantity" value="'+result.card[0].quantity+'"></div><div class="add-new-nums"><label for="">Prix</label><input type="number" name="card_price" value="'+ result.card[0].price + '"></div><label for="">Responsable</label><br><select name="card_person"><option value="0">Choisir</option>'+ modifyCardMiddle +'</select><br><input type="submit" value="Go"></form></span></a><a href="#" class="delete-card" data-delete-card="'+result.card[0].id+'"><i class="fa fa-times" aria-hidden="true"></i></a></span></h5><span class="card-price">Prix : '+result.card[0].price+'</span><p class="card-desc">'+result.card[0].description+'</p><span class="card-responsible">' + (result.card[0].username != null ? result.card[0].username : 'Personne') + ' s\'en occupe</span>');
 
-            console.log('inserted');
 
+        },
+        // error: function(e) {
+        //     console.log(e);
+        // }
+    });
+}
+
+function getPrice(id) {
+    $.ajax({
+        type: 'POST',
+        url: '../ajax/get-price',
+        dataType: 'json',
+        data: 'idEvent=' + id,
+        success: function(output) {
+            if(output.answer == 'success') {
+                $('#event-price').text('');
+                $('#event-price').text(output.price);
+            }
         },
         error: function(e) {
             console.log(e);
