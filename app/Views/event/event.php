@@ -24,7 +24,7 @@ sinon -->
 				<?php endif ?>
 			<?php else: ?>
 				<?php if($thisEvent['role'] == 'public' && $roleEvent['role'] != 'event_admin' && $roleEvent['role'] != 'event_user'): ?>
-					<a href="<?= $this->url('event_invite',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button">Rejoindre</a>
+					<a href="" class="join-event">Rejoindre</a>
 				<?php endif; ?>
 			<?php endif; ?>
 			<hr>
@@ -289,6 +289,7 @@ sinon -->
 <?php $this->start('js') ?>
 	<script src="<?= $this->assetUrl('js/10_lists.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/11_comment.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/join-event.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/event_verif.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/event.js') ?>"></script>
 <?php $this->stop('js') ?>

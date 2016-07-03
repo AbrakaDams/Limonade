@@ -653,6 +653,67 @@ class EventController extends MasterController
 			}
 		}
 	}
+	public function joinEvent(){
+		$authModel = new AuthModel();
+		$authModel->refreshUser();
+		$loggedUser = $this->getUser();
+		if(!isset($loggedUser)){
+			$this->redirectToRoute('default_home');
+		}
+		else{
+			if($loggedUser['status'] == 'banned'){
+				$this->show('default/home_banned');
+			}
+			else{
+				$UserModel = new UsersModel();
+				$userInfo = $UserModel->getUserByUsernameOrEmail($loggedUser['username']);
+				$idUser = $loggedUser['id'];
+				$idEvent = $_GET['id'];
+				$EventUsersModel = new EventUsersModel();
+				$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
+
+				// Si il y est déjà
+				if(!empty($exist)){
+					$json = ['resultat' => 'exist'];
+				}
+				// S'il n'y est pas on l'insère
+				else{
+					$dataEventUser = [
+						'id_event'	=> $idEvent,
+						'id_user'	=> $idUser,
+						'role'		=> 'event_user',
+					];
+					$EventUsersModel = new EventUsersModel();
+
+					// Si l'insertion se fait
+					if($EventUsersModel->insert($dataEventUser)){
+						// On récupère le titre de l'évènement
+						$eventModel = new EventModel();
+						$eventInfo = $eventModel->find($idEvent);
+						$phraseType = 'Vous avez été invité à l\'évènement : ';
+						$phraseType .= $eventInfo['title'];
+
+						// On prépare la notification
+						$date_create = date('Y-m-d h:i:s');
+						$dataNotification = [
+							'id_user' 		=> $idUser,
+							'id_event' 		=> $idEvent,
+							'content'		=> $phraseType,
+							'date_create'	=> $date_create,
+						];
+						$NotificationsModel = new NotificationsModel();
+						// On créé la notification
+						$NotificationsModel->insert($dataNotification);
+
+						$json = ['resultat' => 'ok'];
+					}
+					else {
+						$json = ['resultat' => 'ko'];
+					}
+				}
+			}
+		}
+	}
 
 	public function searchResult()
 	{
