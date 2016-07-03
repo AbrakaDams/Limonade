@@ -392,7 +392,7 @@ if($sql === false){
 $events = array(
 	[
 	  'category'  => 'soiree',
-	  'title'  => 'Gotham Night!',
+	  'title'  => 'Gotham Night',
 	  'description'  => 'Une grande soirée déguisée sur le thème de l\'univers de Batman, venez nombreux !',
 	  'address'  => 'Au manoir Wayne ',
 	  'date_start'  => '2017-11-11 23:25:06',
@@ -412,7 +412,7 @@ $events = array(
   ],
   [
     'category'  => 'vacances',
-    'title'  => 'Séjour Camping des flots bleus !',
+    'title'  => 'Séjour Camping des flots bleus',
     'description'  => 'Un super séjour au camping des Flots Bleus avec des activités sportives, des randonnées, une bonne ambiance de prévue, venez nombreux et nombreuses ;)...',
     'address'  => 'Camping des Flots Bleus',
     'date_start'  => '2017-09-21 08:45:06',
@@ -422,7 +422,7 @@ $events = array(
   ],
   [
     'category'  => 'repas',
-    'title'  => 'Le barbeuk de DamDam !',
+    'title'  => 'Le barbeuk de DamDam',
     'description'  => 'Un délicieux repas de brochettes de tyrannosaure, de ventrêches, de côtes d\'agneaux et de l\'alcool avec Modération',
     'address'  => 'Chez moi, sur la terrasse',
     'date_start'  => '2018-05-01 21:12:06',
@@ -432,7 +432,7 @@ $events = array(
   ],
   [
     'category'  => 'repas',
-    'title'  => 'Anniversaire!',
+    'title'  => 'Anniversaire',
     'description'  => 'Un anniversaire avec des bonbons, gros gâteau d\'anniversaire, des cadeaux et une grosse pinata ',
     'address'  => 'Chez moi',
     'date_start'  => '2016-12-01 15:30:06',
@@ -463,7 +463,7 @@ $events = array(
   [
     'category'  => 'journee',
     'title'  => 'Journée plage',
-    'description'  => 'Une journée au soleil, à la plage, jeux de sociétés, activités sportives en plein air entre amis pour bien commencer l\'été',
+    'description'  => 'Une journée au soleil, à la plage, jeux de société, activités sportives en plein air entre amis pour bien commencer l\'été',
     'address'  => 'Lacanau Beach',
     'date_start'  => '2017-10-06 12:12:06',
     'date_end'  => '2017-10-06 20:12:06',
@@ -473,7 +473,7 @@ $events = array(
   [
 	  'category'  => 'soiree',
 	  'title'  => 'Pot de départ de Paul au Japon',
-	  'description'  => 'A l\'occassion du départ de Jean au Japon, une soirée de départ est organisée.Ne lui dites rien, la suprise doit être totale !',
+	  'description'  => 'A l\'occassion du départ de Jean au Japon, une soirée de départ est organisée. Ne lui dites rien, la suprise doit être totale!',
 	  'address'  => 'Chez le frère de Paul, Jean à Bordeaux',
 	  'date_start'  => '2017-11-11 19:30:00',
 	  'date_end'  => '2017-12-11 10:25:06',
@@ -671,7 +671,7 @@ if($sql === false){
 $cards = array(
 	[
 	  'card_title'  => 'Bières',
-	  'description'  => 'Des bière à boire avec modération bien sur.',
+	  'description'  => 'Des bières à boire avec modération bien sur.',
 	  'quantity'  => '30',
 	  'price'  => '30',
 	  'id_user'  => '6',
@@ -681,7 +681,7 @@ $cards = array(
 	],
 	[
 	  'card_title'  => 'Tarte au citron',
-	  'description'  => 'Parce que c\'est les tiennes les meilleurs',
+	  'description'  => 'Parce que c\'est les tiennes les meilleures',
 	  'quantity'  => '2',
 	  'price'  => '10',
 	  'id_user'  => '2',
@@ -877,6 +877,7 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `contact` (
 	`email` VARCHAR(255) NOT NULL ,
 	`object` VARCHAR(255) NOT NULL ,
 	`content` VARCHAR(255) NOT NULL ,
+	`is_read` ENUM('unread','read') NOT NULL,
 	`date_add` DATETIME NOT NULL,
 	PRIMARY KEY (`id`)) ENGINE = InnoDB;"
 );
