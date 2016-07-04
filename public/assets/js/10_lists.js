@@ -131,7 +131,7 @@ $('#add-list-form').on('submit', function(e) {
         data: formData+'&eventId='+thisEvent,
         dataType: 'json',
         success: function(output) {
-            console.log(output);
+            // console.log(output);
             if(output.answer == 'success') {
                 $('#add-list-form').each(function(){
                     $(this)[0].reset();
@@ -246,14 +246,14 @@ $('#event-lists').on('click', '.delete-list', function(e) {
 
     var idList = $(this).attr('data-delete-list');
     var list = $(this).closest('div.event-list');
-    console.log(this);
+    // console.log(this);
     $.ajax({
         type: 'POST',
         url: '../ajax/delete-list',
         dataType: 'json',
         data: 'idList=' + idList + '&idEvent=' + thisEvent,
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             if(data.deleteList == 'done') {
                 $(list).fadeOut();
                 //console.log(data.deleteList);
@@ -261,7 +261,7 @@ $('#event-lists').on('click', '.delete-list', function(e) {
             getPrice(thisEvent);
         },
         error: function(e) {
-            console.log(e);
+            // console.log(e);
         }
     });
 });
@@ -428,7 +428,7 @@ function getPrice(id) {
         dataType: 'json',
         data: 'idEvent=' + id,
         success: function(output) {
-            console.log(output);
+            // console.log(output);
             if(output.answer == 'success') {
                 $('#event-price').text('');
                 $('#event-price').text(output.price);
@@ -442,7 +442,7 @@ function getPrice(id) {
 
 
 function getNewsFeed() {
-    console.log('newsfeed');
+    // console.log('newsfeed');
     $.ajax({
         type: 'POST',
         data: 'idEvent=' + thisEvent,
@@ -456,29 +456,30 @@ function getNewsFeed() {
 
                     if(value.list_name.length == 0 && value.card_name.length != 0) {
                         var phraseToAppend =  '';
-                        phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
+                        phraseToAppend += '<div class="event-news"><p><strong>'+value.username + ' </strong>';
                             if(value.action == 'add') {
-                                phraseToAppend += ' à ajouté ';
+                                phraseToAppend += ' a ajouté ';
                             }else if(value.action == 'modify') {
-                                phraseToAppend +=  ' à modifié ';
+                                phraseToAppend +=  ' a modifié ';
                             }else if(value.action == 'remove') {
-                                phraseToAppend += ' à supprimé ';
+                                phraseToAppend += ' a supprimé ';
                             }
-                        phraseToAppend += 'la tache ' + value.card_name + '</p></div><hr>';
+                        phraseToAppend += 'la tâche <strong>' + value.card_name + '</strong> le ' + value.date_news + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
+                        // console.log(value.date_news);
                     }
 
                     if(value.list_name.length != 0 && value.card_name.length == 0) {
                         var phraseToAppend =  '';
-                        phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
+                        phraseToAppend += '<div class="event-news"><p><strong>'+value.username + ' </strong>';
                             if(value.action == 'add') {
-                                phraseToAppend += ' à ajouté ';
+                                phraseToAppend += ' a ajouté ';
                             }else if(value.action == 'modify') {
-                                phraseToAppend +=  ' à modifié ';
+                                phraseToAppend +=  ' a modifié ';
                             }else if(value.action == 'remove') {
-                                phraseToAppend += ' à supprimé ';
+                                phraseToAppend += ' a supprimé ';
                             }
-                        phraseToAppend += 'la liste ' + value.list_name + '</p></div><hr>';
+                        phraseToAppend += 'la liste <strong>' + value.list_name + '</strong> le ' + value.date_news + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
                 });
@@ -488,8 +489,8 @@ function getNewsFeed() {
             }
 
         },
-        error: function(e) {
-            console.log(e);
-        }
+        // error: function(e) {
+        //     console.log(e);
+        // }
     })
 }
