@@ -226,7 +226,7 @@ function getContent(currentDate) {
                             $(divToFind).next().append('<div class="card" data-id-card="'+value.id+'"><h5 class="card-title">'+ value.card_title+'<span class="card-quantity"> &#x2715; '+value.quantity+'</span></h5><span class="card-price">Prix : '+value.price+' &#8364;</span><p class="card-desc">'+value.description+'</p><span class="card-responsible">'+(value.username != null ? '<i class="fa fa-check-circle" aria-hidden="true"></i> ' + value.username : ' <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Personne')+' s\'en occupe</span></div>');
                         }
                         getPrice(thisEvent);
-                        getNewsFeed();
+
                     }
                 });
             }
@@ -235,6 +235,7 @@ function getContent(currentDate) {
         //     console.log(e);
         // },
         complete: function(){
+            getNewsFeed();
             setTimeout(function(){getContent(lastDate)}, 7000);
         }
     });
@@ -477,7 +478,7 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la liste ' + value.card_name + '</p></div><hr>';
+                        phraseToAppend += 'la liste ' + value.list_name + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
                 });
