@@ -440,7 +440,7 @@ class EventController extends MasterController
 				'eventData' 	=> $eventData,
 				'eventUserInfo'	=> $eventUserInfo,
 			];
-			$this->show('event/update', $params);
+			$this->showWithNotif('event/update', $params);
 		}
 	}
 
