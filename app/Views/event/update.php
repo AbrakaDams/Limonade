@@ -25,12 +25,12 @@
 
 	            <div class="form-group two-inputs-aside beckille">
 			      	<label for="type-event">Visibilité de votre événement</label><br>
-			      	<input type="radio" name="role" id="private" value="private"<?php if(!empty($data) && $success !== true && $data['role'] == 'private'){echo 'checked' ;}?>>
+			      	<input type="radio" name="role" id="private" value="private"<?php if(!empty($eventData) && $success !== true && $eventData['role'] == 'private'){echo 'checked' ;}?>>
 		            <label for="private" class="masterTooltip" title="Seul les personnes invitées peuvent voir l'événement, ses membres et leurs publications.">Privé
 		            	<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 		            </label>
 		            <br>
-			      	<input type="radio" name="role" id="public" value="public"<?php if(!empty($data) && $success !== true && $data['role'] == 'public'){echo 'checked' ;}?>>
+			      	<input type="radio" name="role" id="public" value="public"<?php if(!empty($eventData) && $success !== true && $eventData['role'] == 'public'){echo 'checked' ;}?>>
 		            <label for="public" class="masterTooltip" title="Tout le monde peut voir l'événement, ses membres et leurs publications.Et donc y participer.">Public
 		            	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		            </label>
@@ -42,13 +42,13 @@
                     	<i class="fa fa-info-circle" aria-hidden="true"></i>
                     </label>
                     <br>
-                    <input type="radio" name="category" value="repas" id="repas" <?php if(!empty($data) && $success !== true && $data['category'] == 'repas'){echo 'checked' ;}?>>
+                    <input type="radio" name="category" value="repas" id="repas" <?php if(!empty($eventData) && $success !== true && $eventData['category'] == 'repas'){echo 'checked' ;}?>>
                     <label for="repas" class="masterTooltip" title="Repas de famille, Anniversaire, etc">Repas</label><br>
-                    <input type="radio" name="category" value="soiree" id="soiree" <?php if(!empty($data) && $success !== true && $data['category'] == 'soiree'){echo 'checked' ;}?>>
+                    <input type="radio" name="category" value="soiree" id="soiree" <?php if(!empty($eventData) && $success !== true && $eventData['category'] == 'soiree'){echo 'checked' ;}?>>
                     <label for="soiree" class="masterTooltip" title="Soirée de départ de Jean au Japon, soirée à thème, etc">Soirée</label> <br>
-                    <input type="radio" name="category" value="vacances" id="vacances" <?php if(!empty($data) && $success !== true && $data['category'] == 'vacances'){echo 'checked' ;}?>>
+                    <input type="radio" name="category" value="vacances" id="vacances" <?php if(!empty($eventData) && $success !== true && $eventData['category'] == 'vacances'){echo 'checked' ;}?>>
                     <label for="vacances" class="masterTooltip" title="Séjour en Espagne, camping etc">Vacance</label><br>
-                    <input type="radio" name="category" value="journee" id="journee" <?php if(!empty($data) && $success !== true && $data['category'] == 'journee'){echo 'checked' ;}?>>
+                    <input type="radio" name="category" value="journee" id="journee" <?php if(!empty($eventData) && $success !== true && $eventData['category'] == 'journee'){echo 'checked' ;}?>>
                     <label for="journee" class="masterTooltip" title="Journée plage, après-midi jeux de sociétés, etc">Journée</label>
                 </div>
 
