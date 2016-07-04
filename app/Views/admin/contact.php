@@ -6,12 +6,12 @@
 	<div class="msg-admin">
 		<a href="<?= $this->url('admin_admin'); ?>" class="btn btn-default">Retour à l'accueil Admin</a>
 		<h2><i class="fa fa-comments-o" aria-hidden="true"></i> Liste des messages(contact) :</h2>
-		<hr> 
+		<hr>
 
 		<?php if(isset($contact)): ?>
 			<?php foreach ($contact as $contacts): ?>
 				<?php if($contacts['is_read'] == 'unread') : ?>
-					<div class="msg-not-read">
+					<div>
 						<strong> Par </strong>: <?= $contacts['name']; ?> (<?=$contacts['email'] ?>)<br>
 						<strong>  L'objet de la demande : </strong><?=$contacts['object'] ?> <strong><?=$contacts['is_read'] ?></strong><br>
 						<strong>  Contenus :</strong> <?=$contacts['content'] ?><br>
@@ -23,7 +23,7 @@
 					<hr>
 
 				<?php elseif($contacts['is_read'] == 'read') : ?>
-					<div class="msg-read">
+					<div>
 						<strong> Par </strong>: <?= $contacts['name']; ?> (<?=$contacts['email'] ?>)<br>
 						<strong>  L'objet de la demande : </strong><?=$contacts['object'] ?> <strong><?=$contacts['is_read'] ?></strong><br>
 						<strong>  Contenus :</strong> <?=$contacts['content'] ?><br>
@@ -43,19 +43,3 @@
 </div>
 
 <?php $this->stop('main_content') ?>
-
-<!-- Ajoute un javascript pour cette page seulement -->
-<?php $this->start('js') ?>
-	<script>
-		$('.msg-read').click(function() {
-
-			var thisMsg = $(this).attr('data-msg');
-			$.ajax({
-				type: 'POST',
-				data: 'idMsg=' + thisMsg,
-				dataType: 'json',
-				url:
-			})
-		})
-	</script>
-<?php $this->stop('js') ?>
