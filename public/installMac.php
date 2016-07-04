@@ -480,6 +480,36 @@ $events = array(
 		'event_avatar'  => 'http://fonctioncommerciale.fr/wp-content/uploads/2014/12/1Japon1.jpg',
 		'role'  => 'private',
 	],
+  [
+		'category'  => 'soiree',
+		'title'  => 'La finale du foot',
+		'description'  => 'A l\'occassion de la final de foot, une soirée est organisée.',
+		'address'  => 'à Bordeaux',
+		'date_start'  => '2016-07-10 19:30:00',
+		'date_end'  => '2016-07-11 3:25:06',
+		'event_avatar'  => 'http://www.cheriefmvalleedurhone.fr/wp-content/uploads/2016/06/euro-foot.jpg',
+		'role'  => 'public',
+	],
+  [
+		'category'  => 'journee',
+		'title'  => 'Aqualand',
+		'description'  => 'Avec cette chaleur je propose un petit tour a aqualand.',
+		'address'  => 'Route des Lacs, 33470 Gujan-Mestras',
+		'date_start'  => '2016-08-10 08:30:00',
+		'date_end'  => '2016-08-10 20:25:06',
+		'event_avatar'  => 'http://p1.storage.canalblog.com/18/81/976402/78004810_o.jpg',
+		'role'  => 'public',
+	],
+  [
+		'category'  => 'repas',
+		'title'  => 'Un petit McDo',
+		'description'  => 'Mcdonald pour la famille ;).',
+		'address'  => 'celui de rue ste-catherine',
+		'date_start'  => '2016-10-16 12:30:00',
+		'date_end'  => '2016-10-16 14:25:06',
+		'event_avatar'  => 'http://www.beekoz.fr/wp-content/uploads/2014/10/Le-logo-de-McDonalds-%C3%A9voque-en-fait-une-paire-de-seins.png',
+		'role'  => 'private',
+	],
 );
 
 
@@ -531,7 +561,7 @@ $event_users = array(
 	[
 		'id_user' 	=> '1',
 		'id_event' 	=> '2',
-		'role'		=> 'event_users',
+		'role'		=> 'event_user',
 	],
 	[
 		'id_user' 	=> '1',
