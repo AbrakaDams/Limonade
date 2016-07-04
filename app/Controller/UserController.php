@@ -568,7 +568,8 @@ class UserController extends MasterController
 		    			if($tokenPasswordModel->insert($data)) {
 
 		                    // we compose a link to send
-		                    $magicLink = '<a href="localhost/limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
+
+		                    $magicLink = '<a href="http://localhost/limonade/public/lostpassword?email='.$post['email'].'&token='.$token.'">Get new password</a>';
 		    		       	$mail = new PHPMailer;
 							//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 							$mail->isSMTP();                                      // Set mailer to use SMTP
@@ -586,7 +587,7 @@ class UserController extends MasterController
 		    	       	 	$mail->isHTML(true);
 		    	       	 	// Set email format to HTML
 
-		    	        	$mail->Subject = 'Récupération de votre mot de passe.';
+		    	        	$mail->Subject = 'Recuperation de votre mot de passe.';
 		    	        	$mail->Body    = $magicLink;
 		    	        	$mail->AltBody = $magicLink;
 
@@ -678,8 +679,6 @@ class UserController extends MasterController
 				$data = [
 					'password' => $password,
 				];
-
-				echo '<hr>'.$infoUser['id'];
 				if($usersModel->update($data, $infoUser['id'])){
 		        // Suppression du token car le mdp est modifié
 
@@ -791,7 +790,7 @@ class UserController extends MasterController
 						];
 						// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
 						// Et on ajoute le token dans la table token_register
-						
+
 						if($usersModel->update($dataUser, $id)){
 							$success = true;
 							$authModel->refreshUser();

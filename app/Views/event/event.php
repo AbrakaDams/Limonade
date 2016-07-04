@@ -19,7 +19,7 @@ sinon -->
 
 			<?php if(isset($roleEvent['role'])): ?>
 				<?php if($roleEvent['role'] == 'event_admin'): ?>
-					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-wrench" aria-hidden="true"></i> Modifier l'évènement</a>
+					<a href="<?= $this->url('event_update',  ['id' => $thisEvent['id']]); ?>" class="event-invite-btn" role="button"><i class="fa fa-wrench" aria-hidden="true"></i> Modifier l'événement</a>
 					<br>
 				<?php endif ?>
 				<?php if($thisEvent['role'] == 'private' && $roleEvent['role'] == 'event_admin' || $roleEvent['role'] == 'event_user'): ?>
