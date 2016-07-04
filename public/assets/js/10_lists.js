@@ -1,6 +1,7 @@
 // get event id
 var thisEvent = parseInt($('#event-info').data('eventId'));
 
+$('#event-price').text('0');
 /***************************
 ADD LIST FORM/ ADD CARD FORM
 **************************/
@@ -426,6 +427,7 @@ function getPrice(id) {
         dataType: 'json',
         data: 'idEvent=' + id,
         success: function(output) {
+            console.log(output);
             if(output.answer == 'success') {
                 $('#event-price').text('');
                 $('#event-price').text(output.price);
