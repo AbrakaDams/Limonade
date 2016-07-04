@@ -171,7 +171,6 @@ class ListController extends Controller
 								'id_event' 	=> $idEvent,
 								'id_user' 	=> $user['id'],
 								'action' 	=> 'add',
-								'id_card' 	=> $insertCard['id'],
 								'date_news' => $timestamp,
 								'card_name' => $post['card_title'],
 							];
@@ -312,7 +311,6 @@ class ListController extends Controller
 						'id_event' 	=> $idEvent,
 						'id_user' 	=> $user['id'],
 						'action' 	=> 'remove',
-						'id_list' 	=> $idList,
 						'date_news' => $timestamp,
 					];
 
@@ -365,7 +363,6 @@ class ListController extends Controller
 						'id_event'	=> $idEvent,
 						'id_user' 	=> $user['id'],
 						'action'	=> 'remove',
-						'id_card' 	=> $idCard,
 						'date_news' => $timestamp,
 					];
 
@@ -420,7 +417,6 @@ class ListController extends Controller
 								'id_event'  => $idEvent,
 								'id_user'   => $user['id'],
 								'action'    => 'modify',
-								'id_list'   => $listInsertion['id'],
 								'date_news' => $timestamp,
 							];
 

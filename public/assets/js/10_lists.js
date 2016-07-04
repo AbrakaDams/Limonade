@@ -139,7 +139,6 @@ $('#add-list-form').on('submit', function(e) {
                 getContent(lastDate);
                 $('#add-list-btn').removeClass('hidden');
                 $('#add-list-form').addClass('hidden');
-                getNewsFeed();
             }
         },
         // error: function(e){
@@ -171,7 +170,6 @@ $('body').on('submit', '.add-card-form', function(e) {
                 $('.add-card-btn').removeClass('hidden');
                 $('.add-card-form').addClass('hidden');
                 getPrice(thisEvent);
-                getNewsFeed();
             }
         },
         // error: function(e) {
@@ -259,7 +257,6 @@ $('#event-lists').on('click', '.delete-list', function(e) {
                 //console.log(data.deleteList);
             }
             getPrice(thisEvent);
-            getNewsFeed();
         },
         error: function(e) {
             console.log(e);
@@ -282,7 +279,6 @@ $('#event-lists').on('click', '.delete-card', function(e) {
                 $(card).fadeOut();
             }
             getPrice(thisEvent);
-            getNewsFeed();
         }
     })
 });
@@ -306,7 +302,6 @@ function modifyList() {
             success: function(result) {
                 if(result.answer == 'success') {
                     refreshList(thisList);
-                    getNewsFeed();
                 }
             },
             // error: function(e) {
@@ -390,7 +385,6 @@ $(document).ready(function() {
                         $(modifCard).addClass('hidden');
                         refreshCard(idCard);
                         getPrice(thisEvent);
-                        getNewsFeed();
                     }
                 },
                 // error: function(e) {
@@ -457,7 +451,7 @@ function getNewsFeed() {
             if(output.news.length != 0) {
                 $.each(output.news, function(key, value) {
 
-                    if(value.id_list == 0 && value.id_card != 0) {
+                    if(value.list_name.length == 0 && value.card_name.length != 0) {
                         var phraseToAppend =  '';
                         phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
                             if(value.action == 'add') {
@@ -467,11 +461,11 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la liste ' + value.card_title + '</p></div><hr>';
+                        phraseToAppend += 'la tache ' + value.card_name + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
 
-                    if(value.id_list == 0 && value.id_card != 0) {
+                    if(value.list_name.length != 0 && value.card_name.length == 0) {
                         var phraseToAppend =  '';
                         phraseToAppend += '<div class="event-news"><p>'+value.username + ' ';
                             if(value.action == 'add') {
@@ -481,7 +475,7 @@ function getNewsFeed() {
                             }else if(value.action == 'remove') {
                                 phraseToAppend += ' à supprimé ';
                             }
-                        phraseToAppend += 'la tache ' + value.card_title + '</p></div><hr>';
+                        phraseToAppend += 'la liste ' + value.card_name + '</p></div><hr>';
                         $('#event-newsfeed').prepend(phraseToAppend);
                     }
                 });

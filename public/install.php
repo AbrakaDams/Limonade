@@ -854,8 +854,6 @@ $sql = $db->exec("CREATE TABLE IF NOT EXISTS `newsfeed` (
   `id_event` INT NOT NULL ,
   `id_user` INT NOT NULL ,
   `action` ENUM('add','remove', 'modify') NOT NULL ,
-  `id_card` INT NOT NULL ,
-  `id_list` INT NOT NULL ,
   `list_name` VARCHAR(255) NOT NULL ,
   `card_name` VARCHAR(255) NOT NULL ,
   `date_news` DATETIME NOT NULL ,
