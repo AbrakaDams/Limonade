@@ -670,6 +670,7 @@ if($sql === false){
 
 $cards = array(
 	[
+		'id' => '1',
 	  'card_title'  => 'Bières',
 	  'description'  => 'Des bières à boire avec modération bien sur.',
 	  'quantity'  => '30',
@@ -680,6 +681,8 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
+		'id' => '2',
+
 	  'card_title'  => 'Tarte au citron',
 	  'description'  => 'Parce que c\'est les tiennes les meilleures',
 	  'quantity'  => '2',
@@ -690,6 +693,8 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
+		'id' => '3',
+
 	  'card_title'  => 'Camping',
 	  'description'  => 'Faire la réservation du camping, on ne dort pas sous un pont à Arcachon.',
 	  'quantity'  => '1',
@@ -700,6 +705,8 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
+		'id' => '4',
+
 	  'card_title'  => 'Ma petite fiat Panda',
 	  'description'  => 'J\'ai 2 places dans ma modeste voiture :)',
 	  'quantity'  => '2',
@@ -710,6 +717,8 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
+		'id' => '5',
+
 	  'card_title'  => 'Saucisses',
 	  'description'  => 'De bonnes saucisses pour bien manger',
 	  'quantity'  => '50',
@@ -720,6 +729,7 @@ $cards = array(
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
+		'id' => '6',
 	  'card_title'  => 'Bières',
 	  'description'  => 'Pas de bon barbeuk sans de bonnes bières.',
 	  'quantity'  => '100',
