@@ -1,13 +1,13 @@
 <?php
 namespace Controller;
 
-use \W\Controller\Controller;
+use \Controller\MasterController;
 use \Model\CommentsModel as CommentModel;
 use \Model\NewsFeedModel as NewsFeedModel;
 use \Model\ContactModel as Contact;
 
 
-class ContactController extends Controller
+class ContactController extends MasterController
 {
 	/**
 	 * traitement formulaire contact
@@ -55,6 +55,6 @@ class ContactController extends Controller
 				'errors' 	=> $errors,
 				'success' 	=> $success,
 		];
-		$this->show('default/contact', $params);
+		$this->showWithNotif('default/contact', $params);
 	}
 }

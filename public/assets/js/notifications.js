@@ -11,6 +11,7 @@ $(document).ready(function(){
 		|| pageCourante == '/limonade/public/updateUser' 
 		|| pageCourante == '/limonade/public/create'
 		|| pageCourante == '/limonade/public/team'
+		|| pageCourante == '/limonade/public/contact'
 		)
 		{
 			url = "	ajax/update-notif";
