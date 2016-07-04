@@ -12,19 +12,13 @@
             <a href="<?= $this->url('user_login') ?>"><strong>Connectez-vous</strong></a>
             Ou
             <a href="<?= $this->url('user_register') ?>"><strong>Inscrivez-vous</strong></a>
-            pour pourvoir créer un évènement !
+            pour pourvoir créer un événement !
           </h2>
 
         <?php else: ?>
 
-        <?php if(!empty($newEvent) && $success !== true){ echo $newEvent[''];} ?>
+        <?php if(!empty($newEvent) && $success != true){ echo $newEvent[''];} ?>
 
-            <?php if(isset($success) && $success === true): ?>
-            <div class="alert alert-success">
-                <p style="color:green;">Votre évènement a bien été créé.</p>
-                <p><a href="<?= $this->url('event_showEvent', ['id' => $newEvent['id']]);?>">Aller à l'évènement</a></p>
-            </div>
-            <?php endif; ?>
 
             <?php if(isset($errors) && !empty($errors)): ?>
             <div class="alert alert-warning">
@@ -35,6 +29,13 @@
                 </p>
             </div>
             <?php endif; ?>
+            <?php if(isset($success) && $success === true): ?>
+                <div class="alert alert-success">
+                    <p style="color:green;">Votre évènement a bien été créé.</p>
+                    <p><a href="<?= $this->url('event_showEvent', ['id' => $newEvent['id']]);?>">Aller à l'évènement</a></p>
+                </div>
+            <?php else: ?>
+
 
 
                 <form method="post" class="form-create-event" id="createEvent" enctype="multipart/form-data" onsubmit="return validateForm()">
@@ -124,7 +125,7 @@
                             </div>
                     <hr>
                 </form>
-
+                <?php endif; ?>
         <?php endif; ?>
     </div>
 </div>
