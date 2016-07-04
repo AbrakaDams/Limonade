@@ -7,9 +7,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> <!-- Font awesome -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Philosopher' rel='stylesheet' type='text/css'>
 	<link rel="icon" type="image/png" href="<?= $this->assetUrl('img/avatar/lemonade_brand.jpg') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl.carousel.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-theme.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-datetimepicker.min.css') ?>">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
@@ -198,11 +196,13 @@
 		</footer>
 
 	<!-- Jquery -->
-	<script src="<?= $this->assetUrl('js/Jquery-2.2.4-min.js') ?>"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="<?= $this->assetUrl('js/moment-with-locales.min.js') ?>"></script>
-	<script src="<?= $this->assetUrl('js/bootstrap.min.js');?>"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<!-- Moustache Js -->
 	<!--script src="<?= $this->assetUrl('js/myscript.js') ?>"></script-->
+	<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
 	<script src="<?= $this->assetUrl('js/notifications.js') ?>"></script>
 
 	<!-- CDN pour le datetimePicker -->
