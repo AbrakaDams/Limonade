@@ -234,8 +234,8 @@ class EventController extends MasterController
 				    	$errors[] = 'Vous devez cocher un bouton !';
 					}
 					// Titre
-					if(strlen($post['title']) < 3 || strlen($post['title']) > 40){
-					    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 40 caractères';
+					if(strlen($post['title']) < 3 || strlen($post['title']) > 45){
+					    $errors[] = 'L\'intitulé de votre événement doit contenir entre 3 et 45 caractères';
 					}
 					// Description
 					if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
@@ -384,8 +384,8 @@ class EventController extends MasterController
 				if(empty($post['category'])){
 					$errors[] = 'Vous devez cocher un bouton catégorie !';
 				}
-				if(strlen($post['title']) < 3 || strlen($post['title']) > 40){
-					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 40 caractères';
+				if(strlen($post['title']) < 3 || strlen($post['title']) > 45){
+					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 45 caractères';
 				}
 				if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 					$errors[] = 'La description doit contenir minimum 5 caractères';
@@ -564,50 +564,56 @@ class EventController extends MasterController
 						$UserModel = new UsersModel();
 						$EventUsersModel = new EventUsersModel();
 
-						// On vérifie si l'utilisateur est déjà dans l'évent
+						// On cherche si le username entré est bien dans l'évènement
 						$userInfo = $UserModel->getUserByUsernameOrEmail($username);
+						
+						// On vérifie si l'utilisateur est déjà dans l'évent
 						$idUser = $userInfo['id'];
 						$exist = $EventUsersModel->findUserInEvent($idEvent, $idUser);
 
-						// Si il y est déjà
-						if(!empty($exist)){
-							$json = ['resultat' => 'exist'];
+						if($userInfo == false){
+							$json = ['resultat' => 'err'];							
 						}
-						// S'il n'y est pas on l'insère
 						else{
-
-
-							$dataEventUser = [
-								'id_event'	=> $idEvent,
-								'id_user'	=> $idUser,
-								'role'		=> 'event_user',
-							];
-							$EventUsersModel = new EventUsersModel();
-
-							// Si l'insertion se fait
-							if($EventUsersModel->insert($dataEventUser)){
-								// On récupère le titre de l'évènement
-								$eventModel = new EventModel();
-								$eventInfo = $eventModel->find($idEvent);
-								$phraseType = 'Vous avez été invité à l\'évènement : ';
-								$phraseType .= $eventInfo['title'];
-
-								// On prépare la notification
-								$date_create = date('Y-m-d h:i:s');
-								$dataNotification = [
-									'id_user' 		=> $idUser,
-									'id_event' 		=> $idEvent,
-									'content'		=> $phraseType,
-									'date_create'	=> $date_create,
-								];
-								$NotificationsModel = new NotificationsModel();
-								// On créé la notification
-								$NotificationsModel->insert($dataNotification);
-
-								$json = ['resultat' => 'ok'];
+							// Si il y est déjà
+							if(!empty($exist)){
+								$json = ['resultat' => 'exist'];
 							}
-							else {
-								$json = ['resultat' => 'ko'];
+							// S'il n'y est pas on l'insère
+							else{
+
+								$dataEventUser = [
+									'id_event'	=> $idEvent,
+									'id_user'	=> $idUser,
+									'role'		=> 'event_user',
+								];
+								$EventUsersModel = new EventUsersModel();
+
+								// Si l'insertion se fait
+								if($EventUsersModel->insert($dataEventUser)){
+									// On récupère le titre de l'évènement
+									$eventModel = new EventModel();
+									$eventInfo = $eventModel->find($idEvent);
+									$phraseType = 'Vous avez été invité à l\'évènement : ';
+									$phraseType .= $eventInfo['title'];
+
+									// On prépare la notification
+									$date_create = date('Y-m-d h:i:s');
+									$dataNotification = [
+										'id_user' 		=> $idUser,
+										'id_event' 		=> $idEvent,
+										'content'		=> $phraseType,
+										'date_create'	=> $date_create,
+									];
+									$NotificationsModel = new NotificationsModel();
+									// On créé la notification
+									$NotificationsModel->insert($dataNotification);
+
+									$json = ['resultat' => 'ok'];
+								}
+								else {
+									$json = ['resultat' => 'ko'];
+								}
 							}
 						}
 					}

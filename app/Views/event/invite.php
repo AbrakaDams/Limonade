@@ -85,7 +85,7 @@
 				dataType: 'json',
 				data: {'username': $('#username').val(), 'idEvent': <?=$idEvent;?>},
 				success: function(data){
-
+					console.log(data);
 					if(data.resultat == 'ok'){
 						$('.list-participants').load('../invite/<?= $idEvent; ?> .list-participants');
 						$('#invite-message').text("");
@@ -99,6 +99,11 @@
 						$('#invite-message').text("");
 						$('#delete-message').text("");
 						$('#invite-message').text("Vous avez déjà invité cette personne.");
+					}
+					if(data.resultat == 'err'){
+						$('#invite-message').text("");
+						$('#delete-message').text("");
+						$('#invite-message').text("Pseudo introuvable");
 					}
 					if(data.resultat == 'ko'){
 						$('#invite-message').text("");

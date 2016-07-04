@@ -98,8 +98,8 @@ class AdminController extends Controller
 				if(empty($post['category'])){
 					$errors[] = 'Vous devez cocher un bouton catégorie !';
 				}
-				if(strlen($post['title']) < 3 || strlen($post['title']) > 30){
-					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 30 caractères';
+				if(strlen($post['title']) < 3 || strlen($post['title']) > 45){
+					$errors[] = 'Le titre de votre évènement doit contenir entre 3 et 45 caractères';
 				}
 				if(strlen($post['description']) < 5 || strlen($post['description']) > 200){
 					$errors[] = 'La description doit contenir minimum 5 caractères';
@@ -144,7 +144,7 @@ class AdminController extends Controller
 						$eventData = $data;
 					}
 					else{
-						echo $errors[] = 'Il y a eu une erreur dans la modification de votre évènement !';
+						$errors[] = 'Il y a eu une erreur dans la modification de votre évènement !';
 					}
 				}
 			}
