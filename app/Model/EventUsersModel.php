@@ -55,7 +55,7 @@ class EventUsersModel extends \W\Model\Model
 		    FROM event_users
 		    INNER JOIN event ON event_users.id_event = event.id
 		    INNER JOIN users ON event_users.id_user = users.id
-		    WHERE event_users.id_user=:idUser ORDER BY event.date_start DESC limit 2';
+		    WHERE event_users.id_user=:idUser ORDER BY event.date_start DESC';
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idUser', $idUser, PDO::PARAM_INT);
