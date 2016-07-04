@@ -696,7 +696,7 @@ $cards = array(
 	  'price'  => '200',
 	  'id_user'  => '5',
 	  'id_list'  => '3',
-	  'id_event'  => '2',
+	  'id_event'  => '3',
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
@@ -706,7 +706,7 @@ $cards = array(
 	  'price'  => '5',
 	  'id_user'  => '1',
 	  'id_list'  => '4',
-	  'id_event'  => '2',
+	  'id_event'  => '3',
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
@@ -716,7 +716,7 @@ $cards = array(
 	  'price'  => '30',
 	  'id_user'  => '4',
 	  'id_list'  => '5',
-	  'id_event'  => '3',
+	  'id_event'  => '4',
 	  'date_add'  => '2016-06-28 09:00:00',
 	],
 	[
