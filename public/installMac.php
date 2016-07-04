@@ -402,7 +402,7 @@ $events = array(
 	],
 	[
     'category'  => 'journee',
-    'title'  => 'Jeux de sociétés et activités extérieures',
+    'title'  => 'Jeux de société et activités extérieures',
     'description'  => 'Une journée jeux de sociétés, activités sportives et partage de bons moments avec des personnes de votre quartier',
     'address'  => 'Au Jardin Public ',
     'date_start'  => '2017-12-01 13:15:06',
