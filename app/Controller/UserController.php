@@ -727,6 +727,7 @@ class UserController extends MasterController
 				//définit si l'utilisateur est connecté
 				$user = $this->getUser();
 				$id = $user['id'];
+				$dataUser = [];
 
 
 				//qd j'insère le fichier depuis mon formulaire ça le place dan assets
@@ -785,19 +786,12 @@ class UserController extends MasterController
 							'firstname' => $post['firstname'],
 							'lastname' 	=> $post['lastname'],
 							'password' 	=> $authModel->hashPassword($post['password']),
+							'url' 		=> $post['url'],
+							'avatar' 	=> $adress,
 						];
-						if(!empty($post['url'])){
-							$dataUser = [
-								'url' 		=> $post['url'],
-							];
-						}
-						if(!empty($_FILES['avatar'])){
-							$dataUser = [
-								'avatar' 	=> $adress,
-							];
-						}
 						// on passe le tableau $data à la méthode update() pour enregistrer nos données en base.
 						// Et on ajoute le token dans la table token_register
+						
 						if($usersModel->update($dataUser, $id)){
 							$success = true;
 							$authModel->refreshUser();
